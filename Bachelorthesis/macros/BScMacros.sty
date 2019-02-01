@@ -99,6 +99,7 @@
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\M}{\mathbb{M}}
 \newcommand{\N}{\mathbb{N}}
+\renewcommand{\Pr}{\mathbb{P}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\T}{\mathbb{T}}
@@ -109,22 +110,24 @@
 \newcommand{\Y}{\mathbb{Y}}
 \newcommand{\Z}{\mathbb{Z}}
 
+\newcommand{\pmeas}{\mu\mkern-7mu P} 
+%new symbol for set of probability measures on... () 
+
 %%set up lightning symbol
 \newcommand*{\contradiction}[1][]{\quad\text{{\LARGE\lightning} #1}\ }
 
 %% AMS Theorem Environments
 \theoremstyle{plain}% default
-\newtheorem{satz}{Satz}[section]
-\newtheorem{lemma}[satz]{Lemma}
-\newtheorem{proposition}[satz]{Proposition}
-\newtheorem{korollar}[satz]{Korollar}
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lemma}[prop]{Lemma}
+\newtheorem{corollary}[prop]{Corollary}
 
 \theoremstyle{definition}
-\newtheorem{definition}[satz]{Definition}
-\newtheorem{beispiel}[satz]{Beispiel}
+\newtheorem{definition}[prop]{Definition}
+\newtheorem{example}[prop]{Example}
 
 \theoremstyle{remark}
-\newtheorem{bemerkung}[satz]{Bemerkung}
+\newtheorem{remark}[prop]{Remark}
 
 
 %% misc

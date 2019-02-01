@@ -1,3 +1,41 @@
-\chapter{Title Chapter 1}
+\chapter{Markov Decision Processes}
+\begin{definition}(Kernel)
+	\((X,\cA_Y), (X,\cA_X)\) measure spaces\\
+	 \(\lambda\colon \cX\times\cA_Y\to \R\) is a \emph{kernel} \(
+	 :\iff \begin{aligned}[t]
+	 &x\mapsto \lambda(x,A) \text{ measurable}\\
+	 &A\mapsto \lambda(x,A) \text{ a measure}
+	 \end{aligned}
+	  \)
+\end{definition}
+\begin{definition}(Markov Decision Process - MDP)\\
+\(\cM=(\cX,\cA,\cP_0) \), with:
+	
+\begin{tabular}{l l l}
+	\(\cX\) & countable (finite) set of states&\\
+	\(\cA\) & countable (finite) set of actions &\\
+	\multicolumn{2}{l}{
+		\(
+		\cP_0\colon
+		\begin{cases}
+		\cX\times \cA \to \pmeas(\cX\times\R)\\
+		(x,a)\mapsto \Pr(\cdot \mid x,a)
+		\end{cases}
+		\)	
+	} &
+	\parbox{17em}{\(\pmeas(\cX\times\R) \) the set of probability measures on \(\cX\times\R \), \\
+	\(\cX\) represents the next states,\\
+	\(\R\) the payoffs}
+	\end{tabular}\\
+is a \emph{(finite) Markov Decision Process}\\
+Together with a discount factor \(\gamma\in(0,1]\) it is a:\\
+\begin{tabular}{l l}
+	\emph{discounted reward} MDP & \(\gamma <1 \)\\
+	\emph{undiscounted reward} MDP & \(\gamma=1 \)
+\end{tabular}\\
+For \((Y_{(x,a)}, R_{(x,a)})\sim \cP_0(\cdot\mid x,a) \) a random variable, is
+\[r(x,a)\coloneqq \E[R_{(x,a)}] \quad\text{ the \emph{immediate reward function}}\]
+An MDP is \emph{evaluated} as follows:
+\end{definition}
 
 \endinput
