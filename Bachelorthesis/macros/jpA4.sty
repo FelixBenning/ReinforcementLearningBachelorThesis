@@ -1,0 +1,80 @@
+%%
+%% This is file `dina4.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% dina4.dtx  (with options: `package')
+%% 
+%%     jp's macro file for a4 paper, june 2004
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{dina4}
+\newif\if@golden  \@goldentrue
+\DeclareOption{GoldenRule}{\@goldentrue}
+\DeclareOption{RootTwo}{\@goldenfalse}
+\ProcessOptions
+\ExecuteOptions{GoldenRule}
+\newcommand{\f@ctor}{1}
+\newlength{\aiv@width}  \setlength{\aiv@width}{210mm}
+\newlength{\aiv@height} \setlength{\aiv@height}{297mm}
+\newlength{\tmp@width}  \setlength{\tmp@width}{\aiv@width}
+\newlength{\tmp@height} \setlength{\tmp@height}{\aiv@height}
+\setlength{\columnsep}{14pt}
+\if@twocolumn\if@golden\setlength{\textwidth}{33pc}
+  \else\setlength{\textwidth}{36pc}\fi
+  \addtolength{\textwidth}{\columnsep}\marginparsep5pt
+\else\if@golden\ifcase\@ptsize\relax\setlength{\textwidth}{29pc}\or
+  \setlength{\textwidth}{31pc}\or\setlength{\textwidth}{33pc}\fi
+  \else\ifcase\@ptsize\relax\setlength{\textwidth}{31pc}\or
+  \setlength{\textwidth}{33pc}\or\setlength{\textwidth}{35pc}\fi\fi
+  \marginparsep8pt\fi
+\addtolength{\tmp@width}{-\textwidth}
+\if@twocolumn\if@golden\ifcase\@ptsize\relax\renewcommand{\f@ctor}{53}
+  \or\renewcommand{\f@ctor}{46}\or\renewcommand{\f@ctor}{43}\fi
+  \else\ifcase\@ptsize\relax\renewcommand{\f@ctor}{51}\or
+  \renewcommand{\f@ctor}{45}\or\renewcommand{\f@ctor}{42}\fi\fi
+\else\if@golden\ifcase\@ptsize\relax \renewcommand{\f@ctor}{46}
+  \or\renewcommand{\f@ctor}{43}\or\renewcommand{\f@ctor}{43}\fi
+  \else\ifcase\@ptsize\relax\renewcommand{\f@ctor}{43}
+  \or\renewcommand{\f@ctor}{40}\or\renewcommand{\f@ctor}{40}\fi\fi\fi
+\setlength{\textheight}{\the\baselineskip}
+\multiply\textheight by \f@ctor
+\addtolength{\textheight}{\topskip}
+\addtolength{\aiv@height}{-\textheight}
+\if@twoside\if@twocolumn\setlength{\oddsidemargin}{0.6\tmp@width}
+  \setlength{\evensidemargin}{0.4\tmp@width}\else
+  \setlength{\oddsidemargin}{0.4\tmp@width}
+  \setlength{\evensidemargin}{0.6\tmp@width}\fi
+\else\setlength{\oddsidemargin}{0.5\tmp@width}
+  \setlength{\evensidemargin}{\oddsidemargin}\fi
+\setlength{\topmargin}{0.375\aiv@height}
+\addtolength{\topmargin}{-37pt}
+\addtolength{\topmargin}{-1in}
+\setlength{\marginparwidth}{\evensidemargin}
+\addtolength{\marginparwidth}{-\marginparsep}
+\addtolength{\marginparwidth}{-16pt}
+\addtolength{\oddsidemargin}{-1in}
+\addtolength{\evensidemargin}{-1in}
+\parskip0pt plus2pt
+\endinput
+%%
+%% End of file `dina4.sty'.

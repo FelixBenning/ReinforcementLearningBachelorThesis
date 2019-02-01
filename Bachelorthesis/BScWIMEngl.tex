@@ -1,0 +1,116 @@
+%%
+%% 'BScWIM.tex'
+%%
+%% LaTeX template for Bachelor theses at the faculty WIM
+%% of Mannheim University
+%%
+%% copyleft (2012-2014) by J. Berger, T. Christen, and J. Potthoff	
+%%
+
+%%fleqn leftalignes equations
+\documentclass[fleqn, 11pt, a4paper]{book}
+\usepackage{./macros/jpA4}
+\usepackage{./macros/BScMacros}
+\usepackage{./macros/BScTitle}
+
+%%
+%% je nach Betriebssystem und Editor muss die
+%% Behandlung von Sonderzeichen wie Umlauten
+%% eingestellt werden - dazu unten das richtige 
+%% (TeX-Guru fragen!) Paket auswaehlen 
+%% (d.h., das "%" Zeichen am Anfang der Zeile entfernen)
+%% (man geht auf "Nummer Sicher", indem man
+%% Umlaute wie \"a eingibt, {\ss} fuer Eszett -
+%% dann braucht man keins der Pakete unten)
+%%
+%\usepackage[cp850]{inputenc} 
+%\usepackage[latin1]{inputenc} 
+%\usepackage[ansinew]{inputenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{ucs}
+%\usepackage[utf8x]{inputenc}
+
+
+%%
+%% Font auswaehlen: '\TimesFont' auskommentiert -> computer modern
+%% '\TimesFont' aktiv -> Textfont: times, Mathfont: computer modern
+%%
+%\TimesFont
+%%
+%% ein- oder doppelseitiger Satz
+%%
+%\onesided
+\twosided
+%%
+%% deaktiviere die farbigen Rahmen um interne links (s. hyperref package):
+%%
+\nocolorlinks
+%%
+%% persoenliche Angaben
+%%
+\firstLastName{Felix Benning}
+\birthdate{27.11.1996}
+\birthplace{Nürtingen}
+\MatNr{1501817}
+\titellineI{Markov-Decision Processes}
+%\titellineII{}
+%\titellineIII{}
+%\subtitellineI{}
+%\subtitellineII{}
+\Supervisor{Prof. Dr. Leif Döring}
+\DueDate{}
+
+
+\begin{document}
+\frontmatter
+\titelpage
+%%
+%% eidestattliche Erklaerung
+%%
+\include{./chapter/declaration}
+\cleardoublepage
+%%
+%% Vorwort
+%%
+\include{./chapter/preface}
+\setcounter{tocdepth}{1}
+%%
+%% Inhaltsverzeichnis
+%%
+\tableofcontents
+%%
+%% Einleitung
+%% (nicht alle Autoren trennen Vorwort und Einleitung,
+%%  manche setzen die Einleitung als erstes Kapitel
+%%  nach "\mainmatter")
+%%
+\include{./chapter/introduction}
+\mainmatter
+%%
+%% eigentliche Kapitel der Arbeit
+%%
+\include{./chapter/chapter_01}
+\include{./chapter/chapter_02}
+
+%%
+%% Falls Abbildungen und/oder Tabellen vorhanden,
+%% entsprechend auskommentieren 
+%%
+%\clearpage
+%\listoffigures
+%\listoftables
+%%
+%% Anhang (falls nicht vorhanden, auskommentieren)
+%%
+\begin{appendix}
+\include{./chapter/anhang_01}
+\end{appendix}
+\backmatter
+%%
+%% Literaturverzeichnis (bitte einkommentieren!)
+%%
+\begin{thebibliography}{99}
+%\input{./chapter/literatur.tex}
+\end{thebibliography}
+\end{document}
+
