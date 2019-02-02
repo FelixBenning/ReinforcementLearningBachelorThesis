@@ -112,5 +112,42 @@ resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\geq 0)\), which allo
 \begin{remark}
 A stationary policy induces a \emph{time-homogenous} markov chain.
 \end{remark}
-
+\begin{definition}(Markov Reward Process - MRP)
+%TODO
+\end{definition}
+\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP, \(\pi\) Behavior\\
+Select \(X_0\) such that \(\forall x\in\cX:\Pr(X_0=x)>0\) and evaluate the MDP with
+\(((X_t,A_t,R_{t+1}), t\in \N_0)\) the resulting stoch. process.\\
+\def\arraystretch{3}
+\[
+\begin{array}{l l}
+	V^\pi\colon
+	\begin{cases}
+		\cX\to\R\\
+		x\mapsto \E[\cR\mid X_0=x]
+	\end{cases} 
+	& \text{is the \emph{value function} for } \pi \footnotemark\\
+	Q^\pi\colon
+	\begin{cases}
+		\cX\times\cA\to\R\\
+		(x,a)\mapsto \E[\cR\mid X_0=x, A_0=a]
+	\end{cases}
+	& \text{is the \emph{action value function} for } \pi \footnotemark\\
+	V^*\colon
+	\begin{cases}
+		\cX\to\R\\
+		x\mapsto \sup\limits_{\pi\text{ Behav.}} V^\pi(x)
+	\end{cases} 
+	& \text{is the \emph{optimal value function}}\\
+	Q^*\colon
+	\begin{cases}
+		\cX\times\cA\to\R\\
+		(x,a)\mapsto \sup\limits_{\pi\text{ Behav.}} Q^\pi(x,a)
+	\end{cases}
+	& \text{is the \emph{optimal action value function}}
+\end{array}
+\]
+\end{definition}
+\footnotetext{Well defined because \(\Pr(X_0=x)>0\)}
+\footnotetext{Well defined because \(A_1\sim \pi_1(\cdot\mid (x,a,r_0), x_1)\) is defined for all \(a\) regardless of \(\pi_0\)}
 \endinput
