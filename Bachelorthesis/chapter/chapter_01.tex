@@ -1,12 +1,13 @@
 \chapter{Markov Decision Processes}
 \begin{definition}(Kernel)
-	\((X,\cA_Y), (X,\cA_X)\) measure spaces\\
-	 \(\lambda\colon \cX\times\cA_Y\to \R\) is a \emph{kernel} \(
+	\((Y,\cA_Y), (X,\cA_X)\) measure spaces\\
+	 \(\lambda\colon X\times\cA_Y\to \R\) is a \emph{(probability) kernel} \(
 	 :\iff \begin{aligned}[t]
-	 &x\mapsto \lambda(x,A) \text{ measurable}\\
-	 &A\mapsto \lambda(x,A) \text{ a measure}
+	 &\lambda(\cdot,A)\colon x\mapsto \lambda(x,A) \text{ measurable}\\
+	 &\lambda(x,\cdot)\colon A\mapsto \lambda(x,A) \text{ a (prob.) measure}
 	 \end{aligned}
-	  \)
+	  \)\\
+	  Since we will interpret probability kernels as distributions over \(Y\) given a  certain condition \(X\), the notation \(\lambda(\cdot\mid x) \coloneqq \lambda(x,\cdot)\) helps this intuition. 
 \end{definition}
 \begin{definition}(Markov Decision Process - MDP)\\
 \(\cM=(\cX,\cA,\cP_0) \), with:
@@ -16,18 +17,20 @@
 	\(\cA\) & countable (finite) set of actions &\\
 	\multicolumn{2}{l}{
 		\(
-		\cP_0\colon
 		\begin{cases}
 		\cX\times \cA \to \pmeas(\cX\times\R)\\
-		(x,a)\mapsto \Pr(\cdot \mid x,a)
+		(x,a)\mapsto \cP_0(\cdot \mid x,a)
 		\end{cases}
-		\)	
-	} &
-	\parbox{17em}{\(\pmeas(\cX\times\R) \) the set of probability measures on \(\cX\times\R \), \\
-	\(\cX\) represents the next states,\\
-	\(\R\) the payoffs}
+		\)
+	}  &
+	\parbox[h]{17em}{
+		\emph{transition probability kernel} \\
+		\(\pmeas(\cX\times\R) \) the set of probability measures on \(\cX\times\R \), \\
+		\(\cX\) represents the next states,\\
+		\(\R\) the payoffs
+	}
 	\end{tabular}\\
-is a \emph{(finite) Markov Decision Process}\\
+is a \emph{(finite) Markov Decision Process}.\\
 Together with a discount factor \(\gamma\in(0,1]\) it is a:\\
 \begin{tabular}{l l}
 	\emph{discounted reward} MDP & \(\gamma <1 \)\\
@@ -35,7 +38,79 @@ Together with a discount factor \(\gamma\in(0,1]\) it is a:\\
 \end{tabular}\\
 For \((Y_{(x,a)}, R_{(x,a)})\sim \cP_0(\cdot\mid x,a) \) a random variable, is
 \[r(x,a)\coloneqq \E[R_{(x,a)}] \quad\text{ the \emph{immediate reward function}}\]
-An MDP is \emph{evaluated} as follows:
+An MDP is \emph{evaluated} as follows:\\
+1. Select the initial state \(X_0\) an \(\cX\)-valued random variable.\\ 
+2. \((A_t, t\in \N)\) action selection rules (behaviors) will be discussed later, for now simply assume \(\cA\)-valued random variables.\\
+3. Select inductively: \((X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t)\) with the markov property, i.e.:
+\begin{align*} 
+&\Pr[(X_{t+1},R_{t+1})=(x,r) \mid (X_t,A_t)=(x_t,a_t),\dots, (X_0,A_0)=(x_0,a_0)]\\
+&=\Pr[(X_{t+1}, R_{t+1})=(x,r)\mid (X_t,A_t)=(x_t,a_t)]
+\end{align*}
+resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\geq 0)\), which allows to define the \emph{return}:
+\[\cR\coloneqq\sum_{t=0}^{\infty}\gamma^t R_{t+1}\]
 \end{definition}
+%(
+
+\begin{remark}
+\((X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t)\) with the markov property is well defined, i.e.:
+\begin{align*}
+	&\exists (X_{t+1}, R_{t+1})\ \cX\times\R\text{-valued random variable}: \\ 
+	&(X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t) \text{ and satisfies the markov property}
+\end{align*}
+\end{remark}
+\begin{proof}
+	%TODO
+\end{proof}
+\begin{remark}\leavevmode
+\begin{enumerate}
+	\item From now on we assume that \(\forall (x,a)\in\cX\times\cA:|R_{(x,a)}|\le R\in\R\) almost surely. This also implies: 			\(
+	\begin{aligned}[t]
+		&\|r\|_{\infty}=\sup_{(x,a)\in\cX\times\cA}|\E[R_{(x,a)}]|\le R\\
+		&|\cR|\le\sum_{t=0}^\infty \gamma^t |R_{t+1}|\le \frac{R}{1-\gamma} \text{ a.s.}
+	\end{aligned}
+	\)
+	\item Sometimes not all actions make sense in all states. A simple fix would be to set the immediate reward functions for those actions very low, or (if possible) redirect them to the closest possible action. \\
+	A more formal approach would be to introduce an additional mapping, which assigns the set of admissible actions to each state \(\cX\to\cP(\cA)\), or alternatively define a (binary) relation on \(\cX\times\cA\).
+	\item If there is just one admissible action in every state, the MDP is equivalent to a normal Markov Process.
+	\item Instead of a transition probability kernel \(\cP_0\), sometimes a \emph{transition function} f with a and an exogenous random element \(D_t\) (e.g. Demand) is used to define the next state and reward: \((X_{t+1},R_{t+1})=f(X_t,A_t,D_t)\) 
+\end{enumerate}
+\end{remark}
+\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) a MDP\\
+	\(x\in\cX\) is a \emph{terminal (absorbing)} state \(:\iff \forall s\in\N: \Pr(X_{t+s}=x\mid X_t=x)=1\)\\
+	An MDP with such states is called \emph{episodic}.\\
+	An \emph{episode} is the random time period \((1,\dots,T)\) until a terminal state is reached.
+\end{definition}
+\begin{remark}\leavevmode
+	\begin{itemize}
+		\item The reward in a terminal state is by convention zero, i.e. \(x\) terminal state implies \(\forall a\in\cA: R_{(x,a)}=0\).
+		\item Episodic MDPs are often undiscounted
+	\end{itemize}	
+\end{remark}
+\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) a MDP\\
+	 An \(A_t\) selection-rule \(\pi=(\pi_t,t\in\N_0)\) is called \emph{behavior}, where
+	 \[ 
+	 	\pi_t\colon
+	 	\begin{cases}
+	 		((\cX\times\cA\times\R)^t\times\cX)\times\cP(\cA) \to \R \\
+	 		(y,A)\mapsto \pi_t(A\mid y)
+	 	\end{cases} \text{ is a probability kernel}
+	 \]
+	 and \(A_t\sim \pi_t(\cdot\mid (X_0,A_0,R_1), \dots,(X_{t-1},A_{t-1},R_t),X_t))\)\\
+	 Special cases:
+	 \begin{enumerate}
+	 	\item \emph{Determinisitic stationary policies} specified with some abuse of notation:
+	 	\[\leavevmode \pi\colon\cX\to\cA \text{ with }A_t=\pi(X_t)\]
+	 	\item \emph{Stochastic stationary policies} specified by:
+	 	\[\pi\colon \begin{cases}
+	 	\cX\times\cP(\cA)\to\R\\
+	 	(x,A)\mapsto \pi(A\mid x)
+	 	\end{cases} \text{ with } A_t\sim\pi(\cdot\mid x)
+	 	\]
+	 \end{enumerate}
+	 \(\Pi_{\text{stat}}\) denotes the \emph{set of (stoch.) stationary policies} (note that the deterministic policies are a subset of the stochastic policies)
+\end{definition}
+\begin{remark}
+A stationary policy induces a \emph{time-homogenous} markov chain.
+\end{remark}
 
 \endinput
