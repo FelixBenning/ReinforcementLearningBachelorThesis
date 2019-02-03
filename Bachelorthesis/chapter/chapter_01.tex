@@ -147,7 +147,48 @@ Select \(X_0\) such that \(\forall x\in\cX:\Pr(X_0=x)>0\) and evaluate the MDP w
 	& \text{is the \emph{optimal action value function}}
 \end{array}
 \]
+\(\pi\) is \emph{optimal} \(:\iff V^*=V^\pi\)
 \end{definition}
-\footnotetext{Well defined because \(\Pr(X_0=x)>0\)}
+\footnotetext[1]{Well defined because \(\Pr(X_0=x)>0\)}
 \footnotetext{Well defined because \(A_1\sim \pi_1(\cdot\mid (x,a,r_0), x_1)\) is defined for all \(a\) regardless of \(\pi_0\)}
+\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
+Sometimes we don't care about the probability distribution of the reward, so we define:
+	\[
+	p\colon 
+	\begin{cases}
+		\cX\times\cA\times\cP(\cX)\to\R\\
+		(x,a,Y)\mapsto \cP_0(Y\times\R\mid x,a)
+	\end{cases}\text{ the \emph{\underline{state} transition kernel}.}
+	\] 
+And use the notation \(p(y\mid x,a)\coloneqq p(\{y\}\mid x,a)\) with \((x,a,y)\in\cX\times\cA\times\cX\)
+	
+\end{definition}
+\begin{lemma}\label{V*,Q* relation}\(\cM=(\cX,\cA,\cP_0)\) MDP
+\begin{enumerate}[label=\textbf{(\roman*)},font=\normalfont]
+\item \(V^*(x)=\sup\limits_{a\in\cA}Q^*(x,a)\)
+\item \(Q^*(x,a)=r(x,a)+\gamma \sum\limits_{y\in\cX}p(y\mid x,a) V^*(y)\)
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+	%TODO
+\end{proof}
+\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
+The mapping \(T^*\colon\R^\cX\to\R^\cX\) with:
+	\[
+	 T^* V(x)\coloneqq \sup_{a\in\cA}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V(y)\right\} \qquad x\in\cX
+	\]
+is the \emph{Bellman optimality operator}
+\end{definition}
+\begin{remark}
+Because of \ref{V*,Q* relation} \(V^*\) is a fixpoint of \(T^*\):
+\[
+	V^*(x)=\sup_{a\in\cA}Q^*(x,a)=\sup_{a\in\cA}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V^*(y)\right\} =T^*V^*(x)
+\]
+\end{remark}
+\begin{prop}\(\cM=(\cX,\cA,\cP_0)\) MDP
+	\[V^*(x)=\sup_{\pi\in\Pi_{\textnormal{stat}}}V^\pi(x)=\sup_{\substack{
+	\pi\in\Pi_{\textnormal{stat}}\\ 
+	\pi\textnormal{ determ.} 
+	}}V^\pi(x) \]
+\end{prop}
 \endinput
