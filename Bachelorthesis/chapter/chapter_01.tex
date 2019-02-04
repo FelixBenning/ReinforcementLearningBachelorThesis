@@ -31,7 +31,7 @@
 	}
 	\end{tabular}\\
 is a \emph{(finite) Markov Decision Process}.\\
-Together with a discount factor \(\gamma\in(0,1]\) it is a:\\
+Together with a discount factor \(\gamma\in[0,1]\) it is a:\\
 \begin{tabular}{l l}
 	\emph{discounted reward} MDP & \(\gamma <1 \)\\
 	\emph{undiscounted reward} MDP & \(\gamma=1 \)
@@ -100,14 +100,15 @@ resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\geq 0)\), which allo
 	 \begin{enumerate}
 	 	\item \emph{Determinisitic stationary policies} specified with some abuse of notation:
 	 	\[\leavevmode \pi\colon\cX\to\cA \text{ with }A_t=\pi(X_t)\]
-	 	\item \emph{Stochastic stationary policies} specified by:
+	 	\item \emph{(Stochastic) stationary policies} specified by:
 	 	\[\pi\colon \begin{cases}
 	 	\cX\times\cP(\cA)\to\R\\
 	 	(x,A)\mapsto \pi(A\mid x)
 	 	\end{cases} \text{ with } A_t\sim\pi(\cdot\mid x)
 	 	\]
 	 \end{enumerate}
-	 \(\Pi_{\text{stat}}\) denotes the \emph{set of (stoch.) stationary policies} (note that the deterministic policies are a subset of the stochastic policies)
+	 \(\statPolicy\) is the \emph{set of (stoch.) stationary policies}, \\ 
+	 \(\detPolicy\) is the \emph{set of deterministic stationary policies} (note \(\detPolicy\subseteq\statPolicy \))
 \end{definition}
 \begin{remark}
 A stationary policy induces a \emph{time-homogenous} markov chain.
@@ -115,6 +116,14 @@ A stationary policy induces a \emph{time-homogenous} markov chain.
 \begin{definition}(Markov Reward Process - MRP)
 %TODO
 \end{definition}
+\section{Value functions}
+The goal in this section is to
+\begin{itemize}[itemsep=0pt, topsep=1pt]
+\item define Value functions which assign states (and actions) a value, which allow the agent to make a more nuanced decisions than comparing immediate rewards of different actions
+\item explore the relation of different value functions
+\item show uniqueness of optimal value functions with the Banach fixpoint theorem, yielding a simple approximation methode along the way
+\item demonstrate that in MDPs deterministic stationary policies are generally a large enough set of policies to choose from
+ \end{itemize}
 \begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP, \(\pi\) Behavior\\
 Select \(X_0\) such that \(\forall x\in\cX:\Pr(X_0=x)>0\) and evaluate the MDP with
 \(((X_t,A_t,R_{t+1}), t\in \N_0)\) the resulting stoch. process.\\
@@ -161,34 +170,114 @@ Sometimes we don't care about the probability distribution of the reward, so we 
 	\end{cases}\text{ the \emph{\underline{state} transition kernel}.}
 	\] 
 And use the notation \(p(y\mid x,a)\coloneqq p(\{y\}\mid x,a)\) with \((x,a,y)\in\cX\times\cA\times\cX\)
-	
+\end{definition}
+\begin{prop}\(\cM=(\cX,\cA,\cP_0)\) MDP, \(\pi\in\detPolicy\) 
+	\[Q^\pi(x,a)=r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a)V^\pi(y)	\]
+\end{prop}
+\begin{proof}
+\end{proof}
+\begin{corollary}\label{V^pi,Q^pi relation}  \(\cM=(\cX,\cA,\cP_0)\) MDP, \(\pi\in\detPolicy\) 
+\begin{itemize}
+	\item \(V^\pi(x)=Q^\pi(x,\pi(x))\)
+	\item \(V^\pi=r(x,\pi(x))+\gamma\sum\limits_{y\in\cX}p(y\mid x,\pi(x))V^\pi(y) \)
+\end{itemize}
+\end{corollary}
+\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP, \(\pi\in\detPolicy\) \\
+The mapping \(T^\pi\colon\R^\cX\to\R^\cX\) with:
+	\[
+	T^\pi V(x)\coloneqq r(x,\pi(x))+\gamma\sum_{y\in\cX}p(y\mid x,\pi(x)) V(y)\qquad V\in\R^\cX, x\in\cX
+	\]
+is called the \emph{Bellman Operator}
+\end{definition}
+\begin{remark}\leavevmode
+	\begin{enumerate}
+	\item From \ref{V^pi,Q^pi relation} follows \(\forall\pi\in\detPolicy : T^\pi V^\pi=V^\pi\)
+	\item \(T^\pi\) meets the requirements of the Banach fixed-point theorem for \({\gamma<1}\), this implies that \(V^\pi\) for \(\pi\in\detPolicy\)
+	is a \emph{unique} fixpoint and can be approximated with the canonical iteration
+	\item \(T^\pi\) is an affine operator
+	\item \(W_1,W_2\in\R^\cX\) then 
+	\[\forall x\in\cX:W_1(x)\le W_2(x) \implies \forall x\in\cX:T^\pi W_1(x)\le T^\pi W_2(x)\]
+	\end{enumerate}
+\end{remark}
+\begin{proof}
+\end{proof}
+\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP
+\begin{align*}
+	\tilde{V}(x)&\coloneqq \sup_{\pi\in\detPolicy} V^\pi(x)\\
+	\tilde{Q}(x,a)&\coloneqq\sup_{\pi\in\detPolicy}Q^\pi(x,a)
+\end{align*}
+\end{definition}
+\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
+The mapping \(T^*\colon\R^\cX\to\R^\cX\) with:
+	\[
+	 T^* V(x)\coloneqq \sup_{a\in\cA}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V(y)\right\} \qquad V\in\R^\cX, x\in\cX
+	\]
+is called the \emph{Bellman Optimality Operator}
 \end{definition}
 \begin{lemma}\label{V*,Q* relation}\(\cM=(\cX,\cA,\cP_0)\) MDP
 \begin{enumerate}[label=\textbf{(\roman*)},font=\normalfont]
-\item \(V^*(x)=\sup\limits_{a\in\cA}Q^*(x,a)\)
-\item \(Q^*(x,a)=r(x,a)+\gamma \sum\limits_{y\in\cX}p(y\mid x,a) V^*(y)\)
+\item \(\tilde{V}(x)\coloneqq\sup\limits_{a\in\cA} \tilde{Q}(x,a)\)
+\item \( \tilde{Q}(x,a) = r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a)\tilde{V}(y) \)
+\item\label{i:3} \(V^*(x)=\sup\limits_{a\in\cA}Q^*(x,a)\)
+\item\label{i:4} \(Q^*(x,a)=r(x,a)+\gamma \sum\limits_{y\in\cX}p(y\mid x,a) V^*(y)\)
 \end{enumerate}
 \end{lemma}
 \begin{proof}
 	%TODO
 \end{proof}
-\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
-The mapping \(T^*\colon\R^\cX\to\R^\cX\) with:
-	\[
-	 T^* V(x)\coloneqq \sup_{a\in\cA}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V(y)\right\} \qquad x\in\cX
-	\]
-is the \emph{Bellman optimality operator}
-\end{definition}
-\begin{remark}
-Because of \ref{V*,Q* relation} \(V^*\) is a fixpoint of \(T^*\):
-\[
-	V^*(x)=\sup_{a\in\cA}Q^*(x,a)=\sup_{a\in\cA}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V^*(y)\right\} =T^*V^*(x)
-\]
-\end{remark}
-\begin{prop}\(\cM=(\cX,\cA,\cP_0)\) MDP
-	\[V^*(x)=\sup_{\pi\in\Pi_{\textnormal{stat}}}V^\pi(x)=\sup_{\substack{
-	\pi\in\Pi_{\textnormal{stat}}\\ 
-	\pi\textnormal{ determ.} 
-	}}V^\pi(x) \]
+
+\begin{corollary}
+	\begin{align*}
+	&T^*\tilde{V}=\tilde{V}\\
+	&T^*V^*=V^*
+	\end{align*}
+\end{corollary}
+\begin{proof}
+\begin{align*}
+	V^*(x)\xeq{\ref{i:3}}\sup_{a\in\cA}Q^*(x,a)\xeq{\ref{i:4}}\sup_{a\in\cA}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V^*(y)\right\} =T^*V^*(x)
+\end{align*}
+\(\tilde{V}\) analogous
+\end{proof}
+\begin{thm}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
+\(T^*\) satisfies the requirements of the Banach fixpoint theorem, in particular:
+	\[V^*(x)=\sup_{\pi\in\statPolicy}V^\pi(x)=\tilde{V}(x) \]
+is the unique fixpoint of \(T^*\)
+\end{thm}
+\begin{lemma}(Blackwell's condition for contraction)
+\end{lemma}
+\begin{proof}
+https://math.stackexchange.com/questions/1087885/blackwells-condition-for-a-contraction-why-is-boundedness-neccessary?rq=1
+\end{proof}
+\begin{proof}[Proof (Theorem)]
+\end{proof}
+\begin{prop}\label{sup is attained}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
+The following statements are equivalent:
+\begin{enumerate}[label={(\roman*)},font=\normalfont]
+\item \(\pi \in\statPolicy\) is optimal (\(V^*=V^\pi\))
+\item \(\forall x\in\cX: V^*(x)=\sum\limits_{a\in\cA}\pi(a\mid x)Q^*(x,a)\)
+\item\label{ii:3} \(\forall x\in\cX: \pi=\arg\max\limits_{\pi\in\statPolicy}\sum\limits_{a\in\cA}\pi(a\mid x)Q^*(x,a) \)
+\item \(\pi(a\mid x)>0 \iff Q^*(x,a)=V^*(x) =\sup\limits_{b\in\cA}Q*(x,b)\) \\
+	``actions are concentrated on the set of actions that maximize \(Q^*(x,\cdot)\)''\\
+	(this also implies: \(Q^*(x,a)<V^*(x) \implies \pi(a\mid x)=0\))
+\end{enumerate}
 \end{prop}
+\begin{proof}
+%TODO
+\end{proof}
+\begin{definition}
+	\(Q\colon\cX\times\cA\to\R\) an action value function, \(\tilde{\pi}\colon\cX\to\cA\) with:
+	\[
+	\tilde{\pi}(x)\coloneqq\arg\max_{\pi\in\statPolicy}\sum_{a\in\cA}\pi(a\mid x) Q(x,a)\qquad x\in\cX
+	\]
+	\(\tilde{\pi}(x)\) is called \emph{greedy} with respect to Q in \(x\in\cX\)\\
+	\(\tilde{\pi}\) is called \emph{greedy} w.r.t. Q
+\end{definition}
+
+\begin{remark}\leavevmode
+	\begin{itemize}
+	\item \ref{sup is attained}\ref{ii:3} implies that greedy w.r.t. \(Q^*\) is optimal. 
+	This means that knowledge of \(Q^*\) is sufficient to select the best action.
+	\item \ref{V*,Q* relation} implies that knowledge of \(V^*,r,p\) is sufficient as well.
+	\end{itemize}
+\end{remark}
 \endinput

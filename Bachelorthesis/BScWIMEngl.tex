@@ -44,7 +44,6 @@
 %%
 %% deaktiviere die farbigen Rahmen um interne links (s. hyperref package):
 %%
-\nocolorlinks
 %%
 %% persoenliche Angaben
 %%
@@ -86,6 +85,21 @@
 %%
 \include{./chapter/introduction}
 \mainmatter
+\begin{lemma}\label{V*,Q* relation}\(\cM=(\cX,\cA,\cP_0)\) MDP
+	\begin{enumerate}[label={(\roman*)},font=\normalfont]
+		\item \(\tilde{V}(x)\coloneqq\sup\limits_{a\in\cA} \tilde{Q}(x,a)\)
+		\item \( \tilde{Q}(x,a) = r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a)\tilde{V}(y) \)
+		\item\label{i:3} \(V^*(x)=\sup\limits_{a\in\cA}Q^*(x,a)\)
+		\item\label{i:4} \(Q^*(x,a)=r(x,a)+\gamma \sum\limits_{y\in\cX}p(y\mid x,a) V^*(y)\)
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\begin{align*}
+	V^*(x)\stackrel{\text{\ref{i:3}}}{=}\sup_{a\in\cA}Q^*(x,a)=\sup_{a\in\cA}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V^*(y)\right\} =T^*V^*(x)
+	\end{align*}
+	\(\tilde{V}\) analogous
+\end{proof}
+
 %%
 %% eigentliche Kapitel der Arbeit
 %%

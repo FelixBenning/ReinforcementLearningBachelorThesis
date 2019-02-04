@@ -10,7 +10,7 @@
 \RequirePackage{mathtools}
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
-\RequirePackage{amsfonts}
+%\RequirePackage{amsfonts}
 %%allow to modify type of enumerators e.g. (i) instead of 1.
 \RequirePackage{enumitem}
 %% set graphics support (to include pictures etc.)
@@ -18,7 +18,7 @@
 %% set up color support
 \RequirePackage{color}
 %% dynamic cross referencing in pdf
-\RequirePackage{hyperref}
+\RequirePackage[hidelinks]{hyperref}
 %% support for listing of code and output
 \RequirePackage{listings} 
 \RequirePackage{moreverb}
@@ -112,8 +112,16 @@
 \newcommand{\Y}{\mathbb{Y}}
 \newcommand{\Z}{\mathbb{Z}}
 
-\newcommand{\pmeas}{\mu\mkern-7mu P} 
+ 
 %new symbol for set of probability measures on... () 
+\newcommand{\pmeas}{\mu\mkern-7mu P}
+
+%%Set of stochastic stationary policies
+\newcommand{\statPolicy}{\Pi_{\textnormal{stat}}}
+
+%%Set of deterministic stationary policies
+\newcommand{\detPolicy}{\Pi_{\textnormal{stat}}^{\textnormal{det}}}
+
 
 %%set up lightning symbol
 \newcommand*{\contradiction}[1][]{\quad\text{{\LARGE\lightning} #1}\ }
@@ -123,6 +131,7 @@
 \newtheorem{prop}{Proposition}[section]
 \newtheorem{lemma}[prop]{Lemma}
 \newtheorem{corollary}[prop]{Corollary}
+\newtheorem{thm}[prop]{Theorem}
 
 \theoremstyle{definition}
 \newtheorem{definition}[prop]{Definition}
@@ -134,7 +143,6 @@
 
 %% misc
 \allowdisplaybreaks[1]
-\newcommand{\nocolorlinks}{\hypersetup{linkbordercolor=1 1 1, citebordercolor=1 1 1}}
 
 % settings for the listings package - see documentation of the package
 \lstset{%
@@ -152,7 +160,7 @@ literate=%                                  translations: items are separated wi
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ARROWS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% ARROWS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %arrow with explanation 
 %(https://tex.stackexchange.com/questions/467779/alignment-of-implication-arrows-with-text-on-top)
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -177,7 +185,9 @@ literate=%                                  translations: items are separated wi
 \newcommand*{\ximpliedby}[1]{\x@rrow{#1}{\impliedby}} %%%%%% <=
 \newcommand*{\xiff}[1]{\x@rrow{#1}{\iff}} %%%%%%%%%%%%% <=>
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\xeq}[1]{\x@rrow{#1}{=}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \endinput
