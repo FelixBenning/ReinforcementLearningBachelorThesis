@@ -160,6 +160,13 @@ Select \(X_0\) such that \(\forall x\in\cX:\Pr(X_0=x)>0\) and evaluate the MDP w
 \end{definition}
 \footnotetext[1]{Well defined because \(\Pr(X_0=x)>0\)}
 \footnotetext{Well defined because \(A_1\sim \pi_1(\cdot\mid (x,a,r_0), x_1)\) is defined for all \(a\) regardless of \(\pi_0\)}
+
+\begin{remark}
+With the distribution of \(X_0\) set (or \(X_0\) being realized with a fixed value \(x\)), the distribution of \(X_t, A_t,R_{t+1}\) is determined for all \(t\in\N_0\). The conditional expectation is thus unique for a given \(X_0=x\), for all possible realizations of the MDP with a given behavior. \\
+This means \(V^\pi, Q^\pi\) are well defined.
+\end{remark}
+
+
 \begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
 Sometimes we don't care about the probability distribution of the reward, so we define:
 	\[
@@ -171,17 +178,44 @@ Sometimes we don't care about the probability distribution of the reward, so we 
 	\] 
 And use the notation \(p(y\mid x,a)\coloneqq p(\{y\}\mid x,a)\) with \((x,a,y)\in\cX\times\cA\times\cX\)
 \end{definition}
-\begin{prop}\(\cM=(\cX,\cA,\cP_0)\) MDP, \(\pi\in\detPolicy\) 
+
+
+\begin{prop}\label{expand Q^pi}\(\cM=(\cX,\cA,\cP_0)\) MDP, \(\pi\in\detPolicy\) 
 	\[Q^\pi(x,a)=r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a)V^\pi(y)	\]
 \end{prop}
+
 \begin{proof}
+\begin{align*}
+Q^\pi &= \E[\cR(\pi)\mid X_0=x, A_0=a]\\
+&=\E[R_1(\pi)\mid X_0=x,A_0=a]+\gamma\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi)\middle| X_0=x,A_0=a\right]\\
+&=\E[R_{(x,a)}] 
+ + \gamma \sum_{y\in\cX}\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi) \middle| X_0=x,A_0=a, X_1=y\right]p(y\mid x, a)\\
+&\lxeq{\text{Markov}} r(x,a)
+ + \gamma\sum_{y\in\cX}\underbracket{\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi)\middle| X_1=y, A_1=\pi(y)\right]}_{
+ \begin{aligned}
+ 	&= \E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi)\middle| X_1=y \right] \\
+ 	&\lxeq{(*)} \E\left[\sum_{t=0}^\infty\gamma^t \tilde{R}_{t+1}(\pi)\middle| \tilde{X}_0=y \right]=V^\pi(y)
+ \end{aligned}
+ }
+ p(y\mid x, a)
+\end{align*}
+\((*)\) Rename: \(\tilde{X}_{t}\coloneqq X_{t+1}, \tilde{A}_t\coloneqq A_{t+1},\tilde{R}_{t}\coloneqq R_{t+1}\), then \((\tilde{X}_t,\tilde{A}_t,\tilde{R}_{t+1}, t\in\N_0)\) is an evaluation of the MDP with the (stationary) policy \(\pi\)
 \end{proof}
+
+
 \begin{corollary}\label{V^pi,Q^pi relation}  \(\cM=(\cX,\cA,\cP_0)\) MDP, \(\pi\in\detPolicy\) 
-\begin{itemize}
-	\item \(V^\pi(x)=Q^\pi(x,\pi(x))\)
-	\item \(V^\pi=r(x,\pi(x))+\gamma\sum\limits_{y\in\cX}p(y\mid x,\pi(x))V^\pi(y) \)
-\end{itemize}
+\begin{align*}
+	V^\pi(x)&=Q^\pi(x,\pi(x))\\
+	 &=r(x,\pi(x))+\gamma\sum\limits_{y\in\cX}p(y\mid x,\pi(x))V^\pi(y) 
+\end{align*}
 \end{corollary}
+
+\begin{proof}
+Since \(\pi\) is a deterministic stationary policy:
+\[V^\pi(x)=\E[\cR(\pi)\mid X_0=x]=\E[\cR(\pi)\mid X_0=x, A_0=\pi(x)]=Q^\pi(x,\pi(x))\]
+The rest follows from \ref{expand Q^pi}
+\end{proof}
+
 \begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP, \(\pi\in\detPolicy\) \\
 The mapping \(T^\pi\colon\R^\cX\to\R^\cX\) with:
 	\[
@@ -189,24 +223,44 @@ The mapping \(T^\pi\colon\R^\cX\to\R^\cX\) with:
 	\]
 is called the \emph{Bellman Operator}
 \end{definition}
+
+
 \begin{remark}\leavevmode
-	\begin{enumerate}
-	\item From \ref{V^pi,Q^pi relation} follows \(\forall\pi\in\detPolicy : T^\pi V^\pi=V^\pi\)
-	\item \(T^\pi\) meets the requirements of the Banach fixed-point theorem for \({\gamma<1}\), this implies that \(V^\pi\) for \(\pi\in\detPolicy\)
+	\begin{enumerate}[label=\arabic*.]
+	\item \(\forall\pi\in\detPolicy : T^\pi V^\pi=V^\pi\) (c.f. \ref{V^pi,Q^pi relation})
+	\item\label{num:2} \(T^\pi\) meets the requirements of the Banach fixed-point theorem for \({\gamma<1}\), this implies that \(V^\pi\) for \(\pi\in\detPolicy\)
 	is a \emph{unique} fixpoint and can be approximated with the canonical iteration
 	\item \(T^\pi\) is an affine operator
-	\item \(W_1,W_2\in\R^\cX\) then 
-	\[\forall x\in\cX:W_1(x)\le W_2(x) \implies \forall x\in\cX:T^\pi W_1(x)\le T^\pi W_2(x)\]
+	\item\label{num:4} \(W_1,W_2\in\R^\cX\), write \(W_1 \le W_2\) for \(\forall x\in\cX:W_1(x)\le W_2(x)\), then:
+	\[W_1\le W_2 \implies T^\pi W_1\le T^\pi W_2\]
 	\end{enumerate}
 \end{remark}
+
 \begin{proof}
+\ref{num:2} \((\R^\cX, \|\cdot\|_\infty)\) is a non-empty, complete metric space and the mapping maps onto itself. It is left to show, that \(T^\pi\) is a contraction. Be \(V,W\in\R^\cX\):
+\begin{align*}
+	\|T^\pi V -T^\pi W\|_\infty &=\|\gamma\sum_{y\in\cX} p(y\mid \cdot,\pi(\cdot)) (V(y)-W(y))\|_\infty\\
+	&\le\gamma \sup_{x\in\cX}\left\{ \sum_{y\in\cX} p(y\mid x,\pi(x)) \|V-W\|_\infty \right\}\\
+	&=\gamma \|V-W\|_\infty  \sup_{x\in\cX}\underbracket{\left\{ \sum_{y\in\cX} p(y\mid x,\pi(x)) \right\}}_{=1}\\
+	&=\gamma \|V-W\|_\infty 
+\end{align*}
+\ref{num:4} Be \(W_1,W_2\in\R^\cX\), \(W_1\le W_2\) and \(x\in\cX\):
+\begin{align*}
+	T^\pi W_2 (x) - T^\pi W_1(x) 
+	= \gamma \sum_{y\in\cX} p(y\mid x,\pi(x)) \underbracket{(W_2(y)-W_1(y))}_{\ge 0} 
+	\ge 0
+\end{align*}
 \end{proof}
+
+
 \begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP
 \begin{align*}
 	\tilde{V}(x)&\coloneqq \sup_{\pi\in\detPolicy} V^\pi(x)\\
 	\tilde{Q}(x,a)&\coloneqq\sup_{\pi\in\detPolicy}Q^\pi(x,a)
 \end{align*}
 \end{definition}
+
+
 \begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
 The mapping \(T^*\colon\R^\cX\to\R^\cX\) with:
 	\[
@@ -214,17 +268,32 @@ The mapping \(T^*\colon\R^\cX\to\R^\cX\) with:
 	\]
 is called the \emph{Bellman Optimality Operator}
 \end{definition}
+
+
 \begin{lemma}\label{V*,Q* relation}\(\cM=(\cX,\cA,\cP_0)\) MDP
 \begin{enumerate}[label=\textbf{(\roman*)},font=\normalfont]
-\item \(\tilde{V}(x)\coloneqq\sup\limits_{a\in\cA} \tilde{Q}(x,a)\)
-\item \( \tilde{Q}(x,a) = r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a)\tilde{V}(y) \)
+\item\label{i:1} \(\tilde{V}(x)=\sup\limits_{a\in\cA} \tilde{Q}(x,a)\)
+\item\label{i:2} \( \tilde{Q}(x,a) = r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a)\tilde{V}(y) \)
 \item\label{i:3} \(V^*(x)=\sup\limits_{a\in\cA}Q^*(x,a)\)
 \item\label{i:4} \(Q^*(x,a)=r(x,a)+\gamma \sum\limits_{y\in\cX}p(y\mid x,a) V^*(y)\)
 \end{enumerate}
 \end{lemma}
-\begin{proof}
-	%TODO
+
+\begin{proof} \ref{i:1}, \ref{i:2}
+By \ref{V^pi,Q^pi relation} we know \(V^\pi(x)=Q^\pi(x,\pi(x))\) thus:
+\begin{align*}
+	\tilde{V}(x) =\sup_{\pi \in \detPolicy} V^\pi(x) \le \sup_{a\in \cA}\sup_{\pi\in\detPolicy} Q^\pi(x,a)
+	=\sup_{a\in \cA} \tilde{Q}(x,a)
+\end{align*}
+Because of \ref{expand Q^pi} we know:
+\begin{align*}
+	\tilde{Q}(x,a)&=\sup_{\pi\in\detPolicy}Q^\pi(x,a) \\
+	&= \sup_{\pi\in\detPolicy} \left\{ r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) V^\pi(y) \right\}\\
+	&\le r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) \underbracket{\sup_{\pi\in\detPolicy} V^\pi(y)}_{\tilde{V}(y)} \\
+\end{align*}
+%TODO
 \end{proof}
+
 
 \begin{corollary}
 	\begin{align*}
@@ -232,24 +301,32 @@ is called the \emph{Bellman Optimality Operator}
 	&T^*V^*=V^*
 	\end{align*}
 \end{corollary}
+
 \begin{proof}
 \begin{align*}
 	V^*(x)\xeq{\ref{i:3}}\sup_{a\in\cA}Q^*(x,a)\xeq{\ref{i:4}}\sup_{a\in\cA}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V^*(y)\right\} =T^*V^*(x)
 \end{align*}
 \(\tilde{V}\) analogous
 \end{proof}
+
+
 \begin{thm}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
 \(T^*\) satisfies the requirements of the Banach fixpoint theorem, in particular:
 	\[V^*(x)=\sup_{\pi\in\statPolicy}V^\pi(x)=\tilde{V}(x) \]
 is the unique fixpoint of \(T^*\)
 \end{thm}
+
 \begin{lemma}(Blackwell's condition for contraction)
 \end{lemma}
+
 \begin{proof}
 https://math.stackexchange.com/questions/1087885/blackwells-condition-for-a-contraction-why-is-boundedness-neccessary?rq=1
 \end{proof}
+
 \begin{proof}[Proof (Theorem)]
 \end{proof}
+
+
 \begin{prop}\label{sup is attained}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
 The following statements are equivalent:
 \begin{enumerate}[label={(\roman*)},font=\normalfont]
@@ -261,9 +338,12 @@ The following statements are equivalent:
 	(this also implies: \(Q^*(x,a)<V^*(x) \implies \pi(a\mid x)=0\))
 \end{enumerate}
 \end{prop}
+
 \begin{proof}
 %TODO
 \end{proof}
+
+
 \begin{definition}
 	\(Q\colon\cX\times\cA\to\R\) an action value function, \(\tilde{\pi}\colon\cX\to\cA\) with:
 	\[
@@ -272,6 +352,7 @@ The following statements are equivalent:
 	\(\tilde{\pi}(x)\) is called \emph{greedy} with respect to Q in \(x\in\cX\)\\
 	\(\tilde{\pi}\) is called \emph{greedy} w.r.t. Q
 \end{definition}
+
 
 \begin{remark}\leavevmode
 	\begin{itemize}
