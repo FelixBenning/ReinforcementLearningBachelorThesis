@@ -13,6 +13,9 @@
 \usepackage{./macros/BScMacros}
 \usepackage{./macros/BScTitle}
 
+\usepackage[style=authoryear]{biblatex}
+\addbibresource{./chapter/literature.bib}
+
 %%
 %% je nach Betriebssystem und Editor muss die
 %% Behandlung von Sonderzeichen wie Umlauten
@@ -108,8 +111,12 @@
 %%
 %% Literaturverzeichnis (bitte einkommentieren!)
 %%
-\begin{thebibliography}{99}
+
+
+\printbibliography
+
+%\begin{thebibliography}{99}
 %\input{./chapter/literatur.tex}
-\end{thebibliography}
+%\end{thebibliography}
 \end{document}
 

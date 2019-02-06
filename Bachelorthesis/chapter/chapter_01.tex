@@ -1,4 +1,24 @@
 \chapter{Markov Decision Processes}
+While Markov Processes allow to model random phenomena evolving over time and make predictions about certain events (e.g. terminal states), they are unable to model the interaction of an actor with such a processes. \emph{Markov Decicion Processes} (MDPs) introduce actions and rewards to the model of Markov Processces, and shift the focus from \emph{describing} terminal distributions, absorption types, etc. towards \emph{finding} the optimal action(s) to take in each state.\\
+To illustrate the uses of such a framework, I have selected a few examples from \textcite{whiteRealApplicationsMarkov1985}:
+\begin{enumerate}
+	\item Resource Management: The state is the resource level
+	\begin{itemize}
+		\item Inventory Management: The resource is the inventory, the possible action is to order resupply, influencing the inventory (state) together with the stochastic demand, and the reward is the profit. The essential trade-off is the cost of storage versus lost sales from a stock-out.
+		\item Fishing: The resource is the amount of fish, the action is the amount fished, the reward is directly proportional to the amount fished, and the repopulation is the random element.
+		\item Pumped storage Hydro-power: The state is the amount of water in the higher reservoir and the electricity price, the action is to use water to generate electricity or wait for higher prices.
+		\item Beds in a hospital: How many empty beds are needed for emergencies?
+	\end{itemize}
+	\item Stock trading: The state is the price level and stock and liquidity owned.
+	\item Maintenance: When does a car/road become too expensive to repair?
+	\item Evacuation in response to flood forecasts
+\end{enumerate}
+The MDP model inherits the restriction of Markov Chains to have no memory of past states. We will also not consider changing transition probabilities over time. Rather the transition probabilities will only be influenced by the state and the action. \\
+Both of these limitations could in principle be circumvented by including the time in the state space at the expense of a larger state space. Although it is questionable whether such a construct would yield any interesting results, as then no state is visited twice. So it is of no use to an actor to learn the value of an action in a certain state without further assumptions.
+%countable state space
+
+
+One of the obstactles to this goal is the question whether an optimal action even exists.
 \begin{definition}(Kernel)
 	\((Y,\cA_Y), (X,\cA_X)\) measure spaces\\
 	 \(\lambda\colon X\times\cA_Y\to \R\) is a \emph{(probability) kernel} \(
