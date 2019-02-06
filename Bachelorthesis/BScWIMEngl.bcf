@@ -1997,6 +1997,11 @@
   </bcf:bibdata>
   <bcf:section number="0">
     <bcf:citekey order="1">whiteRealApplicationsMarkov1985</bcf:citekey>
+    <bcf:citekey order="2">szepesvariAlgorithmsReinforcementLearning2010</bcf:citekey>
+    <bcf:citekey order="3">putermanMarkovDecisionProcesses2014</bcf:citekey>
+    <bcf:citekey order="4">putermanMarkovDecisionProcesses2014</bcf:citekey>
+    <bcf:citekey order="5">szepesvariAlgorithmsReinforcementLearning2010</bcf:citekey>
+    <bcf:citekey order="6">putermanMarkovDecisionProcesses2014</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

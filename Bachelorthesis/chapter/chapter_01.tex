@@ -1,5 +1,11 @@
 \chapter{Markov Decision Processes}
-While Markov Processes allow to model random phenomena evolving over time and make predictions about certain events (e.g. terminal states), they are unable to model the interaction of an actor with such a processes. \emph{Markov Decicion Processes} (MDPs) introduce actions and rewards to the model of Markov Processces, and shift the focus from \emph{describing} terminal distributions, absorption types, etc. towards \emph{finding} the optimal action(s) to take in each state.\\
+\section{Introduction}
+A Markov Process is a random process in a state space with no memory of where it was, that is, only the current state influences where it goes next.
+While Markov Processes allow to model random phenomena evolving over time and make predictions about certain events (e.g. terminal states), they are unable to model the interaction of an actor with such a processes. \emph{Markov Decision Processes} (MDPs) introduce \emph{actions} and \emph{rewards} to the state space and transition probabilities of Markov Processces, and shift the focus from \emph{describing} terminal distributions, absorption times, etc. towards \emph{finding} the optimal action(s) to take in each state (If such an action exists).
+
+The MDP model inherits the restriction of Markov Chains to have no memory of past states. We will also not consider changing transition probabilities over time. Rather the transition probabilities will only be influenced by the state and the action. \\
+Both of these limitations could in principle be circumvented by including the time in the state space at the expense of a larger state space. Although it is questionable whether such a construct would yield any interesting results, as then no state is visited twice. So it is of no use to an actor to learn the value of an action in a certain state without further assumptions.
+
 To illustrate the uses of such a framework, I have selected a few examples from \textcite{whiteRealApplicationsMarkov1985}:
 \begin{enumerate}
 	\item Resource Management: The state is the resource level
@@ -13,74 +19,114 @@ To illustrate the uses of such a framework, I have selected a few examples from 
 	\item Maintenance: When does a car/road become too expensive to repair?
 	\item Evacuation in response to flood forecasts
 \end{enumerate}
-The MDP model inherits the restriction of Markov Chains to have no memory of past states. We will also not consider changing transition probabilities over time. Rather the transition probabilities will only be influenced by the state and the action. \\
-Both of these limitations could in principle be circumvented by including the time in the state space at the expense of a larger state space. Although it is questionable whether such a construct would yield any interesting results, as then no state is visited twice. So it is of no use to an actor to learn the value of an action in a certain state without further assumptions.
+
+\section{Model Formulation}
 %countable state space
+Most of the definitions in this chapter are adaptions from \textcite{szepesvariAlgorithmsReinforcementLearning2010}.
+But to properly define the transition probabilities given an action in a certain state, let us define a probability kernel first.
 
-
-One of the obstactles to this goal is the question whether an optimal action even exists.
 \begin{definition}(Kernel)
-	\((Y,\cA_Y), (X,\cA_X)\) measure spaces\\
-	 \(\lambda\colon X\times\cA_Y\to \R\) is a \emph{(probability) kernel} \(
-	 :\iff \begin{aligned}[t]
+	Let \((Y,\sigma_Y), (X,\sigma_X)\) be measure spaces.
+	 \begin{align*}
+	 &\lambda\colon X\times\sigma_Y\to \R \text{ is a \emph{(probability) kernel}}\\
+	 &:\iff \begin{aligned}[t]
 	 &\lambda(\cdot,A)\colon x\mapsto \lambda(x,A) \text{ measurable}\\
-	 &\lambda(x,\cdot)\colon A\mapsto \lambda(x,A) \text{ a (prob.) measure}
+	 &\lambda(x,\cdot)\colon A\mapsto \lambda(x,A) \text{ a (probability) measure}
 	 \end{aligned}
-	  \)\\
-	  Since we will interpret probability kernels as distributions over \(Y\) given a  certain condition \(X\), the notation \(\lambda(\cdot\mid x) \coloneqq \lambda(x,\cdot)\) helps this intuition. 
+	  \end{align*}
+	  Since we will interpret probability kernels as distributions over \(Y\) given a  certain condition \(x\in X\), the notation \(\lambda(\cdot\mid x) \coloneqq \lambda(x,\cdot)\) helps this intuition. 
 \end{definition}
-\begin{definition}(Markov Decision Process - MDP)\\
-\(\cM=(\cX,\cA,\cP_0) \), with:
-	
-\begin{tabular}{l l l}
-	\(\cX\) & countable (finite) set of states&\\
-	\(\cA\) & countable (finite) set of actions &\\
-	\multicolumn{2}{l}{
-		\(
-		\begin{cases}
-		\cX\times \cA \to \pmeas(\cX\times\R)\\
-		(x,a)\mapsto \cP_0(\cdot \mid x,a)
-		\end{cases}
-		\)
-	}  &
-	\parbox[h]{17em}{
-		\emph{transition probability kernel} \\
-		\(\pmeas(\cX\times\R) \) the set of probability measures on \(\cX\times\R \), \\
-		\(\cX\) represents the next states,\\
-		\(\R\) the payoffs
-	}
+
+Now we can define a Markov Decision Process
+
+
+\begin{definition} \leavevmode \\ 
+	\(\cM=(\cX,\cA,\cP_0) \) is called a \emph{(finite) Markov Decision Process} (MDP). Where:
+	\par\begin{tabular}{l l}
+		\(\cX\) & is a countable (finite) set of states.\\
+		\(\cA\) & is a countable (finite) set of actions.
 	\end{tabular}\\
-is a \emph{(finite) Markov Decision Process}.\\
-Together with a discount factor \(\gamma\in[0,1]\) it is a:\\
-\begin{tabular}{l l}
-	\emph{discounted reward} MDP & \(\gamma <1 \)\\
-	\emph{undiscounted reward} MDP & \(\gamma=1 \)
-\end{tabular}\\
-For \((Y_{(x,a)}, R_{(x,a)})\sim \cP_0(\cdot\mid x,a) \) a random variable, is
-\[r(x,a)\coloneqq \E[R_{(x,a)}] \quad\text{ the \emph{immediate reward function}}\]
-An MDP is \emph{evaluated} as follows:\\
-1. Select the initial state \(X_0\) an \(\cX\)-valued random variable.\\ 
-2. \((A_t, t\in \N)\) action selection rules (behaviors) will be discussed later, for now simply assume \(\cA\)-valued random variables.\\
-3. Select inductively: \((X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t)\) with the markov property, i.e.:
+	And \(\cP_0\colon (\cX\times\cA) \times \sigma_{\cX\times\R} \to \R\) is a probability kernel.\\ \\
+	\(\cX\times\R\) represents the next state and the reward. So \(\cP_0(\cdot\mid x,a) \) represents the probability distribution over the next states and rewards given an action \(a\) in the state \(x\).
+	\\ \\
+	\(\quad\) \(\cP_0\) is called the \emph{transition probability kernel}. 
+\end{definition}
+\begin{remark}
+	Some authors include a Time set \(T\) in the tuple \parencite[e.g.][]{putermanMarkovDecisionProcesses2014}. Most authors split the transition kernel into a state transition kernel and a reward kernel \parencite[e.g.][]{putermanMarkovDecisionProcesses2014}. But since it is easier to define a marginal distribution from a joint distribution than vice versa, and since this notation is more compact I will stick to the definition from \textcite{szepesvariAlgorithmsReinforcementLearning2010}.
+\end{remark}
+
+According to \textcite{putermanMarkovDecisionProcesses2014} some authors call this tuple a Markov Decision Problem instead of Markov Decision Process, presumably to reserve the term Markov Decision Process for the resulting sequence of states, actions and rewards \((X_t,A_t,R_{t+1},t\in\N_0)\), aligning the Definition with the definition of a Markov process. Although this does not appear to be common practice.
+
+I can find no explanation for this deviation from the notation of Markov processes. So I offer my own interpretation:\\
+The objective of the theory of MDPs is to find an optimal action selection rule (behavior). And without a fixed behavior the sequence \((X_t, A_t, R_{t+1}, t\in\N_0 )\) is undefined, since the \((A_t,t\in\N_0)\) are not defined. But fixing the behavior defeats the purpose of modeling decisions. As it would not make sense to talk about optimal behaviors in an MDP if every behavior creates its own MDP.\\ 
+
+Nevertheless we still need to construct a stochastic process from the MDP when we have an action selection rule. 
+
+First we need to select the random variable \(X_0\) of the initial state. The initial state is not included in the definition of an MDP because later objects will be defined conditional on the current state. They are thus invariant to different starting distributions, as long as \(\Pr(X_0=x)>0\) holds for all \(x\in\cX\) ensuring that conditioning on every state is possible.
+
+To inductively define a stochastic process we need an action selection rule, more formally:
+
+\begin{definition} An \(A_t\) selection-rule \(\pi=(\pi_t,t\in\N_0)\) is called \emph{behavior}, where
+	\[ 
+		\pi_t\colon
+		\begin{cases}
+			((\cX\times\cA\times\R)^t\times\cX)\times\sigma_\cA \to \R \\
+			(y,A)\mapsto \pi_t(A\mid y)
+		\end{cases} \text{ is a probability kernel,}
+	\]
+	and \(A_t\sim \pi_t(\cdot\mid (X_0,A_0,R_1), \dots,(X_{t-1},A_{t-1},R_t),X_t))\).\\
+	Special cases:
+	\begin{enumerate}
+		\item \emph{Determinisitic stationary policies} specified with some abuse of notation:
+		\[\leavevmode \pi\colon\cX\to\cA \text{ with }A_t=\pi(X_t)\]
+		\item \emph{(Stochastic) stationary policies} specified by:
+		\[\pi\colon \begin{cases}
+		\cX\times\sigma_\cA\to\R\\
+		(x,A)\mapsto \pi(A\mid x)
+		\end{cases} \text{ with } A_t\sim\pi(\cdot\mid x)
+		\]
+	\end{enumerate}
+	\(\Pi\) is the set of behaviors,\\
+	\(\statPolicy\) is the set of (stochastic) stationary policies, \\
+	\(\detPolicy\) is the set of deterministic stationary policies (note \(\detPolicy\subseteq\statPolicy\subseteq \Pi \))
+\end{definition}
+
+Now we define inductively: \((X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t)\) with the Markov property, i.e.:
 \begin{align*} 
 &\Pr[(X_{t+1},R_{t+1})=(x,r) \mid (X_t,A_t)=(x_t,a_t),\dots, (X_0,A_0)=(x_0,a_0)]\\
 &=\Pr[(X_{t+1}, R_{t+1})=(x,r)\mid (X_t,A_t)=(x_t,a_t)]
 \end{align*}
-resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\geq 0)\), which allows to define the \emph{return}:
-\[\cR\coloneqq\sum_{t=0}^{\infty}\gamma^t R_{t+1}\]
-\end{definition}
-%(
-
+resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\)
 \begin{remark}
-\((X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t)\) with the markov property is well defined, i.e.:
-\begin{align*}
-	&\exists (X_{t+1}, R_{t+1})\ \cX\times\R\text{-valued random variable}: \\ 
-	&(X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t) \text{ and satisfies the markov property}
-\end{align*}
+	\((X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t)\) with the Markov property is well defined, i.e.:
+	\begin{align*}
+		&\exists (X_{t+1}, R_{t+1})\ \cX\times\R\text{-valued random variable}: \\ 
+		&(X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t) \text{ and satisfies the Markov property}
+	\end{align*}
 \end{remark}
 \begin{proof}
 	%TODO
 \end{proof}
+
+\begin{remark}
+	A stationary policy induces a \emph{time-homogenous} Markov chain.
+\end{remark}
+
+\begin{definition}
+An MDP together with a discount factor \(\gamma\in[0,1]\) is a
+\par\begin{tabular}{l l}
+	\emph{discounted reward} MDP & for \(\gamma <1 \)\\
+	\emph{undiscounted reward} MDP & for \(\gamma=1 \)
+\end{tabular}\\
+This allows us to define the \emph{return}:
+\[\cR\coloneqq\sum_{t=0}^{\infty}\gamma^t R_{t+1}\]
+\end{definition}
+
+\begin{definition}
+Let \((Y_{(x,a)}, R_{(x,a)})\sim \cP_0(\cdot\mid x,a) \) be a random variable.
+\[r(x,a)\coloneqq \E[R_{(x,a)}] \quad\text{ is the \emph{immediate reward function}.}\]
+\end{definition}
+
 \begin{remark}\leavevmode
 \begin{enumerate}
 	\item From now on we assume that \(\forall (x,a)\in\cX\times\cA:|R_{(x,a)}|\le R\in\R\) almost surely. This also implies: 			\(
@@ -106,33 +152,7 @@ resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\geq 0)\), which allo
 		\item Episodic MDPs are often undiscounted
 	\end{itemize}	
 \end{remark}
-\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) a MDP\\
-	 An \(A_t\) selection-rule \(\pi=(\pi_t,t\in\N_0)\) is called \emph{behavior}, where
-	 \[ 
-	 	\pi_t\colon
-	 	\begin{cases}
-	 		((\cX\times\cA\times\R)^t\times\cX)\times\cP(\cA) \to \R \\
-	 		(y,A)\mapsto \pi_t(A\mid y)
-	 	\end{cases} \text{ is a probability kernel}
-	 \]
-	 and \(A_t\sim \pi_t(\cdot\mid (X_0,A_0,R_1), \dots,(X_{t-1},A_{t-1},R_t),X_t))\)\\
-	 Special cases:
-	 \begin{enumerate}
-	 	\item \emph{Determinisitic stationary policies} specified with some abuse of notation:
-	 	\[\leavevmode \pi\colon\cX\to\cA \text{ with }A_t=\pi(X_t)\]
-	 	\item \emph{(Stochastic) stationary policies} specified by:
-	 	\[\pi\colon \begin{cases}
-	 	\cX\times\cP(\cA)\to\R\\
-	 	(x,A)\mapsto \pi(A\mid x)
-	 	\end{cases} \text{ with } A_t\sim\pi(\cdot\mid x)
-	 	\]
-	 \end{enumerate}
-	 \(\statPolicy\) is the \emph{set of (stoch.) stationary policies}, \\ 
-	 \(\detPolicy\) is the \emph{set of deterministic stationary policies} (note \(\detPolicy\subseteq\statPolicy \))
-\end{definition}
-\begin{remark}
-A stationary policy induces a \emph{time-homogenous} markov chain.
-\end{remark}
+
 \begin{definition}(Markov Reward Process - MRP)
 %TODO
 \end{definition}
