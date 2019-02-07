@@ -159,8 +159,8 @@ INPUT chapter\chapter_01.aux
 INPUT chapter\chapter_01.aux
 INPUT chapter\chapter_02.aux
 INPUT chapter\chapter_02.aux
-INPUT chapter\anhang_01.aux
-INPUT chapter\anhang_01.aux
+INPUT chapter\appendix_01.aux
+INPUT chapter\appendix_01.aux
 OUTPUT BScWIMEngl.aux
 INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii
@@ -254,9 +254,9 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecbx0600.tfm
 OUTPUT .\chapter\chapter_02.aux
 INPUT chapter\chapter_02.tex
 INPUT chapter\chapter_02.tex
-OUTPUT .\chapter\anhang_01.aux
-INPUT chapter\anhang_01.tex
-INPUT chapter\anhang_01.tex
+OUTPUT .\chapter\appendix_01.aux
+INPUT chapter\appendix_01.tex
+INPUT chapter\appendix_01.tex
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\eccc1095.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd
@@ -268,8 +268,8 @@ INPUT chapter\chapter_01.aux
 INPUT chapter\chapter_01.aux
 INPUT chapter\chapter_02.aux
 INPUT chapter\chapter_02.aux
-INPUT chapter\anhang_01.aux
-INPUT chapter\anhang_01.aux
+INPUT chapter\appendix_01.aux
+INPUT chapter\appendix_01.aux
 INPUT .\BScWIMEngl.out
 INPUT .\BScWIMEngl.out
 INPUT BScWIMEngl.run.xml

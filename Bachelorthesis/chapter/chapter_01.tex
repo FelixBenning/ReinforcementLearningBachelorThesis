@@ -1,7 +1,7 @@
 \chapter{Markov Decision Processes}
 \section{Introduction}
 A Markov Process is a random process in a state space with no memory of where it was, that is, only the current state influences where it goes next.
-While Markov Processes allow to model random phenomena evolving over time and make predictions about certain events (e.g. terminal states), they are unable to model the interaction of an actor with such a processes. \emph{Markov Decision Processes} (MDPs) introduce \emph{actions} and \emph{rewards} to the state space and transition probabilities of Markov Processces, and shift the focus from \emph{describing} terminal distributions, absorption times, etc. towards \emph{finding} the optimal action(s) to take in each state (If such an action exists).
+While Markov Processes allow to model random phenomena evolving over time and make predictions about certain events (e.g. terminal states), they are unable to model the interaction of an actor with such a processes. \emph{Markov Decision Processes} (MDPs) introduce \emph{actions} and \emph{rewards} to the state space and transition probabilities of Markov Processces, and shift the focus from \emph{describing} terminal distributions, absorption times, etc. towards \emph{finding} the optimal action(s) to take in each state (if such an action exists).
 
 The MDP model inherits the restriction of Markov Chains to have no memory of past states. We will also not consider changing transition probabilities over time. Rather the transition probabilities will only be influenced by the state and the action. \\
 Both of these limitations could in principle be circumvented by including the time in the state space at the expense of a larger state space. Although it is questionable whether such a construct would yield any interesting results, as then no state is visited twice. So it is of no use to an actor to learn the value of an action in a certain state without further assumptions.
@@ -37,9 +37,6 @@ But to properly define the transition probabilities given an action in a certain
 	  Since we will interpret probability kernels as distributions over \(Y\) given a  certain condition \(x\in X\), the notation \(\lambda(\cdot\mid x) \coloneqq \lambda(x,\cdot)\) helps this intuition. 
 \end{definition}
 
-Now we can define a Markov Decision Process
-
-
 \begin{definition} \leavevmode \\ 
 	\(\cM=(\cX,\cA,\cP_0) \) is called a \emph{(finite) Markov Decision Process} (MDP). Where:
 	\par\begin{tabular}{l l}
@@ -49,16 +46,19 @@ Now we can define a Markov Decision Process
 	And \(\cP_0\colon (\cX\times\cA) \times \sigma_{\cX\times\R} \to \R\) is a probability kernel.\\ \\
 	\(\cX\times\R\) represents the next state and the reward. So \(\cP_0(\cdot\mid x,a) \) represents the probability distribution over the next states and rewards given an action \(a\) in the state \(x\).
 	\\ \\
-	\(\quad\) \(\cP_0\) is called the \emph{transition probability kernel}. 
+	\(\quad\) \(\cP_0\) is called the \emph{transition probability kernel} or in short, transition kernel. 
 \end{definition}
 \begin{remark}
-	Some authors include a Time set \(T\) in the tuple \parencite[e.g.][]{putermanMarkovDecisionProcesses2014}. Most authors split the transition kernel into a state transition kernel and a reward kernel \parencite[e.g.][]{putermanMarkovDecisionProcesses2014}. But since it is easier to define a marginal distribution from a joint distribution than vice versa, and since this notation is more compact I will stick to the definition from \textcite{szepesvariAlgorithmsReinforcementLearning2010}.
+	Instead of a transition probability kernel \(\cP_0\), sometimes a \emph{transition function} f with a and an exogenous random element \(D_t\) (e.g. Demand) is used to define the next state and reward: \((X_{t+1},R_{t+1})=f(X_t,A_t,D_t)\)
+
+	Some authors include a Time set \(T\) in the tuple \parencite[e.g.][]{putermanMarkovDecisionProcesses2014} this allows for finite horizons but not for continuous time, since the transition kernel is defined for discrete steps. Most authors split the transition kernel into a state transition kernel and a reward kernel \parencite[e.g.][]{putermanMarkovDecisionProcesses2014}. But since it is easier to define a marginal distribution from a joint distribution than vice versa, and since this notation is more compact I will stick to the definition from \textcite{szepesvariAlgorithmsReinforcementLearning2010}.
 \end{remark}
 
 According to \textcite{putermanMarkovDecisionProcesses2014} some authors call this tuple a Markov Decision Problem instead of Markov Decision Process, presumably to reserve the term Markov Decision Process for the resulting sequence of states, actions and rewards \((X_t,A_t,R_{t+1},t\in\N_0)\), aligning the Definition with the definition of a Markov process. Although this does not appear to be common practice.
 
-I can find no explanation for this deviation from the notation of Markov processes. So I offer my own interpretation:\\
-The objective of the theory of MDPs is to find an optimal action selection rule (behavior). And without a fixed behavior the sequence \((X_t, A_t, R_{t+1}, t\in\N_0 )\) is undefined, since the \((A_t,t\in\N_0)\) are not defined. But fixing the behavior defeats the purpose of modeling decisions. As it would not make sense to talk about optimal behaviors in an MDP if every behavior creates its own MDP.\\ 
+I can find no explanation for this deviation from the notation of Markov processes. So I offer my own interpretation:
+
+The objective of the theory of MDPs is to find an optimal action selection rule (behavior). And without a fixed behavior the sequence \((X_t, A_t, R_{t+1}, t\in\N_0 )\) is undefined, since the \((A_t,t\in\N_0)\) are not defined. But fixing the behavior defeats the purpose of modeling decisions. As it would not make sense to talk about optimal behaviors in an MDP if every behavior creates its own MDP.\vspace{1\baselineskip} 
 
 Nevertheless we still need to construct a stochastic process from the MDP when we have an action selection rule. 
 
@@ -70,7 +70,7 @@ To inductively define a stochastic process we need an action selection rule, mor
 	\[ 
 		\pi_t\colon
 		\begin{cases}
-			((\cX\times\cA\times\R)^t\times\cX)\times\sigma_\cA \to \R \\
+			[(\cX\times\cA\times\R)^t\times\cX]\times\sigma_\cA \to \R \\
 			(y,A)\mapsto \pi_t(A\mid y)
 		\end{cases} \text{ is a probability kernel,}
 	\]
@@ -83,33 +83,67 @@ To inductively define a stochastic process we need an action selection rule, mor
 		\[\pi\colon \begin{cases}
 		\cX\times\sigma_\cA\to\R\\
 		(x,A)\mapsto \pi(A\mid x)
-		\end{cases} \text{ with } A_t\sim\pi(\cdot\mid x)
+		\end{cases} \text{ with } A_t\sim\pi(\cdot\mid X_t) 
 		\]
+		\(A_t\) is here selected such that it has the markov property (well defined c.f. \ref{well defined markov property}), i.e.:
+		\[\Pr[A_t=a\mid X_t]=\Pr[A_t=a\mid X_t, (X_{t-1},A_{t-1},R_t), \dots (X_0,A_0,R_1)] \]
 	\end{enumerate}
 	\(\Pi\) is the set of behaviors,\\
 	\(\statPolicy\) is the set of (stochastic) stationary policies, \\
 	\(\detPolicy\) is the set of deterministic stationary policies (note \(\detPolicy\subseteq\statPolicy\subseteq \Pi \))
 \end{definition}
 
-Now we define inductively: \((X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t)\) with the Markov property, i.e.:
-\begin{align*} 
-&\Pr[(X_{t+1},R_{t+1})=(x,r) \mid (X_t,A_t)=(x_t,a_t),\dots, (X_0,A_0)=(x_0,a_0)]\\
-&=\Pr[(X_{t+1}, R_{t+1})=(x,r)\mid (X_t,A_t)=(x_t,a_t)]
-\end{align*}
+Now we define inductively: \((X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t)\) with the Markov property (well defined c.f. \ref{well defined markov property}), i.e.:
+\begin{align}
+\label{X,R Markov}
+	&\Pr[(X_{t+1}, R_{t+1})=(x,r)\mid (X_t,A_t)]\\
+	&=\Pr[(X_{t+1},R_{t+1})=(x,r) \mid (X_t,A_t),(X_{t-1},A_{t-1},R_t), 
+	\dots (X_0,A_0,R_1)] \nonumber
+\end{align}
 resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\)
-\begin{remark}
-	\((X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t)\) with the Markov property is well defined, i.e.:
+\begin{remark}\label{well defined markov property}
+	\((X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t)\) with the Markov property, is well defined i.e.:
 	\begin{align*}
 		&\exists (X_{t+1}, R_{t+1})\ \cX\times\R\text{-valued random variable}: \\ 
 		&(X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t) \text{ and satisfies the Markov property}
 	\end{align*}
+	(analogous \(A_t\) well defined)
 \end{remark}
 \begin{proof}
-	%TODO
+	\textcolor{red}{TODO}
 \end{proof}
 
-\begin{remark}
-	A stationary policy induces a \emph{time-homogenous} Markov chain.
+
+\begin{remark}\label{statPolicy induces time-homogeneous MC}
+	A stationary policy \(\pi\) induces a \emph{time-homogenous} Markov chain \((X_t,A_t,R_{t+1},t\in\N_0)\).
+\end{remark}
+\begin{proof} 
+	\(\cH_s^t\coloneqq \{(X_t,A_t,R_{t+1})\in H_t,\dots,(X_s,A_s,R_{s+1})\in H_s \},\ H_i \in \sigma_{\cX\times\cA\times\R}\)
+	Because of
+	\[
+		\Pr(A\cap B \mid C)
+		=\frac{\Pr(A\cap B\cap C)}{\Pr(B\cap C)}\frac{\Pr(B\cap C)}{\Pr(C)} 
+		= \Pr(A\mid B\cap C)\Pr(B\mid C) 
+	\]
+	we can show:
+	\begin{align*}
+		&\Pr\left[(X_t,A_t,R_{t+1})\in\{(x,a)\}\times U \mid \cH_0^{t-1} \right] \\
+		&=\Pr\left[R_{t+1}\in U \mid (X_t, A_t)=(x,a), \cH_0^{t-1}\right]
+		\Pr\left[(X_t, A_t)=(x,a)\mid\cH_0^{t-1}\right]\\
+		&\lxeq{(\ref{X,R Markov})}\Pr\left[R_{t+1}\in U \mid (X_t, A_t)=(x,a)\right]
+		\underbracket{\Pr\left[A_t=a \mid X_t=x\right]}_{=\pi(a\mid x)}
+		\Pr\left[X_t=x\mid \cH_{t-1}^{t-1}\right]\\
+		&\lxeq{(*)}\Pr\left[R_{t+1}\in U \mid (X_t, A_t)=(x,a), \cH_{t-1}^{t-1}\right]
+		\Pr\left[(X_t, A_t)=(x,a)\mid\cH_{t-1}^{t-1}\right]\\
+		&=\Pr\left[(X_t,A_t,R_{t+1})\in\{(x,a)\}\times U \mid \cH_{t-1}^{t-1} \right]
+	\end{align*}
+	\((*)\) \emph{Some} of the History is irrelevant if all of the History is irrelevant. (\textcolor{red}{appendix?})
+\end{proof} 
+\begin{remark} Sometimes not all actions make sense in all states. A simple fix would be to set the immediate reward functions for those actions very low, or (if possible) redirect them to the closest possible action. \\
+A more formal approach would be to introduce an additional mapping, which assigns the set of admissible actions to each state \(\cX\to\cP(\cA)\) and define \({\cX\times\cA}\coloneqq\{(x,a): x\in\cX, a\in f(x) \}\).
+
+If there is just one admissible action in every state, the MDP is equivalent to a normal Markov Process. 
+Since then there is a mapping \(f\colon\cX\to\cA\) mapping the state to  the only admissible action. Which implies that \(A_t=f(X_t)\) which forces every behavior to be equal to f. And since f is a deterministic stationary behavior, \ref{statPolicy induces time-homogeneous MC} applies.  
 \end{remark}
 
 \begin{definition}
@@ -127,20 +161,6 @@ Let \((Y_{(x,a)}, R_{(x,a)})\sim \cP_0(\cdot\mid x,a) \) be a random variable.
 \[r(x,a)\coloneqq \E[R_{(x,a)}] \quad\text{ is the \emph{immediate reward function}.}\]
 \end{definition}
 
-\begin{remark}\leavevmode
-\begin{enumerate}
-	\item From now on we assume that \(\forall (x,a)\in\cX\times\cA:|R_{(x,a)}|\le R\in\R\) almost surely. This also implies: 			\(
-	\begin{aligned}[t]
-		&\|r\|_{\infty}=\sup_{(x,a)\in\cX\times\cA}|\E[R_{(x,a)}]|\le R\\
-		&|\cR|\le\sum_{t=0}^\infty \gamma^t |R_{t+1}|\le \frac{R}{1-\gamma} \text{ a.s.}
-	\end{aligned}
-	\)
-	\item Sometimes not all actions make sense in all states. A simple fix would be to set the immediate reward functions for those actions very low, or (if possible) redirect them to the closest possible action. \\
-	A more formal approach would be to introduce an additional mapping, which assigns the set of admissible actions to each state \(\cX\to\cP(\cA)\), or alternatively define a (binary) relation on \(\cX\times\cA\).
-	\item If there is just one admissible action in every state, the MDP is equivalent to a normal Markov Process.
-	\item Instead of a transition probability kernel \(\cP_0\), sometimes a \emph{transition function} f with a and an exogenous random element \(D_t\) (e.g. Demand) is used to define the next state and reward: \((X_{t+1},R_{t+1})=f(X_t,A_t,D_t)\) 
-\end{enumerate}
-\end{remark}
 \begin{definition}\(\cM=(\cX,\cA,\cP_0)\) a MDP\\
 	\(x\in\cX\) is a \emph{terminal (absorbing)} state \(:\iff \forall s\in\N: \Pr(X_{t+s}=x\mid X_t=x)=1\)\\
 	An MDP with such states is called \emph{episodic}.\\
@@ -153,80 +173,99 @@ Let \((Y_{(x,a)}, R_{(x,a)})\sim \cP_0(\cdot\mid x,a) \) be a random variable.
 	\end{itemize}	
 \end{remark}
 
-\begin{definition}(Markov Reward Process - MRP)
-%TODO
-\end{definition}
+%\begin{definition}(Markov Reward Process - MRP)
+%TODO Markov Reward Process 
+%\end{definition}
+
+To avoid clutter we will from now on we assume an underlying MDP with the accompanying definitions and notation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Value functions}
+%%%%%%%%%%%%%%%%%%%%%%%%%
 The goal in this section is to
-\begin{itemize}[itemsep=0pt, topsep=1pt]
+\begin{itemize}
 \item define Value functions which assign states (and actions) a value, which allow the agent to make a more nuanced decisions than comparing immediate rewards of different actions
 \item explore the relation of different value functions
 \item show uniqueness of optimal value functions with the Banach fixpoint theorem, yielding a simple approximation methode along the way
 \item demonstrate that in MDPs deterministic stationary policies are generally a large enough set of policies to choose from
  \end{itemize}
-\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP, \(\pi\) Behavior\\
-Select \(X_0\) such that \(\forall x\in\cX:\Pr(X_0=x)>0\) and evaluate the MDP with
-\(((X_t,A_t,R_{t+1}), t\in \N_0)\) the resulting stoch. process.\\
-\def\arraystretch{3}
-\[
-\begin{array}{l l}
-	V^\pi\colon
+\begin{definition} Let \(\pi\) be a behavior. Select \(X_0\) such that \(\forall x\in\cX:\Pr({X_0=x})>0\), be \(((X_t,A_t,R_{t+1}), t\in \N_0)\) the resulting stoch. process.
+\begin{align*}
+	&V^\pi\colon
 	\begin{cases}
 		\cX\to\R\\
 		x\mapsto \E[\cR\mid X_0=x]
 	\end{cases} 
-	& \text{is the \emph{value function} for } \pi \footnotemark\\
-	Q^\pi\colon
+	&& \text{is the \emph{value function} for } \pi \footnotemark[1]
+	\\
+	&Q^\pi\colon
 	\begin{cases}
 		\cX\times\cA\to\R\\
 		(x,a)\mapsto \E[\cR\mid X_0=x, A_0=a]
 	\end{cases}
-	& \text{is the \emph{action value function} for } \pi \footnotemark\\
-	V^*\colon
+	&& \parbox{10em}{is the \emph{action value function} for \(\pi\) \footnotemark[2]}
+	\\
+	&V^*\colon
 	\begin{cases}
 		\cX\to\R\\
-		x\mapsto \sup\limits_{\pi\text{ Behav.}} V^\pi(x)
+		x\mapsto \sup\limits_{\pi\in\Pi} V^\pi(x)
 	\end{cases} 
-	& \text{is the \emph{optimal value function}}\\
-	Q^*\colon
+	&& \text{is the \emph{optimal value function}}
+	\\
+	&Q^*\colon
 	\begin{cases}
 		\cX\times\cA\to\R\\
-		(x,a)\mapsto \sup\limits_{\pi\text{ Behav.}} Q^\pi(x,a)
+		(x,a)\mapsto \sup\limits_{\pi\in\Pi} Q^\pi(x,a)
 	\end{cases}
-	& \text{is the \emph{optimal action value function}}
-\end{array}
-\]
+	&& \parbox{10em}{is the \emph{optimal action value function}}
+\end{align*}
+\footnotetext[1]{Well defined because \(\Pr(X_0=x)>0\)}
+\footnotetext[2]{Well defined because \(A_1\sim \pi_1(\cdot\mid (x,a,r_0), x_1)\) is defined for all \(a\) regardless of \(\pi_0\)}
 \(\pi\) is \emph{optimal} \(:\iff V^*=V^\pi\)
 \end{definition}
-\footnotetext[1]{Well defined because \(\Pr(X_0=x)>0\)}
-\footnotetext{Well defined because \(A_1\sim \pi_1(\cdot\mid (x,a,r_0), x_1)\) is defined for all \(a\) regardless of \(\pi_0\)}
+
 
 \begin{remark}
 With the distribution of \(X_0\) set (or \(X_0\) being realized with a fixed value \(x\)), the distribution of \(X_t, A_t,R_{t+1}\) is determined for all \(t\in\N_0\). The conditional expectation is thus unique for a given \(X_0=x\), for all possible realizations of the MDP with a given behavior. \\
 This means \(V^\pi, Q^\pi\) are well defined.
 \end{remark}
+From now on we assume:
+\begin{assumption} 
+	\(\forall (x,a)\in\cX\times\cA:|R_{(x,a)}|\le R\in\R\) almost surely.
+\end{assumption}
+This implies that the immediate reward is bounded:
+\[
+	\|r\|_{\infty}=\sup_{(x,a)\in\cX\times\cA}|\E[R_{(x,a)}]|\le R
+\]
+But more importantly:
+\[
+	|\cR|\le\sum_{t=0}^\infty \gamma^t |R_{t+1}|\le 
+	\frac{R}{1-\gamma} \quad\text{ a.s.} 
+	\implies V^\pi,V^* \in B(\cX), Q^\pi,Q^* \in B(\cX\times\cA)
+\]
+with \(B(M)\coloneqq \{f\colon M\to\R : \|f\|_\infty <\infty \} \) the set of bounded functions on \(\cX\). 
 
-
-\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
-Sometimes we don't care about the probability distribution of the reward, so we define:
+As mentioned previously, the marginal probability distribution of the state instead of the joint distribution with the reward, will now makes some notation shorter.  
+\begin{definition}
 	\[
 	p\colon 
 	\begin{cases}
-		\cX\times\cA\times\cP(\cX)\to\R\\
+		(\cX\times\cA)\times\sigma_\cX\to\R\\
 		(x,a,Y)\mapsto \cP_0(Y\times\R\mid x,a)
-	\end{cases}\text{ the \emph{\underline{state} transition kernel}.}
+	\end{cases}\text{ is the \emph{\underline{state} transition kernel}.}
 	\] 
-And use the notation \(p(y\mid x,a)\coloneqq p(\{y\}\mid x,a)\) with \((x,a,y)\in\cX\times\cA\times\cX\)
+\emph{Notation:} \(p(y\mid x,a)\coloneqq p(\{y\}\mid x,a)\) with \((x,a,y)\in\cX\times\cA\times\cX\)
 \end{definition}
 
+We start by setting \(V^\pi\) and \(Q^\pi\) in relation to each other.
 
-\begin{prop}\label{expand Q^pi}\(\cM=(\cX,\cA,\cP_0)\) MDP, \(\pi\in\detPolicy\) 
+\begin{prop}\label{expand Q^pi} Let \(\pi\in\detPolicy\) be a deterministic stationary behavior, then:
 	\[Q^\pi(x,a)=r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a)V^\pi(y)	\]
 \end{prop}
 
-\begin{proof}
+\begin{proof} \textcolor{red}{split equation or accept eq sticking out a bit?}
 \begin{align*}
-Q^\pi &= \E[\cR(\pi)\mid X_0=x, A_0=a]\\
+Q^\pi(x,a) &= \E[\cR(\pi)\mid X_0=x, A_0=a]\\
 &=\E[R_1(\pi)\mid X_0=x,A_0=a]+\gamma\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi)\middle| X_0=x,A_0=a\right]\\
 &=\E[R_{(x,a)}] 
  + \gamma \sum_{y\in\cX}\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi) \middle| X_0=x,A_0=a, X_1=y\right]p(y\mid x, a)\\
@@ -239,11 +278,10 @@ Q^\pi &= \E[\cR(\pi)\mid X_0=x, A_0=a]\\
  }
  p(y\mid x, a)
 \end{align*}
-\((*)\) Rename: \(\tilde{X}_{t}\coloneqq X_{t+1}, \tilde{A}_t\coloneqq A_{t+1},\tilde{R}_{t}\coloneqq R_{t+1}\), then \((\tilde{X}_t,\tilde{A}_t,\tilde{R}_{t+1}, t\in\N_0)\) is an evaluation of the MDP with the (stationary) policy \(\pi\)
+\((*)\) Rename: \(\tilde{X}_{t}\coloneqq X_{t+1}, \tilde{A}_t\coloneqq A_{t+1},\tilde{R}_{t}\coloneqq R_{t+1}\), then \((\tilde{X}_t,\tilde{A}_t,\tilde{R}_{t+1}, t\in\N_0)\) is an \textcolor{red}{"evaluation"/ "Markov Action Process"} of the MDP with the (stationary!) policy \(\pi\).
 \end{proof}
 
-
-\begin{corollary}\label{V^pi,Q^pi relation}  \(\cM=(\cX,\cA,\cP_0)\) MDP, \(\pi\in\detPolicy\) 
+\begin{corollary}\label{V^pi,Q^pi relation} For \(\pi\in\detPolicy\) this holds: 
 \begin{align*}
 	V^\pi(x)&=Q^\pi(x,\pi(x))\\
 	 &=r(x,\pi(x))+\gamma\sum\limits_{y\in\cX}p(y\mid x,\pi(x))V^\pi(y) 
@@ -256,35 +294,43 @@ Since \(\pi\) is a deterministic stationary policy:
 The rest follows from \ref{expand Q^pi}
 \end{proof}
 
-\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP, \(\pi\in\detPolicy\) \\
-The mapping \(T^\pi\colon\R^\cX\to\R^\cX\) with:
+With this relation we can use the Banach fix-point theorem (BFT) for the first time.
+
+\begin{definition} For policy \(\pi\in\detPolicy\) is the mapping \(T^\pi\colon B(\cX)\to B(\cX)\) with:
 	\[
-	T^\pi V(x)\coloneqq r(x,\pi(x))+\gamma\sum_{y\in\cX}p(y\mid x,\pi(x)) V(y)\qquad V\in\R^\cX, x\in\cX
+	T^\pi V(x)\coloneqq r(x,\pi(x))+\gamma\sum_{y\in\cX}p(y\mid x,\pi(x)) V(y)\qquad V\in B(\cX), x\in\cX
 	\]
-is called the \emph{Bellman Operator}
+called the \emph{Bellman Operator}.
 \end{definition}
 
 
-\begin{remark}\label{properties T^pi}\leavevmode
-	\begin{enumerate}[label=\arabic*.]
-	\item \(\forall\pi\in\detPolicy : T^\pi V^\pi=V^\pi\) (c.f. \ref{V^pi,Q^pi relation})
-	\item\label{num:2} \(T^\pi\) meets the requirements of the Banach fixed-point theorem for \({\gamma<1}\), this implies that \(V^\pi\) for \(\pi\in\detPolicy\)
+\begin{remark}
+	\(\forall\pi\in\detPolicy : T^\pi V^\pi=V^\pi\) (c.f. \ref{V^pi,Q^pi relation})
+
+	\(T^\pi\) meets the requirements of the Banach fixed-point theorem \textcolor{red}{appendix?} for \({\gamma<1}\), this implies that \(V^\pi\) for \(\pi\in\detPolicy\)
 	is a \emph{unique} fixpoint and can be approximated with the canonical iteration
-	\item \(T^\pi\) is an affine operator
-	\item\label{num:4} \(W_1,W_2\in\R^\cX\), write \(W_1 \le W_2\) for \(\forall x\in\cX:W_1(x)\le W_2(x)\), then:
-	\[W_1\le W_2 \implies T^\pi W_1\le T^\pi W_2\]
-	\end{enumerate}
 \end{remark}
 
 \begin{proof}
-\ref{num:2} \((\R^\cX, \|\cdot\|_\infty)\) is a non-empty, complete metric space and the mapping maps onto itself. It is left to show, that \(T^\pi\) is a contraction. Be \(V,W\in\R^\cX\):
+\((B(\cX), \|\cdot\|_\infty)\) is a non-empty, complete metric space \textcolor{red}{appendix?} and the mapping maps onto itself. It is left to show, that \(T^\pi\) is a contraction. Be \(V,W\in B(\cX)\):
 \begin{align*}
 	\|T^\pi V -T^\pi W\|_\infty &=\|\gamma\sum_{y\in\cX} p(y\mid \cdot,\pi(\cdot)) (V(y)-W(y))\|_\infty\\
 	&\le\gamma \sup_{x\in\cX}\left\{ \sum_{y\in\cX} p(y\mid x,\pi(x)) \|V-W\|_\infty \right\}\\
 	&=\gamma \|V-W\|_\infty  \sup_{x\in\cX}\underbracket{\left\{ \sum_{y\in\cX} p(y\mid x,\pi(x)) \right\}}_{=1}\\
 	&=\gamma \|V-W\|_\infty 
 \end{align*}
-\ref{num:4} Be \(W_1,W_2\in\R^\cX\), \(W_1\le W_2\) and \(x\in\cX\):
+\end{proof}
+
+\begin{remark}\label{properties T^pi} Some observations which will come in useful later:
+	\begin{enumerate}
+		\item \(T^\pi\) is an affine operator
+		\item \(W_1,W_2\in B(\cX)\), write \(W_1 \le W_2\) for \(\forall x\in\cX:W_1(x)\le W_2(x)\), then:
+		\[W_1\le W_2 \implies T^\pi W_1\le T^\pi W_2\]
+	\end{enumerate}
+\end{remark}
+
+\begin{proof}
+ Be \(W_1,W_2\in B(\cX)\), \(W_1\le W_2\) and \(x\in\cX\):
 \begin{align*}
 	T^\pi W_2 (x) - T^\pi W_1(x) 
 	= \gamma \sum_{y\in\cX} p(y\mid x,\pi(x)) \underbracket{(W_2(y)-W_1(y))}_{\ge 0} 
@@ -292,20 +338,22 @@ is called the \emph{Bellman Operator}
 \end{align*}
 \end{proof}
 
+Now we get to the more interesting but also harder optimal value functions. We will later see that taking the supremum over all behaviors is the same as taking it just over the deterministic stationary behaviors. But for now we need to make the distinction:
 
-\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP
+\begin{definition}
 \begin{align*}
 	\tilde{V}(x)&\coloneqq \sup_{\pi\in\detPolicy} V^\pi(x)
 \end{align*}
 \end{definition}
 
+The goal is to show that these two different optimal value functions are actually the same using the uniquness of the fix-point of the BFT. To achieve that we neet to show that they are fix points of the following mapping. And that this mapping satisfies the requirements of the BFT.
 
-\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
-The mapping \(T^*\colon\R^\cX\to\R^\cX\) with:
+\begin{definition}
+The mapping \(T^*\colon B(\cX)\to B(\cX)\) with:
 	\[
-	 T^* V(x)\coloneqq \sup_{a\in\cA}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V(y)\right\} \qquad V\in\R^\cX, x\in\cX
+	 T^* V(x)\coloneqq \sup_{a\in\cA}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V(y)\right\} \qquad V\in B(\cX), x\in\cX
 	\]
-is called the \emph{Bellman Optimality Operator}
+is called the \emph{Bellman Optimality Operator}.
 \end{definition}
 
 
@@ -343,18 +391,18 @@ Define a slightly changed deterministic policy with this \(\pi,a\):
 \end{align*}
 Define \(W_n\coloneqq (T^{\hat{\pi}})^n V^\pi\), then:
 \begin{align*}
-	W_1(y)&=r(y, \hat{\pi}(y)) + \gamma \sum_{z\in\cX} p(z \mid y, \hat{\pi}(y)) V^\pi(z)  \\
-	&=\begin{cases}
-			r(y, \pi(y)) + \gamma \sum_{z\in\cX} p(z \mid y, \pi(y)) V^\pi(z) = V^\pi(x) & y\neq x  \\
-			r(x, a) + \gamma \sum_{z\in\cX} p(z \mid x, a) V^\pi(z) > \tilde{V}(x)& y=x
-	\end{cases}\\
-	&\ge V^\pi(y) = W_0(y)
+	W_1(y)&=T^{\hat{\pi}}V^\pi(y) \xeq{y\neq x} T^\pi V^\pi(y) = V^\pi(y)\\
+	&\lxeq{y=x} r(x, \hat{\pi}(x)) 
+	+ \gamma \sum_{z\in\cX} p(z \mid x, \hat{\pi}(x)) V^\pi(z)  \\
+	&=r(x, a) + \gamma \sum_{z\in\cX} p(z \mid x, a) V^\pi(z) \\
+	&> \tilde{V}(x) \ge V^\pi(x)
 \end{align*}
-By induction with \ref{properties T^pi} (\ref{num:4}): \(W_{n+1}=T^{\hat{\pi}}W_n \ge T^{\hat{\pi}}W_{n-1}=W_n\), thus:
+In either case we get \(W_1(y)\ge V^\pi(y)=W_0(y) \).
+By induction with \ref{properties T^pi} we get: \(W_{n+1}=T^{\hat{\pi}}W_n \ge T^{\hat{\pi}}W_{n-1}=W_n\), thus:
 \begin{align*}
 	V^{\hat{\pi}}(x)&=\lim_{n\to\infty}(T^{\hat{\pi}})^n V^\pi(x)=\lim_{n\to\infty} W_n(x)\ge W_1(x) \\
 	&=r(x, a) + \gamma \sum_{z\in\cX} p(z \mid x, a) V^\pi(z) \\
-	&> \tilde{V}(x) \contradiction
+	&> \tilde{V}(x) \contradiction{\hat{\pi}\in\detPolicy}
 \end{align*}
 %TODO
 \end{proof}
