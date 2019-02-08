@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.2.5)  7 FEB 2019 19:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.2.5)  9 FEB 2019 00:48
 entering extended mode
 **"d:/Google Drive/Mannheim Uni/Mathematik/Stochastik,Maß-Theorie/Bachelorarbe
 it/Bachelorthesis/BScWIMEngl.tex"
@@ -822,41 +822,41 @@ Underfull \hbox (badness 7151) in paragraph at lines 221--221
 []\T1/cmr/m/n/10.95 is the \T1/cmr/m/it/10.95 ac-tion value
  []
 
-[6]
-Overfull \hbox (41.41911pt too wide) detected at line 280
+
+Overfull \hbox (41.41911pt too wide) detected at line 265
 []
  []
 
-[7] [8] [9]
-Overfull \hbox (8.3261pt too wide) detected at line 421
+[6] [7] [8] [9] [10] [11] [12]
+Overfull \hbox (8.3261pt too wide) detected at line 492
 []
  []
 
-[10]
-Overfull \hbox (15.05185pt too wide) in paragraph at lines 436--437
+
+Overfull \hbox (15.05185pt too wide) in paragraph at lines 507--508
 []\T1/cmr/m/n/10.95 https://math.stackexchange.com/questions/1087885/blackwells
 -condition-
  []
 
-) [11]
+[13]) [14]
 \openout2 = `./chapter/chapter_02.aux'.
 
- (chapter/chapter_02.tex [12
+ (chapter/chapter_02.tex
+Chapter 2.
+) [15
 
 
 
 ]
-Chapter 2.
-) [13]
 \openout2 = `./chapter/appendix_01.aux'.
 
- (chapter/appendix_01.tex [14
+ (chapter/appendix_01.tex [16
 
 
 
 ]
 Appendix A.
-) [15] [16
+) [17] [18
 
 
 ]
@@ -871,7 +871,7 @@ Overfull \hbox (76.99873pt too wide) in paragraph at lines 118--118
  []
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 122.
-[17
+[19
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 122.
@@ -887,10 +887,10 @@ Package logreq Info: Writing requests to 'BScWIMEngl.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 122.
  ) 
 Here is how much of TeX's memory you used:
- 16813 strings out of 492946
- 274848 string characters out of 3135528
- 789299 words of memory out of 3000000
- 20344 multiletter control sequences out of 15000+200000
+ 16822 strings out of 492946
+ 274947 string characters out of 3135528
+ 792359 words of memory out of 3000000
+ 20346 multiletter control sequences out of 15000+200000
  27889 words of font info for 69 fonts, out of 3000000 for 9000
  1143 hyphenation exceptions out of 8191
  42i,20n,48p,1579b,2191s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -915,19 +915,20 @@ sers\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440
 .pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi60
 0\eccc1440.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex1
 0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C
-:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/wasy/wasy10.pfb>
-Output written on BScWIMEngl.pdf (23 pages, 343235 bytes).
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/wasy/wasy10.pfb>
+Output written on BScWIMEngl.pdf (25 pages, 367487 bytes).
 PDF statistics:
- 794 PDF objects out of 1000 (max. 8388607)
- 84 named destinations out of 1000 (max. 500000)
+ 826 PDF objects out of 1000 (max. 8388607)
+ 91 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 

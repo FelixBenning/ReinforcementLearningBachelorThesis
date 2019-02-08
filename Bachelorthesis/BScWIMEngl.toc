@@ -9,10 +9,10 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.3}Value functions}{5}{section.1.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Title Chapter 2}{13}{chapter.2}% 
+\contentsline {chapter}{\numberline {2}Title Chapter 2}{15}{chapter.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Appendix}{15}{appendix.A}% 
+\contentsline {chapter}{\numberline {A}Appendix}{17}{appendix.A}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Basic Probability Theory}{15}{section.A.1}% 
+\contentsline {section}{\numberline {A.1}Basic Probability Theory}{17}{section.A.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Analysis}{15}{section.A.2}% 
+\contentsline {section}{\numberline {A.2}Analysis}{17}{section.A.2}% 

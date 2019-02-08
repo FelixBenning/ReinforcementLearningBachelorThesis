@@ -115,7 +115,7 @@ resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\)
 
 
 \begin{remark}\label{statPolicy induces time-homogeneous MC}
-	A stationary policy \(\pi\) induces a \emph{time-homogenous} Markov chain \((X_t,A_t,R_{t+1},t\in\N_0)\).
+	A stationary policy \(\pi\) induces a \emph{time-homogeneous} Markov chain \((X_t,A_t,R_{t+1},t\in\N_0)\).
 \end{remark}
 \begin{proof} 
 	\(\cH_s^t\coloneqq \{(X_t,A_t,R_{t+1})\in H_t,\dots,(X_s,A_s,R_{s+1})\in H_s \},\ H_i \in \sigma_{\cX\times\cA\times\R}\)
@@ -137,7 +137,7 @@ resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\)
 		\Pr\left[(X_t, A_t)=(x,a)\mid\cH_{t-1}^{t-1}\right]\\
 		&=\Pr\left[(X_t,A_t,R_{t+1})\in\{(x,a)\}\times U \mid \cH_{t-1}^{t-1} \right]
 	\end{align*}
-	\((*)\) \emph{Some} of the History is irrelevant if all of the History is irrelevant. (\textcolor{red}{appendix?})
+	\((*)\) \emph{Some} of the History is irrelevant if all of the History is irrelevant. (\textcolor{red}{appendix?, TODO: time-homogeneous})
 \end{proof} 
 \begin{remark} Sometimes not all actions make sense in all states. A simple fix would be to set the immediate reward functions for those actions very low, or (if possible) redirect them to the closest possible action. \\
 A more formal approach would be to introduce an additional mapping, which assigns the set of admissible actions to each state \(\cX\to\cP(\cA)\) and define \({\cX\times\cA}\coloneqq\{(x,a): x\in\cX, a\in f(x) \}\).
@@ -229,21 +229,6 @@ The goal in this section is to
 With the distribution of \(X_0\) set (or \(X_0\) being realized with a fixed value \(x\)), the distribution of \(X_t, A_t,R_{t+1}\) is determined for all \(t\in\N_0\). The conditional expectation is thus unique for a given \(X_0=x\), for all possible realizations of the MDP with a given behavior. \\
 This means \(V^\pi, Q^\pi\) are well defined.
 \end{remark}
-From now on we assume:
-\begin{assumption} 
-	\(\forall (x,a)\in\cX\times\cA:|R_{(x,a)}|\le R\in\R\) almost surely.
-\end{assumption}
-This implies that the immediate reward is bounded:
-\[
-	\|r\|_{\infty}=\sup_{(x,a)\in\cX\times\cA}|\E[R_{(x,a)}]|\le R
-\]
-But more importantly:
-\[
-	|\cR|\le\sum_{t=0}^\infty \gamma^t |R_{t+1}|\le 
-	\frac{R}{1-\gamma} \quad\text{ a.s.} 
-	\implies V^\pi,V^* \in B(\cX), Q^\pi,Q^* \in B(\cX\times\cA)
-\]
-with \(B(M)\coloneqq \{f\colon M\to\R : \|f\|_\infty <\infty \} \) the set of bounded functions on \(\cX\). 
 
 As mentioned previously, the marginal probability distribution of the state instead of the joint distribution with the reward, will now makes some notation shorter.  
 \begin{definition}
@@ -257,7 +242,7 @@ As mentioned previously, the marginal probability distribution of the state inst
 \emph{Notation:} \(p(y\mid x,a)\coloneqq p(\{y\}\mid x,a)\) with \((x,a,y)\in\cX\times\cA\times\cX\)
 \end{definition}
 
-We start by setting \(V^\pi\) and \(Q^\pi\) in relation to each other.
+Now we can start to explore the relation of \(V^\pi\) and \(Q^\pi\).
 
 \begin{prop}\label{expand Q^pi} Let \(\pi\in\detPolicy\) be a deterministic stationary behavior, then:
 	\[Q^\pi(x,a)=r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a)V^\pi(y)	\]
@@ -281,11 +266,15 @@ Q^\pi(x,a) &= \E[\cR(\pi)\mid X_0=x, A_0=a]\\
 \((*)\) Rename: \(\tilde{X}_{t}\coloneqq X_{t+1}, \tilde{A}_t\coloneqq A_{t+1},\tilde{R}_{t}\coloneqq R_{t+1}\), then \((\tilde{X}_t,\tilde{A}_t,\tilde{R}_{t+1}, t\in\N_0)\) is an \textcolor{red}{"evaluation"/ "Markov Action Process"} of the MDP with the (stationary!) policy \(\pi\).
 \end{proof}
 
-\begin{corollary}\label{V^pi,Q^pi relation} For \(\pi\in\detPolicy\) this holds: 
+\begin{corollary}\label{V^pi,Q^pi relation} For \(\pi\in\detPolicy\) this fix-point equation holds: 
 \begin{align*}
 	V^\pi(x)&=Q^\pi(x,\pi(x))\\
-	 &=r(x,\pi(x))+\gamma\sum\limits_{y\in\cX}p(y\mid x,\pi(x))V^\pi(y) 
+	 &=r(x,\pi(x))+\gamma\sum\limits_{y\in\cX}p(y\mid x,\pi(x))V^\pi(y)
 \end{align*}
+and this fix-point equation:
+\[
+	Q^\pi(x,a)=r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a)Q^\pi(x,\pi(x))
+\]
 \end{corollary}
 
 \begin{proof}
@@ -294,13 +283,30 @@ Since \(\pi\) is a deterministic stationary policy:
 The rest follows from \ref{expand Q^pi}
 \end{proof}
 
-With this relation we can use the Banach fix-point theorem (BFT) for the first time.
+With this relation we can use the Banach fix-point theorem (BFT) for the first time. But to do that we first need to make an assumption.
+\begin{assumption} 
+	\(\forall (x,a)\in\cX\times\cA:\quad\E[|R_{(x,a)}|]\le R\in\R\)
+\end{assumption}
+This implies that the immediate reward is bounded:
+\[
+	\|r\|_{\infty}=\sup_{(x,a)\in\cX\times\cA}|\E[R_{(x,a)}]|\le R
+\]
+But more importantly:
+\[
+	\E[|\cR|]\le\E\left[\sum_{t=0}^\infty \gamma^t |R_{t+1}|\right]
+	\le \frac{R}{1-\gamma} 
+\]
+which implies implies \(V^\pi,V^* \in B(\cX), Q^\pi,Q^* \in B(\cX\times\cA)\) with \(B(M)\coloneqq \{f\colon M\to\R : \|f\|_\infty <\infty \} \) the set of bounded functions on \(\cX\), which happens to be a complete metric space which we will need for the Banach fix-point Theorem to work. Bounded Value functions will also be neccessary for a lot of other arguments later on. In finite MDPs this assumption is of course always fulfilled. 
+
 
 \begin{definition} For policy \(\pi\in\detPolicy\) is the mapping \(T^\pi\colon B(\cX)\to B(\cX)\) with:
 	\[
 	T^\pi V(x)\coloneqq r(x,\pi(x))+\gamma\sum_{y\in\cX}p(y\mid x,\pi(x)) V(y)\qquad V\in B(\cX), x\in\cX
 	\]
-called the \emph{Bellman Operator}.
+called the \emph{Bellman Operator}. With some abuse of notation, define the mapping \(T^\pi\colon B(\cX\times\cA)\to B(\cX\times\cA)\) with:
+	\[
+	T^\pi Q(x,a)\coloneqq r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a) Q(y,\pi(y))\quad V\in B(\cX), (x,a)\in\cX\times\cA 
+	\]
 \end{definition}
 
 
@@ -317,8 +323,9 @@ called the \emph{Bellman Operator}.
 	\|T^\pi V -T^\pi W\|_\infty &=\|\gamma\sum_{y\in\cX} p(y\mid \cdot,\pi(\cdot)) (V(y)-W(y))\|_\infty\\
 	&\le\gamma \sup_{x\in\cX}\left\{ \sum_{y\in\cX} p(y\mid x,\pi(x)) \|V-W\|_\infty \right\}\\
 	&=\gamma \|V-W\|_\infty  \sup_{x\in\cX}\underbracket{\left\{ \sum_{y\in\cX} p(y\mid x,\pi(x)) \right\}}_{=1}\\
-	&=\gamma \|V-W\|_\infty 
+	&=\gamma \|V-W\|_\infty
 \end{align*}
+The proof for \(T^\pi\colon B(\cX\times\cA)\to B(\cX\times\cA)\) is analogous.
 \end{proof}
 
 \begin{remark}\label{properties T^pi} Some observations which will come in useful later:
@@ -331,22 +338,78 @@ called the \emph{Bellman Operator}.
 
 \begin{proof}
  Be \(W_1,W_2\in B(\cX)\), \(W_1\le W_2\) and \(x\in\cX\):
-\begin{align*}
+\[
 	T^\pi W_2 (x) - T^\pi W_1(x) 
 	= \gamma \sum_{y\in\cX} p(y\mid x,\pi(x)) \underbracket{(W_2(y)-W_1(y))}_{\ge 0} 
 	\ge 0
-\end{align*}
+	\qedhere
+\]
 \end{proof}
 
 Now we get to the more interesting but also harder optimal value functions. We will later see that taking the supremum over all behaviors is the same as taking it just over the deterministic stationary behaviors. But for now we need to make the distinction:
 
 \begin{definition}
 \begin{align*}
-	\tilde{V}(x)&\coloneqq \sup_{\pi\in\detPolicy} V^\pi(x)
+	\tilde{V}(x)&\coloneqq \sup_{\pi\in\detPolicy} V^\pi(x)\\
+	\tilde{Q}(x,a)&\coloneqq \sup_{\pi\in\detPolicy} Q^\pi(x,a)
 \end{align*}
 \end{definition}
 
-The goal is to show that these two different optimal value functions are actually the same using the uniquness of the fix-point of the BFT. To achieve that we neet to show that they are fix points of the following mapping. And that this mapping satisfies the requirements of the BFT.
+The goal is to show that these two pairs of optimal value functions are actually the same using the uniquness of the fix-point of the BFT. 
+
+The intuition for why this should be the case comes from the fact that the MDP is memory-less. So winding up in the same state results in the agent having the exact same decision problem. And if the agent decided for one optimal action in the past, then this action will again be optimal. For this reason the supremum over all behaviors should be equal to the supremum over stationary behaviors. 
+
+Deterministic policies are enough, because if an optimal policy randomizes over different actions, then the values of theses actions must all be equally high. Which means that just picking one and sticking with it should be just as good.
+
+But before we get to tackle this problem, we first need to adress another one. Notice how we take the supremum for every state \(x\) individually? 
+\begin{equation*}
+V^*(x)=\sup_{\pi\in\detPolicy}V^\pi(x) 
+\end{equation*}
+Since the stationary policy still allows us to condition on the state it is intuitive to assume that we do not need different sequences of policies to apporximate \(V^*\) for each state \(x\in\cX\). This will eventually turn out to be true using statements about the optimal value functions. We can not show this fact right now, since sequences approximating the different suprema are indexed by the possibly countable state space, what we would need is a single sequence of policies which matches all the policies in this countable set of sequences in every state. This turns out to be an impossible task.
+
+\begin{example} (The genie cubicles)
+Imagine an infinite (countable) amount of cubicles \(\N \subset \cX\), with a genie in every cubicle. You can wish for an arbitrary amount of money \(\cA=\N\), after that you have to leave (end up in the terminal state \(0\), i.e.: \(\cX=\N_0\)). Then of course \(V^*(x)=\infty\) for \(x\in\N\), is achived by the seqences of behaviors: \((\pi_x^{(n)}, n\in\N)\) for \(x\in\N\) with \(\pi_x^{(n)}(y)=x+n\quad \forall y\in\cX\). Then there is no policy \(\pi^{(n)}\) which can match every \(\pi_x^{(n)}\) for all \(x\in\N\).
+
+Even if \(V^*\) was finite, we could modify the example by cutting gifts off above a certain threshold with behaviors approaching that threshold. 
+\end{example}
+
+So we can not match an infinite set of behaviors. Which means we will have to settle for a finite version. This version will help us to handle the optimal value functions. With the later facts about optimal value functions we can then define a sequence of policies which approach the optimal value functions uniformly confirming our earlier suspicions, that the suprema can be attained with a single sequence of policies. 
+
+\begin{prop}
+	Be \(n\in\N\) and \(\{\pi_1,\dots,\pi_n\}\subseteq \detPolicy \), then:
+	\[\exists \hat{\pi}\in\detPolicy: \quad \max_{i=1,\dots,n} V^\pi(x)\le V^{\hat{\pi}}(x) \qquad \forall x\in\cX \]
+\end{prop}
+\begin{proof}
+	The idea is to to pick the same action in state \(x\), as the policy which generates the most value out of this state, i.e. \(\max_{i=1,\dots,n}V^{\pi_i}(x)\). 
+	\[
+		\hat{\pi}\colon
+	\begin{cases} 
+		\cX\to\cA\\
+		x\mapsto \pi_{\mathop{\text{argmax}}\limits_{i=1,\dots,n}V^{\pi_i}(x)}(x)
+	\end{cases}
+	\]
+	One might be surprised that such an appearingly short sighted policy should surpass every policy in the finite set. At first it might seem that different policies achive their values of their state through different, maybe incompatible strategies. Would a strategy which takes a policy because it changes transition probabilities in a way that leads to a high-payoff state not be sabotaged by switching policies erratically?
+	It is important to realize that if a policy A attaches a high value to a state because it provides easy access to states which can yield a high payoff, then the other policies will either exploit the high payoff later on as well, or the policy A will once again be the maximum. Either way it would result in \(\hat{\pi}\) exploiting the high payoff later on. 
+
+	For the maximum value write: \(V(x)\coloneqq \max_{i=1,\dots, n}V^{\pi_i}(x)\) and be \(m(x) \coloneqq \arg\max_{i=1,\dots,n}V^{\pi_i}(x)\), then:
+	\begin{align*}
+		&T^{\hat{\pi}}V(x)=r(x,\pi_{m(x)}(x))
+		+\gamma \sum{y\in\cX} p(y\mid x,\pi_{m(x)}(x))V(y)\\
+		&\lxgq{V\ge V^{\pi_{m(x)}}} r(x,\pi_{m(x)}(x))
+		+\gamma \sum{y\in\cX} p(y\mid x,\pi_{m(x)}(x))V^{\pi_{m(x)}}(y)\\
+		&\lxeq{\ref{V^pi,Q^pi relation}} V^{\pi_{m(x)}}(x)=V(x)
+	\end{align*}
+	By using the monotonicity of \(T^{\hat{\pi}} \) (\ref{properties T^pi}) inductively with \((T^{\hat{\pi}})^1 V \ge (T^{\hat{\pi}})^0 V \), we get
+	\( (T^{\hat{\pi}})^n V \ge (T^{\hat{\pi}})^{n-1} V \) thus:
+	\[
+		V^{\hat{\pi}}(x) = \lim_{n\to\infty} (T^{\hat{\pi}})^n V(x) 
+		\ge V(x) \ge V^{\pi_i}(x)
+		\qquad \forall i=1,\dots,n, \forall x\in\cX
+		\qedhere
+	\] 
+\end{proof}
+
+To prove that the value functions \(V^*\) (\(Q^*\)) and \(\tilde{V}\) (\(\tilde{Q}\))  are equal we need to show that they are both fix points of the following mapping. And that this mapping satisfies the requirements of the BFT. The value of stochastic stationary behaviors will be sandwiched in between, thus also equal. 
 
 \begin{definition}
 The mapping \(T^*\colon B(\cX)\to B(\cX)\) with:
@@ -356,6 +419,8 @@ The mapping \(T^*\colon B(\cX)\to B(\cX)\) with:
 is called the \emph{Bellman Optimality Operator}.
 \end{definition}
 
+We will be able to use the established relation of \(V^\pi\) and \(Q^\pi\) in case of deterministic stationary policies
+It is quite important to remember that this relation is only defined for these policies though. So we need a different approach for the general behaviors. The advantage of these is, that one can condition on a finer level on previous states which will allow us to swap places of suprema and sums.
 
 \begin{lemma}\label{V*,Q* relation}\(\cM=(\cX,\cA,\cP_0)\) MDP
 \begin{enumerate}[label=\textbf{(\roman*)},font=\normalfont]
@@ -367,17 +432,23 @@ is called the \emph{Bellman Optimality Operator}.
 
 \begin{proof} \ref{i:1}
 By \ref{V^pi,Q^pi relation} we know \(V^\pi(x)=Q^\pi(x,\pi(x))\) thus:
-\begin{align*}
-	\tilde{V}(x)& =\sup_{\pi \in \detPolicy} V^\pi(x)\\
-	&= \sup_{\pi\in\detPolicy} \left\{ r(x,\pi(x))+\gamma\sum\limits_{y\in\cX}p(y\mid x,\pi(x)) V^\pi(y) \right\}\\
-	&\lxlq{(*)}\sup_{a\in \cA}\left\{ r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) 
-	\sup_{\pi\in\detPolicy} V^\pi(y) \right\}\\
+\begin{align}
+	\tilde{V}(x)& =\sup_{\pi \in \detPolicy} V^\pi(x)
+	=\sup_{\pi \in \detPolicy}Q^\pi(x,\pi(x)) 
+	\nonumber\\
+	&\le\sup_{a\in \cA} \sup_{\pi\in\detPolicy} Q^\pi(x,a)\\
+	&= \sup_{a\in \cA} \sup_{\pi\in\detPolicy} \left\{r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) V^\pi(y) \right\}
+	\nonumber\\
+	&\le\sup_{a\in \cA}\left\{ r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) 
+	\sup_{\pi\in\detPolicy} V^\pi(y) \right\}
+	\label{last inequality}
+	\\
 	&=\sup_{a\in \cA}\left\{ r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) 
 	 \tilde{V}(y) \right\}
-\end{align*}
-Assume \((*)\) is a true inequality for some \(x\in\cX\), since the supremum can be arbitrarily closely approximated:
+\end{align}
+Assume either of the two inequalities until (\ref{last inequality}) is a true inequality for some \(x\in\cX\), since the supremum can be arbitrarily closely approximated:
 \[ \exists \pi, \exists a : \tilde{V}(x) < r(x,a) + \gamma\sum_{y\in\cX} p(y\mid x,a) V^\pi(y)\]
-Define a slightly changed deterministic policy with this \(\pi,a\):
+Define a slightly changed deterministic policy with this \(\pi\) and \(a\):
 \begin{align*}
 	\hat{\pi}\colon
 	\begin{cases}
