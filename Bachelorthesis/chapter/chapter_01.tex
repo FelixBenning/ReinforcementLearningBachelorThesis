@@ -1,3 +1,7 @@
+% !TEX root = ../BScWIMEngl.tex  
+
+
+
 \chapter{Markov Decision Processes}
 \section{Introduction}
 A Markov Process is a random process in a state space with no memory of where it was, that is, only the current state influences where it goes next.
@@ -363,19 +367,19 @@ Deterministic policies are enough, because if an optimal policy randomizes over 
 
 But before we get to tackle this problem, we first need to adress another one. Notice how we take the supremum for every state \(x\) individually? 
 \begin{equation*}
-V^*(x)=\sup_{\pi\in\detPolicy}V^\pi(x) 
+\tilde{V}(x)=\sup_{\pi\in\detPolicy}V^\pi(x) 
 \end{equation*}
 Since the stationary policy still allows us to condition on the state it is intuitive to assume that we do not need different sequences of policies to apporximate \(V^*\) for each state \(x\in\cX\). This will eventually turn out to be true using statements about the optimal value functions. We can not show this fact right now, since sequences approximating the different suprema are indexed by the possibly countable state space, what we would need is a single sequence of policies which matches all the policies in this countable set of sequences in every state. This turns out to be an impossible task.
 
 \begin{example} (The genie cubicles)
 Imagine an infinite (countable) amount of cubicles \(\N \subset \cX\), with a genie in every cubicle. You can wish for an arbitrary amount of money \(\cA=\N\), after that you have to leave (end up in the terminal state \(0\), i.e.: \(\cX=\N_0\)). Then of course \(V^*(x)=\infty\) for \(x\in\N\), is achived by the seqences of behaviors: \((\pi_x^{(n)}, n\in\N)\) for \(x\in\N\) with \(\pi_x^{(n)}(y)=x+n\quad \forall y\in\cX\). Then there is no policy \(\pi^{(n)}\) which can match every \(\pi_x^{(n)}\) for all \(x\in\N\).
 
-Even if \(V^*\) was finite, we could modify the example by cutting gifts off above a certain threshold with behaviors approaching that threshold. 
+Even if \(\tilde{V}\) was finite, we could modify the example by cutting gifts off above a certain threshold with behaviors approaching that threshold. 
 \end{example}
 
 So we can not match an infinite set of behaviors. Which means we will have to settle for a finite version. This version will help us to handle the optimal value functions. With the later facts about optimal value functions we can then define a sequence of policies which approach the optimal value functions uniformly confirming our earlier suspicions, that the suprema can be attained with a single sequence of policies. 
 
-\begin{prop}
+\begin{prop}\label{finite outmatching}
 	Be \(n\in\N\) and \(\{\pi_1,\dots,\pi_n\}\subseteq \detPolicy \), then:
 	\[\exists \hat{\pi}\in\detPolicy: \quad \max_{i=1,\dots,n} V^\pi(x)\le V^{\hat{\pi}}(x) \qquad \forall x\in\cX \]
 \end{prop}
@@ -409,7 +413,8 @@ So we can not match an infinite set of behaviors. Which means we will have to se
 	\] 
 \end{proof}
 
-To prove that the value functions \(V^*\) (\(Q^*\)) and \(\tilde{V}\) (\(\tilde{Q}\))  are equal we need to show that they are both fix points of the following mapping. And that this mapping satisfies the requirements of the BFT. The value of stochastic stationary behaviors will be sandwiched in between, thus also equal. 
+To prove that the value functions \(V^*\) (\(Q^*\)) and \(\tilde{V}\) (\(\tilde{Q}\))  are equal we need to show that they are both fix points of the following mapping. 
+And that this mapping satisfies the requirements of the BFT. The value of stochastic stationary behaviors will be sandwiched in between, thus also equal. 
 
 \begin{definition}
 The mapping \(T^*\colon B(\cX)\to B(\cX)\) with:
@@ -422,59 +427,127 @@ is called the \emph{Bellman Optimality Operator}.
 We will be able to use the established relation of \(V^\pi\) and \(Q^\pi\) in case of deterministic stationary policies
 It is quite important to remember that this relation is only defined for these policies though. So we need a different approach for the general behaviors. The advantage of these is, that one can condition on a finer level on previous states which will allow us to swap places of suprema and sums.
 
+
 \begin{lemma}\label{V*,Q* relation}\(\cM=(\cX,\cA,\cP_0)\) MDP
 \begin{enumerate}[label=\textbf{(\roman*)},font=\normalfont]
-\item\label{i:1} \(\tilde{V}(x)=\sup\limits_{a\in\cA} r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a)\tilde{V}(y) \)
+\item\label{i:1} \(\tilde{Q}(x,a)= r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a)\tilde{V}(y)\)
+\item\label{i:2} \(\tilde{V}(x)= \sup\limits_{a\in\cA} \tilde{Q}(x,a)\)
 \item\label{i:3} \(V^*(x)=\sup\limits_{a\in\cA}Q^*(x,a)\)
 \item\label{i:4} \(Q^*(x,a)=r(x,a)+\gamma \sum\limits_{y\in\cX}p(y\mid x,a) V^*(y)\)
 \end{enumerate}
 \end{lemma}
 
-\begin{proof} \ref{i:1}
-By \ref{V^pi,Q^pi relation} we know \(V^\pi(x)=Q^\pi(x,\pi(x))\) thus:
-\begin{align}
-	\tilde{V}(x)& =\sup_{\pi \in \detPolicy} V^\pi(x)
-	=\sup_{\pi \in \detPolicy}Q^\pi(x,\pi(x)) 
-	\nonumber\\
-	&\le\sup_{a\in \cA} \sup_{\pi\in\detPolicy} Q^\pi(x,a)\\
-	&= \sup_{a\in \cA} \sup_{\pi\in\detPolicy} \left\{r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) V^\pi(y) \right\}
-	\nonumber\\
-	&\le\sup_{a\in \cA}\left\{ r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) 
-	\sup_{\pi\in\detPolicy} V^\pi(y) \right\}
-	\label{last inequality}
+\begin{proof} \ref{i:1} The smaller or equal part is easy:
+	\begin{align*}
+		\tilde{Q}(x,a)&= \sup_{\pi \in \detPolicy} \left\{r(x,a)
+		+\gamma\sum_{y\in\cX}p(y\mid x,a) V^\pi(y)\right\}\\
+		&\le r(x,a) +\gamma\sum_{y\in\cX}p(y\mid x,a) \underbracket{\sup_{\pi \in \detPolicy}V^\pi(y)}_{=\tilde{V}(y)}
+	\end{align*}
+	For the other direction we need to do a bit more work. Since the \(r(x,a)\) and \(\gamma\), are unaffected by the supremum what is left to show is:
+	\[
+		\sup_{\pi \in \detPolicy}\sum_{y\in\cX}p(y\mid x,a) V^\pi(y)
+		\ge\sum_{y\in\cX}p(y\mid x,a)\tilde{V}(y)
+	\]
+	The set \(M_\delta\coloneqq \{y\in\cX : p(y\mid x,a)>\delta \} \) is finite for all \(\delta>0\), and
+	\begin{align*}
+		1&=p(\cX\mid x,a)=p\left(\bigcup_{\delta \to 0} M_\delta \mid x, a \right)
+		= \lim_{\delta\to 0} p(M_\delta\mid x,a) \\
+		&=\lim_{\delta\to 0} \sum_{y\in M_\delta} p(y\mid x,a)
+	\end{align*}
+	Therefore for all \(\varepsilon >0\) exists a \(\delta>0\) such that:
+	\begin{align}
+		\sum_{y\in M_\delta^\complement}p(y\mid x,a) < \frac{\varepsilon /4}{R/(1-\gamma)}
+		\label{Mcomplement}
+	\end{align}
+	Be \((\pi_y^{(n)},n\in\N )\) with \(V^{\pi_y^{(n)}}(y) \nearrow \tilde{V}(y) \quad (n\to\infty) \). Since \(M_\delta\) is finite, there exists \(N\in\N \) such that:
+	\begin{align}
+		|\tilde{V}(y) -V^{\pi_y^{(n)}}(y)|< \varepsilon/2
+		\qquad \forall n\ge N, \forall y\in M_\delta^\complement
+		\label{convergenceToTilde}
+	\end{align}
+	And also because \(M_\delta \) is finite and \ref{finite outmatching} we know:
+	\begin{align}
+	\exists\hat{\pi}^{(n)}\in\detPolicy : 
+	\quad {V^{\hat{\pi}^{(n)}}\ge V^{\pi_y^{(n)}}}
+	\qquad \forall y\in M_\delta
+	\label{piHat over finite set}
+	\end{align}
+	This finally implies:
+	\begin{align*}
+		&\sum_{y\in\cX}p(y\mid x,a)\tilde{V}(y) 
+		- \sum_{y\in\cX}p(y\mid x,a) V^{\hat{\pi}^{(n)}}(y) \\
+		&\le \sum_{y\in M_\delta}p(y\mid x,a) (\tilde{V}(y) - V^{\hat{\pi}^{(n)}}(y))
+		+ \sum_{y\in M_\delta^\complement}p(y\mid x,a) 
+		\underbracket{|\tilde{V}(y) - V^{\hat{\pi}^{(n)}}(y)|}_{
+			\le \|\tilde{V}\|_\infty + \| V^{\hat{\pi}^{(n)}}\|_\infty
+		} \\
+		&\lxlq{(\ref{piHat over finite set})} \sum_{y\in M_\delta}p(y\mid x,a) 
+		\underbracket{(\tilde{V}(y) - V^{\pi_y^{(n)}}(y))}_{
+			<\varepsilon/2\quad(\ref{convergenceToTilde})
+		}
+		+ 2R/(1-\gamma) \underbracket{\sum_{y\in M_\delta^\complement}p(y\mid x,a)}_{
+			< \frac{\varepsilon /4}{R/(1-\gamma)}\quad(\ref{Mcomplement})
+		}\\
+		&\le \varepsilon \qquad \forall n\ge N
+	\end{align*}
+	This results in:
+	\begin{align*}
+		\sum_{y\in\cX}p(y\mid x,a)\tilde{V}(y) 
+		&\le \varepsilon + \sum_{y\in\cX}p(y\mid x,a) V^{\hat{\pi}^{(n)}}(y) \\
+		&\le \varepsilon + \sum_{y\in\cX}p(y\mid x,a) \tilde{V}(y)
+	\end{align*}
+	This implies:
+	\begin{align*}
+		\sup
+	\end{align*}
 	\\
-	&=\sup_{a\in \cA}\left\{ r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) 
-	 \tilde{V}(y) \right\}
-\end{align}
-Assume either of the two inequalities until (\ref{last inequality}) is a true inequality for some \(x\in\cX\), since the supremum can be arbitrarily closely approximated:
-\[ \exists \pi, \exists a : \tilde{V}(x) < r(x,a) + \gamma\sum_{y\in\cX} p(y\mid x,a) V^\pi(y)\]
-Define a slightly changed deterministic policy with this \(\pi\) and \(a\):
-\begin{align*}
-	\hat{\pi}\colon
-	\begin{cases}
-		\cX\to\cA\\
-		y\mapsto
+	\ref{i:2}
+	By \ref{V^pi,Q^pi relation} we know \(V^\pi(x)=Q^\pi(x,\pi(x))\) thus:
+	\begin{align}
+		\tilde{V}(x)& =\sup_{\pi \in \detPolicy} V^\pi(x)
+		=\sup_{\pi \in \detPolicy}Q^\pi(x,\pi(x)) 
+		\nonumber\\
+		&\le\sup_{a\in \cA} \sup_{\pi\in\detPolicy} Q^\pi(x,a)
+		=\sup_{a\in \cA} \tilde{Q}(x,a)
+		\label{inequality}
+		\\
+		%&= \sup_{a\in \cA} \sup_{\pi\in\detPolicy} \left\{r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) V^\pi(y) \right\}
+		%\nonumber\\
+		&\lxeq{\ref{i:1}} \sup_{a\in \cA}\left\{ r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) 
+		\sup_{\pi\in\detPolicy} V^\pi(y) \right\} \label{last eq}
+		%\\
+		%&=\sup_{a\in \cA}\left\{ r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) 
+		% \tilde{V}(y) \right\}
+	\end{align}
+	Assume (\ref{inequality}) is a true inequality for some \(x\in\cX\), since the suprema in (\ref{last eq}) can be arbitrarily closely approximated:
+	\[ \exists \pi, \exists a : \tilde{V}(x) < r(x,a) + \gamma\sum_{y\in\cX} p(y\mid x,a) V^\pi(y)\]
+	Define a slightly changed deterministic policy with this \(\pi\) and \(a\):
+	\begin{align*}
+		\hat{\pi}\colon
 		\begin{cases}
-			\pi(y) & y\neq x\\
-			a & y=x
+			\cX\to\cA\\
+			y\mapsto
+			\begin{cases}
+				\pi(y) & y\neq x\\
+				a & y=x
+			\end{cases}
 		\end{cases}
-	\end{cases}
-\end{align*}
-Define \(W_n\coloneqq (T^{\hat{\pi}})^n V^\pi\), then:
-\begin{align*}
-	W_1(y)&=T^{\hat{\pi}}V^\pi(y) \xeq{y\neq x} T^\pi V^\pi(y) = V^\pi(y)\\
-	&\lxeq{y=x} r(x, \hat{\pi}(x)) 
-	+ \gamma \sum_{z\in\cX} p(z \mid x, \hat{\pi}(x)) V^\pi(z)  \\
-	&=r(x, a) + \gamma \sum_{z\in\cX} p(z \mid x, a) V^\pi(z) \\
-	&> \tilde{V}(x) \ge V^\pi(x)
-\end{align*}
-In either case we get \(W_1(y)\ge V^\pi(y)=W_0(y) \).
-By induction with \ref{properties T^pi} we get: \(W_{n+1}=T^{\hat{\pi}}W_n \ge T^{\hat{\pi}}W_{n-1}=W_n\), thus:
-\begin{align*}
-	V^{\hat{\pi}}(x)&=\lim_{n\to\infty}(T^{\hat{\pi}})^n V^\pi(x)=\lim_{n\to\infty} W_n(x)\ge W_1(x) \\
-	&=r(x, a) + \gamma \sum_{z\in\cX} p(z \mid x, a) V^\pi(z) \\
-	&> \tilde{V}(x) \contradiction{\hat{\pi}\in\detPolicy}
-\end{align*}
+	\end{align*}
+	Define \(W_n\coloneqq (T^{\hat{\pi}})^n V^\pi\), then:
+	\begin{align*}
+		W_1(y)&=T^{\hat{\pi}}V^\pi(y) \xeq{y\neq x} T^\pi V^\pi(y) = V^\pi(y)\\
+		&\lxeq{y=x} r(x, \hat{\pi}(x)) 
+		+ \gamma \sum_{z\in\cX} p(z \mid x, \hat{\pi}(x)) V^\pi(z)  \\
+		&=r(x, a) + \gamma \sum_{z\in\cX} p(z \mid x, a) V^\pi(z) \\
+		&> \tilde{V}(x) \ge V^\pi(x)
+	\end{align*}
+	In either case we get \(W_1(y)\ge V^\pi(y)=W_0(y) \).
+	By induction with \ref{properties T^pi} we get: \(W_{n+1}=T^{\hat{\pi}}W_n \ge T^{\hat{\pi}}W_{n-1}=W_n\), thus:
+	\begin{align*}
+		V^{\hat{\pi}}(x)&=\lim_{n\to\infty}(T^{\hat{\pi}})^n V^\pi(x)=\lim_{n\to\infty} W_n(x)\ge W_1(x) \\
+		&=r(x, a) + \gamma \sum_{z\in\cX} p(z \mid x, a) V^\pi(z) \\
+		&> \tilde{V}(x) \contradiction{\hat{\pi}\in\detPolicy}
+	\end{align*}
 %TODO
 \end{proof}
 
