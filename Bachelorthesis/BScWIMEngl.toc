@@ -8,3 +8,9 @@
 \contentsline {section}{\numberline {1.2}Model Formulation}{2}{section.1.2}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.3}Value functions}{5}{section.1.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Appendix}{21}{appendix.A}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}Basic Probability Theory}{21}{section.A.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.2}Analysis}{21}{section.A.2}% 

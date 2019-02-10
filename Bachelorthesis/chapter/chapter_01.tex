@@ -247,29 +247,43 @@ As mentioned previously, the marginal probability distribution of the state inst
 
 Now we can start to explore the relation of \(V^\pi\) and \(Q^\pi\).
 
-\begin{prop}\label{expand Q^pi} Let \(\pi\in\detPolicy\) be a deterministic stationary behavior, then:
+\begin{prop}\label{expand Q^pi} Let \(\pi\in\statPolicy\) be a stationary behavior, then:
 	\[Q^\pi(x,a)=r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a)V^\pi(y)	\]
 \end{prop}
 
-\begin{proof} \textcolor{red}{split equation or accept eq sticking out a bit?}
+\begin{proof} We will use \(\E[X\mid A]=\sum_{n\in\N} \E[X\mid A \cap B_n] \Pr(B_n \mid A) \) with \({\biguplus_{n\in\N}B_n=\Omega }\) (c.f. \ref{appx1}) quite a bit in this proof.
+\textcolor{red}{split equation or accept eq sticking out a bit?}
 \begin{align*}
 Q^\pi(x,a) &= \E[\cR(\pi)\mid X_0=x, A_0=a]\\
 &=\E[R_1(\pi)\mid X_0=x,A_0=a]+\gamma\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi)\middle| X_0=x,A_0=a\right]\\
 &=\E[R_{(x,a)}] 
  + \gamma \sum_{y\in\cX}\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi) \middle| X_0=x,A_0=a, X_1=y\right]p(y\mid x, a)\\
-&\lxeq{\text{Markov}} r(x,a)
- + \gamma\sum_{y\in\cX}\underbracket{\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi)\middle| X_1=y, A_1=\pi(y)\right]}_{
- \begin{aligned}
- 	&= \E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi)\middle| X_1=y \right] \\
+\end{align*}
+This is almost what we want since \(r(x,a)=\E[R_{(x,a)}] \), so we just need to look at the conditional expectation:
+\begin{align*}
+	&\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi) \middle| X_0=x,A_0=a, X_1=y\right]\\
+	&=\sum_{b\in\cA}
+	\begin{aligned}[t]
+	\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi) 
+	\middle| X_0=x,A_0=a, X_1=y,A_1=b \right]\\
+	\cdot \Pr(A_1=b \mid X_0=x,A_0=a, X_1=y) 
+	\end{aligned}
+	\\
+	&\lxeq{\text{Markov}} \sum_{b\in\cA}\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi) \middle| X_1=y,A_1=b \right]
+	\pi(b\mid y)\\
+	&= \E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi)\middle| X_1=y \right] \\
  	&\lxeq{(*)} \E\left[\sum_{t=0}^\infty\gamma^t \tilde{R}_{t+1}(\pi)\middle| \tilde{X}_0=y \right]=V^\pi(y)
- \end{aligned}
- }
- p(y\mid x, a)
 \end{align*}
 \((*)\) Rename: \(\tilde{X}_{t}\coloneqq X_{t+1}, \tilde{A}_t\coloneqq A_{t+1},\tilde{R}_{t}\coloneqq R_{t+1}\), then \((\tilde{X}_t,\tilde{A}_t,\tilde{R}_{t+1}, t\in\N_0)\) is an \textcolor{red}{"evaluation"/ "Markov Action Process"} of the MDP with the (stationary!) policy \(\pi\).
 \end{proof}
 
-\begin{corollary}\label{V^pi,Q^pi relation} For \(\pi\in\detPolicy\) this fix-point equation holds: 
+\begin{corollary}\label{V^pi,Q^pi relation} 
+For \(\pi\in\statPolicy\), this fix point equation holds:
+\[
+	V^\pi(x) = \E[r(x,A_0)\mid X_0=x] 
+	+ \gamma \sum_{y\in\cX} \Pr(X_1=y, A_0=a \mid X_0=x) V^\pi(y)
+\]	
+For \(\pi\in\detPolicy\) this fix-point equation holds: 
 \begin{align*}
 	V^\pi(x)&=Q^\pi(x,\pi(x))\\
 	 &=r(x,\pi(x))+\gamma\sum\limits_{y\in\cX}p(y\mid x,\pi(x))V^\pi(y)
@@ -280,10 +294,31 @@ and this fix-point equation:
 \]
 \end{corollary}
 
-\begin{proof}
-Since \(\pi\) is a deterministic stationary policy:
-\[V^\pi(x)=\E[\cR(\pi)\mid X_0=x]=\E[\cR(\pi)\mid X_0=x, A_0=\pi(x)]=Q^\pi(x,\pi(x))\]
-The rest follows from \ref{expand Q^pi}
+\begin{proof} Be \(\pi\in\statPolicy\), then:
+	\begin{align}
+		V^\pi(x)&=\E[\cR(\pi)\mid X_0=x] \nonumber\\
+		&=\sum_{a\in\cA} 
+		\underbracket{\E[\cR(\pi)\mid X_0=x, A_0=a]}_{=Q^\pi(x,a)}\label{stoch pi: V^pi in terms of Q^pi}
+		\pi(a\mid x)\\
+		&=\sum_{a\in\cA} \left(r(x,a)
+		+\gamma\sum_{y\in\cX}p(y\mid x,a)V^\pi(y)\right)\pi(a\mid x)\nonumber\\
+		&=\sum_{a\in\cA}r(x,a)\pi(a\mid x) 
+		+ \gamma\sum_{(y,a)\in\cX\times\cA} V^\pi(y) p(y\mid x,a)\pi(a\mid x)\label{stoch pi: fixpoint proof}\\
+		&=\E[r(x,A_0)\mid X_0=x] + \gamma\sum_{(y,a)\in\cX\times\cA} V^\pi(y)
+		\Pr(X_1=y, A_0=a \mid X_0=x)\nonumber
+	\end{align}
+	And for the case, where \(\pi\) is a deterministic stationary policy:
+	\[
+		V^\pi(x)=\E[\cR(\pi)\mid X_0=x]=\E[\cR(\pi)\mid X_0=x, A_0=\pi(x)]=Q^\pi(x,\pi(x))
+	\]
+	The rest follows from \ref{expand Q^pi}. 
+	
+	Alternatively: the \(V^\pi\) fix point equation is a special case of the equation above. One just needs to realize that \(r(x,\pi(x)) = \E[r(x,A_0)\mid X_0=x]\) and:
+	\begin{align*}
+		\Pr(X_1=y,A_0=a\mid X_0=x)
+		&=p(y\mid x,a)\pi(a\mid x)=p(y\mid x,a) \delta_{a,\pi(x)}\\
+		&=p(y\mid x,\pi(x)) \delta_{a,\pi(x)}\qedhere
+	\end{align*}
 \end{proof}
 
 With this relation we can use the Banach fix-point theorem (BFT) for the first time. But to do that we first need to make an assumption.
@@ -296,28 +331,33 @@ This implies that the immediate reward is bounded:
 \]
 But more importantly:
 \[
-	\E[|\cR|]\le\E\left[\sum_{t=0}^\infty \gamma^t |R_{t+1}|\right]
+	\E[|\cR| \mid X_0 = x]\le\E\left[\sum_{t=0}^\infty \gamma^t |R_{t+1}| \middle| X_0=x \right]
 	\le \frac{R}{1-\gamma} 
 \]
-which implies implies \(V^\pi,V^* \in B(\cX), Q^\pi,Q^* \in B(\cX\times\cA)\) with \(B(M)\coloneqq \{f\colon M\to\R : \|f\|_\infty <\infty \} \) the set of bounded functions on \(\cX\), which happens to be a complete metric space which we will need for the Banach fix-point Theorem to work. Bounded Value functions will also be neccessary for a lot of other arguments later on. In finite MDPs this assumption is of course always fulfilled. 
+which implies implies \(\|V^\pi\|_\infty,\|V^*\|_\infty, \|Q^\pi\|_\infty,\|Q^*\|_\infty \le R/(1-\gamma)\). In particular they are bounded functions. We will denote the set of bounded function on M with \(B(M)\coloneqq \{f\colon M\to\R : \|f\|_\infty <\infty \} \), which happens to be a complete metric space which we will need for the Banach fix-point Theorem to work. Bounded Value functions will also be neccessary for a lot of other arguments later on. In finite MDPs this assumption is of course always fulfilled. 
 
 
-\begin{definition} For policy \(\pi\in\detPolicy\) is the mapping \(T^\pi\colon B(\cX)\to B(\cX)\) with:
+\begin{definition} 
+	For policy \(\pi\in\detPolicy\) is the mapping \(T^\pi\colon B(\cX)\to B(\cX)\) with:
 	\[
-	T^\pi V(x)\coloneqq r(x,\pi(x))+\gamma\sum_{y\in\cX}p(y\mid x,\pi(x)) V(y)\qquad V\in B(\cX), x\in\cX
+		T^\pi V(x)\coloneqq r(x,\pi(x))+\gamma\sum_{y\in\cX}p(y\mid x,\pi(x)) V(y)\qquad V\in B(\cX), x\in\cX
 	\]
-called the \emph{Bellman Operator}. With some abuse of notation, define the mapping \(T^\pi\colon B(\cX\times\cA)\to B(\cX\times\cA)\) with:
+	called the \emph{Bellman Operator}. With some abuse of notation, define the mapping \(T^\pi\colon B(\cX\times\cA)\to B(\cX\times\cA)\) with:
 	\[
-	T^\pi Q(x,a)\coloneqq r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a) Q(y,\pi(y))\quad V\in B(\cX), (x,a)\in\cX\times\cA 
+		T^\pi Q(x,a)\coloneqq r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a) Q(y,\pi(y))\quad V\in B(\cX), (x,a)\in\cX\times\cA 
+	\]
+	We can mostly ignore stochastic stationary policies as their optimal value functions get sandwitched in between deterministic and general policies, but we will need a generalized version \(\tilde{T}\) for \(V^\pi\) with \(\pi\in\statPolicy\) later on for a special case:
+	\[
+		\tilde{T}^\pi V(x)\coloneqq \E[r(x,A_0)\mid X_0=x] 
+		+ \gamma \sum_{y\in\cX} \Pr(X_1=y, A_0=a \mid X_0=x) V(y)
 	\]
 \end{definition}
 
 
-\begin{remark}
-	\(\forall\pi\in\detPolicy : T^\pi V^\pi=V^\pi\) (c.f. \ref{V^pi,Q^pi relation})
+\begin{remark}\label{T^pi unique}
+	For all deterministic stationary policies holds \(T^\pi V^\pi=V^\pi \) and \(T^\pi Q^\pi=Q^\pi\). And for (stoch.) stationary policies \(\tilde{T}V^\pi=V^\pi\) (c.f. \ref{V^pi,Q^pi relation}).
 
-	\(T^\pi\) meets the requirements of the Banach fixed-point theorem \textcolor{red}{appendix?} for \({\gamma<1}\), this implies that \(V^\pi\) for \(\pi\in\detPolicy\)
-	is a \emph{unique} fixpoint and can be approximated with the canonical iteration
+	\(T^\pi\) and \(\tilde{V}^\pi\) meet the requirements of the Banach fixed-point theorem \textcolor{red}{appendix?} for \({\gamma<1}\), this implies that the fixpoints above are \emph{unique} fixpoints and can be approximated with the canonical iteration. 
 \end{remark}
 
 \begin{proof}
@@ -328,7 +368,7 @@ called the \emph{Bellman Operator}. With some abuse of notation, define the mapp
 	&=\gamma \|V-W\|_\infty  \sup_{x\in\cX}\underbracket{\left\{ \sum_{y\in\cX} p(y\mid x,\pi(x)) \right\}}_{=1}\\
 	&=\gamma \|V-W\|_\infty
 \end{align*}
-The proof for \(T^\pi\colon B(\cX\times\cA)\to B(\cX\times\cA)\) is analogous.
+The proof for \(T^\pi\colon B(\cX\times\cA)\to B(\cX\times\cA)\) and \(\tilde{V}^\pi\) is analogous.
 \end{proof}
 
 \begin{remark}\label{properties T^pi} Some observations which will come in useful later:
@@ -431,7 +471,7 @@ It is quite important to remember that this relation is only defined for these p
 
 
 \begin{lemma}\label{V*,Q* relation}\leavevmode
-\begin{enumerate}[label=\textbf{(\roman*)},font=\normalfont]
+\begin{enumerate}[label=(\roman*),font=\normalfont]
 \item\label{i:1} \(\tilde{Q}(x,a)= r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a)\tilde{V}(y)\)
 \item\label{i:2} \(\tilde{V}(x)= \sup\limits_{a\in\cA} \tilde{Q}(x,a)\)
 \item\label{i:3} \(V^*(x)=\sup\limits_{a\in\cA}Q^*(x,a)\)
@@ -520,7 +560,7 @@ It is quite important to remember that this relation is only defined for these p
 		%&=\sup_{a\in \cA}\left\{ r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) 
 		% \tilde{V}(y) \right\}
 	\end{align}
-	Assume (\ref{inequality}) is a true inequality for some \(x\in\cX\), since the suprema in (\ref{last eq}) can be arbitrarily closely approximated:
+	Assume (\ref{inequality}) is a true inequality for some \(x\in\cX\). Since the suprema in (\ref{last eq}) can be arbitrarily closely approximated:
 	\[ \exists \pi, \exists a : \tilde{V}(x) < r(x,a) + \gamma\sum_{y\in\cX} p(y\mid x,a) V^\pi(y)\]
 	Define a slightly changed deterministic policy with this \(\pi\) and \(a\):
 	\begin{align*}
@@ -549,7 +589,7 @@ It is quite important to remember that this relation is only defined for these p
 		&=r(x, a) + \gamma \sum_{z\in\cX} p(z \mid x, a) V^\pi(z) \\
 		&> \tilde{V}(x) \contradiction{\hat{\pi}\in\detPolicy}
 	\end{align*}
-%TODO
+\textcolor{red}{TODO: (iii), (iv)}
 \end{proof}
 
 
@@ -590,20 +630,81 @@ Let us first consider the case where the supremum can be attained, since this in
 
 \begin{prop}\label{sup is attained}Be \(\pi^*\in\statPolicy\), then the following statements are equivalent:
 \begin{enumerate}[label={(\roman*)},font=\normalfont]
-\item \(\pi^* \in\statPolicy\) is optimal (\(V^*=V^{\pi^*}\))
-\item \(\forall x\in\cX: V^*(x)=\sum\limits_{a\in\cA}\pi^*(a\mid x)Q^*(x,a)\)
-\item\label{ii:3} \(\forall x\in\cX: \pi^*(x)=\arg\max\limits_{\pi^*\in\statPolicy}\sum\limits_{a\in\cA}\pi^*(a\mid x)Q^*(x,a) \)
-\item \(\pi^*(a\mid x)>0 \implies Q^*(x,a)=V^*(x) =\sup\limits_{b\in\cA}Q^*(x,b)\) \\
+\item \label{ii:1}\(\pi^* \in\statPolicy\) is optimal (\(V^*=V^{\pi^*}\))
+\item \label{ii:2} \(\forall x\in\cX: V^*(x)=\sum\limits_{a\in\cA}\pi^*(a\mid x)Q^*(x,a)\)
+\item\label{ii:3} \(\forall x\in\cX: \pi^*=\arg\max\limits_{\pi^*\in\statPolicy}\sum\limits_{a\in\cA}\pi^*(a\mid x)Q^*(x,a) \)
+\item\label{ii:4} \(\pi^*(a\mid x)>0 \implies Q^*(x,a)=V^*(x) =\sup\limits_{b\in\cA}Q^*(x,b)\) \\
 	``actions are concentrated on the set of actions that maximize \(Q^*(x,\cdot)\)''\\
 	(this also implies: \(Q^*(x,a)<V^*(x) \implies \pi^*(a\mid x)=0\))
 \end{enumerate}
 \end{prop}
 
 \begin{proof}
-%TODO
+	\xToy{\ref{ii:1}}{\ref{ii:2}} Let \(x\in\cX\) be arbitrary: 
+	\begin{align*}
+		V^*(x)&=V^{\pi^*}(x)\xeq{(\ref{stoch pi: V^pi in terms of Q^pi})}
+		\sum_{a\in\cA}\pi^*(a\mid x) Q^{\pi^*}(x,a) \nonumber\\
+		&\le \sum_{a\in\cA}\pi^*(a\mid x) Q^*(x,a)\\
+		&\le \underbracket{\sum_{a\in\cA}\pi^*(a\mid x)}_{=1} 
+		\sup_{b\in\cA}Q^*(x,b) \nonumber\\
+		&\lxeq{\ref{V*,Q* relation}}V^*(x) \nonumber
+	\end{align*}
+	\xToy{\ref{ii:2}}{\ref{ii:3}} Let \(\pi\in\statPolicy, x\in\cX, a\in\cA\) be arbitrary. Then with (\ref{stoch pi: V^pi in terms of Q^pi}):
+	\[
+		\sum_{a\in\cA}\pi(a\mid x) Q^*(x,a)
+		\le \underbracket{\sum_{a\in\cA}\pi(a\mid x)}_{=1}
+		\sup_{b\in\cA}Q^*(x,b)=V^*(x)
+	\]
+	Therefore \(V^* (x)\) is an upper bound for every \(\pi\in\statPolicy\), and since \(\pi^*\) attains this upper bound it is a maximum.
+
+	\xToy{\ref{ii:3}}{\ref{ii:4}} 
+	Be \(\pi^*(a\mid x)>0\) for some \(a\in\cA,x\in\cX\). Then there exists no \(b\in\cA\) with \(Q^*(x,b)>Q^*(x,a)\). Otherwise we can define the behavior:
+	\[
+		\hat{\pi}(\cdot\mid x)\colon
+		\begin{cases}
+			\cA\to[0,1]\\
+			c\mapsto 
+			\begin{cases}
+				0 & c=a \\
+				\pi^*(b\mid x) + \pi^*(a\mid x) & c=b\\
+				\pi^*(c\mid x) & \text{else}
+			\end{cases}
+		\end{cases}
+	\]
+	This results in:
+	\begin{align*}
+		&\sum_{c\in\cA} \hat{\pi}(c\mid x) Q^*(x,c)\\
+		&=[\pi^*(b\mid x) %Q^*(x,b) 
+		+ \underbracket{\pi^*(a\mid x)}_{>0}] \underbracket{Q^*(x,b)}_{>Q^*(x,a)}
+		+\sum_{c\in\cA\setminus \{a,b\}} \pi^*(c\mid x)Q^*(x,c)\\
+		&> \sum_{c\in\cA} \pi^*(c\mid x) Q^*(x,c) \contradiction{\pi^* \text{ attains maximum}}
+	\end{align*}
+	\xToy{\ref{ii:4}}{\ref{ii:2}} Be \(x\in\cX\), since \(\pi^*(\cdot\mid x)\) is a probability distribution on \(\cA\) there exists \(a\in\cA\) such that \(\pi^*(a\mid x)>0\). Define \(M_x\coloneqq \{a\in\cA:\pi^*(a\mid x)>0 \}\).
+	Then \(Q^*(x,a)=V^*(x)\) for all \(a\in M_x\) by prerequisite, therefore:
+	\begin{align*}
+		V^*(x)&= \sum_{a\in M_x} \pi^*(a\mid x) V^*(x) 
+		= \sum_{a\in M_x} \pi^*(a\mid x)Q^*(x,a)\\
+		&=\sum_{a\in \cA} \pi^*(a\mid x)Q^*(x,a)
+	\end{align*}
+	\xToy{\ref{ii:2}}{\ref{ii:1}} Using \ref{i:4} from \ref{V*,Q* relation} for an \(x\in\cX\):
+	\begin{align*}
+		V^*(x)&=\sum_{a\in \cA} \pi^*(a\mid x)Q^*(x,a)\\
+		&=\sum_{a\in \cA} \pi^*(a\mid x) 
+		\left(r(x,a)+\gamma \sum\limits_{y\in\cX}p(y\mid x,a) V^*(y)\right)\\
+		&=\sum_{a\in \cA}\pi^*(a\mid x)r(x,a)
+		+\gamma \sum_{(y,a)\in\cX\times\cA}\pi^*(a\mid x)p(y\mid x,a)V^*(y)\\
+		&\lxeq{(\ref{stoch pi: fixpoint proof})}\E[r(x,A_0)\mid X_0=x] + \gamma \smashoperator[r]{\sum_{(y,a)\in\cX\times\cA}}
+		\Pr(X_1=y, A_0=a\mid X_0 =x) V^*(y)\\
+		&=\tilde{T}V^*
+	\end{align*}
+	Therefore \(V^\pi = V^*\) since the fixpoint of \(\tilde{T}\) is unique (\ref{T^pi unique}).
 \end{proof}
-
-
+\begin{remark}
+	From \ref{ii:4} follows: if an optimal stochastic stationary policy exists, then there exists an optimal deterministic stationary policy as well. Since such a policy can be constructed by choosing one of the actions \(a\) for every \(x\in\cX\) which result in \(Q^*(x,a)=V^*(x)\). These actions have to exist if there is a stochastic stationary policy which is optimal.
+\end{remark}
+	\textcolor{red}{Also prove that no non-stationary policy exists which can be optimal without a deterministic policy which can match it?}
+	
+	From \ref{ii:3} follows a first heuristic to find an optimal value function. This heuristic of course only works, if the maximum exists. This is not a problem in finite MDPs. 
 \begin{definition}
 	\(Q\colon\cX\times\cA\to\R\) an action value function, \(\tilde{\pi}\colon\cX\to\cA\) with:
 	\[
@@ -613,7 +714,6 @@ Let us first consider the case where the supremum can be attained, since this in
 	\(\tilde{\pi}\) is called \emph{greedy} w.r.t. Q
 \end{definition}
 
-
 \begin{remark}\leavevmode
 	\begin{itemize}
 	\item \ref{sup is attained}\ref{ii:3} implies that greedy w.r.t. \(Q^*\) is optimal. 
@@ -621,4 +721,45 @@ Let us first consider the case where the supremum can be attained, since this in
 	\item \ref{V*,Q* relation} implies that knowledge of \(V^*,r,p\) is sufficient as well.
 	\end{itemize}
 \end{remark}
+
+But what happens if there are no optimal policies? If there are no optimal policies can one sequence of deterministic policies get arbitrarily close to the optimal value function for \emph{every} starting state? We are now able to answer the question we were not quite ready to answer with \ref{finite outmatching}.
+
+\begin{prop}
+	For every \(\varepsilon>0\) exists a deterministic stationary policy \(\pi^\varepsilon\) such that \(V^* \le V^{\pi_\varepsilon} \).
+\end{prop}
+\begin{proof}
+	Be \(\varepsilon>0 \) arbitrary,  define \(\delta\coloneqq \vep (1-\gamma) \), since:
+	\[
+		V^*(x)=T^*V^*(x)=\sup_{a\in\cA}
+		\left\{r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a)V^*(y) \right\}
+	\]
+	There exists an \(\pi^\vep(x)\) for all \(x\in\cX\) such that:
+	\[
+		r(x,\pi^\vep(x))+\gamma\sum_{y\in\cX}p(y\mid x,\pi^\vep(x))V^*(y) + \delta \ge V^*(x)
+	\]
+	This defines a mapping \(\pi^\vep\colon \cX\to\cA\) for which:
+	\begin{align*}
+		T^{\pi^\vep} V^*(x)
+		&=r(x,\pi^\vep(x))+\gamma \sum_{y\in\cX}p(y\mid x,\pi_\vep(x)) V^*(x)\\
+		&\ge V^*(x) -\delta = (V^* -\delta \mathbf{1}) (x)
+	\end{align*}
+	By induction we get 
+	\((T^{\pi^\vep})^n V^*(x)\ge (V^*-(\delta\sum_{k=0}^n\gamma) \mathbf{1}) (x)\) with the induction step:
+	\begin{align*}
+		(T^{\pi^\vep})^{n+1} V^*(x)
+		&= (T^{\pi^\vep})^n (V^*-\delta)(x)\\
+		&\lxeq{\text{affin}} \dots %TODO
+	\end{align*}
+	This implies
+	\begin{align*}
+		V^{\pi^\vep}(x)&=\lim_{n\to\infty} (T^{\pi^\vep})^n V^* 
+		\ge V^*(x)-\delta\lim_{n\to\infty}\sum_{k=0}^n\gamma\\
+		&=V^*(x)-\delta/(1-\gamma)=V^*(x)-\vep
+	\end{align*}
+\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \endinput

@@ -1,12 +1,9 @@
 \chapter{Appendix}
 \section{Basic Probability Theory}
 \begin{lemma}\label{appx1}
-    \(\Pr(A\cap B \mid C) = \Pr(A\mid b\cap C)\Pr(B\mid C)\)
+    \(\E[X\mid A]=\sum_{n\in\N} \E[X\mid A \cap B_n] \Pr(B_n \mid A) \) with \(\biguplus_{n\in\N}B_n=\Omega \)
 \end{lemma}
 \begin{proof}
-    \begin{align*}
-        \Pr(A\cap B \mid C)=\frac{\Pr(A\cap B\cap C)}{\Pr(B\cap C)}\frac{\Pr(B\cap C)}{\Pr(C)}
-    \end{align*}
 \end{proof}
 \section{Analysis}
 \endinput
