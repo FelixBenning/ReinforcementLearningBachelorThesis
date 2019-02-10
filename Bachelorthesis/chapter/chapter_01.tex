@@ -1,11 +1,10 @@
 % !TEX root = ../BScWIMEngl.tex  
 
-
-
 \chapter{Markov Decision Processes}
 \section{Introduction}
 A Markov Process is a random process in a state space with no memory of where it was, that is, only the current state influences where it goes next.
 While Markov Processes allow to model random phenomena evolving over time and make predictions about certain events (e.g. terminal states), they are unable to model the interaction of an actor with such a processes. \emph{Markov Decision Processes} (MDPs) introduce \emph{actions} and \emph{rewards} to the state space and transition probabilities of Markov Processces, and shift the focus from \emph{describing} terminal distributions, absorption times, etc. towards \emph{finding} the optimal action(s) to take in each state (if such an action exists).
+
 
 The MDP model inherits the restriction of Markov Chains to have no memory of past states. We will also not consider changing transition probabilities over time. Rather the transition probabilities will only be influenced by the state and the action. \\
 Both of these limitations could in principle be circumvented by including the time in the state space at the expense of a larger state space. Although it is questionable whether such a construct would yield any interesting results, as then no state is visited twice. So it is of no use to an actor to learn the value of an action in a certain state without further assumptions.
@@ -82,7 +81,7 @@ To inductively define a stochastic process we need an action selection rule, mor
 	Special cases:
 	\begin{enumerate}
 		\item \emph{Determinisitic stationary policies} specified with some abuse of notation:
-		\[\leavevmode \pi\colon\cX\to\cA \text{ with }A_t=\pi(X_t)\]
+		\[\leavevmode \pi\colon\cX\to\cA \quad\text{ with }A_t=\pi(X_t)\]
 		\item \emph{(Stochastic) stationary policies} specified by:
 		\[\pi\colon \begin{cases}
 		\cX\times\sigma_\cA\to\R\\
@@ -421,14 +420,17 @@ The mapping \(T^*\colon B(\cX)\to B(\cX)\) with:
 	\[
 	 T^* V(x)\coloneqq \sup_{a\in\cA}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V(y)\right\} \qquad V\in B(\cX), x\in\cX
 	\]
-is called the \emph{Bellman Optimality Operator}.
+is called the \emph{Bellman Optimality Operator}. With some more abuse of notation, define the mapping \(T^*\colon B(\cX\times\cA)\to B(\cX\times\cA)\) with:
+	\[
+	T^* Q(x,a)\coloneqq r(x,a)+\sum_{y\in\cX}p(y\mid x,a) \sup_{a'\in\cA}Q(y,a') \qquad V\in B(\cX), x\in\cX, a\in\cA
+	\]
 \end{definition}
 
 We will be able to use the established relation of \(V^\pi\) and \(Q^\pi\) in case of deterministic stationary policies
 It is quite important to remember that this relation is only defined for these policies though. So we need a different approach for the general behaviors. The advantage of these is, that one can condition on a finer level on previous states which will allow us to swap places of suprema and sums.
 
 
-\begin{lemma}\label{V*,Q* relation}\(\cM=(\cX,\cA,\cP_0)\) MDP
+\begin{lemma}\label{V*,Q* relation}\leavevmode
 \begin{enumerate}[label=\textbf{(\roman*)},font=\normalfont]
 \item\label{i:1} \(\tilde{Q}(x,a)= r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a)\tilde{V}(y)\)
 \item\label{i:2} \(\tilde{V}(x)= \sup\limits_{a\in\cA} \tilde{Q}(x,a)\)
@@ -448,6 +450,8 @@ It is quite important to remember that this relation is only defined for these p
 		\sup_{\pi \in \detPolicy}\sum_{y\in\cX}p(y\mid x,a) V^\pi(y)
 		\ge\sum_{y\in\cX}p(y\mid x,a)\tilde{V}(y)
 	\]
+	This problem should look familiar. It is the question whether there is a single sequence of policies that can match multiple sequences of policies indexed by the state space \(y\in\cX\).	As we can find a policy which can outmatch a finite set of policies (\ref{finite outmatching}), we will consider only the \(y\in\cX\) with the largest probability to occur and match these sequences with a single sequence. Since we then have just a single policy in the sum, we can estimate up by taking the outer supremum over deterministic policies. That is the idea, whcih can be executed as follows:
+	
 	The set \(M_\delta\coloneqq \{y\in\cX : p(y\mid x,a)>\delta \} \) is finite for all \(\delta>0\), and
 	\begin{align*}
 		1&=p(\cX\mid x,a)=p\left(\bigcup_{\delta \to 0} M_\delta \mid x, a \right)
@@ -494,12 +498,9 @@ It is quite important to remember that this relation is only defined for these p
 	\begin{align*}
 		\sum_{y\in\cX}p(y\mid x,a)\tilde{V}(y) 
 		&\le \varepsilon + \sum_{y\in\cX}p(y\mid x,a) V^{\hat{\pi}^{(n)}}(y) \\
-		&\le \varepsilon + \sum_{y\in\cX}p(y\mid x,a) \tilde{V}(y)
+		&\le \varepsilon + \sup_{\pi\in\detPolicy} \sum_{y\in\cX}p(y\mid x,a) V^\pi(y)
 	\end{align*}
-	This implies:
-	\begin{align*}
-		\sup
-	\end{align*}
+	Since this equation holds for all \(\varepsilon>0\) we are finished.
 	\\
 	\ref{i:2}
 	By \ref{V^pi,Q^pi relation} we know \(V^\pi(x)=Q^\pi(x,\pi(x))\) thus:
@@ -552,10 +553,10 @@ It is quite important to remember that this relation is only defined for these p
 \end{proof}
 
 
-\begin{corollary}
+\begin{corollary} All the optimal value functions are fix-points of \(T^*\)
 	\begin{align*}
-	&T^*\tilde{V}=\tilde{V}\\
-	&T^*V^*=V^*
+	&T^*\tilde{V}=\tilde{V}  && T^*\tilde{Q}=\tilde{Q}\\
+	&T^*V^*=V^* && T^*Q^*=Q^*
 	\end{align*}
 \end{corollary}
 
@@ -563,11 +564,11 @@ It is quite important to remember that this relation is only defined for these p
 \begin{align*}
 	V^*(x)\xeq{\ref{i:3}}\sup_{a\in\cA}Q^*(x,a)\xeq{\ref{i:4}}\sup_{a\in\cA}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V^*(y)\right\} =T^*V^*(x)
 \end{align*}
-\(\tilde{V}\) analogous
+The others are analogous
 \end{proof}
 
 
-\begin{thm}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
+\begin{thm}
 \(T^*\) satisfies the requirements of the Banach fixpoint theorem, in particular:
 	\[V^*(x)=\sup_{\pi\in\statPolicy}V^\pi(x)=\tilde{V}(x) \]
 is the unique fixpoint of \(T^*\)
@@ -583,16 +584,18 @@ https://math.stackexchange.com/questions/1087885/blackwells-condition-for-a-cont
 \begin{proof}[Proof (Theorem)]
 \end{proof}
 
+Now that we proved the uniqueness of the optimal value functions we need to ask the question whether this supremum can be attained with a single policy. And if not, if it can be approximated over all states by the same sequence of policies. 
 
-\begin{prop}\label{sup is attained}\(\cM=(\cX,\cA,\cP_0)\) MDP\\
-The following statements are equivalent:
+Let us first consider the case where the supremum can be attained, since this includes the important special case of finite MDPs.  
+
+\begin{prop}\label{sup is attained}Be \(\pi^*\in\statPolicy\), then the following statements are equivalent:
 \begin{enumerate}[label={(\roman*)},font=\normalfont]
-\item \(\pi \in\statPolicy\) is optimal (\(V^*=V^\pi\))
-\item \(\forall x\in\cX: V^*(x)=\sum\limits_{a\in\cA}\pi(a\mid x)Q^*(x,a)\)
-\item\label{ii:3} \(\forall x\in\cX: \pi=\arg\max\limits_{\pi\in\statPolicy}\sum\limits_{a\in\cA}\pi(a\mid x)Q^*(x,a) \)
-\item \(\pi(a\mid x)>0 \iff Q^*(x,a)=V^*(x) =\sup\limits_{b\in\cA}Q*(x,b)\) \\
+\item \(\pi^* \in\statPolicy\) is optimal (\(V^*=V^{\pi^*}\))
+\item \(\forall x\in\cX: V^*(x)=\sum\limits_{a\in\cA}\pi^*(a\mid x)Q^*(x,a)\)
+\item\label{ii:3} \(\forall x\in\cX: \pi^*(x)=\arg\max\limits_{\pi^*\in\statPolicy}\sum\limits_{a\in\cA}\pi^*(a\mid x)Q^*(x,a) \)
+\item \(\pi^*(a\mid x)>0 \implies Q^*(x,a)=V^*(x) =\sup\limits_{b\in\cA}Q^*(x,b)\) \\
 	``actions are concentrated on the set of actions that maximize \(Q^*(x,\cdot)\)''\\
-	(this also implies: \(Q^*(x,a)<V^*(x) \implies \pi(a\mid x)=0\))
+	(this also implies: \(Q^*(x,a)<V^*(x) \implies \pi^*(a\mid x)=0\))
 \end{enumerate}
 \end{prop}
 
