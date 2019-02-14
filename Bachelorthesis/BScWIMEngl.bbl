@@ -19,6 +19,47 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{putermanMarkovDecisionProcesses2005}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=b4258b9291d903d97b69d703eebf790a}{%
+           family={Puterman},
+           familyi={P\bibinitperiod},
+           given={Martin\bibnamedelima L.},
+           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Hoboken, NJ}%
+      }
+      \list{publisher}{1}{%
+        {Wiley-Interscience}%
+      }
+      \strng{namehash}{b4258b9291d903d97b69d703eebf790a}
+      \strng{fullhash}{b4258b9291d903d97b69d703eebf790a}
+      \strng{bibnamehash}{b4258b9291d903d97b69d703eebf790a}
+      \strng{authorbibnamehash}{b4258b9291d903d97b69d703eebf790a}
+      \strng{authornamehash}{b4258b9291d903d97b69d703eebf790a}
+      \strng{authorfullhash}{b4258b9291d903d97b69d703eebf790a}
+      \field{extraname}{1}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{isbn}{978-0-471-72782-8}
+      \field{langid}{english}
+      \field{note}{OCLC: 254152847}
+      \field{pagetotal}{649}
+      \field{series}{Wiley Series in Probability and Statistics}
+      \field{shorttitle}{Markov Decision Processes}
+      \field{title}{Markov {{Decision Processes}}: {{Discrete Stochastic Dynamic Programming}}}
+      \field{year}{2005}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb C:\\Users\\felix\\Zotero\\storage\\VNB8FB4L\\Puterman - 2005 - Markov decision processes discrete stochastic dyn.pdf
+      \endverb
+    \endentry
     \entry{putermanMarkovDecisionProcesses2014}{book}{}
       \name{author}{1}{}{%
         {{uniquename=0,uniquepart=base,hash=b4258b9291d903d97b69d703eebf790a}{%
@@ -37,6 +78,7 @@
       \strng{authorbibnamehash}{b4258b9291d903d97b69d703eebf790a}
       \strng{authornamehash}{b4258b9291d903d97b69d703eebf790a}
       \strng{authorfullhash}{b4258b9291d903d97b69d703eebf790a}
+      \field{extraname}{2}
       \field{sortinit}{P}
       \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
       \field{extradatescope}{labelyear}

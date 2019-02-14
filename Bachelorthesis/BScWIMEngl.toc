@@ -9,8 +9,12 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.3}Value functions}{5}{section.1.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Appendix}{21}{appendix.A}% 
+\contentsline {subsection}{\numberline {1.3.1}Optimal Value functions}{10}{subsection.1.3.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Basic Probability Theory}{21}{section.A.1}% 
+\contentsline {section}{\numberline {1.4}Optimal policies}{16}{section.1.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Analysis}{21}{section.A.2}% 
+\contentsline {chapter}{\numberline {A}Appendix}{23}{appendix.A}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}Basic Probability Theory}{23}{section.A.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.2}Analysis}{23}{section.A.2}% 

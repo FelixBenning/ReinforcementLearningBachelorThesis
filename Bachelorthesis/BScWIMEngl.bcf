@@ -2002,6 +2002,8 @@
     <bcf:citekey order="4">putermanMarkovDecisionProcesses2014</bcf:citekey>
     <bcf:citekey order="5">szepesvariAlgorithmsReinforcementLearning2010</bcf:citekey>
     <bcf:citekey order="6">putermanMarkovDecisionProcesses2014</bcf:citekey>
+    <bcf:citekey order="7">putermanMarkovDecisionProcesses2005</bcf:citekey>
+    <bcf:citekey order="8">putermanMarkovDecisionProcesses2005</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

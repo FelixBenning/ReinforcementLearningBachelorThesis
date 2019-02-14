@@ -22,13 +22,17 @@ To illustrate the uses of such a framework, I have selected a few examples from 
 	\item Maintenance: When does a car/road become too expensive to repair?
 	\item Evacuation in response to flood forecasts
 \end{enumerate}
+To ease ourselves into the abstract definition of MDPs, let us do one example in more depth.
+\begin{example}[Inventory Management]
+	
+\end{example}
 
 \section{Model Formulation}
 %countable state space
-Most of the definitions in this chapter are adaptions from \textcite{szepesvariAlgorithmsReinforcementLearning2010}.
+Most of the definitions in this chapter are adaptations from \textcite{szepesvariAlgorithmsReinforcementLearning2010}.
 But to properly define the transition probabilities given an action in a certain state, let us define a probability kernel first.
 
-\begin{definition}(Kernel)
+\begin{definition}[Kernel]
 	Let \((Y,\sigma_Y), (X,\sigma_X)\) be measure spaces.
 	 \begin{align*}
 	 &\lambda\colon X\times\sigma_Y\to \R \text{ is a \emph{(probability) kernel}}\\
@@ -41,15 +45,17 @@ But to properly define the transition probabilities given an action in a certain
 \end{definition}
 
 \begin{definition} \leavevmode \\ 
-	\(\cM=(\cX,\cA,\cP_0) \) is called a \emph{(finite) Markov Decision Process} (MDP). Where:
-	\par\begin{tabular}{l l}
-		\(\cX\) & is a countable (finite) set of states.\\
-		\(\cA\) & is a countable (finite) set of actions.
-	\end{tabular}\\
-	And \(\cP_0\colon (\cX\times\cA) \times \sigma_{\cX\times\R} \to \R\) is a probability kernel.\\ \\
+	\(\cM=(\cX,(\cA_x)_{x\in\cX},\cP_0) \) is called a \emph{(finite) Markov Decision Process} (MDP), where
+	\begin{description}[noitemsep]
+		\item[\(\cX\)] is a countable (finite) set of states,
+		\item[\(\cA_x\)] is the countable (finite) set of actions admissible in state \(x\),
+		\item[\(\cP_0\colon (\cX\times\cA) \times \sigma_{\cX\times\R} \to \R\)] is a probability kernel 
+	\end{description}
+	(notation: \(\cX\times\cA\coloneqq \{(x,a): x\in\cX, a\in\cA_x \} \))
+
 	\(\cX\times\R\) represents the next state and the reward. So \(\cP_0(\cdot\mid x,a) \) represents the probability distribution over the next states and rewards given an action \(a\) in the state \(x\).
-	\\ \\
-	\(\quad\) \(\cP_0\) is called the \emph{transition probability kernel} or in short, transition kernel. 
+
+	\(\quad\) \(\cP_0\) is called the \emph{transition probability kernel}, or in short transition kernel. 
 \end{definition}
 \begin{remark}
 	Instead of a transition probability kernel \(\cP_0\), sometimes a \emph{transition function} f with a and an exogenous random element \(D_t\) (e.g. Demand) is used to define the next state and reward: \((X_{t+1},R_{t+1})=f(X_t,A_t,D_t)\)
@@ -142,36 +148,36 @@ resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\)
 	\end{align*}
 	\((*)\) \emph{Some} of the History is irrelevant if all of the History is irrelevant. (\textcolor{red}{appendix?, TODO: time-homogeneous})
 \end{proof} 
-\begin{remark} Sometimes not all actions make sense in all states. A simple fix would be to set the immediate reward functions for those actions very low, or (if possible) redirect them to the closest possible action. \\
-A more formal approach would be to introduce an additional mapping, which assigns the set of admissible actions to each state \(\cX\to\cP(\cA)\) and define \({\cX\times\cA}\coloneqq\{(x,a): x\in\cX, a\in f(x) \}\).
-
-If there is just one admissible action in every state, the MDP is equivalent to a normal Markov Process. 
+\begin{remark} 
+If there is just one possible action in every state, the MDP is equivalent to a normal Markov Process. 
 Since then there is a mapping \(f\colon\cX\to\cA\) mapping the state to  the only admissible action. Which implies that \(A_t=f(X_t)\) which forces every behavior to be equal to f. And since f is a deterministic stationary behavior, \ref{statPolicy induces time-homogeneous MC} applies.  
 \end{remark}
 
 \begin{definition}
 An MDP together with a discount factor \(\gamma\in[0,1]\) is a
-\par\begin{tabular}{l l}
-	\emph{discounted reward} MDP & for \(\gamma <1 \)\\
-	\emph{undiscounted reward} MDP & for \(\gamma=1 \)
-\end{tabular}\\
+\begin{description}[font=\normalfont, nosep]
+	\item[\emph{discounted}] reward MDP for \(\gamma <1 \),
+	\item[\emph{undiscounted}] reward MDP for \(\gamma=1 \).
+\end{description}
 This allows us to define the \emph{return}:
 \[\cR\coloneqq\sum_{t=0}^{\infty}\gamma^t R_{t+1}\]
 \end{definition}
 
 \begin{definition}
 Let \((Y_{(x,a)}, R_{(x,a)})\sim \cP_0(\cdot\mid x,a) \) be a random variable.
-\[r(x,a)\coloneqq \E[R_{(x,a)}] \quad\text{ is the \emph{immediate reward function}.}\]
+\[r(x,a)\coloneqq \E[R_{(x,a)}] \quad\text{ is called \emph{immediate reward function}.}\]
 \end{definition}
 
-\begin{definition}\(\cM=(\cX,\cA,\cP_0)\) a MDP\\
-	\(x\in\cX\) is a \emph{terminal (absorbing)} state \(:\iff \forall s\in\N: \Pr(X_{t+s}=x\mid X_t=x)=1\)\\
+\begin{definition}\(\cM=(\cX,(\cA_x)_{x\in\cX},\cP_0)\) a MDP
+	\[
+		x\in\cX \text{ is a \emph{terminal (absorbing)} state} :\iff \forall s\in\N: \Pr(X_{t+s}=x\mid X_t=x)=1
+	\]
 	An MDP with such states is called \emph{episodic}.\\
 	An \emph{episode} is the random time period \((1,\dots,T)\) until a terminal state is reached.
 \end{definition}
 \begin{remark}\leavevmode
 	\begin{itemize}
-		\item The reward in a terminal state is by convention zero, i.e. \(x\) terminal state implies \(\forall a\in\cA: R_{(x,a)}=0\).
+		\item The reward in a terminal state is by convention zero, i.e. \(x\) terminal state implies forall actions \(a\in\cA_x\) that \(R_{(x,a)}=0\).
 		\item Episodic MDPs are often undiscounted
 	\end{itemize}	
 \end{remark}
@@ -192,7 +198,7 @@ The goal in this section is to
 \item show uniqueness of optimal value functions with the Banach fixpoint theorem, yielding a simple approximation methode along the way
 \item demonstrate that in MDPs deterministic stationary policies are generally a large enough set of policies to choose from
  \end{itemize}
-\begin{definition} Let \(\pi\) be a behavior. Select \(X_0\) such that \(\forall x\in\cX:\Pr({X_0=x})>0\), be \(((X_t,A_t,R_{t+1}), t\in \N_0)\) the resulting stoch. process.
+\begin{definition} Let \(\pi\) be a behavior. Select \(X_0\) such that \(\forall x\in\cX:\Pr({X_0=x})>0\), be \(((X_t,A_t,R_{t+1}), t\in \N_0)\) the resulting stochastic process.
 \begin{align*}
 	&V^\pi\colon
 	\begin{cases}
@@ -206,7 +212,7 @@ The goal in this section is to
 		\cX\times\cA\to\R\\
 		(x,a)\mapsto \E[\cR\mid X_0=x, A_0=a]
 	\end{cases}
-	&& \parbox{10em}{is the \emph{action value function} for \(\pi\) \footnotemark[2]}
+	&& \parbox{12em}{is the \emph{action value function} for \(\pi\) \footnotemark[2]}
 	\\
 	&V^*\colon
 	\begin{cases}
@@ -220,7 +226,7 @@ The goal in this section is to
 		\cX\times\cA\to\R\\
 		(x,a)\mapsto \sup\limits_{\pi\in\Pi} Q^\pi(x,a)
 	\end{cases}
-	&& \parbox{10em}{is the \emph{optimal action value function}}
+	&& \parbox{12em}{is the \emph{optimal action value function}}
 \end{align*}
 \footnotetext[1]{Well defined because \(\Pr(X_0=x)>0\)}
 \footnotetext[2]{Well defined because \(A_1\sim \pi_1(\cdot\mid (x,a,r_0), x_1)\) is defined for all \(a\) regardless of \(\pi_0\)}
@@ -251,7 +257,7 @@ Now we can start to explore the relation of \(V^\pi\) and \(Q^\pi\).
 	\[Q^\pi(x,a)=r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a)V^\pi(y)	\]
 \end{prop}
 
-\begin{proof} We will use \(\E[X\mid A]=\sum_{n\in\N} \E[X\mid A \cap B_n] \Pr(B_n \mid A) \) with \({\biguplus_{n\in\N}B_n=\Omega }\) (c.f. \ref{appx1}) quite a bit in this proof.
+\begin{proof} We will use \(\E[X\mid A]=\sum_{n\in\N} \E[X\mid A \cap B_n] \Pr(B_n \mid A) \) with \({\Pr\left(\biguplus_{n\in\N}B_n\right)=1 }\) (c.f. \ref{appx1}) quite a bit in this proof.
 \textcolor{red}{split equation or accept eq sticking out a bit?}
 \begin{align*}
 Q^\pi(x,a) &= \E[\cR(\pi)\mid X_0=x, A_0=a]\\
@@ -264,9 +270,9 @@ This is almost what we want since \(r(x,a)=\E[R_{(x,a)}] \), so we just need to 
 	&\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi) \middle| X_0=x,A_0=a, X_1=y\right]\\
 	&=\sum_{b\in\cA}
 	\begin{aligned}[t]
-	\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi) 
+	&\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi) 
 	\middle| X_0=x,A_0=a, X_1=y,A_1=b \right]\\
-	\cdot \Pr(A_1=b \mid X_0=x,A_0=a, X_1=y) 
+	&\qquad\qquad\qquad\qquad\cdot \Pr(A_1=b \mid X_0=x,A_0=a, X_1=y) 
 	\end{aligned}
 	\\
 	&\lxeq{\text{Markov}} \sum_{b\in\cA}\E\left[\sum_{t=0}^\infty\gamma^t R_{t+2}(\pi) \middle| X_1=y,A_1=b \right]
@@ -281,7 +287,7 @@ This is almost what we want since \(r(x,a)=\E[R_{(x,a)}] \), so we just need to 
 For \(\pi\in\statPolicy\), this fix point equation holds:
 \[
 	V^\pi(x) = \E[r(x,A_0)\mid X_0=x] 
-	+ \gamma \sum_{y\in\cX} \Pr(X_1=y, A_0=a \mid X_0=x) V^\pi(y)
+	+ \gamma \sum_{y\in\cX} \Pr(X_1=y \mid X_0=x) V^\pi(y)
 \]	
 For \(\pi\in\detPolicy\) this fix-point equation holds: 
 \begin{align*}
@@ -297,15 +303,20 @@ and this fix-point equation:
 \begin{proof} Be \(\pi\in\statPolicy\), then:
 	\begin{align}
 		V^\pi(x)&=\E[\cR(\pi)\mid X_0=x] \nonumber\\
-		&=\sum_{a\in\cA} 
+		&=\sum_{a\in\cA_x} 
 		\underbracket{\E[\cR(\pi)\mid X_0=x, A_0=a]}_{=Q^\pi(x,a)}\label{stoch pi: V^pi in terms of Q^pi}
 		\pi(a\mid x)\\
-		&=\sum_{a\in\cA} \left(r(x,a)
+		&=\sum_{a\in\cA_x} \left(r(x,a)
 		+\gamma\sum_{y\in\cX}p(y\mid x,a)V^\pi(y)\right)\pi(a\mid x)\nonumber\\
-		&=\sum_{a\in\cA}r(x,a)\pi(a\mid x) 
-		+ \gamma\sum_{(y,a)\in\cX\times\cA} V^\pi(y) p(y\mid x,a)\pi(a\mid x)\label{stoch pi: fixpoint proof}\\
-		&=\E[r(x,A_0)\mid X_0=x] + \gamma\sum_{(y,a)\in\cX\times\cA} V^\pi(y)
-		\Pr(X_1=y, A_0=a \mid X_0=x)\nonumber
+		&=\sum_{a\in\cA_x}r(x,a)\pi(a\mid x) 
+		+ \gamma\smashoperator[l]{\sum_{(y,a)\in\cX\times\cA_x}} 
+		V^\pi(y) p(y\mid x,a)\pi(a\mid x)
+		\label{stoch pi: fixpoint proof}\\
+		&=\E[r(x,A_0)\mid X_0=x] 
+		+ \gamma\smashoperator[l]{\sum_{(y,a)\in\cX\times\cA_x}} V^\pi(y)
+		\Pr(X_1=y, A_0=a \mid X_0=x)\nonumber\\
+		&=\E[r(x,A_0)\mid X_0=x] + \gamma\smashoperator[l]{\sum_{y\in\cX}} V^\pi(y)
+		\Pr(X_1=y\mid X_0=x)\nonumber
 	\end{align}
 	And for the case, where \(\pi\) is a deterministic stationary policy:
 	\[
@@ -349,13 +360,13 @@ which implies implies \(\|V^\pi\|_\infty,\|V^*\|_\infty, \|Q^\pi\|_\infty,\|Q^*\
 	We can mostly ignore stochastic stationary policies as their optimal value functions get sandwitched in between deterministic and general policies, but we will need a generalized version \(\tilde{T}\) for \(V^\pi\) with \(\pi\in\statPolicy\) later on for a special case:
 	\[
 		\tilde{T}^\pi V(x)\coloneqq \E[r(x,A_0)\mid X_0=x] 
-		+ \gamma \sum_{y\in\cX} \Pr(X_1=y, A_0=a \mid X_0=x) V(y)
+		+ \gamma \smashoperator[lr]{\sum_{(y,a)\in\cX\times\cA_x}} \Pr(X_1=y, A_0=a \mid X_0=x) V(y)
 	\]
 \end{definition}
 
 
 \begin{remark}\label{T^pi unique}
-	For all deterministic stationary policies holds \(T^\pi V^\pi=V^\pi \) and \(T^\pi Q^\pi=Q^\pi\). And for (stoch.) stationary policies \(\tilde{T}V^\pi=V^\pi\) (c.f. \ref{V^pi,Q^pi relation}).
+	For all deterministic stationary policies holds \(T^\pi V^\pi=V^\pi \) and \(T^\pi Q^\pi=Q^\pi\). And for (stochastic) stationary policies \(\tilde{T}V^\pi=V^\pi\) (c.f. \ref{V^pi,Q^pi relation}).
 
 	\(T^\pi\) and \(\tilde{V}^\pi\) meet the requirements of the Banach fixed-point theorem \textcolor{red}{appendix?} for \({\gamma<1}\), this implies that the fixpoints above are \emph{unique} fixpoints and can be approximated with the canonical iteration. 
 \end{remark}
@@ -389,6 +400,7 @@ The proof for \(T^\pi\colon B(\cX\times\cA)\to B(\cX\times\cA)\) and \(\tilde{V}
 \]
 \end{proof}
 
+\subsection{Optimal Value functions}
 Now we get to the more interesting but also harder optimal value functions. We will later see that taking the supremum over all behaviors is the same as taking it just over the deterministic stationary behaviors. But for now we need to make the distinction:
 
 \begin{definition}
@@ -624,6 +636,7 @@ https://math.stackexchange.com/questions/1087885/blackwells-condition-for-a-cont
 \begin{proof}[Proof (Theorem)]
 \end{proof}
 
+\section{Optimal policies}
 Now that we proved the uniqueness of the optimal value functions we need to ask the question whether this supremum can be attained with a single policy. And if not, if it can be approximated over all states by the same sequence of policies. 
 
 Let us first consider the case where the supremum can be attained, since this includes the important special case of finite MDPs.  
@@ -699,12 +712,10 @@ Let us first consider the case where the supremum can be attained, since this in
 	\end{align*}
 	Therefore \(V^\pi = V^*\) since the fixpoint of \(\tilde{T}\) is unique (\ref{T^pi unique}).
 \end{proof}
-\begin{remark}
+\begin{remark}\label{opt stat => opt det stat}
 	From \ref{ii:4} follows: if an optimal stochastic stationary policy exists, then there exists an optimal deterministic stationary policy as well. Since such a policy can be constructed by choosing one of the actions \(a\) for every \(x\in\cX\) which result in \(Q^*(x,a)=V^*(x)\). These actions have to exist if there is a stochastic stationary policy which is optimal.
 \end{remark}
-	\textcolor{red}{Also prove that no non-stationary policy exists which can be optimal without a deterministic policy which can match it?}
-	
-	From \ref{ii:3} follows a first heuristic to find an optimal value function. This heuristic of course only works, if the maximum exists. This is not a problem in finite MDPs. 
+	Before we show, that if an arbitrary (history dependent) optimal policy exists, there also exists a stationary policy which is optimal, I want to note that from \ref{ii:3} follows a first heuristic to find an optimal value function. This heuristic only works of course, if the maximum exists. This is never a problem in finite MDPs. 
 \begin{definition}
 	\(Q\colon\cX\times\cA\to\R\) an action value function, \(\tilde{\pi}\colon\cX\to\cA\) with:
 	\[
@@ -722,39 +733,179 @@ Let us first consider the case where the supremum can be attained, since this in
 	\end{itemize}
 \end{remark}
 
+Now we show how we can construct an optimal stationary policy from an arbitrary optimal policy. We will break this problem into two parts. First we construct an optimal markovian policy, and then we construct an optimal stationary policy from the optimal markovian policy. The first step is taken from \textcite[134-137]{putermanMarkovDecisionProcesses2005}.
+
+\begin{prop}
+	Let \(\pi\in\Pi\). Then, for each \(x\in\cX\), there exists a markovian policy \(\pi^{x}\) satisfying
+	\[\Pr^{\pi^x}(X_t=y,A_t=a\mid X_0=x)=\Pr^\pi(X_t=y,A_t=a\mid X_0=x)\quad \forall t\in\N_0 \]
+	where \(\Pr^\pi\) indicates that the sequence 
+	\(((X_t, A_t, R_{t+1}),t\in\N_0 )\) is constructed with policy \(\pi\).
+\end{prop}
+\begin{proof}
+	Fix \(x\in\cX\). For each \((y,a)\in\cX\times\cA\) define \(\pi^x\coloneqq (\pi^x_t,t\in\N_0)\) with
+ 	\begin{align}
+			\pi^x_t(\cdot\mid y)\coloneqq \Pr^\pi (A_t \mid X_t=y,X_0=x)
+	\end{align}
+	We will now show the statement for this \(\pi^x\) by induction. The base case is:
+	\begin{align*}
+		\Pr^\pi(X_0=y,A_0=a\mid X_0=x) 
+		&= \Pr^\pi(A_0=a\mid X_0=x)\delta_{x,y}\\
+		&=\pi^x_0(a\mid x)\delta_{x,y} 
+		= \Pr^{\pi^x}(A_0=a\mid X_0=x)\delta_{x,y}\\
+		&=\Pr^{\pi^x}(X_0=y, A_0=a\mid X_0=x)
+	\end{align*}
+	Assume the claim holds for \(\{0,\dots, t-1\}\). Then using markovian transition kernel
+	\[\Pr^\pi\big[X_t=y\mid (X_{t-1},A_{t-1})=(z,a), X_0=x\big]=p(y\mid z,a)\]
+	together with \ref{appx1}, we get
+	\begin{align*}
+		\Pr^\pi(X_t=y\mid X_0=x)
+		&=\sum_{(z,a)\in\cX\times\cA}p(y\mid z,a)
+		\Pr^\pi[(X_{t-1},A_{t-1})=(z,a)\mid X_0=x]\\
+		&\lxeq{\text{ind.}} \sum_{(z,a)\in\cX\times\cA}p(y\mid z,a)
+		\Pr^{\pi^x}[(X_{t-1},A_{t-1})=(z,a)\mid X_0=x]\\
+		&=\Pr^{\pi^x}(X_t=y\mid X_0=x)
+	\end{align*}
+	Using \ref{appx1} again we get
+	\begin{align*}
+		&\Pr^{\pi}[X_t=y, A_t=a \mid X_0=x]\\
+		&=\underbracket{\Pr^\pi[A_t=a \mid X_t=y, X_0=x]}_{\equiv\pi^x_t(a\mid y)}
+		\Pr^\pi[X_t=y\mid X_0=x]\\
+		&=\Pr^{\pi^x}[A_t=a \mid X_t=y, X_0=x]\Pr^{\pi^x}[X_t=y\mid X_0=x]\\
+		&=\Pr^{\pi^x}[X_t=y, A_t=a \mid X_0=x]\qedhere
+	\end{align*}
+\end{proof}
+\begin{corollary}
+	For (an optimal) policy \(\pi\in\Pi\) exist markovian policies \(\pi^x\) for all \(x\in\cX\) such that
+	\[
+		V^\pi(x)=V^{\pi^x}(x)	
+	\]
+\end{corollary}
+\begin{proof}
+	\begin{align*}
+		V^\pi(x)
+		&=\E^\pi\left[\sum_{t=0}^\infty \gamma^t R_{t+1} \mid X_0=x \right]\\
+		&\lxeq{\text{Fubini}} \sum_{t=0}^\infty \gamma^t \E^\pi[R_{t+1}\mid X_0=x]\\
+		&=\sum_{t=0}^\infty \gamma^t \sum_{(y,a)\in\cX\times\cA}
+		\begin{aligned}[t]
+		&\E^\pi[R_{t+1}\mid X_t=y, A_t=a, X_0=x]\\
+		&\qquad\cdot\Pr^\pi(X_t=y,A_t=a\mid X_0=x)
+		\end{aligned}\\
+		&=\sum_{t=0}^\infty \gamma^t \sum_{(y,a)\in\cX\times\cA}\E[R_{(x,a)}]
+		\Pr^{\pi^x}(X_t=y,A_t=a\mid X_0=x)\\
+		&=\dots \xeq{\text{analogous}} V^{\pi^x}(x)\qedhere
+	\end{align*}
+\end{proof}
+
+Using the results from \citeauthor{putermanMarkovDecisionProcesses2005} we can now show
+\begin{thm}\label{optimal policy => opt stat policy}
+	Let \(\pi\in\Pi\) be an optimal policy (i.e. \(V^*=V^\pi\)) then there exists an optimal stationary policy \(\hat{\pi}\)
+\end{thm}
+\begin{proof}
+	For the optimal policy \(\pi\) exist \(\pi^x,x\in\cX\) markovian policies with
+	\[
+		V^*(x)=V^\pi(x)=V^{\pi^x}(x)
+	\]
+	From these markovian policies we can define the stationary policy \(\hat{\pi}\) with
+	\begin{align}
+		\hat{\pi}(\cdot\mid x)\coloneqq \pi_0^x(\cdot\mid x) \qquad x\in\cX
+	\end{align}
+	For which we now need to show that it is optimal.
+	\begin{align}
+		V^*(x)&=V^{\pi^x}(x)=\E^{\pi^x}[R_1\mid X_0=x] 
+		+ \gamma \E^{\pi^x}\left[\sum_{t=0}\gamma^t R_{t+2}\mid X_0=x \right] \nonumber\\
+		&=\begin{aligned}[t]
+			&\sum_{a\in\cA_x}\E[R_{(x,a)}]\pi_0^x(a\mid x)\\
+			&\quad + \gamma \smashoperator{\sum_{y\in\cX}}\Pr^{\pi^x}(X_1=y\mid X_0=x)
+			\E^{\pi^x}\left[\sum_{t=0}\gamma^t R_{t+2}\mid X_1=y, X_0=x\right]	\label{V^pi^x expanded}
+		\end{aligned}
+	\end{align}
+	Where the conditional probability is
+	\begin{align}
+		&\Pr^{\pi^x}(X_1=y\mid X_0=x) \nonumber \\
+		&=\sum_{a\in\cA_x} \Pr^{\pi^x}(X_1=y, A_0=a \mid X_0=x) \nonumber\\
+		&=\sum_{a\in\cA_x} \Pr^{\pi^x}(X_1=y\mid X_0=x, A_0=a) \Pr^{\pi^x}(A_0=a\mid X_0=x)\nonumber\\
+		&=\sum_{a\in\cA_x} p(y\mid x,a) \pi^x_0(a\mid x)
+		=\sum_{a\in\cA_x} p(y\mid x,a) \hat{\pi}(a\mid x) \nonumber\\
+		&=\Pr^{\hat{\pi}}(X_1=y\mid X_0=x)
+	\end{align}
+	And the conditional expectation is
+	\begin{align}
+		&\E^{\pi^x}\left[\sum_{t=0}\gamma^t R_{t+2}\mid X_1=y, X_0=x\right]\nonumber\\
+		&=\sum_{a\in\cA_y}
+		\E^{\pi^x}\left[\sum_{t=0}\gamma^t R_{t+2}\mid X_1=y, A_1=a, X_0=x\right]\pi^x_1(a\mid y)\nonumber\\
+		&\lxeq{\text{markov}} \sum_{a\in\cA_y}
+		\E^{\pi^x}\left[\sum_{t=0}\gamma^t R_{t+2}\mid X_1=y, A_1=a\right]\pi^x_1(a\mid y)\nonumber\\
+		&=\E^{\pi^x}\left[\sum_{t=0}\gamma^t R_{t+2}\mid X_1=y\right]
+		=\E^{\tilde{\pi}^x}\left[\sum_{t=0}\gamma^t \tilde{R}_{t+1}\mid \tilde{X}_0=y\right]\nonumber\\
+		&=V^{\tilde{\pi}^x}(y)
+	\end{align}
+	with \(\tilde{X}_t\coloneqq X_{t+1}, \tilde{A}_t\coloneqq A_{t+1}, 
+	\tilde{R}_t\coloneqq R_{t+1}\) and \(\tilde{\pi}^x_t=\pi^x_{t+1} \) creating the sequence 
+	\(((\tilde{X}_t,\tilde{A}_t, \tilde{R}_{t+1}), t\in\N_0)\) consistent with the MDP together with policy \(\tilde{\pi}^x\). We can conclude that 
+	\begin{align}
+		V^{\tilde{\pi}^x}(z)=V^*(z) \qquad \forall z\in\cX:\Pr^{\pi^x}(X_1=z\mid X_0=x)>0
+		\label{V^tildePi (z) =V*(z)}
+	\end{align}
+	otherwise we can use the fact that \(V^{\pi^z}(z)=V^*(z)\) and improve the optimal policy \(\pi^x\) by swapping out the policy \((\pi^x_t, t\in\N) \) with \((\pi^z_{t-1}, t\in\N)\) conditional on \(X_0=x\) and \(X_1=z\) (losing the markov property again).
+	\begin{align*}
+			&\hat{\pi}^x_0(a\mid x)&&\coloneqq \pi^x_0(a\mid x) \\
+			&\hat{\pi}^x_t(a\mid X_0=x,X_1=z, X_t=x_t)&&\coloneqq \pi^z_{t-1}(a\mid x_t) && \text{for } t\ge 1\\
+			&\hat{\pi}^x_t(a\mid X_0=x, X_1\neq z, X_t=x_t)&&\coloneqq \pi^x_t(a\mid x_t) && \text{for } t\ge 1 \\
+			&\hat{\pi}^x_t(a\mid y)&&\coloneqq \pi^x_t(a\mid y) && \text{for } y\neq x
+	\end{align*}
+	If you apply the same steps to \(\hat{\pi}^x\) as to \(\pi^x\) in (\ref{V^pi^x expanded}), everything but the summand \(z\) in the large sum will stay the same. And this summand increases because 
+	\[
+		V^*(z)\Pr^{\pi^x}(X_1=z\mid X_0=x)> V^{\tilde{\pi}^x}(z) \Pr^{\pi^x}(X_1=z\mid X_0=x)
+	\]
+	But that implies that \(V^*(x)< V^{\hat{\pi}^x}(x)\) which is a contradiction. Therefore (\ref{V^tildePi (z) =V*(z)}) holds. Using this fact, we can conclude
+	\begin{align*}
+		V^*(x)&=V^{\pi^x}(x)\\
+		&=\sum_{a\in\cA_x}\E[R_{(x,a)}]\pi_0^x(a\mid x)+\gamma \smashoperator{\sum_{y\in\cX}}\Pr^{\pi^x}(X_1=y\mid X_0=x)
+		V^{\tilde{\pi}^x}(y)\\
+		&=\sum_{a\in\cA_x}\E[R_{(x,a)}]\hat{\pi}(a\mid x)+\gamma \smashoperator{\sum_{y\in\cX}}\Pr^{\hat{\pi}}(X_1=y\mid X_0=x) V^*(y)\\
+		&=\tilde{T}^{\hat{\pi}} V^* (x)
+	\end{align*}
+	Since \(V^*\) is a fix-point of \(\tilde{T}^{\hat{\pi}}\) and the fix-point is unique we have completed our proof, since then \(V^{\hat{\pi}}=V^*\) which means \(\hat{\pi}\) is optimal. 
+\end{proof}
+
+In Summary: With an arbitrary optimal policy we can construct an optimal stationary policy with \ref{optimal policy => opt stat policy}, and if there is an optimal stationary policy, there is also an optimal deterministic stationary policy (\ref{opt stat => opt det stat}). Therefore the set of deterministic stationary policies is large enough to choose from if you are looking for an optimal policy. 
+
 But what happens if there are no optimal policies? If there are no optimal policies can one sequence of deterministic policies get arbitrarily close to the optimal value function for \emph{every} starting state? We are now able to answer the question we were not quite ready to answer with \ref{finite outmatching}.
 
 \begin{prop}
 	For every \(\varepsilon>0\) exists a deterministic stationary policy \(\pi^\varepsilon\) such that \(V^* \le V^{\pi_\varepsilon} \).
 \end{prop}
 \begin{proof}
-	Be \(\varepsilon>0 \) arbitrary,  define \(\delta\coloneqq \vep (1-\gamma) \), since:
+	Be \(\varepsilon>0 \) arbitrary,  define \(\delta\coloneqq \vep (1-\gamma) \). Because of this
 	\[
 		V^*(x)=T^*V^*(x)=\sup_{a\in\cA}
 		\left\{r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a)V^*(y) \right\}
 	\]
-	There exists an \(\pi^\vep(x)\) for all \(x\in\cX\) such that:
+	there exists an \(\pi^\vep(x)\) for all \(x\in\cX\) such that
 	\[
 		r(x,\pi^\vep(x))+\gamma\sum_{y\in\cX}p(y\mid x,\pi^\vep(x))V^*(y) + \delta \ge V^*(x)
 	\]
-	This defines a mapping \(\pi^\vep\colon \cX\to\cA\) for which:
+	This defines a mapping \(\pi^\vep\colon \cX\to\cA\) with this property:
 	\begin{align*}
 		T^{\pi^\vep} V^*(x)
 		&=r(x,\pi^\vep(x))+\gamma \sum_{y\in\cX}p(y\mid x,\pi_\vep(x)) V^*(x)\\
 		&\ge V^*(x) -\delta = (V^* -\delta \mathbf{1}) (x)
 	\end{align*}
 	By induction we get 
-	\((T^{\pi^\vep})^n V^*(x)\ge (V^*-(\delta\sum_{k=0}^n\gamma) \mathbf{1}) (x)\) with the induction step:
+	\((T^{\pi^\vep})^n V^*(x)\ge (V^*-(\delta\sum_{k=0}^n\gamma) \mathbf{1}) (x)\) using the monotonicity of \(T^{\pi^\vep}\) (\ref{properties T^pi}) we get the induction step:
 	\begin{align*}
 		(T^{\pi^\vep})^{n+1} V^*(x)
-		&= (T^{\pi^\vep})^n (V^*-\delta)(x)\\
-		&\lxeq{\text{affin}} \dots %TODO
+		&=T^{\pi^\vep} (T^{\pi^\vep})^{n-1} V^*(x)\\
+		&\lxgq{\text{ind.}} T^{\pi^\vep} (V^*-(\delta\sum_{k=0}^n\gamma^k) \mathbf{1})(x)\\
+		&\lxeq{\text{affine}} T^{\pi^\vep} V^*(x) - \gamma \sum_{y\in\cX} p(y\mid x, a) (\delta\sum_{k=0}^n\gamma^k) \mathbf{1}(y)\\
+		&\ge V^*(x)-\delta - \delta\sum_{k=0}^n\gamma^{k+1} \sum_{y\in\cX} p(y\mid x,a)\\
+		&=V^*(x)-\delta \sum_{k=0}^{n+1}\gamma^k
 	\end{align*}
-	This implies
+	This concludes our proof:
 	\begin{align*}
 		V^{\pi^\vep}(x)&=\lim_{n\to\infty} (T^{\pi^\vep})^n V^* 
 		\ge V^*(x)-\delta\lim_{n\to\infty}\sum_{k=0}^n\gamma\\
-		&=V^*(x)-\delta/(1-\gamma)=V^*(x)-\vep
+		&=V^*(x)-\delta/(1-\gamma)=V^*(x)-\vep \qedhere
 	\end{align*}
 \end{proof}
 
