@@ -13,9 +13,15 @@
 \usepackage{./macros/BScMacros}
 \usepackage{./macros/BScTitle}
 
+\usepackage{tikz,tikz-cd}
+\newcommand{\vsubseteq}{\rotatebox[origin=c]{-90}{\(\subseteq\)}}
+
 \usepackage[style=authoryear, backend=biber]{biblatex}
 \addbibresource{./chapter/literature.bib}
 
+\usepackage[draft]{fixme} %final removes annotations 
+\fxsetup{theme=color}
+%%\fxnote{some note} ,\fxwarning{}, \fxerror{}, \fxfatal{} <- does not allow [final] to compile
 
 %%
 %% je nach Betriebssystem und Editor muss die
@@ -63,6 +69,7 @@
 
 
 \begin{document}
+\listoffixmes
 \frontmatter
 \titelpage
 %%

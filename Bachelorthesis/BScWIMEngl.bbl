@@ -40,7 +40,6 @@
       \strng{authorbibnamehash}{b4258b9291d903d97b69d703eebf790a}
       \strng{authornamehash}{b4258b9291d903d97b69d703eebf790a}
       \strng{authorfullhash}{b4258b9291d903d97b69d703eebf790a}
-      \field{extraname}{1}
       \field{sortinit}{P}
       \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
       \field{extradatescope}{labelyear}
@@ -59,45 +58,6 @@
       \verb{file}
       \verb C:\\Users\\felix\\Zotero\\storage\\VNB8FB4L\\Puterman - 2005 - Markov decision processes discrete stochastic dyn.pdf
       \endverb
-    \endentry
-    \entry{putermanMarkovDecisionProcesses2014}{book}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,uniquepart=base,hash=b4258b9291d903d97b69d703eebf790a}{%
-           family={Puterman},
-           familyi={P\bibinitperiod},
-           given={Martin\bibnamedelima L.},
-           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {John Wiley \& Sons}%
-      }
-      \strng{namehash}{b4258b9291d903d97b69d703eebf790a}
-      \strng{fullhash}{b4258b9291d903d97b69d703eebf790a}
-      \strng{bibnamehash}{b4258b9291d903d97b69d703eebf790a}
-      \strng{authorbibnamehash}{b4258b9291d903d97b69d703eebf790a}
-      \strng{authornamehash}{b4258b9291d903d97b69d703eebf790a}
-      \strng{authorfullhash}{b4258b9291d903d97b69d703eebf790a}
-      \field{extraname}{2}
-      \field{sortinit}{P}
-      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{shorttitle}
-      \field{abstract}{The Wiley-Interscience Paperback Series consists of selected books that have been made more accessible to consumers in an effort to increase global appeal and general circulation. With these new unabridged softcover volumes, Wiley hopes to extend the lives of these works by making them available to future generations of statisticians, mathematicians, and scientists. "This text is unique in bringing together so many results hitherto found only in part in other texts and papers. . . . The text is fairly self-contained, inclusive of some basic mathematical results needed, and provides a rich diet of examples, applications, and exercises. The bibliographical material at the end of each chapter is excellent, not only from a historical perspective, but because it is valuable for researchers in acquiring a good perspective of the MDP research potential." —Zentralblatt fur Mathematik ". . . it is of great value to advanced-level students, researchers, and professional practitioners of this field to have now a complete volume (with more than 600 pages) devoted to this topic. . . . Markov Decision Processes: Discrete Stochastic Dynamic Programming represents an up-to-date, unified, and rigorous treatment of theoretical and computational aspects of discrete-time Markov decision processes." —Journal of the American Statistical Association}
-      \field{annotation}{see 2.1.3 Definition}
-      \field{day}{28}
-      \field{eprinttype}{googlebooks}
-      \field{isbn}{978-1-118-62587-3}
-      \field{langid}{german}
-      \field{month}{8}
-      \field{pagetotal}{615}
-      \field{shorttitle}{Markov Decision Processes}
-      \field{title}{Markov Decision Processes: Discrete Stochastic Dynamic Programming}
-      \field{year}{2014}
-      \field{dateera}{ce}
-      \keyw{Mathematics / Probability & Statistics / General,Mathematics / Probability & Statistics / Stochastic Processes}
     \endentry
     \entry{szepesvariAlgorithmsReinforcementLearning2010}{article}{}
       \name{author}{1}{}{%
@@ -127,13 +87,9 @@
       \field{number}{1}
       \field{shortjournal}{Synthesis Lectures on Artificial Intelligence and Machine Learning}
       \field{title}{Algorithms for {{Reinforcement Learning}}}
-      \field{urlday}{6}
-      \field{urlmonth}{2}
-      \field{urlyear}{2019}
       \field{volume}{4}
       \field{year}{2010}
       \field{dateera}{ce}
-      \field{urldateera}{ce}
       \field{pages}{1\bibrangedash 103}
       \range{pages}{103}
       \verb{doi}
@@ -141,12 +97,6 @@
       \endverb
       \verb{file}
       \verb C:\\Users\\felix\\Zotero\\storage\\9BG3XKG8\\Szepesvári - 2010 - Algorithms for Reinforcement Learning.pdf;C:\\Users\\felix\\Zotero\\storage\\XFRVYKZ3\\Algorithms_ReinforcementLearning.pdf;C:\\Users\\felix\\Zotero\\storage\\3HQTSX4N\\S00268ED1V01Y201005AIM009.html
-      \endverb
-      \verb{urlraw}
-      \verb https://www.morganclaypool.com/doi/abs/10.2200/S00268ED1V01Y201005AIM009
-      \endverb
-      \verb{url}
-      \verb https://www.morganclaypool.com/doi/abs/10.2200/S00268ED1V01Y201005AIM009
       \endverb
     \endentry
     \entry{whiteRealApplicationsMarkov1985}{article}{}
@@ -176,13 +126,9 @@
       \field{month}{12}
       \field{number}{6}
       \field{title}{Real {{Applications}} of {{Markov Decision Processes}}}
-      \field{urlday}{5}
-      \field{urlmonth}{2}
-      \field{urlyear}{2019}
       \field{volume}{15}
       \field{year}{1985}
       \field{dateera}{ce}
-      \field{urldateera}{ce}
       \field{pages}{73\bibrangedash 83}
       \range{pages}{11}
       \verb{doi}
@@ -190,12 +136,6 @@
       \endverb
       \verb{file}
       \verb C:\\Users\\felix\\Zotero\\storage\\DWX2M69R\\White - 1985 - Real Applications of Markov Decision Processes.pdf
-      \endverb
-      \verb{urlraw}
-      \verb http://pubsonline.informs.org/doi/abs/10.1287/inte.15.6.73
-      \endverb
-      \verb{url}
-      \verb http://pubsonline.informs.org/doi/abs/10.1287/inte.15.6.73
       \endverb
     \endentry
   \enddatalist

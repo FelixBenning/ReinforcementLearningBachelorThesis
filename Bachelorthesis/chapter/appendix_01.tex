@@ -1,9 +1,35 @@
 \chapter{Appendix}
 \section{Basic Probability Theory}
-\begin{lemma}\label{appx1}
-    \(\E[X\mid A]=\sum_{n\in\N} \E[X\mid A \cap B_n] \Pr(B_n \mid A) \) with \(\biguplus_{n\in\N}B_n=\Omega \)
+\begin{lemma}\leavevmode \label{appx1}
+    \begin{enumerate}[label=(\roman*), font=\normalfont]
+        \item\label{appx1:i} \(\Pr(A\cap B\mid C) = \Pr(A \mid B \cap C)\Pr(B\mid C) \)
+        \item\label{appx1:ii} \(\Pr(A\mid C)=\sum\limits_{n\in\N} \Pr(A \mid B_n \cap C)\Pr(B_n\mid C)  \)
+        for  \(\Pr\left(\biguplus_{n\in\N}B_n\right)=1 \)
+        \item\label{appx1:iii} \(\E[X\mid C]=\sum\limits_{n\in\N} \E[X\mid C \cap B_n] \Pr(B_n \mid C) \) for  \(\Pr\left(\biguplus_{n\in\N}B_n\right)=1 \)
+    \end{enumerate}
 \end{lemma}
 \begin{proof}
+    \ref{appx1:i}
+    \[
+        \Pr(A\cap B\mid C)
+        =\frac{\Pr(A\cap B\cap C)}{\Pr(B\cap C)}\frac{\Pr(B\cap C)}{\Pr(C)}
+        =\Pr(A\mid B\cap C)\Pr(B\mid C)
+    \]
+    \ref{appx1:ii}
+    \begin{align*}
+        \Pr(A\mid C)&=\Pr\left(A\cap \biguplus_{n\in\N} B_n \;\middle|\; C\right)
+        =\sum_{n\in\N} \Pr(A\cap B_n\mid C)\\
+        &\lxeq{\text{\ref{appx1:i}}} \sum_{n\in\N} \Pr(A \mid B_n \cap C)\Pr(B_n\mid C)
+    \end{align*}
+    \ref{appx1:iii}
+    \begin{align*}
+        \E[X\mid C]
+        &=\frac{1}{\Pr(C)} \int_C X d\Pr 
+        =\sum_{n\in\N}\frac{1}{\Pr(C)} \int_{C\cap B_n} X d\Pr\\
+        &=\sum_{n\in\N} \frac{\Pr(C\cap B_n)}{\Pr(C)} \frac{1}{\Pr(C\cap B_n)} 
+        \int_{C\cap B_n} X d\Pr \\
+        &=\sum_{n\in\N}\E[X\mid C\cap B_n]\Pr(B_n\mid C) \qedhere
+    \end{align*}
 \end{proof}
 \section{Analysis}
 \endinput
