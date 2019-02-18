@@ -260,7 +260,7 @@ An MDP together with a discount factor \(\gamma\in[0,1]\) is a
 	\item[\emph{discounted}] reward MDP for \(\gamma <1 \),
 	\item[\emph{undiscounted}] reward MDP for \(\gamma=1 \).
 \end{description}
-This allows us to define the \emph{return}:
+This allows us to define the \emph{return}
 \[\cR\coloneqq\sum_{t=0}^{\infty}\gamma^t R_{t+1}\]
 \end{definition}
 
@@ -327,7 +327,7 @@ As finite processes are not our focus, we will not do that. But it is possible t
 	An MDP with terminal states is called \emph{episodic}.
 	An \emph{episode} is the random time period \((1,\dots,T)\) until a terminal state is reached.
 \end{definition}
-\begin{remark}\leavevmode
+\begin{remark}\leavevmode\fxwarning{remark on previous page}
 	\begin{itemize}
 		\item The reward in a terminal state is by convention zero, i.e. \(x\) terminal state implies forall actions \(a\in\cA_x\) that \(R_{(x,a)}=0\).
 		\item Episodic MDPs are often undiscounted
@@ -342,7 +342,7 @@ In the following sections we will try to show that deterministic stationary poli
 
 We will show this fact by proving that both solve the same fix-point equation. And that this fix-point equation satisfies the requirements of the Banach Fix-point Theorem (BFT). Which means we will get a free approximation method of the (optimal) value functions along the way.
 
-\section{Fix-Point Equations for Value Functions}\fxnote{capitalization?}
+\section{Fix-Point Equations for Value Functions}
 We will start by finding fixpoint equations for \(V^\pi\) and \(Q^\pi\) which fulfill the requirements of the BFT. These can be used to simply calculate the value of one policy. But we will primarily use them as tools to show the fix-point equations for the optimal value functions. One intuitive example for such a use, is that you can try to show that \(V^*\) fulfills the fixpoint equation for \(V^\pi\) and use uniqueness to argue that \(\pi\) has to be optimal. Other cases are a bit more technical and will use a type of monotonicity of the fix point equation.
 
 To find these fixpoint equations we will try to set \(V^\pi\) and \(Q^\pi\) in relation to each other. For the most part we can focus on deterministic stationary policies, as the other policies will get sandwiched between these policies and the set of all policies.
@@ -362,7 +362,7 @@ To make some notation shorter, we will now define the state transition kernel as
 
 Now we can start to explore the relation of \(V^\pi\) and \(Q^\pi\).
 
-\begin{prop}\label{expand Q^pi} Let \(\pi\in\statPolicy\) be a stationary behavior, then:
+\begin{prop}\label{expand Q^pi} Let \(\pi\in\statPolicy\) be a stationary behavior, then
 	\[Q^\pi(x,a)=r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a)V^\pi(y)	\]
 \end{prop}
 
@@ -380,7 +380,7 @@ Now we can start to explore the relation of \(V^\pi\) and \(Q^\pi\).
 &=\E[R_{(x,a)}] 
  + \gamma \sum_{y\in\cX}\E^\pi\left[\sum_{t=0}^\infty\gamma^t R_{t+2} \;\middle|\; X_0=x,A_0=a, X_1=y\right]p(y\mid x, a)\\
 \end{align*}
-This is almost what we want since \(r(x,a)=\E[R_{(x,a)}] \), so we just need to look at the conditional expectation:
+This is almost what we want since \(r(x,a)=\E[R_{(x,a)}] \), so we just need to look at the conditional expectation
 \begin{align*}
 	&\E^\pi\left[\sum_{t=0}^\infty\gamma^t R_{t+2} \;\middle|\; X_0=x,A_0=a, X_1=y\right]\\
 	&=\sum_{b\in\cA}
@@ -396,10 +396,10 @@ This is almost what we want since \(r(x,a)=\E[R_{(x,a)}] \), so we just need to 
 	&= \E^\pi\left[\sum_{t=0}^\infty\gamma^t R_{t+2}\;\middle|\; X_1=y \right] \\
  	&\lxeq{(*)} \E^\pi\left[\sum_{t=0}^\infty\gamma^t \tilde{R}_{t+1}\;\middle|\; \tilde{X}_0=y \right]=V^\pi(y)
 \end{align*}
-\((*)\) Rename: 
+\((*)\) We rename 
 \begin{align*}
 	&\tilde{X}_{t}\coloneqq X_{t+1}, && \tilde{A}_t\coloneqq A_{t+1},
-	&&\tilde{R}_{t}\coloneqq R_{t+1}
+	&&\tilde{R}_{t}\coloneqq R_{t+1},
 \end{align*}
 then \((\tilde{X}_t,\tilde{A}_t,\tilde{R}_{t+1}, t\in\N_0)\) is an \fxerror*{or realization or "Markov Action Process"? or something else?}{evaluation} of the MDP with the (stationary!) policy \(\pi\).
 \end{proof}
@@ -421,7 +421,7 @@ and this fix-point equation
 \]
 \end{corollary}
 
-\begin{proof} Be \(\pi\in\statPolicy\), then:
+\begin{proof} Be \(\pi\in\statPolicy\), then
 	\begin{align}
 		V^\pi(x)&=\E^\pi[\cR\mid X_0=x] \nonumber\\
 		&=\sum_{a\in\cA_x} 
@@ -439,13 +439,13 @@ and this fix-point equation
 		&=\E^\pi[r(x,A_0)\mid X_0=x] + \gamma\smashoperator[l]{\sum_{y\in\cX}} V^\pi(y)
 		\Pr^\pi(X_1=y\mid X_0=x)\nonumber
 	\end{align}
-	And for the case, where \(\pi\) is a deterministic stationary policy:
+	And for the case, where \(\pi\) is a deterministic stationary policy
 	\[
 		V^\pi(x)=\E^\pi[\cR\mid X_0=x]=\E^\pi[\cR\mid X_0=x, A_0=\pi(x)]=Q^\pi(x,\pi(x))
 	\]
 	The rest follows from \ref{expand Q^pi}. 
 	
-	Alternatively: the \(V^\pi\) fix point equation is a special case of the equation above. One just needs to realize that \(r(x,\pi(x)) = \E^\pi[r(x,A_0)\mid X_0=x]\) and:
+	Alternatively: the \(V^\pi\) fix point equation is a special case of the equation above. One just needs to realize that \(r(x,\pi(x)) = \E^\pi[r(x,A_0)\mid X_0=x]\) and
 	\begin{align*}
 		&\Pr^\pi(X_1=y\mid X_0=x)\\
 		&=\sum_{a\in\cA_x} \Pr^\pi(X_1=y\mid X_0=x, A_0=a) 
@@ -459,16 +459,24 @@ With this relation we can use the Banach fix-point theorem (BFT) for the first t
 \begin{assumption} 
 	\(\forall (x,a)\in\cX\times\cA:\quad\E[|R_{(x,a)}|]\le R\in\R\)
 \end{assumption}
-This implies that the immediate reward is bounded:
+This implies that the immediate reward is bounded
 \[
 	\|r\|_{\infty}=\sup_{(x,a)\in\cX\times\cA}|\E[R_{(x,a)}]|\le R
 \]
-But more importantly:
+But more importantly
 \[
 	\E^\pi[|\cR| \mid X_0 = x]\le\E^\pi\left[\sum_{t=0}^\infty \gamma^t |R_{t+1}| \;\middle|\; X_0=x \right]
 	\le \frac{R}{1-\gamma} 
 \]
-which implies \(\|V^\pi\|_\infty,\|V^*\|_\infty, \|Q^\pi\|_\infty,\|Q^*\|_\infty \le R/(1-\gamma)\). In particular they are bounded functions. We will denote the set of bounded function on M with \(B(M)\coloneqq \{f\colon M\to\R : \|f\|_\infty <\infty \} \), which happens to be a complete metric space which we will need for the Banach fix-point Theorem to work. Bounded Value functions will also be neccessary for a lot of other arguments later on, since the discount factor allows us to discard rewards after a finite time period as negligible.  In finite MDPs this assumption is of course always fulfilled. 
+which implies 
+\[
+	\|V^\pi\|_\infty,\|V^*\|_\infty, \|Q^\pi\|_\infty,\|Q^*\|_\infty \le R/(1-\gamma)
+\]
+In particular they are bounded functions. We will denote the set of bounded function on M with 
+\[
+	B(M)\coloneqq \{f\colon M\to\R : \|f\|_\infty <\infty \} 
+\]
+which happens to be a complete metric space which we will need for the Banach fix-point Theorem to work. Bounded Value functions will also be neccessary for a lot of other arguments later on, since the discount factor allows us to discard rewards after a finite time period as negligible.  In finite MDPs this assumption is of course always fulfilled. 
 
 
 \begin{definition}
@@ -520,13 +528,13 @@ The proof for \(T^\pi\colon B(\cX\times\cA)\to B(\cX\times\cA)\) is analogous.
 		\[
 			W_1 \le W_2 :\iff  W_1(x)\le W_2(x) \quad \forall x\in\cX
 		\]
-		Then the operator \(T^\pi\) is monotonous.
+		Then the operator \(T^\pi\) is monotonous, \fxwarning{comma, fullstop, nothing?}
 		\[W_1\le W_2 \implies T^\pi W_1\le T^\pi W_2\]
 	\end{enumerate}
 \end{lemma}
 
 \begin{proof}
- Be \(W_1,W_2\in B(\cX)\), \(W_1\le W_2\) and \(x\in\cX\):
+ Be \(W_1,W_2\in B(\cX)\), \(W_1\le W_2\) and \(x\in\cX\), then
 \[
 	T^\pi W_2 (x) - T^\pi W_1(x) 
 	= \gamma \sum_{y\in\cX} \Pr^\pi(X_1=y\mid X_0=x) \underbracket[1pt]{
@@ -603,11 +611,14 @@ So we can not match an infinite set of behaviors. Which means we will have to se
 		&\lxeq{\ref{V^pi,Q^pi relation}} V^{\pi_{m(x)}}(x)=V(x)
 	\end{align*}
 	By using the monotonicity of \(T^{\hat{\pi}} \) (\ref{properties T^pi}) inductively with \((T^{\hat{\pi}})^1 V \ge (T^{\hat{\pi}})^0 V \), we get
-	\( (T^{\hat{\pi}})^n V \ge (T^{\hat{\pi}})^{n-1} V \) thus:
+	\[ 
+		(T^{\hat{\pi}})^n V \ge (T^{\hat{\pi}})^{n-1} V 
+	\]
+	thus
 	\[
-		V^{\hat{\pi}}(x) = \lim_{n\to\infty} (T^{\hat{\pi}})^n V(x) 
-		\ge V(x) \ge V^{\pi_i}(x)
-		\qquad \forall i=1,\dots,n, \forall x\in\cX
+		V^{\hat{\pi}} = \lim_{n\to\infty} (T^{\hat{\pi}})^n V 
+		\ge V \ge V^{\pi_i}
+		\qquad \forall i=1,\dots,n
 		\qedhere
 	\] 
 \end{proof}
@@ -615,7 +626,7 @@ So we can not match an infinite set of behaviors. Which means we will have to se
 \subsection{Fix-Point Equations for Optimal Value functions}
 With this statement we can now prove the building blocks for the fix-point equations.
 
-\begin{lemma}\label{V*,Q* relation}\leavevmode\fxerror{lemma title on previous page}
+\begin{lemma}\label{V*,Q* relation}\leavevmode
 \begin{enumerate}[label=(\roman*),font=\normalfont]
 \item\label{i:1} \(\tilde{Q}(x,a)= r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a)\tilde{V}(y)\)
 \item\label{i:2} \(\tilde{V}(x)= \sup\limits_{a\in\cA_x} \tilde{Q}(x,a)\)
@@ -654,7 +665,7 @@ With this statement we can now prove the building blocks for the fix-point equat
 		\qquad \forall n\ge N, \forall y\in M_\delta^\complement
 		\label{convergenceToTilde}
 	\end{align}
-	And also because \(M_\delta \) is finite and \ref{finite outmatching} we know:
+	And also because \(M_\delta \) is finite and \ref{finite outmatching} we know that
 	\begin{align}
 	\exists\hat{\pi}^{(n)}\in\detPolicy : 
 	\quad {V^{\hat{\pi}^{(n)}}\ge V^{\pi_y^{(n)}}}
@@ -691,7 +702,7 @@ With this statement we can now prove the building blocks for the fix-point equat
 	Since this equation holds for all \(\varepsilon>0\) we are finished.
 	\\
 	\ref{i:2}
-	By \ref{V^pi,Q^pi relation} we know \(V^\pi(x)=Q^\pi(x,\pi(x))\) thus:
+	By \ref{V^pi,Q^pi relation} we know \(V^\pi(x)=Q^\pi(x,\pi(x))\) thus
 	\begin{align}
 		\tilde{V}(x)& =\sup_{\pi \in \detPolicy} V^\pi(x)
 		=\sup_{\pi \in \detPolicy}Q^\pi(x,\pi(x)) 
@@ -703,7 +714,7 @@ With this statement we can now prove the building blocks for the fix-point equat
 		&\lxeq{\text{\ref{i:1}}} \sup_{a\in \cA_x}\left\{ r(x,a)+\gamma\sum\limits_{y\in\cX}p(y\mid x,a) 
 		\sup_{\pi\in\detPolicy} V^\pi(y) \right\} \label{last eq}
 	\end{align}
-	Assume (\ref{inequality}) is a true inequality for some \(x\in\cX\). Since the suprema in (\ref{last eq}) can be arbitrarily closely approximated
+	Assume (\ref{inequality}) is a true inequality for some \(x\in\cX\). Since the suprema in (\ref{last eq}) can be arbitrarily closely approximated \fxwarning{exist in set? clutters up the equation making it harder to read, but is math. more correct}
 	\[ 
 		\exists \pi, \exists a : \tilde{V}(x) < r(x,a) 
 		+ \gamma\sum_{y\in\cX} p(y\mid x,a) V^\pi(y)
@@ -821,11 +832,11 @@ With this statement we can now prove the building blocks for the fix-point equat
 With this Lemma it will be easy to show that the optimal value functions are fix-points of the following mappings. 
 
 \begin{definition}
-The mapping \(T^*\colon B(\cX)\to B(\cX)\) with:
+The mapping \(T^*\colon B(\cX)\to B(\cX)\) with
 	\[
 	 T^* V(x)\coloneqq \sup_{a\in\cA_x}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V(y)\right\} \qquad V\in B(\cX),\; x\in\cX
 	\]
-is called the \emph{Bellman Optimality Operator}. With some more abuse of notation, define the mapping \(T^*\colon B(\cX\times\cA)\to B(\cX\times\cA)\) with:
+is called the \emph{Bellman Optimality Operator}. With some more abuse of notation, define the mapping \(T^*\colon B(\cX\times\cA)\to B(\cX\times\cA)\) with
 	\[
 	T^* Q(x,a)\coloneqq r(x,a)+\sum_{y\in\cX}p(y\mid x,a) \sup_{a'\in\cA_y}Q(y,a') 
 	\quad V\in B(\cX),\; (x,a)\in\cX\times\cA
@@ -852,7 +863,7 @@ The others are analogous
 Now we just need to show that the Bellman Optimality Operator satisfies the Banach Fix-point Theorem.
 
 \begin{thm}\label{T^* satisfies BFT}
-\(T^*\) satisfies the requirements of the Banach fixpoint theorem for \(\gamma<1\), in particular:
+\(T^*\) satisfies the requirements of the Banach fixpoint theorem for \(\gamma<1\), in particular
 	\[V^*(x)=\tilde{V}(x) \]
 is the unique fixpoint of \(T^*\). The suprema over all the other policy sets get sandwiched in between.
 \end{thm}
@@ -905,7 +916,7 @@ Let us first consider the case where the supremum can be attained, since this in
 \end{prop}
 
 \begin{proof}
-	\xToy{\ref{ii:1}}{\ref{ii:2}} Let \(x\in\cX\) be arbitrary: 
+	\xToy{\ref{ii:1}}{\ref{ii:2}} Let \(x\in\cX\) be arbitrary, then
 	\begin{align*}
 		V^*(x)&=V^{\pi^*}(x)\xeq{(\ref{stoch pi: V^pi in terms of Q^pi})}
 		\sum_{a\in\cA_x}\pi^*(a\mid x) Q^{\pi^*}(x,a) \nonumber\\
@@ -914,7 +925,7 @@ Let us first consider the case where the supremum can be attained, since this in
 		\sup_{b\in\cA_x}Q^*(x,b) \nonumber\\
 		&\lxeq{\ref{V*,Q* relation}}V^*(x) \nonumber
 	\end{align*}
-	\xToy{\ref{ii:2}}{\ref{ii:3}} Let \(\pi\in\statPolicy,\; (x,a)\in\cX\times\cA\) be arbitrary. Then with (\ref{stoch pi: V^pi in terms of Q^pi}):
+	\xToy{\ref{ii:2}}{\ref{ii:3}} Let \(\pi\in\statPolicy,\; (x,a)\in\cX\times\cA\) be arbitrary. Then with (\ref{stoch pi: V^pi in terms of Q^pi})
 	\[
 		\sum_{a\in\cA_x}\pi(a\mid x) Q^*(x,a)
 		\le \underbracket[1pt]{\sum_{a\in\cA_x}\pi(a\mid x)}_{=1}
@@ -923,7 +934,7 @@ Let us first consider the case where the supremum can be attained, since this in
 	Therefore \(V^* (x)\) is an upper bound for every \(\pi\in\statPolicy\), and since \(\pi^*\) attains this upper bound it is a maximum.
 
 	\xToy{\ref{ii:3}}{\ref{ii:4}} 
-	Be \(\pi^*(a\mid x)>0\) for some \(a\in\cA_x,x\in\cX\). Then there exists no \(b\in\cA_x\) with \(Q^*(x,b)>Q^*(x,a)\). Otherwise we can define the behavior:
+	Be \(\pi^*(a\mid x)>0\) for some \(a\in\cA_x,x\in\cX\). Then there exists no \(b\in\cA_x\) with \(Q^*(x,b)>Q^*(x,a)\). Otherwise we can define the behavior
 	\[
 		\hat{\pi}(\cdot\mid x)\colon
 		\begin{cases}
@@ -936,7 +947,7 @@ Let us first consider the case where the supremum can be attained, since this in
 			\end{cases}
 		\end{cases}
 	\]
-	This results in:
+	This results in
 	\begin{align*}
 		&\sum_{c\in\cA_x} \hat{\pi}(c\mid x) Q^*(x,c)\\
 		&=[\pi^*(b\mid x) %Q^*(x,b) 
@@ -972,7 +983,7 @@ Let us first consider the case where the supremum can be attained, since this in
 \end{remark}
 	Before we show, that if an arbitrary (history dependent) optimal policy exists, there also exists a stationary policy which is optimal, I want to note that from \ref{ii:3} follows a first heuristic to find an optimal value function. This heuristic only works of course, if the maximum exists. This is never a problem in finite MDPs. 
 \begin{definition}
-	\(Q\colon\cX\times\cA\to\R\) an action value function, \(\tilde{\pi}\colon\cX\to\cA_x\) with:
+	\(Q\colon\cX\times\cA\to\R\) an action value function, \(\tilde{\pi}\colon\cX\to\cA_x\) with
 	\[
 	\tilde{\pi}(x)\coloneqq\arg\max_{a\in\cA_x} Q(x,a)\qquad x\in\cX
 	\]
@@ -1001,7 +1012,7 @@ Now we show how we can construct an optimal stationary policy from an arbitrary 
  	\begin{align}
 			\pi^x_t(\cdot\mid y)\coloneqq \Pr^\pi (A_t \mid X_t=y,X_0=x)
 	\end{align}
-	We will now show the statement for this \(\pi^x\) by induction. The base case is:
+	We will now show the statement for this \(\pi^x\) by induction. The base case is
 	\begin{align*}
 		\Pr^\pi(X_0=y,A_0=a\mid X_0=x) 
 		&= \Pr^\pi(A_0=a\mid X_0=x)\delta_{xy}\\
@@ -1105,7 +1116,7 @@ Using the results from \citeauthor{putermanMarkovDecisionProcesses2005} we can n
 		V^{\tilde{\pi}^x}(z)=V^*(z) \qquad \forall z\in\cX:\Pr^{\pi^x}(X_1=z\mid X_0=x)>0
 		\label{V^tildePi (z) =V*(z)}
 	\end{align}
-	otherwise we can use the fact that \(V^{\pi^z}(z)=V^*(z)\) and improve the optimal policy \(\pi^x\) by swapping out the policy \((\pi^x_t, t\in\N) \) with \((\pi^z_{t-1}, t\in\N)\) conditional on \(X_0=x\) and \(X_1=z\) (losing the markov property again). \fxnote{ugly - better solution?}
+	otherwise we can use the fact that \(V^{\pi^z}(z)=V^*(z)\) and improve the optimal policy \(\pi^x\) by swapping out the policy \((\pi^x_t, t\in\N) \) with \((\pi^z_{t-1}, t\in\N)\) conditional on \(X_0=x\) and \(X_1=z\) (losing the markov property again). \fxerror{ugly - better solution?}
 	\begin{align*}
 			&\hat{\pi}^x_0(a\mid x)&&\coloneqq \pi^x_0(a\mid x) \\
 			&\hat{\pi}^x_t(a\mid X_0=x,X_1=z, X_t=x_t)&&\coloneqq \pi^z_{t-1}(a\mid x_t) 
@@ -1132,7 +1143,7 @@ Using the results from \citeauthor{putermanMarkovDecisionProcesses2005} we can n
 
 In Summary: With an arbitrary optimal policy we can construct an optimal stationary policy with \ref{optimal policy => opt stat policy}, and if there is an optimal stationary policy, there is also an optimal deterministic stationary policy (\ref{opt stat => opt det stat}). Therefore the set of deterministic stationary policies is large enough to choose from if you are looking for an optimal policy. 
 
-But what happens if there are no optimal policies? If there are no optimal policies can one sequence of deterministic policies get arbitrarily close to the optimal value function for \emph{every} starting state? We are now able to answer the question we were not quite ready to answer in Finite Outmatching \fxnote{Title fixed?}  (c.f \ref{finite outmatching}).
+But what happens if there are no optimal policies? If there are no optimal policies can one sequence of deterministic policies get arbitrarily close to the optimal value function for \emph{every} starting state? We are now able to answer the question we were not quite ready to answer in Finite Outmatching \fxnote{is this Title fix?}  (c.f \ref{finite outmatching}).
 
 \begin{prop}\label{epsilon optimal}
 	For every \(\varepsilon>0\) exists a deterministic stationary policy \(\pi^\varepsilon\) such that \(V^* \le V^{\pi_\varepsilon} \).

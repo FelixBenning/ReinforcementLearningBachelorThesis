@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.2.5)  17 FEB 2019 23:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.2.5)  18 FEB 2019 09:38
 entering extended mode
 **"d:/Google Drive/Mannheim Uni/Mathematik/Stochastik,Maß-Theorie/Bachelorarbeit/Bachelorthesis/BScWIMEngl.tex"
 ("d:/Google Drive/Mannheim Uni/Mathematik/Stochastik,Maß-Theorie/Bachelorarbeit/Bachelorthesis/BScWIMEngl.tex"
@@ -962,36 +962,55 @@ FiXme Fatal Error: 'proof' on input line 200.
 FiXme Note: ' some history irrelevant in appendix?' on input line 241.
  [7]
 FiXme Note: 'We will not use terminal states - true?' on input line 321.
- [8]
-FiXme Note: 'capitalization?' on input line 345.
- [9]
+
+
+FiXme Warning: 'remark on previous page' on input line 330.
+
+[8] [9]
 
 FiXme Error: 'or realization or "Markov Action Process"? or something else?' on input line 404.
 
 [10] [11]
-FiXme Note: 'proof BFT? - appendix?' on input line 498.
-FiXme Note: 'show: is complete metric space - appendix?' on input line 502.
- [12] [13] [14] [15]
+FiXme Note: 'proof BFT? - appendix?' on input line 506.
+ [12]
+FiXme Note: 'show: is complete metric space - appendix?' on input line 510.
 
-FiXme Error: 'lemma title on previous page' on input line 618.
 
-[16]
-FiXme Note: 'slightly ugly vs. focus on important bits' on input line 664.
- [17] [18] [19] [20] [21] [22] [23] [24] [25]
-FiXme Note: 'evaluated MDP?' on input line 1103.
-FiXme Note: 'ugly - better solution?' on input line 1108.
+FiXme Warning: 'comma, fullstop, nothing?' on input line 531.
+
+[13] [14] [15] [16]
+FiXme Note: 'slightly ugly vs. focus on important bits' on input line 675.
+ [17]
+
+FiXme Warning: 'exist in set? clutters up the equation making it harder to read, but is math. more correct' on input line 717.
+
+[18]
+Underfull \vbox (badness 3375) has occurred while \output is active []
+
+ [19] [20] [21] [22]
+Underfull \vbox (badness 5091) has occurred while \output is active []
+
+ [23] [24] [25]
+Underfull \vbox (badness 1881) has occurred while \output is active []
+
  [26]
-FiXme Note: 'Title fixed?' on input line 1135.
- [27] [28] [29]) [30]
+FiXme Note: 'evaluated MDP?' on input line 1114.
+
+
+FiXme Error: 'ugly - better solution?' on input line 1119.
+
+[27]
+FiXme Note: 'is this Title fix?' on input line 1146.
+ [28] [29] [30]) [31]
 \openout2 = `./chapter/appendix_01.aux'.
 
- (chapter/appendix_01.tex
+ (chapter/appendix_01.tex [32
+
+
+
+]
 Appendix A.
-) [31
-
-
-
-] [32
+) [33] [34
 
 
 ]
@@ -1004,13 +1023,13 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 119.
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 
-FiXme Summary: Number of notes: 11,
-(FiXme)        Number of warnings: 0,
+FiXme Summary: Number of notes: 9,
+(FiXme)        Number of warnings: 3,
 (FiXme)        Number of errors: 2,
 (FiXme)        Number of fatal errors: 1,
-(FiXme)        Total: 14.
+(FiXme)        Total: 15.
 
-[33
+[35
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 124.
@@ -1026,17 +1045,17 @@ Package logreq Info: Writing requests to 'BScWIMEngl.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 124.
  ) 
 Here is how much of TeX's memory you used:
- 28705 strings out of 492946
- 536703 string characters out of 3135528
- 1027128 words of memory out of 3000000
+ 28707 strings out of 492946
+ 536717 string characters out of 3135528
+ 1027126 words of memory out of 3000000
  31916 multiletter control sequences out of 15000+200000
  28806 words of font info for 72 fonts, out of 3000000 for 9000
  1143 hyphenation exceptions out of 8191
  56i,20n,82p,1170b,2278s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/public/wasy/dpi1037\wasy10.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecss0900.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecsl1095.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2074.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1440.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmex9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "d:/Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.pdf" (41 pages, 533759 bytes).
+Output written on "d:/Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.pdf" (43 pages, 536680 bytes).
 PDF statistics:
- 1309 PDF objects out of 1440 (max. 8388607)
- 148 named destinations out of 1000 (max. 500000)
+ 1322 PDF objects out of 1440 (max. 8388607)
+ 150 named destinations out of 1000 (max. 500000)
  93 words of extra memory for PDF output out of 10000 (max. 10000000)
 
