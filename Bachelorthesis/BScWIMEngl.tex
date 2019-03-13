@@ -14,6 +14,18 @@
 \usepackage{./macros/BScTitle}
 
 \usepackage{tikz,tikz-cd}
+\usetikzlibrary{
+    shapes,% for the rectangle
+    chains,% provides the chains
+    scopes,
+    arrows,%
+    matrix,%
+    positioning,% wg. " of "
+    scopes,%
+    decorations.pathmorphing,% /pgf/decoration/random steps | erste Graphik
+    shadows%
+}% allows to replace \begin{scope} \end{scope} with {}
+
 \newcommand{\vsubseteq}{\rotatebox[origin=c]{-90}{\(\subseteq\)}}
 
 \usepackage[style=authoryear, backend=biber]{biblatex}
@@ -59,13 +71,13 @@
 \birthdate{27.11.1996}
 \birthplace{Nürtingen}
 \MatNr{1501817}
-\titellineI{Markov-Decision Processes}
+\titellineI{Reinforcement Learning}
 %\titellineII{}
 %\titellineIII{}
 %\subtitellineI{}
 %\subtitellineII{}
 \Supervisor{Prof. Dr. Leif Döring}
-\DueDate{}
+\DueDate{11.05.2019}
 
 
 \begin{document}
@@ -97,9 +109,10 @@
 %%
 %% eigentliche Kapitel der Arbeit
 %%
+%\include{./pictures/flowchart}
 \include{./chapter/chapter_01}
-%\include{./chapter/chapter_02}
-
+\include{./chapter/chapter_02} 
+\include{./chapter/chapter_03} 
 %%
 %% Falls Abbildungen und/oder Tabellen vorhanden,
 %% entsprechend auskommentieren 

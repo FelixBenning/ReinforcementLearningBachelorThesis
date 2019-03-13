@@ -2,15 +2,94 @@
 
 \chapter{Markov Decision Processes}
 \section{Introduction}
-In this introduction I try convey an intuition for Markov Decision Processes. Readers familiar with the subject can skip directly to the more formal model formulation. 
+In this introduction I try to convey an intuition for Markov Decision Processes. Readers familiar with the subject can skip directly to the more formal model formulation. 
 
-A Markov Decision Process appears to be quite similar to a Markov Process at first glance. Where a Markov Process is a stochastic process (i.e. a sequence of random variables) which is memoryless (Markov). That means knowledge of the current state, makes knowledge about past states useless for predicting future states.
+A Markov Decision Process appears to be quite similar to a Markov Process at first glance. Where a Markov Process is a stochastic process, i.e. a sequence of random variables \((X_t,t\in\N_0)\), which is memoryless (Markov). That means knowledge of the current state, makes knowledge about past states useless for predicting future states.
 
-Markov Decision Processes (MDPs) introduce actions and rewards to this model. So MDPs are very similar to Markov Processes in the sense, that the model is also Markov (memoryless) and tries to model events unfolding over time. 
+Markov Decision Processes (MDPs) introduce actions \((A_t,t\in\N_0)\) and rewards \((R_t,t\in\N)\) to this model. Where the transition to the next state \(X_{t+1}\) given a state \(X_{t}\) and action \(A_{t}\) is markov (memoryless) just like in case of Markov Processes.
+\[
+\begin{tikzpicture}
+    \draw[dotted] (-3.7,0.4) -- (-2.8,0.4);
 
-But this apparent similarity can be misleading. While Markov Processes are defined as a stochastic process (i.e. the sequence of states \((X_t,t\in\N)\)) with properties as described above, MDPs cannot be defined like that. The reason for this is, that the next state \(X_{t+1}\) depends on the current state and action \(A_{t}\), which means that the sequence of states cannot be defined without the sequence of actions. But defining the sequence of actions requires an action selection rule, a behavior, a decision. So defining MDPs as a stochastic process, would result in every behavior resulting in a different MDP. But since MDPs want to model decisions, this does not make much sense. Talking about optimal behaviors in a framework which can only be defined for a set behavior, is nonsensical. What is needed is a model framework which is invariant to different behaviors. Therefore MDPs are not defined as a stochastic process, but rather as a rulebook on how to create a stochastic process from a given behavior. 
+    \draw[->] (-3.7, -0.4) %%% transition stub beginning
+    to [out=0,in=180] (-3.1, -0.4)
+    to [out=0,in=270] (-3, -0.2);
 
-The questions we ask the model are also different.  MDPs are more interested into evaluating different behaviors and finding optimal ones, while Markov Processes try to describe an existing phenomenon. Though we will find, that -- given a behavior which is memoryless as well -- the resulting stochastic process is a Markov Process, so the theory of Markov Processes could in principle be applied. But this will not be our focus. 
+    \draw[->] (-3.1, -0.4) %%% to R_{t-1}
+    to [out=0,in=90] (-3,-0.5)
+    to [out=270, in=90] (-3,-1);
+
+    \draw (-3,-1.2) node {\(R_{t-1}\)};
+    \draw (-2.9,0) node {\(X_{t-1}\)};
+
+    \draw[->] (-2.9,0.3) %%% X_{t-1} to A_{t-1}
+    to [out=90,in=180] (-2.8, 0.4) 
+    to [out=0,in=180] (-1.8,0.4)
+    to [out=0,in=90] (-1.7,0.2);
+
+    \draw[dotted] (-1.7,0.4) -- (0.1,0.4);
+
+    \draw (-1.7,0) node {\(A_{t-1}\)};
+
+    \draw (-1.7, -0.3) %%% join transition 
+    to [out=270,in=180] (-1.6,-0.4);
+
+    \draw[->] (-2.8, -0.3) %%% X_{t-1} to X_t transition
+    to [out=270,in=180] (-2.7, -0.4) 
+    to [out=0,in=180] (-0.2, -0.4)
+    to [out=0,in=270] (-0.1, -0.2);
+
+    \draw[->] (-0.2, -0.4) %%% to R_t
+    to [out=0,in=90] (-0.1,-0.5)
+    to [out=270, in=90] (-0.1,-1);
+
+    \draw (-0.1,-1.2) node {\(R_t\)};
+    \draw (0,0) node {\(X_t\)};
+    
+    \draw[->] (0,0.3)  %%% X_t to A_t
+    to [out=90,in=180] (0.1, 0.4) 
+    to [out=0,in=180] (1.1,0.4)
+    to [out=0,in=90] (1.2,0.2); 
+
+    \draw[dotted] (1.2,0.4) -- (2.8,0.4);
+ 
+    \draw (1.2,0) node {\(A_t\)};
+
+    \draw (1.2, -0.3) %%% join transition
+    to [out=270,in=180] (1.3,-0.4);
+
+    \draw[->] (0.1, -0.3) %%% X_t to X_{t+1} transition
+    to [out=270,in=180] (0.2, -0.4) 
+    to [out=0,in=180] (2.5, -0.4)
+    to [out=0,in=270] (2.6, -0.2);
+
+    \draw[->] (2.5, -0.4) %%% to R_{t+1}
+    to [out=0,in=90] (2.6,-0.5)
+    to [out=270, in=90] (2.6,-1);
+
+    \draw (2.6,-1.2) node {\(R_{t+1}\)};
+    \draw (2.7,0) node {\(X_{t+1}\)};
+
+    \draw[->] (2.7,0.3)  %%% X_{t+1} to A_{t+1}
+    to [out=90,in=180] (2.8, 0.4) 
+    to [out=0,in=180] (3.8,0.4)
+    to [out=0,in=90] (3.9,0.2); 
+
+    \draw[dotted] (3.9,0.4) -- (4.8,0.4);
+
+    \draw (3.9,0) node {\(A_{t+1}\)};
+
+    \draw (3.9, -0.3) %%% join transition stub
+    to [out=270,in=180] (4,-0.4);
+
+    \draw (2.8, -0.3) %%% X_{t+1} transition stub end
+    to [out=270,in=180] (2.9, -0.4) 
+    to [out=0,in=180] (4.8, -0.4);
+\end{tikzpicture}
+\]
+But this apparent similarity can be misleading. While Markov Processes are defined as a stochastic process (i.e. a sequence of states) with properties as described above, MDPs cannot be defined like that. The reason for this is, that the next state \(X_{t+1}\) depends on the current state and action \(A_{t}\), which means that the sequence of states cannot be defined without the sequence of actions. But defining the sequence of actions requires an action selection rule, a behavior, a decision. So defining MDPs as a stochastic process, would result in every behavior resulting in a different MDP. But since MDPs want to model decisions, this does not make much sense. Talking about optimal behaviors in a framework which can only be defined for a set behavior, is nonsensical. What is needed is a model framework which is invariant to different behaviors. Therefore MDPs are not defined as a stochastic process, but rather as a rulebook on how to create a stochastic process from a given behavior. 
+
+The questions we ask the model are also different.  MDPs are more interested into evaluating different behaviors and finding optimal ones, while Markov Processes try to describe an existing phenomenon. Though we will find, that -- given a behavior which is memoryless as well (without the dotted lines in the diagram) -- the resulting stochastic process \((X_t,A_t,R_{t+1},t\in\N_0)\) is a Markov Process, so the theory of Markov Processes could in principle be applied. But this will not be our focus. 
 
 Just like with Markov Chains, the memorylessness could be circumvented by including the history in the current state, massively increasing the state space in the process. Which means it is questionable whether this would yield any interesting results, as then no state is visited twice. So it is of no use to an actor to learn the value of an action in a certain state without further assumptions.
 
@@ -48,11 +127,11 @@ Lastly, to ease ourselves into the abstract definition of MDPs, let us do one ex
 		&f(x,a,d)\coloneqq \left(x-d\wedge x + a,\; p(d\wedge x) - a - q(x - d\wedge x)\right)\\
 		&\implies f(x_t,a_t,d_t)=(x_{t+1}, r_{t+1})
 	\end{align*}
-	Now assume that the demand is a random variable \(D_t\) which are independent and identically distributed (iid) for all \(t\). This makes all the other objects (except for the actions) neccessarily random variables too. Then distribution of \((X_{t+1},R_{t+1})\) conditional on \(X_t=x, A_t=a\) is defined to be the \emph{transition probability kernel} \(\cP_0\) with
+	Now assume that the demand is a random variable \(D_t\) which are independent and identically distributed (iid) for all \(t\). This makes all the other objects (except for the actions) neccessarily random variables too. Then distribution of \((X_{t+1},R_{t+1})\) conditional on \(X_t=x, A_t=a\) is defined to be the \emph{transition probability kernel} \(\cP\) with
 	\begin{align*}
-		\cP_0(\cdot \mid x, a)\coloneqq\Pr_{f(x,a,D_t)}\xeq{\text{iid}} \Pr_{f(x,a,D_0)}
+		\cP(\cdot \mid x, a)\coloneqq\Pr_{f(x,a,D_t)}\xeq{\text{iid}} \Pr_{f(x,a,D_0)}
 	\end{align*}
-	Note that knowledge of the transition kernel \(\cP_0\) is equivalent to knowledge of the transition function \(f\) and the distribution of the demand. Transition kernels reduces the clutter caused by exogenous random variables which are different from application to application and are unknown until the next state is realized at which point their knowledge is useless. We will therefore define this MDP to be \(\cM=(\cX,\cA,\cP_0)\).
+	Note that knowledge of the transition kernel \(\cP\) is equivalent to knowledge of the transition function \(f\) and the distribution of the demand. Transition kernels reduces the clutter caused by exogenous random variables which are different from application to application and are unknown until the next state is realized at which point their knowledge is useless. We will therefore define this MDP to be \(\cM=(\cX,\cA,\cP)\).
 
 	A stationary behavior in this example would be a probability distribution over the possible orders, given the current state
 	\begin{align*}
@@ -86,16 +165,16 @@ But to properly define the transition probabilities given an action in a certain
 \end{definition}
 
 \begin{definition}
-	\(\cM=(\cX,\cA,\cP_0) \) is called a \emph{(finite) Markov Decision Process} (MDP), where
+	\(\cM=(\cX,\cA,\cP) \) is called a \emph{(finite) Markov Decision Process} (MDP), where
 	\begin{description}[noitemsep]
 		\item[\(\cX\)] is a countable (finite) set of states,
 		\item[\(\cA=(\cA_x)_{x\in\cX}\)] with \(A_x\) the countable (finite) set of possible actions in state \(x\),
-		\item[\(\cP_0\colon (\cX\times\cA) \times \sigma_{\cX\times\R} \to \R\)] is a probability kernel, with the notation 
+		\item[\(\cP\colon (\cX\times\cA) \times \sigma_{\cX\times\R} \to \R\)] is a probability kernel, with the notation 
 		\begin{align}\label{notation: XxA}
 			\cX\times\cA\coloneqq \{(x,a): x\in\cX, a\in\cA_x \} 
 		\end{align}
-		\item[\(\cX\times\R\)] represents the next state and the reward. So \(\cP_0(\cdot\mid x,a) \) represents the probability distribution over the next states and rewards given an action \(a\) in the state \(x\).
-		\item[\(\cP_0\)] is called the \emph{transition probability kernel}, or in short transition kernel.  
+		\item[\(\cX\times\R\)] represents the next state and the reward. So \(\cP(\cdot\mid x,a) \) represents the probability distribution over the next states and rewards given an action \(a\) in the state \(x\).
+		\item[\(\cP\)] is called the \emph{transition probability kernel}, or in short transition kernel.  
 	\end{description}
 \end{definition}
 \begin{remark}\label{split state/reward transition kernel }
@@ -180,7 +259,7 @@ Second, we need an action selection rule
 	\]
 \end{definition}
 
-Now we define inductively: \((X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t)\) with the Markov property (well defined c.f. \ref{well defined markov property}), i.e.
+Now we define inductively: \((X_{t+1}, R_{t+1})\sim\cP(\cdot\mid X_t, A_t)\) with the Markov property (well defined c.f. \ref{well defined markov property}), i.e.
 \begin{align}
 \label{X,R Markov}
 	&\Pr[(X_{t+1}, R_{t+1})=(x,r)\mid (X_t,A_t)]\\
@@ -189,34 +268,63 @@ Now we define inductively: \((X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t)\) w
 \end{align}
 resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\)
 \begin{remark}\label{well defined markov property}\fxnote{remark? lemma? prop?}
-	\((X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t)\) with the Markov property, is well defined i.e.:
+	\((X_{t+1}, R_{t+1})\sim\cP(\cdot\mid X_t, A_t)\) with the Markov property, is well defined i.e.:
+	There exists a \(\cX\times\R\)-valued random variable \((X_{t+1}, R_{t+1})\)
+	such that
 	\begin{align*}
-		&\exists (X_{t+1}, R_{t+1})\ \cX\times\R\text{-valued random variable}: \\ 
-		&\qquad (X_{t+1}, R_{t+1})\sim\cP_0(\cdot\mid X_t, A_t) \text{ and satisfies the Markov property}
+		(X_{t+1}, R_{t+1})\sim\cP(\cdot\mid X_t, A_t) \text{ and it satisfies the Markov property}
 	\end{align*}
 	(analogous \(A_t\) well defined)
 \end{remark}
 \begin{proof}
-	\fxfatal{proof}
-	Idea is to use the pseudo inverse of distribution functions on independent uniformly distributed random variables
-
-	Main Issue: only works on real valued random variables
-	Solution: injective measureable mapping from \(\cX\times\R\) to \(\R\). (Ugly idea)
+	As we want to use cumulative distribution functions (cdf) for this proof, we first embed the \(cX\times\R\) in \(\R\). Since \(\cX\) is countable there exists an injective measurable mapping \(g\colon \cX\to\N\)
+	and because there exist an injective sigmoid function \(\sigma\colon \R\to(0,1)\), there exists an injective measurable function
+	\begin{align*}
+		f\colon
+		\begin{cases}
+			\cX\times\R \to \R \\
+			(x,r)\to g(x)+\sigma(r)
+		\end{cases}
+	\end{align*}
+	This allows us to define a probability kernel on the real numbers and the corresponding cdf
+	\begin{align*}
+		\tilde{\cP}(\cdot\mid x,a)&\coloneqq \Pr_{f\circ Y} \text{ where } Y\sim \cP(\cdot\mid x,a)\\
+		F_{x,a}(y)&\coloneqq \tilde{\cP}( (-\infty,y]\mid x,a)
+	\end{align*}
+	Now we select \(U\sim \cU(0,1)\) independent from the entire history, then 
+	\begin{align*}
+		F^\leftarrow_{x,a}(U) \sim \tilde{\cP}(\cdot\mid x,a) 
+		\ximplies{\text{\ref{appx2}}} f^{-1}\circ F^\leftarrow_{x,a}(U)\sim \cP(\cdot \mid x,a)
+	\end{align*}
+	where \(F^\leftarrow\) is the pseudo-inverse (\ref{appx3}).	Thus 
+	\[
+		(X_{t+1},R_{t+1})\coloneqq f^{-1}\circ 
+		F^\leftarrow_{X_t, A_t}(U) \sim \cP(\cdot \mid X_t, A_t)
+	\]
+	fulfills the first requirement and is also markov. To show the markov property we first define a shorthand for the history
+	\[
+		\cH_s^t\coloneqq \{(X_t,A_t,R_{t+1})\in H_t,\dots,(X_s,A_s,R_{s+1})\in H_s \}
+	\]
+	where \(H_i\) is defined as
+	\[
+		H_i\coloneqq\{(x_i,a_i)\}\times U_i \in \sigma_{\cX\times\cA\times\R}
+	\]
+	With this notation we can now finish the proof
+	\begin{align*}
+		\Pr(f^{-1}\circ F^\leftarrow_{X_t, A_t}(U) \in A \mid \cH_0^t)
+		&=\frac{\Pr(f^{-1}\circ F^\leftarrow_{x_t, a_t}(U) \in A, \cH_0^t)}{
+			\Pr(\cH_0^t)}\\
+		&\lxeq{\text{U indep.}}\Pr(f^{-1}\circ F^\leftarrow_{x_t, a_t}(U) \in A)\\
+		&=\dotsc = \Pr(f^{-1}\circ F^\leftarrow_{X_t, A_t}(U) \in A \mid \cH_t^t)\qedhere
+	\end{align*}
 \end{proof}
 
 \begin{prop}\label{statPolicy induces time-homogeneous MC}
 	A (stationary) markov  policy \(\pi\) induces a (time homogeneous) Markov chain \((X_t,A_t,R_{t+1},t\in\N_0)\).
 \end{prop}
 \begin{proof} 
-	We first define a shorthand for the history
-	\[
-		\cH_s^t\coloneqq \{(X_t,A_t,R_{t+1})\in H_t,\dots,(X_s,A_s,R_{s+1})\in H_s \}
-	\]
-	where 
-	\[
-		H_i=\{(x_i,a_i)\}\times U_i \in \sigma_{\cX\times\cA\times\R}
-	\]
-	Then together with 
+
+	Using the shorthand for the history defined in the last proof together with 
 	\[
 		\Pr(A\cap B \mid C)
 		=\frac{\Pr(A\cap B\cap C)}{\Pr(B\cap C)}\frac{\Pr(B\cap C)}{\Pr(C)} 
@@ -242,8 +350,8 @@ resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\)
 	
 	Left to show is, that for stationary policies the markov chain is time homogeneous. When the policy is stationary, equation (\ref{time-hom markov chain tangent}) simplifies to
 	\begin{align*}
-		\cP_0(\cX\times U \mid x,a)\pi(a\mid x)
-		\cP_0(\{x\}\times \R \mid x_{t-1}, a_{t-1})
+		\cP(\cX\times U \mid x,a)\pi(a\mid x)
+		\cP(\{x\}\times \R \mid x_{t-1}, a_{t-1})
 	\end{align*}
 	So the distribution of \((X_{t},A_{t},R_{t+1})\) given \(\cH^{t-1}_{t-1}\) is independent of \(t\). The Markov Chain is thus time homogeneous.
 \end{proof} 
@@ -265,7 +373,7 @@ This allows us to define the \emph{return}
 \end{definition}
 
 \begin{definition}
-Let \((Y_{(x,a)}, R_{(x,a)})\sim \cP_0(\cdot\mid x,a) \) be a random variable.
+Let \((Y_{(x,a)}, R_{(x,a)})\sim \cP(\cdot\mid x,a) \) be a random variable.
 \[r(x,a)\coloneqq \E[R_{(x,a)}] \quad\text{ is called \emph{immediate reward function}.}\]
 \end{definition}
 
@@ -274,7 +382,7 @@ Let \((Y_{(x,a)}, R_{(x,a)})\sim \cP_0(\cdot\mid x,a) \) be a random variable.
 %\end{definition}
 With the return we can define value functions.
 
-\begin{definition} Let \(\cM=(\cX,\cA,\cP_0)\) be a MDP. Select a \(X_0\) such that \(\Pr({X_0=x})>0\) for all states \(x\). Then every behavior \(\pi\) results in a stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\).
+\begin{definition} Let \(\cM=(\cX,\cA,\cP)\) be a MDP. Select a \(X_0\) such that \(\Pr({X_0=x})>0\) for all states \(x\). Then every behavior \(\pi\) results in a stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\).
 We indicate with the superscript (e.g. \(\E^\pi\)) which behavior generated the process in the following definitions.
 \begin{align*}
 	&V^\pi\colon
@@ -315,19 +423,19 @@ With the distribution of \(X_0\) set (or \(X_0\) being realized with a fixed val
 This means \(V^\pi, Q^\pi\) are well defined.
 \end{remark}
 
-Some authors include a Time set \(T\) in the tuple \(\cM=(\cX,\cA,\cP_0)\) \parencite[e.g.][]{putermanMarkovDecisionProcesses2005} this allows for finite horizons but not for continuous time, since the transition kernel is defined for discrete steps.
+Some authors include a Time set \(T\) in the tuple \(\cM=(\cX,\cA,\cP)\) \parencite[e.g.][]{putermanMarkovDecisionProcesses2005} this allows for finite horizons but not for continuous time, since the transition kernel is defined for discrete steps.
 
 
 As finite processes are not our focus, we will not do that. But it is possible to achieve finite processes in infinite times with the use of terminal states. The catch is that -- unless you include the time in the state -- you can not guarantee the end of a process at a fixed time. Although including a finite time set in the state space does not blow it up as much as an infinite time set does. So this solution could possibly be acceptable. So we will define the terms around terminal states here although we will not make use of them. \fxnote{We will not use terminal states - true?}  
 
-\begin{definition} Let \(\cM=(\cX,\cA,\cP_0)\) be a MDP
+\begin{definition} Let \(\cM=(\cX,\cA,\cP)\) be a MDP
 	\[
 		\parbox{11em}{\(x\in\cX \) is called a \emph{terminal (absorbing)} state} :\iff \forall s\in\N: \Pr(X_{t+s}=x\mid X_t=x)=1
 	\]
 	An MDP with terminal states is called \emph{episodic}.
 	An \emph{episode} is the random time period \((1,\dots,T)\) until a terminal state is reached.
 \end{definition}
-\begin{remark}\leavevmode\fxwarning{remark on previous page}
+\begin{remark}\leavevmode
 	\begin{itemize}
 		\item The reward in a terminal state is by convention zero, i.e. \(x\) terminal state implies forall actions \(a\in\cA_x\) that \(R_{(x,a)}=0\).
 		\item Episodic MDPs are often undiscounted
@@ -354,7 +462,7 @@ To make some notation shorter, we will now define the state transition kernel as
 	p\colon 
 	\begin{cases}
 		(\cX\times\cA)\times\sigma_\cX\to\R\\
-		(x,a,Y)\mapsto \cP_0(Y\times\R\mid x,a)
+		(x,a,Y)\mapsto \cP(Y\times\R\mid x,a)
 	\end{cases}\text{ is the \emph{\underline{state} transition kernel}.}
 	\] 
 \emph{Notation:} \(p(y\mid x,a)\coloneqq p(\{y\}\mid x,a)\) with \((x,a,y)\in\cX\times\cA\times\cX\)
@@ -1185,8 +1293,11 @@ But what happens if there are no optimal policies? If there are no optimal polic
 	\end{align*}
 \end{proof}
 
-\section{Approximation Methods with Full Information}
-If we have knowledge of all transition probabilities and immediate rewards, we can use \emph{value iteration} and \emph{policy iteration} to approach the optimal value functions.
+
+\section{Dynamic Programming}
+
+If we have full knowledge of all transition probabilities and immediate rewards, we can use \emph{value iteration} and \emph{policy iteration} to approach the optimal value functions. These methods developed by Richard Bellman are known as ``Dynamic Programming'' as they recursively break down the problem using the Bellman equations. Since they use estimates of \(V^*\) to create better estimates, they are also a case of \emph{bootstrapping}.
+
 \begin{definition}Let \(V_0 \in B(\cX)\) or \(Q_0 \in B(\cX\times\cA)\) be arbitrary, then \((V_k, k\in\N_0)\) or \((Q_k, k\in\N_0)\) is called a \emph{value iteration} if
 	\begin{align*}
 		&V_{k+1}\coloneqq T^* V_k && Q_{k+1}\coloneqq T^* Q_k
@@ -1206,7 +1317,7 @@ So picking a \(\pi^\vep\) as in \ref{epsilon optimal} results in
 \end{align*}
 From there the proof is the same as from (\ref{epsilon optimal policy}).
 
-The other iteration, policy iteration, works if a greedy policy can always be selected. Since this requires a supremum over actions to be attained, this can not be guaranteed in general. For finite MDPs this is always the case. 
+The other iteration, policy iteration, works if a greedy policy can always be selected. Since this requires a supremum over actions to be attained, this can not be guaranteed in general. Though for finite MDPs this is always the case. 
  
 \begin{definition} Let \(\pi_0\in\detPolicy\) be an arbitrary deterministic stationary policy. Then
 	\((\pi_k,k\in\N_0)\) is called a \emph{policy iteration} if
@@ -1265,13 +1376,46 @@ But in the finite case policy iteration has some interesting properties
    \end{enumerate}
 \end{corollary}
 \begin{proof}
-	\ref{policy it:1} The equation (\ref{real improvement or optimal}) is either an equality which implies that the current step is optimal since the value function is a fix point of \(T^*\) or it is a true inequality. But that means that the value function truly increases with every policy step and there are only a finite set of deterministic stationary policies on finite MDPs.
-
-	\ref{policy it:2} this 
+	\ref{policy it:1} (Taken from \cite{szepesvariAlgorithmsReinforcementLearning2010}). Consider equation (\ref{real improvement or optimal}). 
+	
+	If it is an equality, then the current step is optimal since the value function is a fix point of \(T^*\). 
+	
+	If it is a true inequality, the value function truly increases in this iteration. 
+	But since there are only a finite set of deterministic stationary policies on finite MDPs
 	\[
-		   T^\pi V= r^\pi +P^\pi V \implies V^\pi = \sum_{k=0}^\infty (\gamma P^\pi)^k r^\pi = (1-\gamma P^\pi)^{-1} r^\pi
+		|\detPolicy| = |\{\pi:\cX\to \cA_x\}| = \prod_{x\in\cX} |\cA_x | < \infty
+	\]
+	there is only a finite set of value functions \(V^\pi\) which means that it has to stop increasing after a finite number of steps. 
+
+	\ref{policy it:2} Let \(\cX = \{x_1,\dots,x_n\}\) be the finite state set. Then we can interpret \(V\colon \cX\to \R\) as a vector of \(\R^n\) and define
+ 	\begin{align*}
+		r^\pi &\coloneqq (r(x_1,\pi(x_1)),\dots, r(x_n,\pi(x_n)))^T \in \R^n\\
+		P^\pi &\coloneqq 
+		\begin{pmatrix}
+			p(x_1 \mid x_1,\pi(x_1)) & \cdots & p(x_n \mid x_1, \pi(x_1))\\
+			\vdots & & \vdots\\
+			p(x_1 \mid x_n,\pi(x_n)) & \cdots & p(x_n \mid x_n, \pi(x_n))
+		\end{pmatrix}
+	\end{align*}
+	This allows us to write
+	\[
+		   T^\pi V= r^\pi +\gamma P^\pi V 
+	\]
+	And since the Banach fixpoint iteration can be started with any bounded value function, it can in particular be started with the zero function or rather vector. Therefore by induction with induction basis (\(k=1\))
+	\[ (T^\pi)^k 0 = r^\pi = \sum_{i=0}^{k-1} (\gamma P^\pi)^i r^\pi\]
+	and induction step (\(k\to k+1\))
+	\begin{align*}
+		(T^\pi)^{k+1} 0 &= T^\pi \left(\sum_{i=0}^{k-1} (\gamma P^\pi)^i r^{\pi}\right)
+		%= r^\pi + \gamma P^\pi \sum_{i=0}^{k-1} (\gamma P^\pi)^i r^{\pi}\\
+		= r^\pi + \sum_{i=0}^{k-1} (\gamma P^\pi)^{i+1} r^\pi
+		= \sum_{i=0}^{k} (\gamma P^\pi)^{i} r^\pi
+	\end{align*}
+	we get
+	\[
+		V^\pi = \sum_{k=0}^\infty (\gamma P^\pi)^k r^\pi = (1-\gamma P^\pi)^{-1} r^\pi \qedhere
 	\]
 \end{proof}
+\fxnote{Write down Algorithm?}
 
 
 

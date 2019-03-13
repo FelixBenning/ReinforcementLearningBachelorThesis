@@ -9,20 +9,32 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.2.1}Outlook}{9}{subsection.1.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.3}Fix-Point Equations for Value Functions}{9}{section.1.3}% 
+\contentsline {section}{\numberline {1.3}Fix-Point Equations for Value Functions}{10}{section.1.3}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.4}Optimal Value Functions}{14}{section.1.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.4.1}Finite Outmatching}{14}{subsection.1.4.1}% 
+\contentsline {subsection}{\numberline {1.4.1}Finite Outmatching}{15}{subsection.1.4.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.4.2}Fix-Point Equations for Optimal Value functions}{16}{subsection.1.4.2}% 
+\contentsline {subsection}{\numberline {1.4.2}Fix-Point Equations for Optimal Value functions}{17}{subsection.1.4.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.5}Optimal policies}{22}{section.1.5}% 
+\contentsline {section}{\numberline {1.5}Optimal policies}{23}{section.1.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.6}Approximation Methods with Full Information}{29}{section.1.6}% 
+\contentsline {section}{\numberline {1.6}Dynamic Programming}{29}{section.1.6}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Appendix}{33}{appendix.A}% 
+\contentsline {chapter}{\numberline {2}Reinforcement Learning Algorithms}{33}{chapter.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Basic Probability Theory}{33}{section.A.1}% 
+\contentsline {section}{\numberline {2.1}Introduction}{33}{section.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Analysis}{33}{section.A.2}% 
+\contentsline {section}{\numberline {2.2}Monte-Carlo}{34}{section.2.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Temporal Difference Learning TD}{34}{section.2.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Mixing Both -- The Generalization TD(\(\gamma \))}{34}{section.2.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Stochastic Approximation -- Convergence Proofs}{35}{chapter.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Appendix}{37}{appendix.A}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}Basic Probability Theory}{37}{section.A.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.2}Analysis}{39}{section.A.2}% 

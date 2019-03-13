@@ -31,5 +31,77 @@
         &=\sum_{n\in\N}\E[X\mid C\cap B_n]\Pr(B_n\mid C) \qedhere
     \end{align*}
 \end{proof}
+\begin{lemma}\label{appx2}
+    Let \((\Omega,\cA,\mu)\) be a measure space and a function \(f\) exists with
+    \begin{align*}
+        &f\colon \Omega \to \R \text{ injective and measureable,} \\
+        &f^{-1}\colon f(\Omega)\to \Omega \text{ measureable.}
+    \end{align*}
+    Then for \(X\) \(\Omega\)-valued random variable and
+    \(Y\) \(f(\Omega)\)-valued random variable
+    \[
+        \Pr_{f\circ X} =\Pr_Y \iff \Pr_X=\Pr_{f^{-1}\circ Y}
+    \]
+\end{lemma}
+\begin{proof}
+    ``\(\Leftarrow\)'' Let \(A\in\cB(\R)\), then w.l.o.g. \(A\subseteq f(\Omega)\) otherwise
+    \[
+        \Pr_{f\circ X}(A)=\Pr(A\cap f(\Omega))+\underbracket{
+            \Pr_{f\circ X}(A\cap f(\Omega)^\complement)
+            }_{=0}=\dotsc=\Pr_Y(A) 
+    \]
+    Thus \(f\circ f^{-1}(A)=A\) holds, which finishes this direction with
+    \begin{align*}
+        \Pr_{f\circ X}(A)
+        &=\Pr(X^{-1}\circ f^{-1}(A))=\Pr_X(f^{-1}(A))\\
+        &=Pr_{f^{-1}\circ Y}(f^{-1}(A))=\Pr(Y^{-1}\circ f\circ f^{-1}(A))\\
+        &=\Pr_Y(A)
+    \end{align*}
+    ``\(\Rightarrow\)'' Let \(A\in\cA\), then
+    \begin{align*}
+        \Pr_X(A)&=\Pr(X^{-1}\circ f^{-1}\circ f(A))=\Pr_{f\circ X}(f(A))\\
+        &=\Pr_Y(f(A))=\Pr(Y^{-1}\circ f(A))\\
+        &=\Pr_{f^{-1}\circ Y}(A) \qedhere
+    \end{align*}
+\end{proof}
+\begin{definition}[Pseudo-inverse]\label{appx3}
+    Let \(F\) be a cumulative distribution function, then 
+    \[F^\leftarrow (y) \coloneqq \inf\{x\in\R : F(x)\ge y \}\]
+    is called the \emph{Pseudo-inverse} of \(F\).
+\end{definition}
+\begin{lemma}
+    Let \(F\) be a cdf, then
+    \begin{enumerate}[label=(\roman*), font=\normalfont]
+        \item\label{appx3:i} \(
+            F^\leftarrow (y)\le x \iff y \le F(x)
+        \)
+        \item\label{appx3:ii} \(U\sim\cU(0,1) \implies F^\leftarrow(U) \sim F \)
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \ref{appx3:i} ``\(\Rightarrow\)'' \fxfatal{proof}
+    \begin{align*}
+        y&\le \inf_{x\in \{z\in\R: F(z)\ge y\}} F(x) 
+        \xeq{\substack{
+            \text{F right-}\\
+            \text{continuous}}
+        } F(\inf\{z\in\R: F(z)\ge y\})
+        \xeq{\text{def.}} F(F^\leftarrow(y))\\
+        &\le F(x)
+    \end{align*}
+    Where the last inequality follows from the assumption \(F^\leftarrow (y)\le x\) and F being non decreasing.
+
+    \noindent ``\(\Leftarrow\)'' Follows simply from the fact that x is included in the set of the infimum. 
+    \begin{align*}
+        y\le F(x) \implies F^\leftarrow (y) = \inf\{z\in\R:F(z)\ge y\} \le x
+    \end{align*}
+
+    \noindent \ref{appx3:ii} is a simple corollary from \ref{appx3:i}
+    \[
+        \Pr(F^\leftarrow (U)\le x) 
+        \xeq{\text{\ref{appx3:i}}} \Pr(U\le F(x)) = F(x) 
+        \qedhere
+    \]
+\end{proof}
 \section{Analysis}
 \endinput
