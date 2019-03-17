@@ -19,90 +19,6 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
-    \entry{langeBatchReinforcementLearning2012}{incollection}{useprefix=true}
-      \name{author}{3}{}{%
-        {{uniquename=0,uniquepart=base,hash=eb0c3521aaad8bb21bb052214ae15910}{%
-           family={Lange},
-           familyi={L\bibinitperiod},
-           given={Sascha},
-           giveni={S\bibinitperiod},
-           givenun=0}}%
-        {{uniquename=0,uniquepart=base,hash=e2ac534a758a01d2f71dca4f0de0a9d6}{%
-           family={Gabel},
-           familyi={G\bibinitperiod},
-           given={Thomas},
-           giveni={T\bibinitperiod},
-           givenun=0}}%
-        {{uniquename=0,uniquepart=base,hash=9449802bcb467309c0ebced658096818}{%
-           family={Riedmiller},
-           familyi={R\bibinitperiod},
-           given={Martin},
-           giveni={M\bibinitperiod},
-           givenun=0}}%
-      }
-      \name{editor}{2}{}{%
-        {{hash=a6855779cbaaf0280e06a4d858e5136d}{%
-           family={Wiering},
-           familyi={W\bibinitperiod},
-           given={Marco},
-           giveni={M\bibinitperiod}}}%
-        {{hash=dde7efb52fcf5e2fad203f10f1ba90ce}{%
-           family={Otterlo},
-           familyi={O\bibinitperiod},
-           given={Martijn},
-           giveni={M\bibinitperiod},
-           prefix={van},
-           prefixi={v\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Berlin, Heidelberg}%
-      }
-      \list{publisher}{1}{%
-        {Springer Berlin Heidelberg}%
-      }
-      \strng{namehash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
-      \strng{fullhash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
-      \strng{bibnamehash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
-      \strng{authorbibnamehash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
-      \strng{authornamehash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
-      \strng{authorfullhash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
-      \strng{editorbibnamehash}{b30b771391670cd7ae6157e722016025}
-      \strng{editornamehash}{b30b771391670cd7ae6157e722016025}
-      \strng{editorfullhash}{b30b771391670cd7ae6157e722016025}
-      \field{sortinit}{L}
-      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Batch reinforcement learning is a subfield of dynamic programming-based reinforcement learning. Originally defined as the task of learning the best possible policy from a fixed set of a priori-known transition samples, the (batch) algorithms developed in this field can be easily adapted to the classical online case, where the agent interacts with the environment while learning. Due to the efficient use of collected data and the stability of the learning process, this research area has attracted a lot of attention recently. In this chapter, we introduce the basic principles and the theory behind batch reinforcement learning, describe the most important algorithms, exemplarily discuss ongoing research within this field, and briefly survey real-world applications of batch reinforcement learning.}
-      \field{booktitle}{Reinforcement {{Learning}}: {{State}}-of-the-{{Art}}}
-      \field{isbn}{978-3-642-27645-3}
-      \field{langid}{english}
-      \field{series}{Adaptation, {{Learning}}, and {{Optimization}}}
-      \field{title}{Batch {{Reinforcement Learning}}}
-      \field{urlday}{22}
-      \field{urlmonth}{2}
-      \field{urlyear}{2019}
-      \field{year}{2012}
-      \field{dateera}{ce}
-      \field{urldateera}{ce}
-      \field{pages}{45\bibrangedash 73}
-      \range{pages}{29}
-      \verb{doi}
-      \verb 10.1007/978-3-642-27645-3_2
-      \endverb
-      \verb{file}
-      \verb C:\\Users\\felix\\Zotero\\storage\\P3KVYLAG\\Lange et al. - 2012 - Batch Reinforcement Learning.pdf
-      \endverb
-      \verb{urlraw}
-      \verb https://doi.org/10.1007/978-3-642-27645-3_2
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1007/978-3-642-27645-3_2
-      \endverb
-      \keyw{Batch Learning,Multiagent System,Neural Information Processing System,Policy Iteration,Reinforcement Learning}
-    \endentry
     \entry{putermanMarkovDecisionProcesses2005}{book}{}
       \name{author}{1}{}{%
         {{uniquename=0,uniquepart=base,hash=b4258b9291d903d97b69d703eebf790a}{%
@@ -142,6 +58,54 @@
       \verb{file}
       \verb C:\\Users\\felix\\Zotero\\storage\\VNB8FB4L\\Puterman - 2005 - Markov decision processes discrete stochastic dyn.pdf
       \endverb
+    \endentry
+    \entry{suttonReinforcementLearningIntroduction2018a}{book}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=eb920e5277d3d5fd0903f3cd41e11871}{%
+           family={Sutton},
+           familyi={S\bibinitperiod},
+           given={Richard\bibnamedelima S.},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=32a0a208f8bcf56a13b0a8e618aa806a}{%
+           family={Barto},
+           familyi={B\bibinitperiod},
+           given={Andrew\bibnamedelima G.},
+           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Cambridge, Massachusetts}%
+      }
+      \list{publisher}{1}{%
+        {The MIT Press}%
+      }
+      \strng{namehash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{fullhash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{bibnamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{authorbibnamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{authornamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{authorfullhash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{"Reinforcement learning, one of the most active research areas in artificial intelligence, is a computational approach to learning whereby an agent tries to maximize the total amount of reward it receives while interacting with a complex, uncertain environment. In Reinforcement Learning, Richard Sutton and Andrew Barto provide a clear and simple account of the field's key ideas and algorithms."--}
+      \field{edition}{Second edition}
+      \field{isbn}{978-0-262-03924-6}
+      \field{langid}{english}
+      \field{pagetotal}{526}
+      \field{series}{Adaptive Computation and Machine Learning Series}
+      \field{shorttitle}{Reinforcement Learning}
+      \field{title}{Reinforcement Learning: An Introduction}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb C:\\Users\\felix\\Zotero\\storage\\6YKDX3JJ\\RLbook2018.pdf
+      \endverb
+      \keyw{Reinforcement learning}
     \endentry
     \entry{szepesvariAlgorithmsReinforcementLearning2010}{article}{}
       \name{author}{1}{}{%

@@ -93,7 +93,7 @@ The questions we ask the model are also different.  MDPs are more interested int
 
 Just like with Markov Chains, the memorylessness could be circumvented by including the history in the current state, massively increasing the state space in the process. Which means it is questionable whether this would yield any interesting results, as then no state is visited twice. So it is of no use to an actor to learn the value of an action in a certain state without further assumptions.
 
-To illustrate the uses of such a framework, I have selected a few examples from \textcite{whiteRealApplicationsMarkov1985}:
+To illustrate the uses of such a framework, I have selected a few examples from \textcite{whiteRealApplicationsMarkov1985}: \fxnote{more diverse examples}
 \begin{enumerate}
 	\item Resource Management: The state is the resource level
 	\begin{itemize}
@@ -180,7 +180,7 @@ But to properly define the transition probabilities given an action in a certain
 \begin{remark}\label{split state/reward transition kernel }
 	Most authors split the transition kernel into a state transition kernel and a reward kernel \parencite[e.g.][]{putermanMarkovDecisionProcesses2005}. But since it is easier to define a marginal distribution from a joint distribution than vice versa, and since this notation is more compact I will stick to the definition from \textcite{szepesvariAlgorithmsReinforcementLearning2010}. 
 	
-	We will spare ourselves the complications of changing transition kernels over time. Just like the memorylessness this could be circumvented by including time in the state. But if an algorithm is to learn which actions are optimal in which state, then both changing transition kernels over time and state spaces where you never visit any state twice (since the time is included) make it impossible to learn ``the rules of the game'' without assumptions on how the rules change over time. If such assumptions can be made it is usually easier to bake them into the state space. For example if you would like to introduce changing demand distributions over time in our inventory management example (\ref{example: inventory mgmt}), you could add the current expected demand to the state. Also adding the current market penetration, changes in the demand distribution can be modelled with a stationary transition kernel. 
+	We will spare ourselves the complications of changing transition kernels over time. Just like the memorylessness this could be circumvented by including time in the state. But if an algorithm is to learn which actions are optimal in which state, then both changing transition kernels over time and state spaces where you never visit any state twice (since the time is included) make it impossible to learn ``the rules of the game'' without assumptions on how the rules change over time. If such assumptions can be made it is usually easier to bake them into the state space. For example if you would like to introduce changing demand distributions over time in our inventory management example (\ref{example: inventory mgmt}), you could add the current expected demand to the state and the current market penetration. Then changes in the demand distribution can be modelled with a stationary transition kernel. 
 \end{remark}
 
 According to \textcite{putermanMarkovDecisionProcesses2005} some authors call this tuple a Markov Decision Problem instead of Markov Decision Process, presumably to reserve the term Markov Decision Process for the resulting sequence of states, actions and rewards \((X_t,A_t,R_{t+1},t\in\N_0)\), aligning the Definition with the definition of a Markov process. Although this does not appear to be common practice.
@@ -382,7 +382,7 @@ Let \((Y_{(x,a)}, R_{(x,a)})\sim \cP(\cdot\mid x,a) \) be a random variable.
 %\end{definition}
 With the return we can define value functions.
 
-\begin{definition} Let \(\cM=(\cX,\cA,\cP)\) be a MDP. Select a \(X_0\) such that \(\Pr({X_0=x})>0\) for all states \(x\). Then every behavior \(\pi\) results in a stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\).
+\begin{definition} Let \(\cM=(\cX,\cA,\cP)\) be a MDP. Assume an exploring start, i.e. select \(X_0\) such that \(\Pr({X_0=x})>0\) for all states \(x\). Then every behavior \(\pi\) results in a stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\).
 We indicate with the superscript (e.g. \(\E^\pi\)) which behavior generated the process in the following definitions.
 \begin{align*}
 	&V^\pi\colon
@@ -413,7 +413,7 @@ We indicate with the superscript (e.g. \(\E^\pi\)) which behavior generated the 
 	\end{cases}
 	&& \parbox{13em}{is called \emph{optimal action value function},}
 \end{align*}
-\footnotetext[1]{Well defined because \(\Pr(X_0=x)>0\)}
+\footnotetext[1]{Well defined because \(\Pr(X_0=x)>0\). Note that the definition is independent of the distribution of \(X_0\) and \(V^\pi\) can thus be defined as an inherent property of the MDP even when the actual start of the MDP is not exploring.}
 \footnotetext[2]{Well defined because \(A_1\sim \pi_1(\cdot\mid (x,a,r_0), x_1)\) is defined for all \(a\) regardless of \(\pi_0\)}
 and \(\pi\) is called \emph{optimal} \(:\iff V^*=V^\pi\).
 \end{definition}
@@ -421,6 +421,16 @@ and \(\pi\) is called \emph{optimal} \(:\iff V^*=V^\pi\).
 \begin{remark}
 With the distribution of \(X_0\) set (or \(X_0\) being realized with a fixed value \(x\)), the distribution of \(X_t, A_t,R_{t+1}\) is inductively determined for all \(t\in\N_0\). The conditional expectation is thus unique for a given \(X_0=x\), for all possible realizations of the MDP with a given behavior.
 This means \(V^\pi, Q^\pi\) are well defined.
+\end{remark}
+
+\begin{remark}
+	While the following proofs do not require discrete state and action spaces per se (as all the sums could just be replaced by integrals), the optimal value functions need not be measurable \parencite[157]{putermanMarkovDecisionProcesses2005} \fxnote{he quotes Blackwell 1965 - quote blackwell directly?}. To remedy this \citeauthor{putermanMarkovDecisionProcesses2005} suggests to either
+	\begin{itemize}[noitemsep]
+		\item impose regularity conditions which would ensure measuability,
+		\item use outer integrals to avoid measuability issues altogether,
+		\item or extend notions of measuability.
+	\end{itemize}
+	But since the real world is finite in basically every case anyway we will spare ourselves the trouble. 
 \end{remark}
 
 Some authors include a Time set \(T\) in the tuple \(\cM=(\cX,\cA,\cP)\) \parencite[e.g.][]{putermanMarkovDecisionProcesses2005} this allows for finite horizons but not for continuous time, since the transition kernel is defined for discrete steps.
@@ -509,7 +519,7 @@ This is almost what we want since \(r(x,a)=\E[R_{(x,a)}] \), so we just need to 
 	&\tilde{X}_{t}\coloneqq X_{t+1}, && \tilde{A}_t\coloneqq A_{t+1},
 	&&\tilde{R}_{t}\coloneqq R_{t+1},
 \end{align*}
-then \((\tilde{X}_t,\tilde{A}_t,\tilde{R}_{t+1}, t\in\N_0)\) is an \fxerror*{or realization or "Markov Action Process"? or something else?}{evaluation} of the MDP with the (stationary!) policy \(\pi\).
+then \((\tilde{X}_t,\tilde{A}_t,\tilde{R}_{t+1}, t\in\N_0)\) is an \fxfatal*{or realization or "Markov Action Process"? or something else?}{evaluation} of the MDP with the (stationary!) policy \(\pi\).
 \end{proof}
 
 \begin{corollary}\label{V^pi,Q^pi relation} 
@@ -1095,8 +1105,8 @@ Let us first consider the case where the supremum can be attained, since this in
 	\[
 	\tilde{\pi}(x)\coloneqq\arg\max_{a\in\cA_x} Q(x,a)\qquad x\in\cX
 	\]
-	\(\tilde{\pi}(x)\) is called \emph{greedy} with respect to Q in \(x\in\cX\)\\
-	\(\tilde{\pi}\) is called \emph{greedy} w.r.t. Q
+	\(\tilde{\pi}(x)\) is called \emph{greedy} with respect to Q in \(x\in\cX\).\\
+	\(\tilde{\pi}\) is called \emph{greedy} w.r.t. Q.
 \end{definition}
 
 \begin{remark}\leavevmode
@@ -1109,7 +1119,7 @@ Let us first consider the case where the supremum can be attained, since this in
 
 Now we show how we can construct an optimal stationary policy from an arbitrary optimal policy. We will break this problem into two parts. First we construct an optimal markovian policy, and then we construct an optimal stationary policy from the optimal markovian policy. The first step is taken from \textcite[134-137]{putermanMarkovDecisionProcesses2005}.
 
-\begin{prop}
+\begin{prop}[Puterman]
 	Let \(\pi\in\Pi\). Then, for each \(x\in\cX\), there exists a markovian policy \(\pi^{x}\) satisfying
 	\[\Pr^{\pi^x}(X_t=y,A_t=a\mid X_0=x)=\Pr^\pi(X_t=y,A_t=a\mid X_0=x)\quad \forall t\in\N_0 \]
 	where \(\Pr^\pi\) indicates that the sequence 
@@ -1148,7 +1158,7 @@ Now we show how we can construct an optimal stationary policy from an arbitrary 
 		&=\Pr^{\pi^x}[X_t=y, A_t=a \mid X_0=x]\qedhere
 	\end{align*}
 \end{proof}
-\begin{corollary}
+\begin{corollary}[Puterman]
 	For (an optimal) policy \(\pi\in\Pi\) exist markovian policies \(\pi^x\) for all \(x\in\cX\) such that
 	\[
 		V^\pi(x)=V^{\pi^x}(x)	
@@ -1253,8 +1263,8 @@ In Summary: With an arbitrary optimal policy we can construct an optimal station
 
 But what happens if there are no optimal policies? If there are no optimal policies can one sequence of deterministic policies get arbitrarily close to the optimal value function for \emph{every} starting state? We are now able to answer the question we were not quite ready to answer in Finite Outmatching \fxnote{is this Title fix?}  (c.f \ref{finite outmatching}).
 
-\begin{prop}\label{epsilon optimal}
-	For every \(\varepsilon>0\) exists a deterministic stationary policy \(\pi^\varepsilon\) such that \(V^* \le V^{\pi_\varepsilon} \).
+\begin{prop}[\(\vep\)-Optimal Policies]\label{epsilon optimal}
+	For every \(\varepsilon>0\) exists a deterministic stationary policy \(\pi^\varepsilon\) such that \(V^* \le V^{\pi_\varepsilon}+\vep \).
 \end{prop}
 \begin{proof}
 	Be \(\varepsilon>0 \) arbitrary,  define \(\delta\coloneqq \vep (1-\gamma) \). Because of this
@@ -1319,7 +1329,7 @@ From there the proof is the same as from (\ref{epsilon optimal policy}).
 
 The other iteration, policy iteration, works if a greedy policy can always be selected. Since this requires a supremum over actions to be attained, this can not be guaranteed in general. Though for finite MDPs this is always the case. 
  
-\begin{definition} Let \(\pi_0\in\detPolicy\) be an arbitrary deterministic stationary policy. Then
+\begin{definition}\label{policy iteration} Let \(\pi_0\in\detPolicy\) be an arbitrary deterministic stationary policy. Then
 	\((\pi_k,k\in\N_0)\) is called a \emph{policy iteration} if
 	\[
 		\pi_{k+1}\in\detPolicy \text{ is greedy with regard to } Q^{\pi_k}
@@ -1376,7 +1386,7 @@ But in the finite case policy iteration has some interesting properties
    \end{enumerate}
 \end{corollary}
 \begin{proof}
-	\ref{policy it:1} (Taken from \cite{szepesvariAlgorithmsReinforcementLearning2010}). Consider equation (\ref{real improvement or optimal}). 
+	\ref{policy it:1} \parencite{szepesvariAlgorithmsReinforcementLearning2010} Consider equation (\ref{real improvement or optimal}). 
 	
 	If it is an equality, then the current step is optimal since the value function is a fix point of \(T^*\). 
 	

@@ -2003,11 +2003,15 @@
     <bcf:citekey order="5">putermanMarkovDecisionProcesses2005</bcf:citekey>
     <bcf:citekey order="6">putermanMarkovDecisionProcesses2005</bcf:citekey>
     <bcf:citekey order="7">putermanMarkovDecisionProcesses2005</bcf:citekey>
-    <bcf:citekey order="8">szepesvariAlgorithmsReinforcementLearning2010</bcf:citekey>
+    <bcf:citekey order="8">putermanMarkovDecisionProcesses2005</bcf:citekey>
     <bcf:citekey order="9">putermanMarkovDecisionProcesses2005</bcf:citekey>
-    <bcf:citekey order="10">putermanMarkovDecisionProcesses2005</bcf:citekey>
-    <bcf:citekey order="11">szepesvariAlgorithmsReinforcementLearning2010</bcf:citekey>
-    <bcf:citekey order="12">langeBatchReinforcementLearning2012</bcf:citekey>
+    <bcf:citekey order="10">szepesvariAlgorithmsReinforcementLearning2010</bcf:citekey>
+    <bcf:citekey order="11">putermanMarkovDecisionProcesses2005</bcf:citekey>
+    <bcf:citekey order="12">putermanMarkovDecisionProcesses2005</bcf:citekey>
+    <bcf:citekey order="13">szepesvariAlgorithmsReinforcementLearning2010</bcf:citekey>
+    <bcf:citekey order="14">suttonReinforcementLearningIntroduction2018a</bcf:citekey>
+    <bcf:citekey order="15">suttonReinforcementLearningIntroduction2018a</bcf:citekey>
+    <bcf:citekey order="16">suttonReinforcementLearningIntroduction2018a</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

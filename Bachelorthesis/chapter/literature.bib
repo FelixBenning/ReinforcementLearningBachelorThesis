@@ -144,7 +144,7 @@ In machine learning, the environment is typically formulated as a Markov Decisio
 
 ~
 
-Confidence Intervall around Q value -$>$ Exploration bonus}
+Confidence Intervall around Q value -{$>$} Exploration bonus}
 }
 
 @incollection{kearnsFiniteSampleConvergenceRates1999,
@@ -253,7 +253,7 @@ Confidence Intervall around Q value -$>$ Exploration bonus}
   series = {Adaptive Computation and Machine Learning},
   publisher = {{MIT Press}},
   date = {1998},
-  keywords = {Bestärkendes Lernen,Lernen,Operantes Lernen,Reinforcement learning,Reinforcement learning (Machine learning),Reinforcement learning (Machine learning); Reinforcement learning (Machine learning),Verstärkendes Lernen,Verstärkungslernen},
+  keywords = {Reinforcement learning,Lernen,Reinforcement learning (Machine learning),Bestärkendes Lernen,Operantes Lernen,Reinforcement learning (Machine learning); Reinforcement learning (Machine learning),Verstärkendes Lernen,Verstärkungslernen},
   author = {Sutton, Richard S.},
   editora = {Barto, Andrew},
   editoratype = {collaborator}
@@ -324,7 +324,7 @@ Confidence Intervall around Q value -$>$ Exploration bonus}
   volume = {25},
   issn = {0003-4851, 2168-8990},
   doi = {10.1214/aoms/1177728794},
-  abstract = {Let H(y∣x)H(y∣x)H(y$\backslash$mid x) be a family of distribution functions depending upon a real parameter x,x,x, and let M(x)=∫∞−∞ydH(y∣x)M(x)=∫−∞∞ydH(y∣x)M(x) = $\backslash$int\^$\backslash$infty\_\{-$\backslash$infty\} y dH(y $\backslash$mid x) be the corresponding regression function. It is assumed M(x)M(x)M(x) is unknown to the experimenter, who is, however, allowed to take observations on H(y∣x)H(y∣x)H(y$\backslash$mid x) for any value x.x.x. Robbins and Monro [1] give a method for defining successively a sequence \{xn\}\{xn\}$\backslash$\{x\_n$\backslash$\} such that xnxnx\_n converges to θθ$\backslash$theta in probability, where θθ$\backslash$theta is a root of the equation M(x)=αM(x)=αM(x) = $\backslash$alpha and αα$\backslash$alpha is a given number. Wolfowitz [2] generalizes these results, and Kiefer and Wolfowitz [3], solve a similar problem in the case when M(x)M(x)M(x) has a maximum at x=θ.x=θ.x = $\backslash$theta. Using a lemma due to Loeve [4], we show that in both cases xnxnx\_n converges to θθ$\backslash$theta with probability one, under weaker conditions than those imposed in [2] and [3]. Further we solve a similar problem in the case when M(x)M(x)M(x) is the median of H(y∣x).H(y∣x).H(y $\backslash$mid x).},
+  abstract = {Let H(y∣x)H(y∣x)H(y\textbackslash{}mid x) be a family of distribution functions depending upon a real parameter x,x,x, and let M(x)=∫∞−∞ydH(y∣x)M(x)=∫−∞∞ydH(y∣x)M(x) = \textbackslash{}int\^\textbackslash{}infty\_\{-\textbackslash{}infty\} y dH(y \textbackslash{}mid x) be the corresponding regression function. It is assumed M(x)M(x)M(x) is unknown to the experimenter, who is, however, allowed to take observations on H(y∣x)H(y∣x)H(y\textbackslash{}mid x) for any value x.x.x. Robbins and Monro [1] give a method for defining successively a sequence \{xn\}\{xn\}\textbackslash\{x\_n\textbackslash\} such that xnxnx\_n converges to θθ\textbackslash{}theta in probability, where θθ\textbackslash{}theta is a root of the equation M(x)=αM(x)=αM(x) = \textbackslash{}alpha and αα\textbackslash{}alpha is a given number. Wolfowitz [2] generalizes these results, and Kiefer and Wolfowitz [3], solve a similar problem in the case when M(x)M(x)M(x) has a maximum at x=θ.x=θ.x = \textbackslash{}theta. Using a lemma due to Loeve [4], we show that in both cases xnxnx\_n converges to θθ\textbackslash{}theta with probability one, under weaker conditions than those imposed in [2] and [3]. Further we solve a similar problem in the case when M(x)M(x)M(x) is the median of H(y∣x).H(y∣x).H(y \textbackslash{}mid x).},
   number = {2},
   journaltitle = {The Annals of Mathematical Statistics},
   shortjournal = {Ann. Math. Statist.},
@@ -376,7 +376,7 @@ Confidence Intervall around Q value -$>$ Exploration bonus}
 }
 
 @inproceedings{vanseijenTrueOnlineTD2014,
-  title = {True {{Online TD}}(\$$\backslash$lambda\$)},
+  title = {True {{Online TD}}(\$\textbackslash{}lambda\$)},
   url = {http://dl.acm.org/citation.cfm?id=3044805.3044884},
   abstract = {TD(λ) is a core algorithm of modern reinforcement learning. Its appeal comes from its equivalence to a clear and conceptually simple forward view, and the fact that it can be implemented online in an inexpensive manner. However, the equivalence between TD(λ) and the forward view is exact only for the off-line version of the algorithm (in which updates are made only at the end of each episode). In the online version of TD(λ) (in which updates are made at each step, which generally performs better and is always used in applications) the match to the forward view is only approximate. In a sense this is unavoidable for the conventional forward view, as it itself presumes that the estimates are unchanging during an episode. In this paper we introduce a new forward view that takes into account the possibility of changing estimates and a new variant of TD(λ) that exactlyachieves it. Our algorithm uses a new form of eligibility trace similar to but different from conventional accumulating and replacing traces. The overall computational complexity is the same as TD(λ), even when using function approximation. In our empirical comparisons, our algorithm outperformed TD(λ) in all of its variations. It seems, by adhering more truly to the original goal of TD(λ)--matching an intuitively clear forward view even in the online case--that we have found a new algorithm that simply improves on classical TD(λ).},
   booktitle = {Proceedings of the 31st {{International Conference}} on {{International Conference}} on {{Machine Learning}} - {{Volume}} 32},
@@ -386,8 +386,36 @@ Confidence Intervall around Q value -$>$ Exploration bonus}
   date = {2014},
   pages = {I-692--I-700},
   author = {Van Seijen, Harm and Sutton, Richard S.},
-  file = {C:\\Users\\felix\\Zotero\\storage\\LPFBLDIJ\\Van Seijen and Sutton - 2014 - True Online TD($lambda$).pdf;D:\\Google Drive\\ZotFiles\\2014Van Seijen_Sutton\\Van Seijen_Sutton_2014_True Online TD($-lambda$).pdf},
+  file = {D:\\Google Drive\\ZotFiles\\2014Van Seijen_Sutton\\Van Seijen_Sutton_2014_True Online TD($-lambda$).pdf},
   venue = {Beijing, China}
+}
+
+@article{blackwellDiscountedDynamicProgramming1965,
+  langid = {english},
+  title = {Discounted {{Dynamic Programming}}},
+  volume = {36},
+  issn = {0003-4851, 2168-8990},
+  doi = {10.1214/aoms/1177700285},
+  abstract = {Project Euclid - mathematics and statistics online},
+  number = {1},
+  journaltitle = {The Annals of Mathematical Statistics},
+  shortjournal = {Ann. Math. Statist.},
+  date = {1965-02},
+  pages = {226-235},
+  author = {Blackwell, David},
+  file = {D:\\Google Drive\\ZotFiles\\1965Blackwell\\Blackwell_1965_Discounted Dynamic Programming.pdf;C:\\Users\\felix\\Zotero\\storage\\63YH8YGS\\1177700285.html}
+}
+
+@report{dvoretzkyStochasticApproximation1956,
+  langid = {english},
+  title = {On {{Stochastic Approximation}}},
+  url = {https://apps.dtic.mil/docs/citations/AD1028378},
+  abstract = {Stochastic approximation is concerned with schemes converging to some sought valuewhen, due to the stochastic nature of the problem, the observations involve errors. Theinteresting schemes are those which are self-correcting, that is, in which a mistake alwaystends to be wiped out in the limit, and in which the convergence to the desired value isof some specified nature, for example, it is mean-square convergence. The typical exampleof such a scheme is the original one of Robbins-Monro [7] for approximating, undersuitable conditions, the point where a regression function assumes a given value. Robbinsand Monro have proved mean-square convergence to the root; Wolfowitz [8] showedthat under weaker assumptions there is still convergence in probability to the root; andBlum [11 demonstrated that, under still weaker assumptions, there is not only convergencein probability but even convergence with probability 1. Kiefer and Wolfowitz [6]have devised a method for approximating the point where the maximum of a regressionfunction occurs. They proved that under suitable conditions there is convergence in probabilityand Blum [1] has weakened somewhat the conditions and strengthened the conclusionto convergence with probability 1.},
+  institution = {{COLUMBIA UNIVERSITY New York City United States}},
+  urldate = {2019-03-16},
+  date = {1956-01-01},
+  author = {Dvoretzky, Aryeh},
+  file = {D:\\Google Drive\\ZotFiles\\1956Dvoretzky\\Dvoretzky_1956_On Stochastic Approximation.pdf;C:\\Users\\felix\\Zotero\\storage\\XCBWQQJ7\\AD1028378.html}
 }
 
 

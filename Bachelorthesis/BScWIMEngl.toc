@@ -25,16 +25,24 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.1}Introduction}{33}{section.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Monte-Carlo}{34}{section.2.2}% 
+\contentsline {section}{\numberline {2.2}Monte Carlo}{35}{section.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Temporal Difference Learning TD}{34}{section.2.3}% 
+\contentsline {subsection}{\numberline {2.2.1}From \(\pi \) to \(\pi ^*\)}{36}{subsection.2.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Mixing Both -- The Generalization TD(\(\gamma \))}{34}{section.2.4}% 
+\contentsline {subsection}{\numberline {2.2.2}The Weakness of Monte Carlo}{40}{subsection.2.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Stochastic Approximation -- Convergence Proofs}{35}{chapter.3}% 
+\contentsline {section}{\numberline {2.3}Temporal Difference Learning TD}{41}{section.2.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Appendix}{37}{appendix.A}% 
+\contentsline {section}{\numberline {2.4}Mixing Both -- The Generalization TD(\(\lambda \))}{41}{section.2.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Basic Probability Theory}{37}{section.A.1}% 
+\contentsline {section}{\numberline {2.5}Q-learning}{41}{section.2.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Analysis}{39}{section.A.2}% 
+\contentsline {section}{\numberline {2.6}Exploration}{41}{section.2.6}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Stochastic Approximation -- Convergence Proofs}{43}{chapter.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Appendix}{45}{appendix.A}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}Basic Probability Theory}{45}{section.A.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.2}Analysis}{47}{section.A.2}% 
