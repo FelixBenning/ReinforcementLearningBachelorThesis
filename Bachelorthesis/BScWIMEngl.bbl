@@ -19,6 +19,123 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{langeBatchReinforcementLearning2012}{incollection}{useprefix=true}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=eb0c3521aaad8bb21bb052214ae15910}{%
+           family={Lange},
+           familyi={L\bibinitperiod},
+           given={Sascha},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=e2ac534a758a01d2f71dca4f0de0a9d6}{%
+           family={Gabel},
+           familyi={G\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=9449802bcb467309c0ebced658096818}{%
+           family={Riedmiller},
+           familyi={R\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=a6855779cbaaf0280e06a4d858e5136d}{%
+           family={Wiering},
+           familyi={W\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod}}}%
+        {{hash=dde7efb52fcf5e2fad203f10f1ba90ce}{%
+           family={Otterlo},
+           familyi={O\bibinitperiod},
+           given={Martijn},
+           giveni={M\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
+      \strng{fullhash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
+      \strng{bibnamehash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
+      \strng{authorbibnamehash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
+      \strng{authornamehash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
+      \strng{authorfullhash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
+      \strng{editorbibnamehash}{b30b771391670cd7ae6157e722016025}
+      \strng{editornamehash}{b30b771391670cd7ae6157e722016025}
+      \strng{editorfullhash}{b30b771391670cd7ae6157e722016025}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Batch reinforcement learning is a subfield of dynamic programming-based reinforcement learning. Originally defined as the task of learning the best possible policy from a fixed set of a priori-known transition samples, the (batch) algorithms developed in this field can be easily adapted to the classical online case, where the agent interacts with the environment while learning. Due to the efficient use of collected data and the stability of the learning process, this research area has attracted a lot of attention recently. In this chapter, we introduce the basic principles and the theory behind batch reinforcement learning, describe the most important algorithms, exemplarily discuss ongoing research within this field, and briefly survey real-world applications of batch reinforcement learning.}
+      \field{booktitle}{Reinforcement {{Learning}}: {{State}}-of-the-{{Art}}}
+      \field{isbn}{978-3-642-27645-3}
+      \field{langid}{english}
+      \field{series}{Adaptation, {{Learning}}, and {{Optimization}}}
+      \field{title}{Batch {{Reinforcement Learning}}}
+      \field{year}{2012}
+      \field{dateera}{ce}
+      \field{pages}{45\bibrangedash 73}
+      \range{pages}{29}
+      \verb{doi}
+      \verb 10.1007/978-3-642-27645-3_2
+      \endverb
+      \verb{file}
+      \verb C:\\Users\\felix\\Zotero\\storage\\P3KVYLAG\\Lange et al. - 2012 - Batch Reinforcement Learning.pdf
+      \endverb
+      \keyw{Batch Learning,Multiagent System,Neural Information Processing System,Policy Iteration,Reinforcement Learning}
+    \endentry
+    \entry{linSelfimprovingReactiveAgents1992}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=fbe995b88920a196d852d2d613da0c32}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Long-Ji},
+           giveni={L\bibinithyphendelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{fbe995b88920a196d852d2d613da0c32}
+      \strng{fullhash}{fbe995b88920a196d852d2d613da0c32}
+      \strng{bibnamehash}{fbe995b88920a196d852d2d613da0c32}
+      \strng{authorbibnamehash}{fbe995b88920a196d852d2d613da0c32}
+      \strng{authornamehash}{fbe995b88920a196d852d2d613da0c32}
+      \strng{authorfullhash}{fbe995b88920a196d852d2d613da0c32}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{To date, reinforcement learning has mostly been studied solving simple learning tasks. Reinforcement learning methods that have been studied so far typically converge slowly. The purpose of this work is thus two-fold: 1) to investigate the utility of reinforcement learning in solving much more complicated learning tasks than previously studied, and 2) to investigate methods that will speed up reinforcement learning.This paper compares eight reinforcement learning frameworks:adaptive heuristic critic (AHC) learning due to Sutton,Q-learning due to Watkins, and three extensions to both basic methods for speeding up learning. The three extensions are experience replay, learning action models for planning, and teaching. The frameworks were investigated using connectionism as an approach to generalization. To evaluate the performance of different frameworks, a dynamic environment was used as a testbed. The environment is moderately complex and nondeterministic. This paper describes these frameworks and algorithms in detail and presents empirical evaluation of the frameworks.}
+      \field{day}{1}
+      \field{issn}{1573-0565}
+      \field{journaltitle}{Machine Learning}
+      \field{langid}{english}
+      \field{month}{5}
+      \field{number}{3}
+      \field{shortjournal}{Mach Learn}
+      \field{title}{Self-Improving Reactive Agents Based on Reinforcement Learning, Planning and Teaching}
+      \field{volume}{8}
+      \field{year}{1992}
+      \field{dateera}{ce}
+      \field{pages}{293\bibrangedash 321}
+      \range{pages}{29}
+      \verb{doi}
+      \verb 10.1007/BF00992699
+      \endverb
+      \verb{file}
+      \verb D:\\Google Drive\\ZotFiles\\1992Lin\\Lin_1992_Self-improving reactive agents based on reinforcement learning, planning and.pdf
+      \endverb
+      \keyw{Reinforcement learning,connectionist networks,planning,teaching}
+    \endentry
     \entry{putermanMarkovDecisionProcesses2005}{book}{}
       \name{author}{1}{}{%
         {{uniquename=0,uniquepart=base,hash=b4258b9291d903d97b69d703eebf790a}{%
@@ -58,6 +175,49 @@
       \verb{file}
       \verb C:\\Users\\felix\\Zotero\\storage\\VNB8FB4L\\Puterman - 2005 - Markov decision processes discrete stochastic dyn.pdf
       \endverb
+    \endentry
+    \entry{suttonLearningPredictMethods1988}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=eb920e5277d3d5fd0903f3cd41e11871}{%
+           family={Sutton},
+           familyi={S\bibinitperiod},
+           given={Richard\bibnamedelima S.},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{eb920e5277d3d5fd0903f3cd41e11871}
+      \strng{fullhash}{eb920e5277d3d5fd0903f3cd41e11871}
+      \strng{bibnamehash}{eb920e5277d3d5fd0903f3cd41e11871}
+      \strng{authorbibnamehash}{eb920e5277d3d5fd0903f3cd41e11871}
+      \strng{authornamehash}{eb920e5277d3d5fd0903f3cd41e11871}
+      \strng{authorfullhash}{eb920e5277d3d5fd0903f3cd41e11871}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This article introduces a class of incremental learning procedures specialized for prediction-that is, for using past experience with an incompletely known system to predict its future behavior. Whereas conventional prediction-learning methods assign credit by means of the difference between predicted and actual outcomes, the new methods assign credit by means of the difference between temporally successive predictions. Although such temporal-difference methods have been used in Samuel's checker player, Holland's bucket brigade, and the author's Adaptive Heuristic Critic, they have remained poorly understood. Here we prove their convergence and optimality for special cases and relate them to supervised-learning methods. For most real-world prediction problems, temporal-difference methods require less memory and less peak computation than conventional methods and they produce more accurate predictions. We argue that most problems to which supervised learning is currently applied are really prediction problems of the sort to which temporal-difference methods can be applied to advantage.}
+      \field{day}{1}
+      \field{issn}{1573-0565}
+      \field{journaltitle}{Machine Learning}
+      \field{langid}{english}
+      \field{month}{8}
+      \field{number}{1}
+      \field{shortjournal}{Mach Learn}
+      \field{title}{Learning to Predict by the Methods of Temporal Differences}
+      \field{volume}{3}
+      \field{year}{1988}
+      \field{dateera}{ce}
+      \field{pages}{9\bibrangedash 44}
+      \range{pages}{36}
+      \verb{doi}
+      \verb 10.1007/BF00115009
+      \endverb
+      \verb{file}
+      \verb D:\\Google Drive\\ZotFiles\\1988Sutton\\Sutton_1988_Learning to predict by the methods of temporal differences.pdf
+      \endverb
+      \keyw{connectionism,credit assignment,evaluation functions,Incremental learning,prediction}
     \endentry
     \entry{suttonReinforcementLearningIntroduction2018a}{book}{}
       \name{author}{2}{}{%

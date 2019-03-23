@@ -29,20 +29,26 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.1}From \(\pi \) to \(\pi ^*\)}{36}{subsection.2.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.2}The Weakness of Monte Carlo}{40}{subsection.2.2.2}% 
+\contentsline {subsection}{\numberline {2.2.2}Shortcomings of Monte Carlo}{40}{subsection.2.2.2}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.3}Temporal Difference Learning TD}{41}{section.2.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Mixing Both -- The Generalization TD(\(\lambda \))}{41}{section.2.4}% 
+\contentsline {subsection}{\numberline {2.3.1}Shortcomings of TD}{43}{subsection.2.3.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.5}Q-learning}{41}{section.2.5}% 
+\contentsline {subsection}{\numberline {2.3.2}Growing Batch Learning}{44}{subsection.2.3.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.6}Exploration}{41}{section.2.6}% 
+\contentsline {section}{\numberline {2.4}TD(\(\lambda \)) -- Mixing Monte Carlo and TD}{46}{section.2.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Stochastic Approximation -- Convergence Proofs}{43}{chapter.3}% 
+\contentsline {section}{\numberline {2.5}Q-learning}{47}{section.2.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Appendix}{45}{appendix.A}% 
+\contentsline {section}{\numberline {2.6}Exploration}{47}{section.2.6}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Basic Probability Theory}{45}{section.A.1}% 
+\contentsline {section}{\numberline {2.7}Function approximation}{47}{section.2.7}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Analysis}{47}{section.A.2}% 
+\contentsline {chapter}{\numberline {3}Stochastic Approximation -- Convergence Proofs}{49}{chapter.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Appendix}{51}{appendix.A}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}Basic Probability Theory}{51}{section.A.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.2}Analysis}{53}{section.A.2}% 

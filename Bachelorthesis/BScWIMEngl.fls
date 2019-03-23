@@ -48,6 +48,8 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ncctools\nccmath.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ncctools\nccmath.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty
@@ -103,6 +105,8 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\moreverb\moreverb.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\moreverb\moreverb.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\verbatim.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\verbatim.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\wrapfig\wrapfig.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\wrapfig\wrapfig.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\algorithmicx\algpseudocode.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\algorithmicx\algpseudocode.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\algorithmicx\algorithmicx.sty

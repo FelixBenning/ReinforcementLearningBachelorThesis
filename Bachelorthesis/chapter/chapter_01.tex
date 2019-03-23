@@ -183,6 +183,7 @@ But to properly define the transition probabilities given an action in a certain
 	We will spare ourselves the complications of changing transition kernels over time. Just like the memorylessness this could be circumvented by including time in the state. But if an algorithm is to learn which actions are optimal in which state, then both changing transition kernels over time and state spaces where you never visit any state twice (since the time is included) make it impossible to learn ``the rules of the game'' without assumptions on how the rules change over time. If such assumptions can be made it is usually easier to bake them into the state space. For example if you would like to introduce changing demand distributions over time in our inventory management example (\ref{example: inventory mgmt}), you could add the current expected demand to the state and the current market penetration. Then changes in the demand distribution can be modelled with a stationary transition kernel. 
 \end{remark}
 
+Some authors prefer to use ``cost'' over ``rewards''. This simply flips the notation and maximization problems become minimization problems. I prefer rewards, as negative rewards have an easier interpretation.
 According to \textcite{putermanMarkovDecisionProcesses2005} some authors call this tuple a Markov Decision Problem instead of Markov Decision Process, presumably to reserve the term Markov Decision Process for the resulting sequence of states, actions and rewards \((X_t,A_t,R_{t+1},t\in\N_0)\), aligning the Definition with the definition of a Markov process. Although this does not appear to be common practice.
 
 Nevertheless we still need to construct that stochastic process from the MDP when we have an action selection rule. 
@@ -445,11 +446,7 @@ As finite processes are not our focus, we will not do that. But it is possible t
 	An MDP with terminal states is called \emph{episodic}.
 	An \emph{episode} is the random time period \((1,\dots,T)\) until a terminal state is reached.
 \end{definition}
-\begin{remark}\leavevmode
-	\begin{itemize}
-		\item The reward in a terminal state is by convention zero, i.e. \(x\) terminal state implies forall actions \(a\in\cA_x\) that \(R_{(x,a)}=0\).
-		\item Episodic MDPs are often undiscounted
-	\end{itemize}	
+\begin{remark} The reward in a terminal state is zero by convention, i.e. \(x\) terminal state implies forall actions \(a\in\cA_x\) that \(R_{(x,a)}=0\)
 \end{remark}
 
 \subsection{Outlook}
