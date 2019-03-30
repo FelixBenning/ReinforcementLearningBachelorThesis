@@ -7,9 +7,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {fixme}{\color {fxnote} some history irrelevant in appendix?}{7}{equation.1.2.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}he quotes Blackwell 1965 - quote blackwell directly?}{9}{prop.1.2.12}% 
+\contentsline {fixme}{\color {fxerror}does this series exist? argument neccessary? c.f. assumption 1 - enough?}{8}{prop.1.2.8}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}We will not use terminal states - true?}{9}{prop.1.2.12}% 
+\contentsline {fixme}{\color {fxnote}he quotes Blackwell 1965 - quote blackwell directly?}{9}{prop.1.2.12}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {fixme}{\color {fxfatal}or realization or "Markov Action Process"? or something else?}{11}{prop.1.3.2}% 
 \defcounter {refsection}{0}\relax 
@@ -47,8 +47,14 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {fixme}{\color {fxnote}Do I need to generalize the def?}{42}{equation.2.3.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}section instead of subsection? chance place? - after TD(lambda), after Q-learning?}{44}{subsection.2.3.2}% 
+\contentsline {fixme}{\color {fxnote}section instead of subsection? chance place? - after TD(lambda), after Q-learning?}{44}{section.2.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}write down algorithm?}{45}{equation.2.3.4}% 
+\contentsline {fixme}{\color {fxnote}write down algorithm?}{45}{equation.2.4.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}``corrected n-step truncated return'' + explanation?}{46}{section.2.4}% 
+\contentsline {fixme}{\color {fxnote}``corrected n-step truncated return'' + explanation?}{46}{subsection.2.5.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}check claim, should I change assumption 1 in the first place?}{48}{equation.2.5.5}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}Quote papers, write down pseudo algos?}{51}{subsection.2.6.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}Dyna-Q+ ?}{54}{section*.11}% 

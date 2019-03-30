@@ -6,7 +6,7 @@ In this introduction I try to convey an intuition for Markov Decision Processes.
 
 A Markov Decision Process appears to be quite similar to a Markov Process at first glance. Where a Markov Process is a stochastic process, i.e. a sequence of random variables \((X_t,t\in\N_0)\), which is memoryless (Markov). That means knowledge of the current state, makes knowledge about past states useless for predicting future states.
 
-Markov Decision Processes (MDPs) introduce actions \((A_t,t\in\N_0)\) and rewards \((R_t,t\in\N)\) to this model. Where the transition to the next state \(X_{t+1}\) given a state \(X_{t}\) and action \(A_{t}\) is markov (memoryless) just like in case of Markov Processes.
+Markov Decision Processes (MDPs) introduce actions \((A_t,t\in\N_0)\) and rewards \((R_t,t\in\N)\) to this model. Where the transition to the next state \(X_{t+1}\) given a state \(X_{t}\) and action \(A_{t}\) is Markov (memoryless) just like in case of Markov Processes.
 \[
 \begin{tikzpicture}
     \draw[dotted] (-3.7,0.4) -- (-2.8,0.4);
@@ -87,9 +87,9 @@ Markov Decision Processes (MDPs) introduce actions \((A_t,t\in\N_0)\) and reward
     to [out=0,in=180] (4.8, -0.4);
 \end{tikzpicture}
 \]
-But this apparent similarity can be misleading. While Markov Processes are defined as a stochastic process (i.e. a sequence of states) with properties as described above, MDPs cannot be defined like that. The reason for this is, that the next state \(X_{t+1}\) depends on the current state and action \(A_{t}\), which means that the sequence of states cannot be defined without the sequence of actions. But defining the sequence of actions requires an action selection rule, a behavior, a decision. So defining MDPs as a stochastic process, would result in every behavior resulting in a different MDP. But since MDPs want to model decisions, this does not make much sense. Talking about optimal behaviors in a framework which can only be defined for a set behavior, is nonsensical. What is needed is a model framework which is invariant to different behaviors. Therefore MDPs are not defined as a stochastic process, but rather as a rulebook on how to create a stochastic process from a given behavior. 
+But this apparent similarity can be misleading. While Markov Processes are defined as a stochastic process (i.e. a sequence of states) with properties as described above, MDPs cannot be defined like that. The reason for this is, that the next state \(X_{t+1}\) depends on the current state and action \(A_{t}\), which means that the sequence of states cannot be defined without the sequence of actions. But defining the sequence of actions requires an action selection rule, a behaviour, a decision. So defining MDPs as a stochastic process, would result in every behaviour resulting in a different MDP. But since MDPs want to model decisions, this does not make much sense. Talking about optimal behaviours in a framework which can only be defined for a set behaviour, is nonsensical. What is needed is a model framework which is invariant to different behaviours. Therefore MDPs are not defined as a stochastic process, but rather as a rulebook on how to create a stochastic process from a given behaviour. 
 
-The questions we ask the model are also different.  MDPs are more interested into evaluating different behaviors and finding optimal ones, while Markov Processes try to describe an existing phenomenon. Though we will find, that -- given a behavior which is memoryless as well (without the dotted lines in the diagram) -- the resulting stochastic process \((X_t,A_t,R_{t+1},t\in\N_0)\) is a Markov Process, so the theory of Markov Processes could in principle be applied. But this will not be our focus. 
+The questions we ask the model are also different.  MDPs are more interested into evaluating different behaviours and finding optimal ones, while Markov Processes try to describe an existing phenomenon. Though we will find, that -- given a behaviour which is memoryless as well (without the dotted lines in the diagram) -- the resulting stochastic process \((X_t,A_t,R_{t+1},t\in\N_0)\) is a Markov Process, so the theory of Markov Processes could in principle be applied. But this will not be our focus. 
 
 Just like with Markov Chains, the memorylessness could be circumvented by including the history in the current state, massively increasing the state space in the process. Which means it is questionable whether this would yield any interesting results, as then no state is visited twice. So it is of no use to an actor to learn the value of an action in a certain state without further assumptions.
 
@@ -112,7 +112,7 @@ Lastly, to ease ourselves into the abstract definition of MDPs, let us do one ex
 		\item[\(\cX\coloneqq\N\)] be the set of possible quantities of goods in stock,
 		\item[\(\cA\coloneqq\N\)] be the set of possible orders for resupply.
 	\end{description}
-	We will now introduce the mechanics of actions and rewards without stochastic behavior and then change that later.
+	We will now introduce the mechanics of actions and rewards without stochastic behaviour and then change that later.
 
 	Let us assume that the ordered goods \(a_t\in\cA\) arrive in the morning the next day. The goods sold are the demand \(d_t\), if the current stock \(x_t\in\cX\) can meet the demand. So the amount sold is actually \(d_t\wedge x_t = \min\{d,x_t\}\). Assume orders are paid for in advance and bought at price \(1\), while the goods are sold at price \(p\). The cost of storage is \(q\) per item and day. Then the profit at the end of day \(t\) is
 	\[
@@ -127,13 +127,13 @@ Lastly, to ease ourselves into the abstract definition of MDPs, let us do one ex
 		&f(x,a,d)\coloneqq \left(x-d\wedge x + a,\; p(d\wedge x) - a - q(x - d\wedge x)\right)\\
 		&\implies f(x_t,a_t,d_t)=(x_{t+1}, r_{t+1})
 	\end{align*}
-	Now assume that the demand is a random variable \(D_t\) which are independent and identically distributed (iid) for all \(t\). This makes all the other objects (except for the actions) neccessarily random variables too. Then distribution of \((X_{t+1},R_{t+1})\) conditional on \(X_t=x, A_t=a\) is defined to be the \emph{transition probability kernel} \(\cP\) with
+	Now assume that the demand is a random variable \(D_t\) which are independent and identically distributed (iid) for all \(t\). This makes all the other objects (except for the actions) necessarily random variables too. Then distribution of \((X_{t+1},R_{t+1})\) conditional on \(X_t=x, A_t=a\) is defined to be the \emph{transition probability kernel} \(\cP\) with
 	\begin{align*}
 		\cP(\cdot \mid x, a)\coloneqq\Pr_{f(x,a,D_t)}\xeq{\text{iid}} \Pr_{f(x,a,D_0)}
 	\end{align*}
 	Note that knowledge of the transition kernel \(\cP\) is equivalent to knowledge of the transition function \(f\) and the distribution of the demand. Transition kernels reduces the clutter caused by exogenous random variables which are different from application to application and are unknown until the next state is realized at which point their knowledge is useless. We will therefore define this MDP to be \(\cM=(\cX,\cA,\cP)\).
 
-	A stationary behavior in this example would be a probability distribution over the possible orders, given the current state
+	A stationary behaviour in this example would be a probability distribution over the possible orders, given the current state
 	\begin{align*}
 		\pi(\cdot \mid x) \text{ Probability distribution over }\cA
 	\end{align*}
@@ -141,7 +141,7 @@ Lastly, to ease ourselves into the abstract definition of MDPs, let us do one ex
 	\[
 		A_t \sim \pi(\cdot \mid X_t)
 	\]
-	Non-stationary behaviors are probability distributions over the action space which can depend on the entire history of states, actions and rewards. 
+	Non-stationary behaviours are probability distributions over the action space which can depend on the entire history of states, actions and rewards. 
 \end{example}
 
 We will just make one more generalization in the actual definition of MDPs. We will allow the action space \(\cA\) to depend on the state \(x\in\cX\).
@@ -217,9 +217,9 @@ Second, we need an action selection rule
 			\end{cases} 
 			\text{ with } A_t\sim \pi_t(\cdot\mid X_t)
 		\]
-		\(A_t\) is selected such that it has the markov property (well defined c.f. \ref{well defined markov property}), i.e.
+		\(A_t\) is selected such that it has the Markov property (well defined c.f. \ref{well defined markov property}), i.e.
 		\[\Pr[A_t=a\mid X_t]=\Pr[A_t=a\mid X_t, (X_{t-1},A_{t-1},R_t), \dots (X_0,A_0,R_1)] \]
-		\item \emph{Stationary policies} are policies which do not change over time i.e. \(\pi_{t+1}=\pi_t\). Since \(\pi_0\) can only depend on the first state, they are naturally markov and can be defined as
+		\item \emph{Stationary policies} are policies which do not change over time i.e. \(\pi_{t+1}=\pi_t\). Since \(\pi_0\) can only depend on the first state, they are naturally Markov and can be defined as
 		\[
 			\pi\colon 
 			\begin{cases}
@@ -235,7 +235,7 @@ Second, we need an action selection rule
 			\pi\colon\cX\to\cA_x \quad\text{ with }A_t=\pi(X_t)
 		\]
 	\end{enumerate}
-	Similarly, deterministic markov policies and deterministic history dependent policies can be defined. The sets of these policies will be denoted like this
+	Similarly, deterministic Markov policies and deterministic history dependent policies can be defined. The sets of these policies will be denoted like this
 	\[
 	\begin{tikzcd}[row sep = small, column sep = small]
 		&\text{Stationary} & \text{Markov} & \text{History dependent}
@@ -302,7 +302,7 @@ resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\)
 		(X_{t+1},R_{t+1})\coloneqq f^{-1}\circ 
 		F^\leftarrow_{X_t, A_t}(U) \sim \cP(\cdot \mid X_t, A_t)
 	\]
-	fulfills the first requirement and is also markov. To show the markov property we first define a shorthand for the history
+	fulfils the first requirement and is also Markov. To show the Markov property we first define a shorthand for the history
 	\[
 		\cH_s^t\coloneqq \{(X_t,A_t,R_{t+1})\in H_t,\dots,(X_s,A_s,R_{s+1})\in H_s \}
 	\]
@@ -321,7 +321,7 @@ resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\)
 \end{proof}
 
 \begin{prop}\label{statPolicy induces time-homogeneous MC}
-	A (stationary) markov  policy \(\pi\) induces a (time homogeneous) Markov chain \((X_t,A_t,R_{t+1},t\in\N_0)\).
+	A (stationary) Markov  policy \(\pi\) induces a (time homogeneous) Markov chain \((X_t,A_t,R_{t+1},t\in\N_0)\).
 \end{prop}
 \begin{proof} 
 
@@ -349,7 +349,7 @@ resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\)
 	\end{align}
 	\((*)\) \emph{Some} of the History is irrelevant if all of the History is irrelevant. \fxnote{ some history irrelevant in appendix?}
 	
-	Left to show is, that for stationary policies the markov chain is time homogeneous. When the policy is stationary, equation (\ref{time-hom markov chain tangent}) simplifies to
+	Left to show is, that for stationary policies the Markov chain is time homogeneous. When the policy is stationary, equation (\ref{time-hom markov chain tangent}) simplifies to
 	\begin{align*}
 		\cP(\cX\times U \mid x,a)\pi(a\mid x)
 		\cP(\{x\}\times \R \mid x_{t-1}, a_{t-1})
@@ -358,10 +358,10 @@ resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\)
 \end{proof} 
 \begin{remark} 
 If there is just one possible action in every state, the MDP is equivalent to a normal Markov Process. 
-Since then there is a mapping \(f\colon\cX\to\cA_x\) mapping the state to  the only admissible action. Which implies that \(A_t=f(X_t)\) which forces every behavior to be equal to f. Therefore f is a deterministic stationary behavior and \ref{statPolicy induces time-homogeneous MC} applies.  
+Since then there is a mapping \(f\colon\cX\to\cA_x\) mapping the state to  the only admissible action. Which implies that \(A_t=f(X_t)\) which forces every behaviour to be equal to f. Therefore f is a deterministic stationary behaviour and \ref{statPolicy induces time-homogeneous MC} applies.  
 \end{remark}
 
-We can mostly ignore Markov policies because our transition kernel is stationary, which makes stationary policies the appropriate set of behaviors. Allowing changing transition probabilities over time, breaks virtually all of the following proofs. In such an environment of changing transition probabilities, Markov policies are the appropriate set to consider \parencite[c.f.][]{putermanMarkovDecisionProcesses2005}.
+We can mostly ignore Markov policies because our transition kernel is stationary, which makes stationary policies the appropriate set of behaviours. Allowing changing transition probabilities over time, breaks virtually all of the following proofs. In such an environment of changing transition probabilities, Markov policies are the appropriate set to consider \parencite[c.f.][]{putermanMarkovDecisionProcesses2005}.
 
 \begin{definition}
 An MDP together with a discount factor \(\gamma\in[0,1]\) is a
@@ -369,7 +369,7 @@ An MDP together with a discount factor \(\gamma\in[0,1]\) is a
 	\item[\emph{discounted}] reward MDP for \(\gamma <1 \),
 	\item[\emph{undiscounted}] reward MDP for \(\gamma=1 \).
 \end{description}
-This allows us to define the \emph{return}
+This allows us to define the \emph{return} \fxerror{does this series exist? argument neccessary? c.f. assumption 1 - enough?}
 \[\cR\coloneqq\sum_{t=0}^{\infty}\gamma^t R_{t+1}\]
 \end{definition}
 
@@ -383,8 +383,8 @@ Let \((Y_{(x,a)}, R_{(x,a)})\sim \cP(\cdot\mid x,a) \) be a random variable.
 %\end{definition}
 With the return we can define value functions.
 
-\begin{definition} Let \(\cM=(\cX,\cA,\cP)\) be a MDP. Assume an exploring start, i.e. select \(X_0\) such that \(\Pr({X_0=x})>0\) for all states \(x\). Then every behavior \(\pi\) results in a stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\).
-We indicate with the superscript (e.g. \(\E^\pi\)) which behavior generated the process in the following definitions.
+\begin{definition} Let \(\cM=(\cX,\cA,\cP)\) be a MDP. Assume an exploring start, i.e. select \(X_0\) such that \(\Pr({X_0=x})>0\) for all states \(x\). Then every behaviour \(\pi\) results in a stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\).
+We indicate with the superscript (e.g. \(\E^\pi\)) which behaviour generated the process in the following definitions.
 \begin{align*}
 	&V^\pi\colon
 	\begin{cases}
@@ -420,16 +420,16 @@ and \(\pi\) is called \emph{optimal} \(:\iff V^*=V^\pi\).
 \end{definition}
 
 \begin{remark}
-With the distribution of \(X_0\) set (or \(X_0\) being realized with a fixed value \(x\)), the distribution of \(X_t, A_t,R_{t+1}\) is inductively determined for all \(t\in\N_0\). The conditional expectation is thus unique for a given \(X_0=x\), for all possible realizations of the MDP with a given behavior.
+With the distribution of \(X_0\) set (or \(X_0\) being realized with a fixed value \(x\)), the distribution of \(X_t, A_t,R_{t+1}\) is inductively determined for all \(t\in\N_0\). The conditional expectation is thus unique for a given \(X_0=x\), for all possible realizations of the MDP with a given behaviour.
 This means \(V^\pi, Q^\pi\) are well defined.
 \end{remark}
 
 \begin{remark}
 	While the following proofs do not require discrete state and action spaces per se (as all the sums could just be replaced by integrals), the optimal value functions need not be measurable \parencite[157]{putermanMarkovDecisionProcesses2005} \fxnote{he quotes Blackwell 1965 - quote blackwell directly?}. To remedy this \citeauthor{putermanMarkovDecisionProcesses2005} suggests to either
 	\begin{itemize}[noitemsep]
-		\item impose regularity conditions which would ensure measuability,
-		\item use outer integrals to avoid measuability issues altogether,
-		\item or extend notions of measuability.
+		\item impose regularity conditions which would ensure measurability,
+		\item use outer integrals to avoid measurability issues altogether,
+		\item or extend notions of measurability.
 	\end{itemize}
 	But since the real world is finite in basically every case anyway we will spare ourselves the trouble. 
 \end{remark}
@@ -437,7 +437,7 @@ This means \(V^\pi, Q^\pi\) are well defined.
 Some authors include a Time set \(T\) in the tuple \(\cM=(\cX,\cA,\cP)\) \parencite[e.g.][]{putermanMarkovDecisionProcesses2005} this allows for finite horizons but not for continuous time, since the transition kernel is defined for discrete steps.
 
 
-As finite processes are not our focus, we will not do that. But it is possible to achieve finite processes in infinite times with the use of terminal states. The catch is that -- unless you include the time in the state -- you can not guarantee the end of a process at a fixed time. Although including a finite time set in the state space does not blow it up as much as an infinite time set does. So this solution could possibly be acceptable. So we will define the terms around terminal states here although we will not make use of them. \fxnote{We will not use terminal states - true?}  
+As finite processes are not our focus, we will not do that. But it is possible to achieve finite processes in infinite times with the use of terminal states. The catch is that -- unless you include the time in the state -- you can not guarantee the end of a process at a fixed time. Although including a finite time set in the state space does not blow it up as much as an infinite time set does. So this solution could possibly be acceptable.
 
 \begin{definition} Let \(\cM=(\cX,\cA,\cP)\) be a MDP
 	\[
@@ -446,7 +446,7 @@ As finite processes are not our focus, we will not do that. But it is possible t
 	An MDP with terminal states is called \emph{episodic}.
 	An \emph{episode} is the random time period \((1,\dots,T)\) until a terminal state is reached.
 \end{definition}
-\begin{remark} The reward in a terminal state is zero by convention, i.e. \(x\) terminal state implies forall actions \(a\in\cA_x\) that \(R_{(x,a)}=0\)
+\begin{remark} The reward in a terminal state is zero by convention, i.e. \(x\) terminal state implies for all actions \(a\in\cA_x\) that \(R_{(x,a)}=0\)
 \end{remark}
 
 \subsection{Outlook}
@@ -458,7 +458,7 @@ In the following sections we will try to show that deterministic stationary poli
 We will show this fact by proving that both solve the same fix-point equation. And that this fix-point equation satisfies the requirements of the Banach Fix-point Theorem (BFT). Which means we will get a free approximation method of the (optimal) value functions along the way.
 
 \section{Fix-Point Equations for Value Functions}
-We will start by finding fixpoint equations for \(V^\pi\) and \(Q^\pi\) which fulfill the requirements of the BFT. These can be used to simply calculate the value of one policy. But we will primarily use them as tools to show the fix-point equations for the optimal value functions. One intuitive example for such a use, is that you can try to show that \(V^*\) fulfills the fixpoint equation for \(V^\pi\) and use uniqueness to argue that \(\pi\) has to be optimal. Other cases are a bit more technical and will use a type of monotonicity of the fix point equation.
+We will start by finding fixpoint equations for \(V^\pi\) and \(Q^\pi\) which fulfil the requirements of the BFT. These can be used to simply calculate the value of one policy. But we will primarily use them as tools to show the fix-point equations for the optimal value functions. One intuitive example for such a use, is that you can try to show that \(V^*\) fulfils the fixpoint equation for \(V^\pi\) and use uniqueness to argue that \(\pi\) has to be optimal. Other cases are a bit more technical and will use a type of monotonicity of the fix point equation.
 
 To find these fixpoint equations we will try to set \(V^\pi\) and \(Q^\pi\) in relation to each other. For the most part we can focus on deterministic stationary policies, as the other policies will get sandwiched between these policies and the set of all policies.
 
@@ -477,7 +477,7 @@ To make some notation shorter, we will now define the state transition kernel as
 
 Now we can start to explore the relation of \(V^\pi\) and \(Q^\pi\).
 
-\begin{prop}\label{expand Q^pi} Let \(\pi\in\statPolicy\) be a stationary behavior, then
+\begin{prop}\label{expand Q^pi} Let \(\pi\in\statPolicy\) be a stationary behaviour, then
 	\[Q^\pi(x,a)=r(x,a)+\gamma\sum_{y\in\cX}p(y\mid x,a)V^\pi(y)	\]
 \end{prop}
 
@@ -571,7 +571,7 @@ and this fix-point equation
 \end{proof}
 
 With this relation we can use the Banach fix-point theorem (BFT) for the first time. But to do that we first need to make an assumption.
-\begin{assumption} 
+\begin{assumption} \label{assumption boundedness}
 	\(\forall (x,a)\in\cX\times\cA:\quad\E[|R_{(x,a)}|]\le R\in\R\)
 \end{assumption}
 This implies that the immediate reward is bounded
@@ -591,7 +591,7 @@ In particular they are bounded functions. We will denote the set of bounded func
 \[
 	B(M)\coloneqq \{f\colon M\to\R : \|f\|_\infty <\infty \} 
 \]
-which happens to be a complete metric space which we will need for the Banach fix-point Theorem to work. Bounded Value functions will also be neccessary for a lot of other arguments later on, since the discount factor allows us to discard rewards after a finite time period as negligible.  In finite MDPs this assumption is of course always fulfilled. 
+which happens to be a complete metric space which we will need for the Banach fix-point Theorem to work. Bounded Value functions will also be necessary for a lot of other arguments later on, since the discount factor allows us to discard rewards after a finite time period as negligible.  In finite MDPs this assumption is of course always fulfilled. 
 
 
 \begin{definition}
@@ -916,7 +916,7 @@ With this statement we can now prove the building blocks for the fix-point equat
 			\E^\pi\left[\sum_{t=0}^\infty \gamma^t R_{t+2}\;\middle|\; X_0=x,A_0=a, X_1=y \right]
 		}_{(*)}
 	\end{align*}
-	The last equality follows from the fact, that the behaviors can condition on the entire history. In particular it can condition on \(X_1=y\) which means that moving the supremum into the sum does not actually open any room for improvement. 
+	The last equality follows from the fact, that the behaviours can condition on the entire history. In particular it can condition on \(X_1=y\) which means that moving the supremum into the sum does not actually open any room for improvement. 
 
 	What is left to show, is that \((*)\) equals \(V^*(y)\). To show this we use the same trick as in (\ref{clarifiction:sup pi_0 = sup_a}) twice
 	\begin{align*}
@@ -1049,7 +1049,7 @@ Let us first consider the case where the supremum can be attained, since this in
 	Therefore \(V^* (x)\) is an upper bound for every \(\pi\in\statPolicy\), and since \(\pi^*\) attains this upper bound it is a maximum.
 
 	\xToy{\ref{ii:3}}{\ref{ii:4}} 
-	Be \(\pi^*(a\mid x)>0\) for some \(a\in\cA_x,x\in\cX\). Then there exists no \(b\in\cA_x\) with \(Q^*(x,b)>Q^*(x,a)\). Otherwise we can define the behavior
+	Be \(\pi^*(a\mid x)>0\) for some \(a\in\cA_x,x\in\cX\). Then there exists no \(b\in\cA_x\) with \(Q^*(x,b)>Q^*(x,a)\). Otherwise we can define the behaviour
 	\[
 		\hat{\pi}(\cdot\mid x)\colon
 		\begin{cases}
@@ -1114,10 +1114,10 @@ Let us first consider the case where the supremum can be attained, since this in
 	\end{itemize}
 \end{remark}
 
-Now we show how we can construct an optimal stationary policy from an arbitrary optimal policy. We will break this problem into two parts. First we construct an optimal markovian policy, and then we construct an optimal stationary policy from the optimal markovian policy. The first step is taken from \textcite[134-137]{putermanMarkovDecisionProcesses2005}.
+Now we show how we can construct an optimal stationary policy from an arbitrary optimal policy. We will break this problem into two parts. First we construct an optimal Markovian policy, and then we construct an optimal stationary policy from the optimal Markovian policy. The first step is taken from \textcite[134-137]{putermanMarkovDecisionProcesses2005}.
 
 \begin{prop}[Puterman]
-	Let \(\pi\in\Pi\). Then, for each \(x\in\cX\), there exists a markovian policy \(\pi^{x}\) satisfying
+	Let \(\pi\in\Pi\). Then, for each \(x\in\cX\), there exists a Markovian policy \(\pi^{x}\) satisfying
 	\[\Pr^{\pi^x}(X_t=y,A_t=a\mid X_0=x)=\Pr^\pi(X_t=y,A_t=a\mid X_0=x)\quad \forall t\in\N_0 \]
 	where \(\Pr^\pi\) indicates that the sequence 
 	\(((X_t, A_t, R_{t+1}),t\in\N_0 )\) is constructed with policy \(\pi\).
@@ -1135,7 +1135,7 @@ Now we show how we can construct an optimal stationary policy from an arbitrary 
 		= \Pr^{\pi^x}(A_0=a\mid X_0=x)\delta_{xy}\\
 		&=\Pr^{\pi^x}(X_0=y, A_0=a\mid X_0=x)
 	\end{align*}
-	Assume the claim holds for \(\{0,\dots, t-1\}\). Then using markovian transition kernel
+	Assume the claim holds for \(\{0,\dots, t-1\}\). Then using Markovian transition kernel
 	\[\Pr^\pi\big[X_t=y\mid (X_{t-1},A_{t-1})=(z,a), X_0=x\big]=p(y\mid z,a)\]
 	together with \ref{appx1}, we get
 	\begin{align*}
@@ -1156,7 +1156,7 @@ Now we show how we can construct an optimal stationary policy from an arbitrary 
 	\end{align*}
 \end{proof}
 \begin{corollary}[Puterman]
-	For (an optimal) policy \(\pi\in\Pi\) exist markovian policies \(\pi^x\) for all \(x\in\cX\) such that
+	For (an optimal) policy \(\pi\in\Pi\) exist Markovian policies \(\pi^x\) for all \(x\in\cX\) such that
 	\[
 		V^\pi(x)=V^{\pi^x}(x)	
 	\]
@@ -1182,11 +1182,11 @@ Using the results from \citeauthor{putermanMarkovDecisionProcesses2005} we can n
 	Let \(\pi\in\Pi\) be an optimal policy (i.e. \(V^*=V^\pi\)) then there exists an optimal stationary policy \(\hat{\pi}\)
 \end{thm}
 \begin{proof}
-	For the optimal policy \(\pi\) exist \(\pi^x,x\in\cX\) markovian policies with
+	For the optimal policy \(\pi\) exist \(\pi^x,x\in\cX\) Markovian policies with
 	\[
 		V^*(x)=V^\pi(x)=V^{\pi^x}(x)
 	\]
-	From these markovian policies we can define the stationary policy \(\hat{\pi}\) with
+	From these Markovian policies we can define the stationary policy \(\hat{\pi}\) with
 	\begin{align}
 		\hat{\pi}(\cdot\mid x)\coloneqq \pi_0^x(\cdot\mid x) \qquad x\in\cX
 	\end{align}
@@ -1231,7 +1231,7 @@ Using the results from \citeauthor{putermanMarkovDecisionProcesses2005} we can n
 		V^{\tilde{\pi}^x}(z)=V^*(z) \qquad \forall z\in\cX:\Pr^{\pi^x}(X_1=z\mid X_0=x)>0
 		\label{V^tildePi (z) =V*(z)}
 	\end{align}
-	otherwise we can use the fact that \(V^{\pi^z}(z)=V^*(z)\) and improve the optimal policy \(\pi^x\) by swapping out the policy \((\pi^x_t, t\in\N) \) with \((\pi^z_{t-1}, t\in\N)\) conditional on \(X_0=x\) and \(X_1=z\) (losing the markov property again). \fxerror{ugly - better solution?}
+	otherwise we can use the fact that \(V^{\pi^z}(z)=V^*(z)\) and improve the optimal policy \(\pi^x\) by swapping out the policy \((\pi^x_t, t\in\N) \) with \((\pi^z_{t-1}, t\in\N)\) conditional on \(X_0=x\) and \(X_1=z\) (losing the Markov property again). \fxerror{ugly - better solution?}
 	\begin{align*}
 			&\hat{\pi}^x_0(a\mid x)&&\coloneqq \pi^x_0(a\mid x) \\
 			&\hat{\pi}^x_t(a\mid X_0=x,X_1=z, X_t=x_t)&&\coloneqq \pi^z_{t-1}(a\mid x_t) 

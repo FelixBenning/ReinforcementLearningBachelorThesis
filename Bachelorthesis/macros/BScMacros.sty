@@ -35,6 +35,9 @@
 %% Package with lightning symbol for contradictions
 \RequirePackage{wasysym} 
 
+%% Package to allow for indicator functions (blackbord numbers)
+\RequirePackage{bbm} %usage: \mathbbm{1}
+
 %% optionally set up times text font
 \newcommand{\TimesFont}{\RequirePackage{times}\RequirePackage[scaled=0.92]{helvet}}
 
@@ -273,5 +276,8 @@ literate=%                                  translations: items are separated wi
   \endgroup
 }
 \makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \endinput

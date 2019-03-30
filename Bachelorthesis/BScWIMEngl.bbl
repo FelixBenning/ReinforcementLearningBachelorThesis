@@ -19,6 +19,82 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{deardenBayesianQLearning1998}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=5eac58f71e450d96418f25079668603b}{%
+           family={Dearden},
+           familyi={D\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=987ee418ae32e261a8a5385e14cda479}{%
+           family={Friedman},
+           familyi={F\bibinitperiod},
+           given={Nir},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=143fa183327d9fcd9de18eec99d6ca97}{%
+           family={Russell},
+           familyi={R\bibinitperiod},
+           given={Stuart},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6d310e17699a36ec6e6f2aaf556d6f97}
+      \strng{fullhash}{80450527277e2a29451d686bb0e0d879}
+      \strng{bibnamehash}{80450527277e2a29451d686bb0e0d879}
+      \strng{authorbibnamehash}{80450527277e2a29451d686bb0e0d879}
+      \strng{authornamehash}{6d310e17699a36ec6e6f2aaf556d6f97}
+      \strng{authorfullhash}{80450527277e2a29451d686bb0e0d879}
+      \field{sortinit}{D}
+      \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A central problem in learning in complex environments is balancing exploration of untested actions against exploitation of actions that are known to be good. The beneﬁt of exploration can be estimated using the classical notion of Value of Information—the expected improvement in future decision quality that might arise from the information acquired by exploration. Estimating this quantity requires an assessment of the agent’s uncertainty about its current value estimates for states. In this paper, we adopt a Bayesian approach to maintaining this uncertain information. We extend Watkins’ Q-learning by maintaining and propagating probability distributions over the Q-values. These distributions are used to compute a myopic approximation to the value of information for each action and hence to select the action that best balances exploration and exploitation. We establish the convergence properties of our algorithm and show experimentally that it can exhibit substantial improvements over other well-known model-free exploration strategies.}
+      \field{langid}{english}
+      \field{title}{Bayesian {{Q}}-{{Learning}}}
+      \field{year}{1998}
+      \field{dateera}{ce}
+      \field{pages}{8}
+      \range{pages}{1}
+      \verb{file}
+      \verb C:\\Users\\felix\\Zotero\\storage\\PUCHM243\\Dearden et al. - Bayesian Q-Learning.pdf
+      \endverb
+    \endentry
+    \entry{kaelblingLearningEmbeddedSystems1993}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=72fdc7bf3120e1cff12e3ecf7e892b9a}{%
+           family={Kaelbling},
+           familyi={K\bibinitperiod},
+           given={Leslie\bibnamedelima Pack},
+           giveni={L\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {MIT press}%
+      }
+      \strng{namehash}{72fdc7bf3120e1cff12e3ecf7e892b9a}
+      \strng{fullhash}{72fdc7bf3120e1cff12e3ecf7e892b9a}
+      \strng{bibnamehash}{72fdc7bf3120e1cff12e3ecf7e892b9a}
+      \strng{authorbibnamehash}{72fdc7bf3120e1cff12e3ecf7e892b9a}
+      \strng{authornamehash}{72fdc7bf3120e1cff12e3ecf7e892b9a}
+      \strng{authorfullhash}{72fdc7bf3120e1cff12e3ecf7e892b9a}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{annotation}{Interval Learning: ~ Confidence Intervall around Q value -{$>$} Exploration bonus}
+      \field{title}{Learning in Embedded Systems}
+      \field{year}{1993}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb C:\\Users\\felix\\Zotero\\storage\\KKKGCHAX\\Kaelbling - 1993 - Learning in embedded systems.pdf;C:\\Users\\felix\\Zotero\\storage\\D7YDIQSR\\books.html
+      \endverb
+    \endentry
     \entry{langeBatchReinforcementLearning2012}{incollection}{useprefix=true}
       \name{author}{3}{}{%
         {{uniquename=0,uniquepart=base,hash=eb0c3521aaad8bb21bb052214ae15910}{%
@@ -60,11 +136,11 @@
       \list{publisher}{1}{%
         {Springer Berlin Heidelberg}%
       }
-      \strng{namehash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
+      \strng{namehash}{9ccfbfeda5044fe2109c77ef1c67ad9e}
       \strng{fullhash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
       \strng{bibnamehash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
       \strng{authorbibnamehash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
-      \strng{authornamehash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
+      \strng{authornamehash}{9ccfbfeda5044fe2109c77ef1c67ad9e}
       \strng{authorfullhash}{d4a6cb97cdf04d3b08e0bcaa6f4c1750}
       \strng{editorbibnamehash}{b30b771391670cd7ae6157e722016025}
       \strng{editornamehash}{b30b771391670cd7ae6157e722016025}
@@ -81,8 +157,12 @@
       \field{langid}{english}
       \field{series}{Adaptation, {{Learning}}, and {{Optimization}}}
       \field{title}{Batch {{Reinforcement Learning}}}
+      \field{urlday}{22}
+      \field{urlmonth}{2}
+      \field{urlyear}{2019}
       \field{year}{2012}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{45\bibrangedash 73}
       \range{pages}{29}
       \verb{doi}
@@ -90,6 +170,12 @@
       \endverb
       \verb{file}
       \verb C:\\Users\\felix\\Zotero\\storage\\P3KVYLAG\\Lange et al. - 2012 - Batch Reinforcement Learning.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-642-27645-3_2
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-642-27645-3_2
       \endverb
       \keyw{Batch Learning,Multiagent System,Neural Information Processing System,Policy Iteration,Reinforcement Learning}
     \endentry
@@ -136,6 +222,69 @@
       \endverb
       \keyw{Reinforcement learning,connectionist networks,planning,teaching}
     \endentry
+    \entry{pathakCuriosityDrivenExplorationSelfSupervised2017}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,uniquepart=base,hash=09e431093c8637ade01037714cfc992c}{%
+           family={Pathak},
+           familyi={P\bibinitperiod},
+           given={Deepak},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=8386009211558835d056bfe419103c76}{%
+           family={Agrawal},
+           familyi={A\bibinitperiod},
+           given={Pulkit},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=5a663b27298722834a8cf09bb93d8c94}{%
+           family={Efros},
+           familyi={E\bibinitperiod},
+           given={Alexei\bibnamedelima A.},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=90180e1a30742e0d15328bfe637c2ef4}{%
+           family={Darrell},
+           familyi={D\bibinitperiod},
+           given={Trevor},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Honolulu, HI, USA}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{a353c16f2bb5e07676f9be9b2c866db4}
+      \strng{fullhash}{5e51aa99fa833fb4f48cba575f1027fd}
+      \strng{bibnamehash}{a353c16f2bb5e07676f9be9b2c866db4}
+      \strng{authorbibnamehash}{a353c16f2bb5e07676f9be9b2c866db4}
+      \strng{authornamehash}{a353c16f2bb5e07676f9be9b2c866db4}
+      \strng{authorfullhash}{5e51aa99fa833fb4f48cba575f1027fd}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In many real-world scenarios, rewards extrinsic to the agent are extremely sparse, or absent altogether. In such cases, curiosity can serve as an intrinsic reward signal to enable the agent to explore its environment and learn skills that might be useful later in its life. We formulate curiosity as the error in an agent’s ability to predict the consequence of its own actions in a visual feature space learned by a self-supervised inverse dynamics model. Our formulation scales to high-dimensional continuous state spaces like images, bypasses the difﬁculties of directly predicting pixels, and, critically, ignores the aspects of the environment that cannot affect the agent. The proposed approach is evaluated in two environments: VizDoom and Super Mario Bros. Three broad settings are investigated: 1) sparse extrinsic reward, where curiosity allows for far fewer interactions with the environment to reach the goal; 2) exploration with no extrinsic reward, where curiosity pushes the agent to explore more efﬁciently; and 3) generalization to unseen scenarios (e.g. new levels of the same game) where the knowledge gained from earlier experience helps the agent explore new places much faster than starting from scratch.}
+      \field{booktitle}{2017 {{IEEE Conference}} on {{Computer Vision}} and {{Pattern Recognition Workshops}} ({{CVPRW}})}
+      \field{eventtitle}{2017 {{IEEE Conference}} on {{Computer Vision}} and {{Pattern Recognition Workshops}} ({{CVPRW}})}
+      \field{isbn}{978-1-5386-0733-6}
+      \field{langid}{english}
+      \field{month}{7}
+      \field{title}{Curiosity-{{Driven Exploration}} by {{Self}}-{{Supervised Prediction}}}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \field{pages}{488\bibrangedash 489}
+      \range{pages}{2}
+      \verb{doi}
+      \verb 10.1109/CVPRW.2017.70
+      \endverb
+      \verb{file}
+      \verb C:\\Users\\felix\\Zotero\\storage\\4LQFLK29\\Pathak et al. - 2017 - Curiosity-Driven Exploration by Self-Supervised Pr.pdf
+      \endverb
+    \endentry
     \entry{putermanMarkovDecisionProcesses2005}{book}{}
       \name{author}{1}{}{%
         {{uniquename=0,uniquepart=base,hash=b4258b9291d903d97b69d703eebf790a}{%
@@ -175,6 +324,55 @@
       \verb{file}
       \verb C:\\Users\\felix\\Zotero\\storage\\VNB8FB4L\\Puterman - 2005 - Markov decision processes discrete stochastic dyn.pdf
       \endverb
+    \endentry
+    \entry{strehlAnalysisModelbasedInterval2008}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=ac0ed7f5b15d0617e232f18c3153085b}{%
+           family={Strehl},
+           familyi={S\bibinitperiod},
+           given={Alexander\bibnamedelima L.},
+           giveni={A\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=211e529e9f10ad1bfacff2284da10ea7}{%
+           family={Littman},
+           familyi={L\bibinitperiod},
+           given={Michael\bibnamedelima L.},
+           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e126a6b8fa5583cb704698d42e538fa6}
+      \strng{fullhash}{e126a6b8fa5583cb704698d42e538fa6}
+      \strng{bibnamehash}{e126a6b8fa5583cb704698d42e538fa6}
+      \strng{authorbibnamehash}{e126a6b8fa5583cb704698d42e538fa6}
+      \strng{authornamehash}{e126a6b8fa5583cb704698d42e538fa6}
+      \strng{authorfullhash}{e126a6b8fa5583cb704698d42e538fa6}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Several algorithms for learning near-optimal policies in Markov Decision Processes have been analyzed and proven efficient. Empirical results have suggested that Model-based Interval Estimation (MBIE) learns efficiently in practice, effectively balancing exploration and exploitation. This paper presents a theoretical analysis of MBIE and a new variation called MBIE-EB, proving their efficiency even under worst-case conditions. The paper also introduces a new performance metric, average loss, and relates it to its less “online” cousins from the literature.}
+      \field{day}{1}
+      \field{issn}{0022-0000}
+      \field{journaltitle}{Journal of Computer and System Sciences}
+      \field{month}{12}
+      \field{number}{8}
+      \field{series}{Learning {{Theory}} 2005}
+      \field{shortjournal}{Journal of Computer and System Sciences}
+      \field{title}{An Analysis of Model-Based {{Interval Estimation}} for {{Markov Decision Processes}}}
+      \field{volume}{74}
+      \field{year}{2008}
+      \field{dateera}{ce}
+      \field{pages}{1309\bibrangedash 1331}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1016/j.jcss.2007.08.009
+      \endverb
+      \verb{file}
+      \verb D:\\Google Drive\\ZotFiles\\2008Strehl_Littman\\Strehl_Littman_2008_An analysis of model-based Interval Estimation for Markov Decision Processes.pdf;C:\\Users\\felix\\Zotero\\storage\\722XY68T\\S0022000008000767.html
+      \endverb
+      \keyw{Reinforcement learning,Learning theory,Markov Decision Processes}
     \endentry
     \entry{suttonLearningPredictMethods1988}{article}{}
       \name{author}{1}{}{%
@@ -219,6 +417,50 @@
       \endverb
       \keyw{connectionism,credit assignment,evaluation functions,Incremental learning,prediction}
     \endentry
+    \entry{suttonReinforcementLearningIntroduction1998}{book}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=eb920e5277d3d5fd0903f3cd41e11871}{%
+           family={Sutton},
+           familyi={S\bibinitperiod},
+           given={Richard\bibnamedelima S.},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=32a0a208f8bcf56a13b0a8e618aa806a}{%
+           family={Barto},
+           familyi={B\bibinitperiod},
+           given={Andrew\bibnamedelima G.},
+           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Cambridge, Mass. [u.a.]}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{fullhash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{bibnamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{authorbibnamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{authornamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{authorfullhash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{isbn}{978-0-262-19398-6}
+      \field{langid}{english}
+      \field{pagetotal}{xviii+322}
+      \field{series}{Adaptive Computation and Machine Learning}
+      \field{shorttitle}{Reinforcement Learning}
+      \field{title}{Reinforcement Learning: An Introduction}
+      \field{year}{1998}
+      \field{dateera}{ce}
+      \keyw{Bestärkendes Lernen,Lernen,Operantes Lernen,Reinforcement learning,Reinforcement learning (Machine learning),Reinforcement learning (Machine learning); Reinforcement learning (Machine learning),Verstärkendes Lernen,Verstärkungslernen}
+    \endentry
     \entry{suttonReinforcementLearningIntroduction2018a}{book}{}
       \name{author}{2}{}{%
         {{uniquename=0,uniquepart=base,hash=eb920e5277d3d5fd0903f3cd41e11871}{%
@@ -246,6 +488,7 @@
       \strng{authorbibnamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
       \strng{authornamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
       \strng{authorfullhash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \field{extraname}{2}
       \field{sortinit}{S}
       \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
       \field{extradatescope}{labelyear}
@@ -344,6 +587,44 @@
       \endverb
       \verb{file}
       \verb C:\\Users\\felix\\Zotero\\storage\\DWX2M69R\\White - 1985 - Real Applications of Markov Decision Processes.pdf
+      \endverb
+    \endentry
+    \entry{wieringEfficientModelbasedExploration1998}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=a6855779cbaaf0280e06a4d858e5136d}{%
+           family={Wiering},
+           familyi={W\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=288bdbcfe1b91ad7484d7a24f74f99ed}{%
+           family={Schmidhuber},
+           familyi={S\bibinitperiod},
+           given={Jürgen},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d68bf8f74182ac49ad7ac6462f2064dd}
+      \strng{fullhash}{d68bf8f74182ac49ad7ac6462f2064dd}
+      \strng{bibnamehash}{d68bf8f74182ac49ad7ac6462f2064dd}
+      \strng{authorbibnamehash}{d68bf8f74182ac49ad7ac6462f2064dd}
+      \strng{authornamehash}{d68bf8f74182ac49ad7ac6462f2064dd}
+      \strng{authorfullhash}{d68bf8f74182ac49ad7ac6462f2064dd}
+      \field{sortinit}{W}
+      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the {{Sixth International Conference}} on {{Simulation}} of {{Adaptive Behavior}}: {{From Animals}} to {{Animats}}}
+      \field{title}{Efficient Model-Based Exploration}
+      \field{volume}{6}
+      \field{year}{1998}
+      \field{dateera}{ce}
+      \field{pages}{223\bibrangedash 228}
+      \range{pages}{6}
+      \verb{file}
+      \verb D:\\Google Drive\\ZotFiles\\1998Wiering_Schmidhuber\\Wiering_Schmidhuber_1998_Efficient model-based exploration.pdf;C:\\Users\\felix\\Zotero\\storage\\VKDPQRCB\\books.html
       \endverb
     \endentry
   \enddatalist

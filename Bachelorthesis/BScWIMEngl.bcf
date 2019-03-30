@@ -95,7 +95,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxcitenames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>2</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxsortnames</bcf:key>
@@ -2009,14 +2009,28 @@
     <bcf:citekey order="11">putermanMarkovDecisionProcesses2005</bcf:citekey>
     <bcf:citekey order="12">putermanMarkovDecisionProcesses2005</bcf:citekey>
     <bcf:citekey order="13">szepesvariAlgorithmsReinforcementLearning2010</bcf:citekey>
-    <bcf:citekey order="14">suttonReinforcementLearningIntroduction2018a</bcf:citekey>
+    <bcf:citekey order="14">suttonReinforcementLearningIntroduction1998</bcf:citekey>
     <bcf:citekey order="15">suttonReinforcementLearningIntroduction2018a</bcf:citekey>
-    <bcf:citekey order="16">suttonReinforcementLearningIntroduction2018a</bcf:citekey>
+    <bcf:citekey order="16">suttonReinforcementLearningIntroduction1998</bcf:citekey>
     <bcf:citekey order="17">suttonLearningPredictMethods1988</bcf:citekey>
-    <bcf:citekey order="18">langeBatchReinforcementLearning2012</bcf:citekey>
-    <bcf:citekey order="19">suttonReinforcementLearningIntroduction2018a</bcf:citekey>
-    <bcf:citekey order="20">linSelfimprovingReactiveAgents1992</bcf:citekey>
-    <bcf:citekey order="21">suttonReinforcementLearningIntroduction2018a</bcf:citekey>
+    <bcf:citekey order="18">suttonReinforcementLearningIntroduction1998</bcf:citekey>
+    <bcf:citekey order="19">suttonReinforcementLearningIntroduction1998</bcf:citekey>
+    <bcf:citekey order="20">langeBatchReinforcementLearning2012</bcf:citekey>
+    <bcf:citekey order="21">linSelfimprovingReactiveAgents1992</bcf:citekey>
+    <bcf:citekey order="22">suttonReinforcementLearningIntroduction1998</bcf:citekey>
+    <bcf:citekey order="23">suttonReinforcementLearningIntroduction1998</bcf:citekey>
+    <bcf:citekey order="24">suttonReinforcementLearningIntroduction1998</bcf:citekey>
+    <bcf:citekey order="25">suttonReinforcementLearningIntroduction1998</bcf:citekey>
+    <bcf:citekey order="26">suttonReinforcementLearningIntroduction1998</bcf:citekey>
+    <bcf:citekey order="27">kaelblingLearningEmbeddedSystems1993</bcf:citekey>
+    <bcf:citekey order="28">wieringEfficientModelbasedExploration1998</bcf:citekey>
+    <bcf:citekey order="28">strehlAnalysisModelbasedInterval2008</bcf:citekey>
+    <bcf:citekey order="29">strehlAnalysisModelbasedInterval2008</bcf:citekey>
+    <bcf:citekey order="30">wieringEfficientModelbasedExploration1998</bcf:citekey>
+    <bcf:citekey order="31">kaelblingLearningEmbeddedSystems1993</bcf:citekey>
+    <bcf:citekey order="32">wieringEfficientModelbasedExploration1998</bcf:citekey>
+    <bcf:citekey order="33">deardenBayesianQLearning1998</bcf:citekey>
+    <bcf:citekey order="34">pathakCuriosityDrivenExplorationSelfSupervised2017</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">
