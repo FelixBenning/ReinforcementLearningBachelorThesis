@@ -1,15 +1,15 @@
 [0] Config.pm:304> INFO - This is Biber 2.12
 [0] Config.pm:307> INFO - Logfile is 'BScWIMEngl.blg'
-[25] biber-MSWIN64:315> INFO - === 
-[48] Biber.pm:371> INFO - Reading 'BScWIMEngl.bcf'
-[130] Biber.pm:889> INFO - Found 13 citekeys in bib section 0
-[142] Biber.pm:4093> INFO - Processing section 0
+[26] biber-MSWIN64:315> INFO - === 
+[49] Biber.pm:371> INFO - Reading 'BScWIMEngl.bcf'
+[128] Biber.pm:889> INFO - Found 10 citekeys in bib section 0
+[141] Biber.pm:4093> INFO - Processing section 0
 [154] Biber.pm:4254> INFO - Looking for bibtex format file './chapter/literature.bib' for section 0
 [165] bibtex.pm:1523> INFO - LaTeX decoding ...
-[259] bibtex.pm:1340> INFO - Found BibTeX data source './chapter/literature.bib'
-[362] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[363] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[363] Biber.pm:3921> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[363] Biber.pm:3927> INFO - No sort tailoring available for locale 'en-US'
-[379] bbl.pm:636> INFO - Writing 'BScWIMEngl.bbl' with encoding 'UTF-8'
-[389] bbl.pm:739> INFO - Output to BScWIMEngl.bbl
+[254] bibtex.pm:1340> INFO - Found BibTeX data source './chapter/literature.bib'
+[342] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[342] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[342] Biber.pm:3921> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[343] Biber.pm:3927> INFO - No sort tailoring available for locale 'en-US'
+[358] bbl.pm:636> INFO - Writing 'BScWIMEngl.bbl' with encoding 'UTF-8'
+[367] bbl.pm:739> INFO - Output to BScWIMEngl.bbl

@@ -2,11 +2,11 @@
 
 \chapter{Markov Decision Processes}
 \section{Introduction}
-In this introduction I try to convey an intuition for Markov Decision Processes. Readers familiar with the subject can skip directly to the more formal model formulation. 
+I will try to convey intuition for Markov Decision Processes in this Introduction. Readers familiar with the subject can skip directly to the formal model formulation. 
 
-A Markov Decision Process appears to be quite similar to a Markov Process at first glance. Where a Markov Process is a stochastic process, i.e. a sequence of random variables \((X_t,t\in\N_0)\), which is memoryless (Markov). That means knowledge of the current state, makes knowledge about past states useless for predicting future states.
+A Markov Decision Process appears to be quite similar to a Markov Process at first glance. Where a Markov Process is a stochastic process, i.e. a sequence of random variables \((X_t,t\in\N_0)\), which is memoryless (Markov). This means knowledge of the current state, makes knowledge about past states useless for predicting future states.
 
-Markov Decision Processes (MDPs) introduce actions \((A_t,t\in\N_0)\) and rewards \((R_t,t\in\N)\) to this model. Where the transition to the next state \(X_{t+1}\) given a state \(X_{t}\) and action \(A_{t}\) is Markov (memoryless) just like in case of Markov Processes.
+Markov Decision Processes (MDPs) introduce actions \((A_t,t\in\N_0)\) and rewards \((R_t,t\in\N)\) to this model. Where the transition to the next state \(X_{t+1}\) given a state \(X_{t}\) and action \(A_{t}\) is Markov (memoryless), just like in Markov Processes.
 \[
 \begin{tikzpicture}
     \draw[dotted] (-3.7,0.4) -- (-2.8,0.4);
@@ -87,13 +87,13 @@ Markov Decision Processes (MDPs) introduce actions \((A_t,t\in\N_0)\) and reward
     to [out=0,in=180] (4.8, -0.4);
 \end{tikzpicture}
 \]
-But this apparent similarity can be misleading. While Markov Processes are defined as a stochastic process (i.e. a sequence of states) with properties as described above, MDPs cannot be defined like that. The reason for this is, that the next state \(X_{t+1}\) depends on the current state and action \(A_{t}\), which means that the sequence of states cannot be defined without the sequence of actions. But defining the sequence of actions requires an action selection rule, a behaviour, a decision. So defining MDPs as a stochastic process, would result in every behaviour resulting in a different MDP. But since MDPs want to model decisions, this does not make much sense. Talking about optimal behaviours in a framework which can only be defined for a set behaviour, is nonsensical. What is needed is a model framework which is invariant to different behaviours. Therefore MDPs are not defined as a stochastic process, but rather as a rulebook on how to create a stochastic process from a given behaviour. 
+But this apparent similarity can be misleading. While Markov Processes are defined as a stochastic process (i.e. a sequence of states) with properties as described above, MDPs cannot be defined like that. The reason for this is, that the next state \(X_{t+1}\) depends on the current state and action \(A_{t}\), which means that the sequence of states cannot be defined without the sequence of actions. But defining the sequence of actions requires an action selection rule, a behaviour, a decision. So defining MDPs as a stochastic process, would result in every behaviour resulting in a different MDP. But since MDPs want to model decisions, this does not make much sense. Talking about optimal behaviours in a framework which can only be defined for a set behaviour, is nonsensical. What is needed is a model framework which is invariant to different behaviours. Therefore MDPs are not defined as a stochastic process, but rather as a rulebook on how to create a stochastic process given a behaviour. 
 
 The questions we ask the model are also different.  MDPs are more interested into evaluating different behaviours and finding optimal ones, while Markov Processes try to describe an existing phenomenon. Though we will find, that -- given a behaviour which is memoryless as well (without the dotted lines in the diagram) -- the resulting stochastic process \((X_t,A_t,R_{t+1},t\in\N_0)\) is a Markov Process, so the theory of Markov Processes could in principle be applied. But this will not be our focus. 
 
 Just like with Markov Chains, the memorylessness could be circumvented by including the history in the current state, massively increasing the state space in the process. Which means it is questionable whether this would yield any interesting results, as then no state is visited twice. So it is of no use to an actor to learn the value of an action in a certain state without further assumptions.
 
-To illustrate the uses of such a framework, I have selected a few examples from \textcite{whiteRealApplicationsMarkov1985}: \fxnote{more diverse examples}
+While the theory of MDPs found an extremely broad application as the backbone for reinforcement algorithms, and by proxy robotics, more classical applications include \parencite{whiteRealApplicationsMarkov1985}:
 \begin{enumerate}
 	\item Resource Management: The state is the resource level
 	\begin{itemize}

@@ -285,46 +285,6 @@
       \verb C:\\Users\\felix\\Zotero\\storage\\4LQFLK29\\Pathak et al. - 2017 - Curiosity-Driven Exploration by Self-Supervised Pr.pdf
       \endverb
     \endentry
-    \entry{putermanMarkovDecisionProcesses2005}{book}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,uniquepart=base,hash=b4258b9291d903d97b69d703eebf790a}{%
-           family={Puterman},
-           familyi={P\bibinitperiod},
-           given={Martin\bibnamedelima L.},
-           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{location}{1}{%
-        {Hoboken, NJ}%
-      }
-      \list{publisher}{1}{%
-        {Wiley-Interscience}%
-      }
-      \strng{namehash}{b4258b9291d903d97b69d703eebf790a}
-      \strng{fullhash}{b4258b9291d903d97b69d703eebf790a}
-      \strng{bibnamehash}{b4258b9291d903d97b69d703eebf790a}
-      \strng{authorbibnamehash}{b4258b9291d903d97b69d703eebf790a}
-      \strng{authornamehash}{b4258b9291d903d97b69d703eebf790a}
-      \strng{authorfullhash}{b4258b9291d903d97b69d703eebf790a}
-      \field{sortinit}{P}
-      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{shorttitle}
-      \field{isbn}{978-0-471-72782-8}
-      \field{langid}{english}
-      \field{note}{OCLC: 254152847}
-      \field{pagetotal}{649}
-      \field{series}{Wiley Series in Probability and Statistics}
-      \field{shorttitle}{Markov Decision Processes}
-      \field{title}{Markov {{Decision Processes}}: {{Discrete Stochastic Dynamic Programming}}}
-      \field{year}{2005}
-      \field{dateera}{ce}
-      \verb{file}
-      \verb C:\\Users\\felix\\Zotero\\storage\\VNB8FB4L\\Puterman - 2005 - Markov decision processes discrete stochastic dyn.pdf
-      \endverb
-    \endentry
     \entry{strehlAnalysisModelbasedInterval2008}{article}{}
       \name{author}{2}{}{%
         {{uniquename=0,uniquepart=base,hash=ac0ed7f5b15d0617e232f18c3153085b}{%
@@ -509,85 +469,6 @@
       \verb C:\\Users\\felix\\Zotero\\storage\\6YKDX3JJ\\RLbook2018.pdf
       \endverb
       \keyw{Reinforcement learning}
-    \endentry
-    \entry{szepesvariAlgorithmsReinforcementLearning2010}{article}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,uniquepart=base,hash=98b0d29966f947460b3eb25590bfa7b5}{%
-           family={Szepesvári},
-           familyi={S\bibinitperiod},
-           given={Csaba},
-           giveni={C\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{98b0d29966f947460b3eb25590bfa7b5}
-      \strng{fullhash}{98b0d29966f947460b3eb25590bfa7b5}
-      \strng{bibnamehash}{98b0d29966f947460b3eb25590bfa7b5}
-      \strng{authorbibnamehash}{98b0d29966f947460b3eb25590bfa7b5}
-      \strng{authornamehash}{98b0d29966f947460b3eb25590bfa7b5}
-      \strng{authorfullhash}{98b0d29966f947460b3eb25590bfa7b5}
-      \field{sortinit}{S}
-      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{day}{1}
-      \field{issn}{1939-4608}
-      \field{journaltitle}{Synthesis Lectures on Artificial Intelligence and Machine Learning}
-      \field{month}{1}
-      \field{number}{1}
-      \field{shortjournal}{Synthesis Lectures on Artificial Intelligence and Machine Learning}
-      \field{title}{Algorithms for {{Reinforcement Learning}}}
-      \field{volume}{4}
-      \field{year}{2010}
-      \field{dateera}{ce}
-      \field{pages}{1\bibrangedash 103}
-      \range{pages}{103}
-      \verb{doi}
-      \verb 10.2200/S00268ED1V01Y201005AIM009
-      \endverb
-      \verb{file}
-      \verb C:\\Users\\felix\\Zotero\\storage\\9BG3XKG8\\Szepesvári - 2010 - Algorithms for Reinforcement Learning.pdf;C:\\Users\\felix\\Zotero\\storage\\XFRVYKZ3\\Algorithms_ReinforcementLearning.pdf;C:\\Users\\felix\\Zotero\\storage\\3HQTSX4N\\S00268ED1V01Y201005AIM009.html
-      \endverb
-    \endentry
-    \entry{whiteRealApplicationsMarkov1985}{article}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,uniquepart=base,hash=aa320bd099c1a6093a33260ddcecd3f3}{%
-           family={White},
-           familyi={W\bibinitperiod},
-           given={Douglas\bibnamedelima J.},
-           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{aa320bd099c1a6093a33260ddcecd3f3}
-      \strng{fullhash}{aa320bd099c1a6093a33260ddcecd3f3}
-      \strng{bibnamehash}{aa320bd099c1a6093a33260ddcecd3f3}
-      \strng{authorbibnamehash}{aa320bd099c1a6093a33260ddcecd3f3}
-      \strng{authornamehash}{aa320bd099c1a6093a33260ddcecd3f3}
-      \strng{authorfullhash}{aa320bd099c1a6093a33260ddcecd3f3}
-      \field{sortinit}{W}
-      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{0092-2102, 1526-551X}
-      \field{journaltitle}{Interfaces}
-      \field{langid}{english}
-      \field{month}{12}
-      \field{number}{6}
-      \field{title}{Real {{Applications}} of {{Markov Decision Processes}}}
-      \field{volume}{15}
-      \field{year}{1985}
-      \field{dateera}{ce}
-      \field{pages}{73\bibrangedash 83}
-      \range{pages}{11}
-      \verb{doi}
-      \verb 10.1287/inte.15.6.73
-      \endverb
-      \verb{file}
-      \verb C:\\Users\\felix\\Zotero\\storage\\DWX2M69R\\White - 1985 - Real Applications of Markov Decision Processes.pdf
-      \endverb
     \endentry
     \entry{wieringEfficientModelbasedExploration1998}{inproceedings}{}
       \name{author}{2}{}{%

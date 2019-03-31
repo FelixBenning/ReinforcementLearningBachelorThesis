@@ -32,7 +32,7 @@
 \usepackage[style=authoryear, backend=biber, maxcitenames=2]{biblatex}
 \addbibresource{./chapter/literature.bib}
 
-\usepackage[draft]{fixme} %final removes annotations 
+\usepackage[draft]{fixme} %final removes annotations %draft includes annotations
 \fxsetup{theme=color}
 %%\fxnote{some note} ,\fxwarning{}, \fxerror{}, \fxfatal{} <- does not allow [final] to compile
 
@@ -105,13 +105,12 @@
 %%  manche setzen die Einleitung als erstes Kapitel
 %%  nach "\mainmatter")
 %%
-%\include{./chapter/introduction}
+\include{./chapter/introduction}
 \mainmatter
 %%
 %% eigentliche Kapitel der Arbeit
 %%
-%\include{./pictures/flowchart}
-\include{./chapter/chapter_01}
+%\include{./chapter/chapter_01}
 \include{./chapter/chapter_02} 
 \include{./chapter/chapter_03} 
 %%

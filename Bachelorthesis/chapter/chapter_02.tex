@@ -766,9 +766,21 @@ A naive fix to this problem would be to favour chains of exploratory actions (i.
 
 \subsubsection{Curiosity-Driven Exploration}
 
-This is the approach 
+Inspired by human curiosity, intrinsic rewards for actions which do not immediately result in extrinsic reinforcement were suggested. There are mostly two types of intrinsic motivation algorithms. One rewards reaching ``novel'' states, encouraging the agent to stay in unexplored territory before walking back to known extrinsic rewards. Where ``novelty'' could be a constant minus the number of visits, or anything else one might come up with. 
+
+In the second approach the agent builds a world model which tries to predict the next state \(x_{t+1}\) given state \(x_t\) and action \(a_t\). This world model would be a function approximation algorithm (e.g. an artificial neuronal net) which would be trained on the samples generated. Surprising this world model results in an additional reward for the reinforcement algorithm. This encourages the agent to take actions which it does not understand (i.e. which the world model does not predict). But in this basic form, the agent would get addicted to white noise, i.e. situations where the next state is completely unpredictable but also not necessarily meaningful.\fxnote{Citation of earlier work}
+
 \textcite{pathakCuriosityDrivenExplorationSelfSupervised2017}
-recently came up with. Taking inspiration from humans, they argue that curiosity provides intrinsic rewards for actions which do not immediately result in extrinsic reinforcement. Their basic idea is, to train a function approximation algorithm (e.g. an artificial neuronal net) to predict the next state \(y\) given state \(x\) and action \(a\). This is the world model of the agent. Surprising this world model results in an additional reward for the reinforcement algorithm. This encourages the agent to take actions which it does not understand (i.e. which the world model does not predict). But to avoid the agent getting addicted to white noise, they add another module. 
+recently came up with a modification to fix this problem. They argue that the unpredictability is due to the fact, that these unpredictable state changes are not influenced by the agents actions. So they suggest a filter \(\Phi\) for the state space, which maps the state to a smaller feature space, which only represents the influenceable state of the world. This feature map \(\Phi\) is attained by training a neuronal net. 
+
+\fxwarning{diagram here}
+This neuronal net consists of two copies of a neuronal net with input neurons \(x_t\) and \(x_{t+1}\) respectively, which have fewer output neurons. These two outputs \(\Phi(x_t)\) and \(\Phi(x_{t+1})\) are then fed into a common net which has \(\hat{a}_t\) as output neurons. Similar to autoencoders compressing information with a bottleneck, this neuronal net has to compress \(x_t\) and \(x_{t+1}\) to the middle layer \(\Phi(x_t)\) and \(\Phi(x_{t+1})\). But since it does not need to recover the original from this compression but rather \(a_t\), it is meant to throw away the information about \(x_t\) which does not help to predict \(a_t\), i.e. throw away parts of the state space which can not be influenced by an action.
+
+The world model then has to predict \(\Phi(x_{t+1})\) instead of \(x_{t+1}\), which means that its error will not increase, when it does not predict non-influenceable changes like white noise as these are filtered out by \(\Phi\).
+
+This set up proved extremely effective in empirical tests. It even learned to play some games it was tested on without any extrinsic reward at all. 
+
+It might be argued, that this feature map \(\Phi\) filters out too many things, like actions by other actors, which are not influenced by the agent itself but influence the agent. If they influence the agent though, and the agent could or should react to these actions, then these events will be relevant for predicting the agents actions. Therefore they would not be filtered out. Only if the agent can not or has no incentive to respond to these events is it irrelevant for predicting the agents actions and will be filtered. And since the agent could not or does not need to react to these event anyway, no harm is done. 
 
 %far away rewards 
 
