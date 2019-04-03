@@ -338,8 +338,8 @@ INPUT chapter\declaration.aux
 INPUT chapter\declaration.aux
 INPUT chapter\introduction.aux
 INPUT chapter\introduction.aux
-INPUT chapter\chapter_02.aux
-INPUT chapter\chapter_02.aux
+INPUT chapter\chapter_01.aux
+INPUT chapter\chapter_01.aux
 INPUT chapter\chapter_03.aux
 INPUT chapter\chapter_03.aux
 INPUT chapter\appendix_01.aux
@@ -414,66 +414,43 @@ INPUT chapter\introduction.tex
 INPUT chapter\introduction.tex
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecti1095.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecsl1095.tfm
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_02.aux
-INPUT chapter\chapter_02.tex
-INPUT chapter\chapter_02.tex
+OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_01.aux
+INPUT chapter\chapter_01.tex
+INPUT chapter\chapter_01.tex
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecbx2074.tfm
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm0800.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm0600.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecti0800.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecti0600.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm0900.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmss.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmss.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecss0900.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecbx1200.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi12.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmex10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm0800.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam5.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy5.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm0600.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm0500.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr9.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi9.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy9.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex9.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy9.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi12.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmex10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam5.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy9.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy5.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecbx1200.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm1728.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy7.tfm
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\bbm\ubbm.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\bbm\ubbm.fd
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm10.tfm
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm8.tfm
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm6.tfm
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm12.tfm
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm9.tfm
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm5.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx8.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx6.tfm
 OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_03.aux
 INPUT chapter\chapter_03.tex
 INPUT chapter\chapter_03.tex
 OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\appendix_01.aux
 INPUT chapter\appendix_01.tex
 INPUT chapter\appendix_01.tex
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecti0800.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecti0600.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\eccc1095.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd
@@ -483,8 +460,8 @@ INPUT chapter\declaration.aux
 INPUT chapter\declaration.aux
 INPUT chapter\introduction.aux
 INPUT chapter\introduction.aux
-INPUT chapter\chapter_02.aux
-INPUT chapter\chapter_02.aux
+INPUT chapter\chapter_01.aux
+INPUT chapter\chapter_01.aux
 INPUT chapter\chapter_03.aux
 INPUT chapter\chapter_03.aux
 INPUT chapter\appendix_01.aux
@@ -497,18 +474,18 @@ INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1095.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1095.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1095.pk
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\bbm\dpi657\bbm10.pk
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\bbm\dpi657\bbm10.pk
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0600.pk
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0600.pk
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0800.pk
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0800.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\wasy\dpi1037\wasy10.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\wasy\dpi1037\wasy10.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0600.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0600.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecss0900.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecss0900.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0800.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0800.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsl1095.pk
@@ -531,14 +508,16 @@ INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cmextra\cmex8.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cmextra\cmex8.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cmextra\cmex9.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cmextra\cmex9.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi12.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi12.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi5.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi5.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi6.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi6.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi8.pfb
@@ -563,5 +542,7 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy9.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy9.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\symbols\msam10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\symbols\msam10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\symbols\msam7.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\symbols\msam7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\symbols\msbm10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\symbols\msbm10.pfb

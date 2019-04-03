@@ -1,32 +1,24 @@
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxwarning}check outline of the plan}{1}{Item.2}% 
+\contentsline {fixme}{\color {fxnote}Make this a definition of some sort?}{5}{prop.1.2.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}add code/ ref code Dynamic Programming}{2}{Item.4}% 
+\contentsline {fixme}{\color {fxnote}remark? lemma? prop?}{6}{prop.1.2.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}numerical stability analysis?}{2}{Item.4}% 
+\contentsline {fixme}{\color {fxnote} some history irrelevant in appendix?}{8}{equation.1.2.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}will TD proof work?}{4}{algorithm.2}% 
+\contentsline {fixme}{\color {fxerror}does this series exist? argument neccessary? c.f. assumption 1 - enough?}{8}{prop.1.2.8}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}check claim}{5}{subsection.1.2.1}% 
+\contentsline {fixme}{\color {fxnote}he quotes Blackwell 1965 - quote blackwell directly?}{9}{prop.1.2.12}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}illustrations?}{9}{prop.1.2.3}% 
+\contentsline {fixme}{\color {fxnote}proof BFT? - appendix?}{14}{prop.1.3.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}realized?}{9}{section.1.3}% 
+\contentsline {fixme}{\color {fxnote}show: is complete metric space - appendix?}{14}{prop.1.3.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}Do I need to generalize the def?}{10}{equation.1.3.2}% 
+\contentsline {fixme}{\color {fxwarning}comma, fullstop, nothing?}{14}{Item.9}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}section instead of subsection? chance place? - after TD(lambda), after Q-learning?}{12}{section.1.4}% 
+\contentsline {fixme}{\color {fxwarning}exist in set? clutters up the equation making it harder to read, but is math. more correct}{19}{equation.1.4.10}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}write down algorithm?}{13}{equation.1.4.4}% 
+\contentsline {fixme}{\color {fxerror}ugly - better solution?}{28}{equation.1.5.19}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}``corrected n-step truncated return'' + explanation?}{14}{subsection.1.5.1}% 
+\contentsline {fixme}{\color {fxnote}is this Title fix?}{29}{equation.1.5.19}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}check claim, should I change assumption 1 in the first place?}{16}{equation.1.5.5}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}Quote papers, write down pseudo algos?}{19}{subsection.1.6.1}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}Dyna-Q+ ?}{22}{section*.6}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxnote}Citation of earlier work}{24}{section*.8}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {fixme}{\color {fxwarning}diagram here}{24}{section*.8}% 
+\contentsline {fixme}{\color {fxnote}Write down Algorithm?}{33}{Item.19}% 

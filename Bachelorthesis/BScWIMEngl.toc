@@ -3,58 +3,32 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{Introduction}{vii}{chapter*.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {1}Reinforcement Learning Algorithms}{1}{chapter.1}% 
+\contentsline {chapter}{\numberline {1}Markov Decision Processes}{1}{chapter.1}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}Introduction}{1}{section.1.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.2}Monte Carlo}{3}{section.1.2}% 
+\contentsline {section}{\numberline {1.2}Model Formulation}{4}{section.1.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.2.1}From \(\pi \) to \(\pi ^*\)}{4}{subsection.1.2.1}% 
+\contentsline {subsection}{\numberline {1.2.1}Outlook}{10}{subsection.1.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.2.2}Shortcomings of Monte Carlo}{8}{subsection.1.2.2}% 
+\contentsline {section}{\numberline {1.3}Fix-Point Equations for Value Functions}{10}{section.1.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.3}Temporal Difference Learning TD}{9}{section.1.3}% 
+\contentsline {section}{\numberline {1.4}Optimal Value Functions}{15}{section.1.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3.1}Shortcomings of TD}{11}{subsection.1.3.1}% 
+\contentsline {subsection}{\numberline {1.4.1}Finite Outmatching}{15}{subsection.1.4.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.4}Growing Batch Learning}{12}{section.1.4}% 
+\contentsline {subsection}{\numberline {1.4.2}Fix-Point Equations for Optimal Value functions}{17}{subsection.1.4.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.5}TD(\(\lambda \)) -- Mixing Monte Carlo and TD}{14}{section.1.5}% 
+\contentsline {section}{\numberline {1.5}Optimal policies}{23}{section.1.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.5.1}\(n\)-Step Return}{14}{subsection.1.5.1}% 
+\contentsline {section}{\numberline {1.6}Dynamic Programming}{30}{section.1.6}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.5.2}TD(\(\lambda \)) Forward View}{15}{subsection.1.5.2}% 
+\contentsline {chapter}{\numberline {2}Stochastic Approximation -- Convergence Proofs}{35}{chapter.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.5.3}TD(\(\lambda \)) Backward View}{17}{subsection.1.5.3}% 
+\contentsline {section}{\numberline {2.1}Introduction}{35}{section.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.5.4}True Online TD(\(\lambda \))}{19}{subsection.1.5.4}% 
+\contentsline {chapter}{\numberline {A}Appendix}{37}{appendix.A}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.6}Q-learning}{19}{section.1.6}% 
+\contentsline {section}{\numberline {A.1}Basic Probability Theory}{37}{section.A.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.6.1}Shortcomings of Q-learning}{19}{subsection.1.6.1}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.7}Exploration}{20}{section.1.7}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.7.1}Optimism}{20}{subsection.1.7.1}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.7.2}Boltzmann Exploration}{20}{subsection.1.7.2}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.7.3}Directed Exploration}{21}{subsection.1.7.3}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Interval Estimation}{21}{section*.6}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Bayesian Exploration}{23}{section*.7}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.7.4}Intrinsic Rewards}{23}{subsection.1.7.4}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Curiosity-Driven Exploration}{24}{section*.8}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.8}Function Approximation}{25}{section.1.8}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Stochastic Approximation -- Convergence Proofs}{27}{chapter.2}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Appendix}{29}{appendix.A}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Basic Probability Theory}{29}{section.A.1}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Analysis}{31}{section.A.2}% 
+\contentsline {section}{\numberline {A.2}Analysis}{39}{section.A.2}% 
