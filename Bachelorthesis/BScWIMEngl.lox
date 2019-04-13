@@ -1,4 +1,6 @@
 \defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}check}{viii}{chapter*.4}% 
+\defcounter {refsection}{0}\relax 
 \contentsline {fixme}{\color {fxnote}Make this a definition of some sort?}{5}{prop.1.2.3}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {fixme}{\color {fxnote}remark? lemma? prop?}{6}{prop.1.2.5}% 
@@ -22,3 +24,39 @@
 \contentsline {fixme}{\color {fxnote}is this Title fix?}{29}{equation.1.5.19}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {fixme}{\color {fxnote}Write down Algorithm?}{33}{Item.19}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxwarning}check outline of the plan}{35}{Item.21}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}add code/ ref code Dynamic Programming}{36}{Item.23}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}numerical stability analysis?}{36}{Item.23}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}will TD proof work?}{38}{algorithm.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}check claim}{39}{subsection.2.2.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}illustrations?}{43}{prop.2.2.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}Do I need to generalize the def?}{44}{equation.2.3.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}section instead of subsection? chance place? - after TD(lambda), after Q-learning?}{46}{section.2.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}write down algorithm?}{47}{equation.2.4.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}``corrected n-step truncated return'' + explanation?}{48}{subsection.2.5.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}check claim, should I change assumption 1 in the first place?}{50}{equation.2.5.5}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}Quote papers, write down pseudo algos?}{53}{subsection.2.6.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}Dyna-Q+ ?}{56}{section*.12}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}Citation of earlier work}{58}{section*.14}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxwarning}diagram here}{58}{section*.14}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}double-check}{67}{equation.3.3.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}appendix}{69}{equation.3.4.12}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {fixme}{\color {fxnote}proof necessary?}{71}{equation.3.4.21}% 

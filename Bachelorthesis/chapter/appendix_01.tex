@@ -46,7 +46,7 @@
 \begin{proof}
     ``\(\Leftarrow\)'' Let \(A\in\cB(\R)\), then w.l.o.g. \(A\subseteq f(\Omega)\) otherwise
     \[
-        \Pr_{f\circ X}(A)=\Pr(A\cap f(\Omega))+\underbracket{
+        \Pr_{f\circ X}(A)=\Pr(A\cap f(\Omega))+\underbracket[1pt]{
             \Pr_{f\circ X}(A\cap f(\Omega)^\complement)
             }_{=0}=\dotsc=\Pr_Y(A) 
     \]
@@ -103,5 +103,23 @@
         \qedhere
     \]
 \end{proof}
-\section{Analysis}
+
+\begin{lemma}\label{appx4} For a real valued random variable \(X\), an arbitrary random vector \(Y\) and \(f\) a measurable real valued function 
+    \[
+        \textnormal{Var}[X\mid Y]=\min_{f} \E[ (X-f(Y))^2\mid Y]
+    \]
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        \E[(X-f(Y))^2\mid Y] &= \E[X^2\mid Y] - \E[2Xf(Y)\mid Y] + \E[f(Y)^2\mid Y]\\
+        &=\E[X^2\mid Y] - 2f(Y)\E[X\mid Y] + f(Y)^2
+    \end{align*}  
+    Fr a fixed \(\omega\), \(f(Y(\omega))\eqqcolon a\) is simply a constant. Therefore we can set the first derivative equal to zero:
+    \begin{align*}
+        \frac{d}{da} \E[(X-f(Y))^2\mid Y](\omega)= -2\E[X\mid Y](\omega) +2a \xeq{!} 0
+    \end{align*}
+    Since the second derivative is \(2>0\), \(\E[X\mid Y](\omega) = f(Y(\omega))\) is the unique minimum. Which implies that \(\text{Var}[X\mid Y]\) is the minimum regardless of \(\omega\).
+\end{proof}
+
+%\section{Analysis}
 \endinput

@@ -23,12 +23,64 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.6}Dynamic Programming}{30}{section.1.6}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Stochastic Approximation -- Convergence Proofs}{35}{chapter.2}% 
+\contentsline {chapter}{\numberline {2}Reinforcement Learning Algorithms}{35}{chapter.2}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.1}Introduction}{35}{section.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Appendix}{37}{appendix.A}% 
+\contentsline {section}{\numberline {2.2}Monte Carlo}{37}{section.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Basic Probability Theory}{37}{section.A.1}% 
+\contentsline {subsection}{\numberline {2.2.1}From \(\pi \) to \(\pi ^*\)}{38}{subsection.2.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Analysis}{39}{section.A.2}% 
+\contentsline {subsection}{\numberline {2.2.2}Shortcomings of Monte Carlo}{42}{subsection.2.2.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Temporal Difference Learning TD}{43}{section.2.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.1}Shortcomings of TD}{45}{subsection.2.3.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Growing Batch Learning}{46}{section.2.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}TD(\(\lambda \)) -- Mixing Monte Carlo and TD}{48}{section.2.5}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.1}\(n\)-Step Return}{48}{subsection.2.5.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.2}TD(\(\lambda \)) Forward View}{49}{subsection.2.5.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.3}TD(\(\lambda \)) Backward View}{51}{subsection.2.5.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.4}True Online TD(\(\lambda \))}{53}{subsection.2.5.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.6}Q-learning}{53}{section.2.6}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.6.1}Shortcomings of Q-learning}{53}{subsection.2.6.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.7}Exploration}{54}{section.2.7}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.7.1}Optimism}{54}{subsection.2.7.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.7.2}Boltzmann Exploration}{54}{subsection.2.7.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.7.3}Directed Exploration}{55}{subsection.2.7.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Interval Estimation}{55}{section*.12}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Bayesian Exploration}{57}{section*.13}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.7.4}Intrinsic Rewards}{57}{subsection.2.7.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Curiosity-Driven Exploration}{58}{section*.14}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.8}Function Approximation}{59}{section.2.8}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Stochastic Approximation -- Convergence}{61}{chapter.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Introduction}{61}{section.3.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Learning Rates}{62}{section.3.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Application to Reinforcement Learning}{65}{section.3.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Proof of Theorem \ref {JAAKKOLA:THM}}{68}{section.3.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Appendix}{73}{appendix.A}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}Basic Probability Theory}{73}{section.A.1}% 

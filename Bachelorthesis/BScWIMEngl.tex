@@ -13,7 +13,10 @@
 \usepackage{./macros/BScMacros}
 \usepackage{./macros/BScTitle}
 
-\usepackage{tikz,tikz-cd}
+
+\usepackage{tikz,tikz-cd,pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.16} 
 \usetikzlibrary{
     math,
     shapes,% for the rectangle
@@ -111,7 +114,7 @@
 %% eigentliche Kapitel der Arbeit
 %%
 \include{./chapter/chapter_01}
-%\include{./chapter/chapter_02} 
+\include{./chapter/chapter_02} 
 \include{./chapter/chapter_03} 
 %%
 %% Falls Abbildungen und/oder Tabellen vorhanden,

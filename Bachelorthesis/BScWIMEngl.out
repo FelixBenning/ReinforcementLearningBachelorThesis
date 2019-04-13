@@ -6,8 +6,19 @@
 \BOOKMARK [1][-]{section.1.4}{Optimal Value Functions}{chapter.1}% 6
 \BOOKMARK [1][-]{section.1.5}{Optimal policies}{chapter.1}% 7
 \BOOKMARK [1][-]{section.1.6}{Dynamic Programming}{chapter.1}% 8
-\BOOKMARK [0][-]{chapter.2}{Stochastic Approximation \205 Convergence Proofs}{}% 9
+\BOOKMARK [0][-]{chapter.2}{Reinforcement Learning Algorithms}{}% 9
 \BOOKMARK [1][-]{section.2.1}{Introduction}{chapter.2}% 10
-\BOOKMARK [0][-]{appendix.A}{Appendix}{}% 11
-\BOOKMARK [1][-]{section.A.1}{Basic Probability Theory}{appendix.A}% 12
-\BOOKMARK [1][-]{section.A.2}{Analysis}{appendix.A}% 13
+\BOOKMARK [1][-]{section.2.2}{Monte Carlo}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.3}{Temporal Difference Learning TD}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.4}{Growing Batch Learning}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.5}{TD\(\) \205 Mixing Monte Carlo and TD}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.6}{Q-learning}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.7}{Exploration}{chapter.2}% 16
+\BOOKMARK [1][-]{section.2.8}{Function Approximation}{chapter.2}% 17
+\BOOKMARK [0][-]{chapter.3}{Stochastic Approximation \205 Convergence}{}% 18
+\BOOKMARK [1][-]{section.3.1}{Introduction}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.2}{Learning Rates}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.3}{Application to Reinforcement Learning}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.4}{Proof of Theorem 3.3.1}{chapter.3}% 22
+\BOOKMARK [0][-]{appendix.A}{Appendix}{}% 23
+\BOOKMARK [1][-]{section.A.1}{Basic Probability Theory}{appendix.A}% 24

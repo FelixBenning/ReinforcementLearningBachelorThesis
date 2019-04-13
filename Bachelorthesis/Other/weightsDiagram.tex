@@ -1,0 +1,62 @@
+\documentclass[11pt, a4paper]{book}
+
+\usepackage{tikz, pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.16} 
+
+
+\begin{document}
+   
+\begin{tikzpicture}
+    \begin{groupplot}[
+        group style={
+            group size=2 by 2,
+            horizontal sep=1.2cm,
+            vertical sep=1.5cm,
+            xlabels at=edge bottom,
+            ylabels at=edge left
+        },
+        scale only axis,
+        height=5cm,
+        width=5cm,
+        xlabel=\(k\),
+        ylabel=\(w_k^{(n)}\)
+    ]
+    \nextgroupplot[
+        title={\(n=30\)},
+        legend entries={{\(\alpha_k=0.15\; (k>1) \)}, \(\alpha_k=1/\sqrt{k}\), \(\alpha_k=1/k\)},
+        legend pos=north west,
+        legend cell align={left},
+    ]
+        \addplot table {expon30.csv};
+        \addplot table {sqrtn30.csv};
+        \addplot table {n30.csv};
+    \nextgroupplot[
+        title ={\(n=30\) loglog},
+        ymode=log,
+        xmode=log, 
+        ]
+        \addplot table {expon30.csv};
+        \addplot table {sqrtn30.csv};
+        \addplot table {n30.csv};
+    \nextgroupplot[
+        title ={\(n=100\) loglog},
+        ymode=log,
+        xmode=log, 
+        ]
+        \addplot table {expon100.csv};
+        \addplot table {sqrtn100.csv};
+        \addplot table {n100.csv};
+    \nextgroupplot[
+        title ={\(n=500\) loglog},
+        ymode=log,
+        xmode=log, 
+        ]
+        \addplot table {expon500.csv};
+        \addplot table {sqrtn500.csv};
+        \addplot table {n500.csv};
+    \end{groupplot}
+\end{tikzpicture}
+
+\end{document}
+

@@ -230,51 +230,103 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\t
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarymath.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarymath.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.geometric.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.geometric.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.geometric.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.geometric.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.misc.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.misc.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.misc.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.misc.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.symbols.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.symbols.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.symbols.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.symbols.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.arrows.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.arrows.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.arrows.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.arrows.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.callouts.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.callouts.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.callouts.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.callouts.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.multipart.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.multipart.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.multipart.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.multipart.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarychains.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarychains.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarypositioning.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarypositioning.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryscopes.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryscopes.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryarrows.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryarrows.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathmorphing.code.tex
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathmorphing.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\pgfplots\pgfplots.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\pgfplots\pgfplots.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.revision.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.revision.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys-luatex.def
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotscore.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\sys\pgfplotssysgeneric.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\libs\pgfplotslibrary.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_loader.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryfpu.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryfpu.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryfpu.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_pgflibraryfpu.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_pgfmathfloat.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\util\pgfplotsutil.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsliststructure.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsliststructureext.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsarray.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsmatrix.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\numtable\pgfplotstableshared.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsdeque.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\util\pgfplotsbinary.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\util\pgfplotsbinary.data.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\util\pgfplotsutil.verb.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\libs\pgflibrarypgfplots.surfshading.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\sys\pgflibrarypgfplots.surfshading.pgfsys-pdftex.def
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\sys\pgflibrarypgfplots.surfshading.pgfsys-pdftex.def
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\util\pgfplotscolormap.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\util\pgfplotscolor.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotsstackedplots.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotsplothandlers.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotsmeshplothandler.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotsmeshplotimage.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.scaling.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotscoordprocessing.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.errorbars.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.markers.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotsticks.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.paths.code.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.code.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.code.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduledecorations.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathmorphing.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathmorphing.code.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathmorphing.code.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathmorphing.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathreplacing.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathreplacing.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathreplacing.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathreplacing.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryplotmarks.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryplotmarks.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryplotmarks.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryplotmarks.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\libs\tikzlibrarypgfplots.groupplots.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\libs\tikzlibrarypgfplots.groupplots.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarycalc.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarycalc.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarymath.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarymath.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.geometric.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.geometric.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.geometric.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.geometric.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.misc.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.misc.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.misc.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.misc.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.symbols.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.symbols.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.symbols.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.symbols.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.arrows.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.arrows.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.arrows.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.arrows.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.callouts.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.callouts.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.callouts.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.callouts.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.multipart.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.multipart.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.multipart.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes.multipart.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarychains.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarychains.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarypositioning.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarypositioning.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryscopes.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryscopes.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryarrows.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryarrows.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.code.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshadows.code.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshadows.code.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryfadings.code.tex
@@ -340,6 +392,8 @@ INPUT chapter\introduction.aux
 INPUT chapter\introduction.aux
 INPUT chapter\chapter_01.aux
 INPUT chapter\chapter_01.aux
+INPUT chapter\chapter_02.aux
+INPUT chapter\chapter_02.aux
 INPUT chapter\chapter_03.aux
 INPUT chapter\chapter_03.aux
 INPUT chapter\appendix_01.aux
@@ -413,6 +467,10 @@ OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelora
 INPUT chapter\introduction.tex
 INPUT chapter\introduction.tex
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecti1095.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm0900.tfm
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmss.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmss.fd
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecss0900.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecsl1095.tfm
 OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_01.aux
 INPUT chapter\chapter_01.tex
@@ -424,10 +482,6 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm0800.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm0600.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecti0800.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecti0600.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm0900.tfm
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmss.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmss.fd
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecss0900.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr9.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi9.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy9.tfm
@@ -445,9 +499,60 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx6.tfm
+OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_02.aux
+INPUT chapter\chapter_02.tex
+INPUT chapter\chapter_02.tex
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmex10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx5.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm0500.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx9.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmex10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx7.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy7.tfm
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\bbm\ubbm.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\bbm\ubbm.fd
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm10.tfm
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm8.tfm
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm6.tfm
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm12.tfm
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm9.tfm
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm5.tfm
 OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_03.aux
 INPUT chapter\chapter_03.tex
 INPUT chapter\chapter_03.tex
+INPUT Other\expon30.csv
+INPUT Other\sqrtn30.csv
+INPUT Other\n30.csv
+INPUT Other\expon30.csv
+INPUT Other\sqrtn30.csv
+INPUT Other\n30.csv
+INPUT Other\expon100.csv
+INPUT Other\sqrtn100.csv
+INPUT Other\n100.csv
+INPUT Other\expon500.csv
+INPUT Other\sqrtn500.csv
+INPUT Other\n500.csv
 OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\appendix_01.aux
 INPUT chapter\appendix_01.tex
 INPUT chapter\appendix_01.tex
@@ -462,6 +567,8 @@ INPUT chapter\introduction.aux
 INPUT chapter\introduction.aux
 INPUT chapter\chapter_01.aux
 INPUT chapter\chapter_01.aux
+INPUT chapter\chapter_02.aux
+INPUT chapter\chapter_02.aux
 INPUT chapter\chapter_03.aux
 INPUT chapter\chapter_03.aux
 INPUT chapter\appendix_01.aux
@@ -474,20 +581,22 @@ INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1095.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1095.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1095.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\bbm\dpi657\bbm10.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\bbm\dpi657\bbm10.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\wasy\dpi1037\wasy10.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\wasy\dpi1037\wasy10.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0600.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0600.pk
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecss0900.pk
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecss0900.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0800.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0800.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecss0900.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecss0900.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsl1095.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsl1095.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1095.pk
@@ -512,10 +621,14 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cmextra\cmex8.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cmextra\cmex8.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cmextra\cmex9.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cmextra\cmex9.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi12.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi12.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi5.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi5.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi6.pfb
