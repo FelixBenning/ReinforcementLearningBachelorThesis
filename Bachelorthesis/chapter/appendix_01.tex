@@ -1,5 +1,5 @@
 \chapter{Appendix}
-\section{Basic Probability Theory}
+\section{Probability Theory}
 \begin{lemma}\leavevmode \label{appx1}
     \begin{enumerate}[label=(\roman*), font=\normalfont]
         \item\label{appx1:i} \(\Pr(A\cap B\mid C) = \Pr(A \mid B \cap C)\Pr(B\mid C) \)
@@ -121,5 +121,48 @@
     Since the second derivative is \(2>0\), \(\E[X\mid Y](\omega) = f(Y(\omega))\) is the unique minimum. Which implies that \(\text{Var}[X\mid Y]\) is the minimum regardless of \(\omega\).
 \end{proof}
 
-%\section{Analysis}
+\section{Analysis}
+\begin{lemma}\label{appx:analysis 0}
+    Let \(0<a_n(\vep)\le a_n(\vep_0)\) for \(n\in\N\) and  \(0<\vep\le \vep_0\), then
+    \begin{align*}
+        &\sum_{n=1}^\infty a_n(\vep_0) < \infty 
+        \quad\text{and}\quad \forall n\in\N: \lim_{\vep\to 0} a_n(\vep)= 0 \\
+        &\implies \lim_{\vep\to 0}\sum_{n=1}^\infty a_n(\vep)=0
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    Select an arbitrary \(\delta>0\), then there is some \(N\in\N\) such that
+    \[
+        \sum_{n=N+1}^\infty a_n(\vep_0) < \delta/2
+    \]
+    and some \(\vep_0>\vep>0\) such that
+    \[
+        \sum_{n=1}^N a_n(\vep)<\delta/2
+    \]
+    and thus
+    \[
+        \sum_{n=1}^\infty a_n(\vep)
+        \le \sum_{n=N+1}^\infty a_n(\vep_0) +\sum_{n=1}^N a_n(\vep)<\delta \qedhere
+    \]
+\end{proof}
+\begin{lemma}\label{appx:analysis 1}
+    Let \(0<p_n(\vep)\le p_n(\vep_0)\) for \(n\in\N\) and \(0<\vep \le \vep_0\), then
+    \begin{align*}
+        &\prod_{n=1}^\infty p_n(\vep_0) > 0 
+        \quad\text{and}\quad \forall n\in\N: \lim_{\vep\to 0} p_n(\vep)= 1 \\
+        &\implies \lim_{\vep\to 0}\prod_{n=1}^\infty p_n(\vep)=1
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    Since the logarithm is continuous we get
+    \begin{align*}
+        &\sum_{n=1}^\infty \log(p_n(\vep_0))>-\infty \quad \text{and}\quad \forall n\in\N: \lim_{\vep\to 0} \log(p_n(\vep))= 0\\
+        &\implies \sum_{n=1}^\infty -\log(p_n(\vep_0))<\infty \quad \text{and}\quad \forall n\in\N: \lim_{\vep\to 0} \log(p_n(\vep))= 0\\
+        &\lximplies{\text{\ref{appx:analysis 0}}} \lim_{\vep\to 0} 
+        \sum_{n=1}^\infty -\log(p_n(\vep)) =0\\
+        &\implies \lim_{\vep\to 0}\prod_{n=1}^\infty p_n(\vep)=\exp\left( 
+            \lim_{\vep\to 0}\log\left( \prod_{n=1}^\infty p_n(\vep) \right)
+        \right)=1\qedhere
+    \end{align*}
+\end{proof}
 \endinput
