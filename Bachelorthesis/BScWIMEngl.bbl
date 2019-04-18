@@ -19,6 +19,53 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{borkarMethodConvergenceStochastic2000}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=3cc6211f904ecb5c60f4a2faa50b6be3}{%
+           family={Borkar},
+           familyi={B\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=88bb7b430bf616aa1f184701f54cf744}{%
+           family={Meyn},
+           familyi={M\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{dff4e182e1177bd64d8456c0a4ce58f2}
+      \strng{fullhash}{dff4e182e1177bd64d8456c0a4ce58f2}
+      \strng{bibnamehash}{dff4e182e1177bd64d8456c0a4ce58f2}
+      \strng{authorbibnamehash}{dff4e182e1177bd64d8456c0a4ce58f2}
+      \strng{authornamehash}{dff4e182e1177bd64d8456c0a4ce58f2}
+      \strng{authorfullhash}{dff4e182e1177bd64d8456c0a4ce58f2}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{It is shown here that stability of the stochastic approximation algorithm is implied by the asymptotic stability of the origin for an associated ODE. This in turn implies convergence of the algorithm. Several specific classes of algorithms are considered as applications. It is found that the results provide (i) a simpler derivation of known results for reinforcement learning algorithms; (ii) a proof for the first time that a class of asynchronous stochastic approximation algorithms are convergent without using any a priori assumption of stability; (iii) a proof for the first time that asynchronous adaptive critic and Q-learning algorithms are convergent for the average cost optimal control problem.}
+      \field{day}{1}
+      \field{issn}{0363-0129}
+      \field{journaltitle}{SIAM Journal on Control and Optimization}
+      \field{month}{1}
+      \field{number}{2}
+      \field{shortjournal}{SIAM J. Control Optim.}
+      \field{title}{The {{O}}.{{D}}.{{E}}. {{Method}} for {{Convergence}} of {{Stochastic Approximation}} and {{Reinforcement Learning}}}
+      \field{volume}{38}
+      \field{year}{2000}
+      \field{dateera}{ce}
+      \field{pages}{447\bibrangedash 469}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1137/S0363012997331639
+      \endverb
+      \verb{file}
+      \verb C:\\Users\\felix\\Zotero\\storage\\VZ5IS6XX\\Borkar and Meyn - 2000 - The O.D.E. Method for Convergence of Stochastic Ap.pdf;C:\\Users\\felix\\Zotero\\storage\\6TP8FI9Z\\S0363012997331639.html
+      \endverb
+    \endentry
     \entry{deardenBayesianQLearning1998}{article}{}
       \name{author}{3}{}{%
         {{uniquename=0,uniquepart=base,hash=5eac58f71e450d96418f25079668603b}{%
@@ -108,6 +155,84 @@
       \verb https://apps.dtic.mil/docs/citations/AD1028378
       \endverb
     \endentry
+    \entry{jaakkolaConvergenceStochasticIterative1994}{incollection}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=521085652a07e67bdff5323e2febc138}{%
+           family={Jaakkola},
+           familyi={J\bibinitperiod},
+           given={Tommi},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=8a36116840c7ee55901618c95fd08a58}{%
+           family={Jordan},
+           familyi={J\bibinitperiod},
+           given={Michael\bibnamedelima I.},
+           giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=0778520109d58859c98d71f3b7e75837}{%
+           family={Singh},
+           familyi={S\bibinitperiod},
+           given={Satinder\bibnamedelima P.},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=4f26380d9d1d486f010a79c26655f578}{%
+           family={Cowan},
+           familyi={C\bibinitperiod},
+           given={J.\bibnamedelimi D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=e99ea83bf0b2aa481e8339676e479945}{%
+           family={Tesauro},
+           familyi={T\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=2c8f544b6de560764fbe2cf8df6d4d3a}{%
+           family={Alspector},
+           familyi={A\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Morgan-Kaufmann}%
+      }
+      \strng{namehash}{c147aea00d57d8906308e81e27de9993}
+      \strng{fullhash}{c472cf2b2187f20a7da30bcef9ceab5d}
+      \strng{bibnamehash}{c472cf2b2187f20a7da30bcef9ceab5d}
+      \strng{authorbibnamehash}{c472cf2b2187f20a7da30bcef9ceab5d}
+      \strng{authornamehash}{c147aea00d57d8906308e81e27de9993}
+      \strng{authorfullhash}{c472cf2b2187f20a7da30bcef9ceab5d}
+      \strng{editorbibnamehash}{81369fca149846346458bacd250f0ea6}
+      \strng{editornamehash}{c3b95e24d31fc0e844d1d3d948049ee9}
+      \strng{editorfullhash}{81369fca149846346458bacd250f0ea6}
+      \field{extraname}{1}
+      \field{sortinit}{J}
+      \field{sortinithash}{fce5f8d0bd05e8d93f3dbe21c78897ca}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in {{Neural Information Processing Systems}} 6}
+      \field{title}{Convergence of {{Stochastic Iterative Dynamic Programming Algorithms}}}
+      \field{urlday}{26}
+      \field{urlmonth}{2}
+      \field{urlyear}{2019}
+      \field{year}{1994}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{703\bibrangedash 710}
+      \range{pages}{8}
+      \verb{file}
+      \verb D:\\Google Drive\\ZotFiles\\1994Jaakkola et al\\Jaakkola et al_1994_Convergence of Stochastic Iterative Dynamic Programming Algorithms.pdf;C:\\Users\\felix\\Zotero\\storage\\PK2RJG45\\764-convergence-of-stochastic-iterative-dynamic-programming-algorithms.html
+      \endverb
+      \verb{urlraw}
+      \verb http://papers.nips.cc/paper/764-convergence-of-stochastic-iterative-dynamic-programming-algorithms.pdf
+      \endverb
+      \verb{url}
+      \verb http://papers.nips.cc/paper/764-convergence-of-stochastic-iterative-dynamic-programming-algorithms.pdf
+      \endverb
+    \endentry
     \entry{jaakkolaConvergenceStochasticIterative1994a}{article}{}
       \name{author}{3}{}{%
         {{uniquename=0,uniquepart=base,hash=521085652a07e67bdff5323e2febc138}{%
@@ -135,8 +260,10 @@
       \strng{authorbibnamehash}{c472cf2b2187f20a7da30bcef9ceab5d}
       \strng{authornamehash}{c147aea00d57d8906308e81e27de9993}
       \strng{authorfullhash}{c472cf2b2187f20a7da30bcef9ceab5d}
+      \field{extraname}{2}
       \field{sortinit}{J}
       \field{sortinithash}{fce5f8d0bd05e8d93f3dbe21c78897ca}
+      \field{extradate}{2}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
@@ -192,6 +319,53 @@
       \verb{file}
       \verb D:\\Google Drive\\ZotFiles\\1993Kaelbling\\Kaelbling_1993_Learning in embedded systems2.pdf;C:\\Users\\felix\\Zotero\\storage\\D7YDIQSR\\books.html
       \endverb
+    \endentry
+    \entry{kushnerStochasticApproximationAlgorithms1997}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=1ed29ca8d2b16f090f280df6bab6e0f6}{%
+           family={Kushner},
+           familyi={K\bibinitperiod},
+           given={Harold\bibnamedelima J.},
+           giveni={H\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editora}{1}{}{%
+        {{hash=bb039264a668968d0116bd91a9c250e1}{%
+           family={Yin},
+           familyi={Y\bibinitperiod},
+           given={George},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin Heidelberg [u.a.}%
+      }
+      \list{publisher}{1}{%
+        {Berlin Heidelberg uaSpringer}%
+      }
+      \strng{namehash}{1ed29ca8d2b16f090f280df6bab6e0f6}
+      \strng{fullhash}{1ed29ca8d2b16f090f280df6bab6e0f6}
+      \strng{bibnamehash}{1ed29ca8d2b16f090f280df6bab6e0f6}
+      \strng{authorbibnamehash}{1ed29ca8d2b16f090f280df6bab6e0f6}
+      \strng{authornamehash}{1ed29ca8d2b16f090f280df6bab6e0f6}
+      \strng{authorfullhash}{1ed29ca8d2b16f090f280df6bab6e0f6}
+      \strng{editorabibnamehash}{bb039264a668968d0116bd91a9c250e1}
+      \strng{editoranamehash}{bb039264a668968d0116bd91a9c250e1}
+      \strng{editorafullhash}{bb039264a668968d0116bd91a9c250e1}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{editoratype}{collaborator}
+      \field{isbn}{978-0-387-94916-1}
+      \field{langid}{english}
+      \field{pagetotal}{xxi+417}
+      \field{series}{Applications of Mathematics; 35}
+      \field{title}{Stochastic Approximation Algorithms and Applications}
+      \field{year}{1997}
+      \field{dateera}{ce}
+      \keyw{Stochastic approximation,Stochastic approximation; Stochastic approximation,Stochastische Approximation}
     \endentry
     \entry{langeBatchReinforcementLearning2012}{incollection}{useprefix=true}
       \name{author}{3}{}{%
@@ -698,6 +872,49 @@
       \verb{file}
       \verb C:\\Users\\felix\\Zotero\\storage\\9BG3XKG8\\Szepesvári - 2010 - Algorithms for Reinforcement Learning.pdf;C:\\Users\\felix\\Zotero\\storage\\XFRVYKZ3\\Algorithms_ReinforcementLearning.pdf;C:\\Users\\felix\\Zotero\\storage\\3HQTSX4N\\S00268ED1V01Y201005AIM009.html
       \endverb
+    \endentry
+    \entry{tsitsiklisAsynchronousStochasticApproximation1994}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=c68e0327319b548306afacf417d06ebf}{%
+           family={Tsitsiklis},
+           familyi={T\bibinitperiod},
+           given={John\bibnamedelima N.},
+           giveni={J\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c68e0327319b548306afacf417d06ebf}
+      \strng{fullhash}{c68e0327319b548306afacf417d06ebf}
+      \strng{bibnamehash}{c68e0327319b548306afacf417d06ebf}
+      \strng{authorbibnamehash}{c68e0327319b548306afacf417d06ebf}
+      \strng{authornamehash}{c68e0327319b548306afacf417d06ebf}
+      \strng{authorfullhash}{c68e0327319b548306afacf417d06ebf}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We provide some general results on the convergence of a class of stochastic approximation algorithms and their parallel and asynchronous variants. We then use these results to study the Q-learning algorithm, a reinforcement learning method for solving Markov decision problems, and establish its convergence under conditions more general than previously available.}
+      \field{day}{1}
+      \field{issn}{1573-0565}
+      \field{journaltitle}{Machine Learning}
+      \field{langid}{english}
+      \field{month}{9}
+      \field{number}{3}
+      \field{shortjournal}{Mach Learn}
+      \field{title}{Asynchronous Stochastic Approximation and {{Q}}-Learning}
+      \field{volume}{16}
+      \field{year}{1994}
+      \field{dateera}{ce}
+      \field{pages}{185\bibrangedash 202}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1007/BF00993306
+      \endverb
+      \verb{file}
+      \verb D:\\Google Drive\\ZotFiles\\1994Tsitsiklis\\Tsitsiklis_1994_Asynchronous stochastic approximation and Q-learning.pdf
+      \endverb
+      \keyw{Reinforcement learning,dynamic programming,Q-learning,stochastic approximation}
     \endentry
     \entry{watkinsQlearning1992}{article}{}
       \name{author}{2}{}{%

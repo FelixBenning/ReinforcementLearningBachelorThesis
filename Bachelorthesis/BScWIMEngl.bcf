@@ -2040,14 +2040,24 @@
     <bcf:citekey order="41">watkinsQlearning1992</bcf:citekey>
     <bcf:citekey order="42">jaakkolaConvergenceStochasticIterative1994a</bcf:citekey>
     <bcf:citekey order="43">jaakkolaConvergenceStochasticIterative1994a</bcf:citekey>
-    <bcf:citekey order="44">dvoretzkyStochasticApproximation1956</bcf:citekey>
-    <bcf:citekey order="45">dvoretzkyStochasticApproximation1956</bcf:citekey>
-    <bcf:citekey order="46">dvoretzkyStochasticApproximation1956</bcf:citekey>
-    <bcf:citekey order="47">dvoretzkyStochasticApproximation1956</bcf:citekey>
+    <bcf:citekey order="44">jaakkolaConvergenceStochasticIterative1994a</bcf:citekey>
+    <bcf:citekey order="45">tsitsiklisAsynchronousStochasticApproximation1994</bcf:citekey>
+    <bcf:citekey order="46">kushnerStochasticApproximationAlgorithms1997</bcf:citekey>
+    <bcf:citekey order="46">borkarMethodConvergenceStochastic2000</bcf:citekey>
+    <bcf:citekey order="47">jaakkolaConvergenceStochasticIterative1994</bcf:citekey>
     <bcf:citekey order="48">dvoretzkyStochasticApproximation1956</bcf:citekey>
     <bcf:citekey order="49">dvoretzkyStochasticApproximation1956</bcf:citekey>
     <bcf:citekey order="50">dvoretzkyStochasticApproximation1956</bcf:citekey>
     <bcf:citekey order="51">dvoretzkyStochasticApproximation1956</bcf:citekey>
+    <bcf:citekey order="52">dvoretzkyStochasticApproximation1956</bcf:citekey>
+    <bcf:citekey order="53">jaakkolaConvergenceStochasticIterative1994a</bcf:citekey>
+    <bcf:citekey order="54">dvoretzkyStochasticApproximation1956</bcf:citekey>
+    <bcf:citekey order="55">dvoretzkyStochasticApproximation1956</bcf:citekey>
+    <bcf:citekey order="56">dvoretzkyStochasticApproximation1956</bcf:citekey>
+    <bcf:citekey order="57">dvoretzkyStochasticApproximation1956</bcf:citekey>
+    <bcf:citekey order="58">dvoretzkyStochasticApproximation1956</bcf:citekey>
+    <bcf:citekey order="59">dvoretzkyStochasticApproximation1956</bcf:citekey>
+    <bcf:citekey order="60">jaakkolaConvergenceStochasticIterative1994a</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">
