@@ -624,7 +624,7 @@ As mentioned previously, we can mostly ignore stochastic stationary policies as 
 \begin{remark}\label{T^pi unique}
 	For all stationary policies \(T^\pi V^\pi=V^\pi \) holds and for deterministic stationary policies \(T^\pi Q^\pi=Q^\pi\) holds (c.f. \ref{V^pi,Q^pi relation}).
 
-	\(T^\pi\) meets the requirements of the Banach fixed-point theorem \fxnote{proof BFT? - appendix?} for \({\gamma<1}\), this implies that the fixpoints above are \emph{unique} fixpoints and can be approximated with the canonical iteration. 
+	\(T^\pi\) meets the requirements of the Banach fixed point theorem \fxnote{proof BFT? - appendix?} for \({\gamma<1}\), this implies that the fixpoints above are \emph{unique} fixpoints and can be approximated with the canonical iteration. 
 \end{remark}
 
 \begin{proof}
@@ -1440,7 +1440,19 @@ Policy iteration converges faster than value iteration with every step
 \end{proof}
 \fxnote{Write down Algorithm?}
 
+\subsection{Bootstrapping and Discounting}
 
+We used discounted MDPs for most of this chapter. \(\gamma<1\) was essential for the contraction property of the fixed point  equation, which allowed us to apply the Banach fixed point theorem to it. But this requirement is not just sufficient but also necessary to ensure a unique fixed point in general. Imagine an MDP with just one state and no rewards. Then the recursion would be
+\[
+	V(x)= 0 + \sum_{x\in\{x\}} 1\cdot V(x)
+\]
+for \(V^\pi\) and \(V^*\). Therefore any kind of real value for \(V(x)\) is a fixed point. Methods which use some form of bootstrapping (i.e. recurrence) usually break down in the undiscounted case for this very reason. The expectation of value about a state can simply never be disproven, because the algorithm just assumes that the reward or punishment is just delayed and will come sooner or later. So even in episodic MDPs where finiteness of the entire return is guaranteed even in the undiscounted case, we can not expect to be able to use recursion to find the respective value functions. The first algorithm in the second chapter, Monte Carlo, will also be the only algorithm presented, which does not utilize bootstrapping, it is thus the only stable algorithm presented for \(\gamma=1\). 
+
+While discounting might seem unnatural at first, it is standard in economic theory. Asking anyone whether they want to receive some benefit now or later, all other things being equal, will be answered almost definitely with ``now''. It is also the reason why anyone would accept credit, receiving less money now than they pay pack later. So if we want a machine to behave as we would expect (e.g. prefer checkmate in 2 turns over checkmate in 5 turns), discounting is in fact quite natural. Adjusting the discount parameter reflects an adjustment of the impatience of the algorithm. An individual will be indifferent between spending \(x\) now, and \((1+r)x\) later, if their discount parameter is equal to
+\[
+	\gamma=\frac{1}{1+r}.
+\]
+And since one can only borrow at some rate \(r\), if someone else is willing to lend at that rate, the interest rate will reflect the average discount parameter in equilibrium. Reality is surely a little bit more complex, but taking some interest rate in order to calculate \(\gamma\) can be a good rule of thumb. Interest rates between \(1\%\) and \(10\%\) result in discount parameters between \(0.91\) and \(0.99\).
 
 
 

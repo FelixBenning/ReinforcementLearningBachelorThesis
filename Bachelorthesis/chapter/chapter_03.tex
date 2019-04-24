@@ -317,8 +317,17 @@ Using this, we get the last requirement:
 \end{proof}
 
 \begin{corollary}
-    
+    Let \(\cX\) (\(\cX\times\cA\)) be finite, \(\E[R_{(x,a)}^2]<c\in\R\) and \(\alpha_n(y)\) with \(y\in\cX\) (\(y\in\cX\times\cA\)) a function of the history up to \(n\), with
+    \begin{align}\label{learning rate:TD learning}
+        \sum_{n=1}^\infty \alpha_n(y)=\infty \qquad \text{and}\qquad \sum_{n=1}^\infty \alpha_n^2(y)<\infty
+    \end{align}
+    uniformly over all histories.
+    Then TD learning (Sarsa) converges with probability one with regard to \(\|\cdot\|_\infty\) to \(T^\pi\) (\(Q^\pi\)). 
 \end{corollary}
+\begin{proof}
+    Analogous to Q-learning.
+\end{proof}
+
 
 \section{Proof of Theorem \ref{JAAKKOLA:THM}}
 I do not find the proof presented by \citeauthor{jaakkolaConvergenceStochasticIterative1994a} entirely convincing. I still want to present the theorem, because the gaps in their proof are generally not irredeemable, and I still think that this more general approach is the right approach for tackling the convergence of reinforcement learning algorithms. Additionally there are some interesting ideas in their somewhat incomplete proof.
@@ -601,7 +610,7 @@ We can therefore ``bootstrap convergence'' for scale invariant processes, which 
             \ge 0
         } - \alpha_n(x)\right)\gamma C_1}_{\eqqcolon Y_n(x)}\\
         &\lxlq{\text{ind.}} (1-\alpha_n(x))\tilde{\Delta}_n^{C_1}(x)+Y_n(x) \eqqcolon \tilde{\Delta}_{n+1}^{C_1} \qquad \text{with } \tilde{\Delta}^{C_1}_1\coloneqq \Delta_1^{C_1}
-    \end{align*}
+    \end{align*} 
     And due to 
     \[
         \E[Y_n(x)\mid H_n]=0,

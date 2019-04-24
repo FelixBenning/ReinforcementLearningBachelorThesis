@@ -165,4 +165,69 @@
         \right)=1\qedhere
     \end{align*}
 \end{proof}
+
+\section{Autoencoder}\label{appx:autoencoder}
+While an autoencoder is usually implemented as a neuronal net, the fact that it is a neuronal net is not essential. What is essential, is that it consists of two parameterized functions \(g\circ f\), where \(f\) is function from \(\R^n\) to \(\R^k\) with \(n>k\), and \(g\colon \R^k\to\R^n\). The parameters are then adjusted, such that \(g\circ f\) is as close as possible to the identity on \(R^n\). The closeness metric depends on the context. Usually it depends on some average distance metric between input and output of a given dataset (for example a set of pictures). Then the function \(f\) can be used to compress high dimensional data to lower dimensional data, and \(g\) can be used to decompress data.
+Here is an example with \(n=7,k=2\):
+
+\def\layersep{2.5cm}
+
+\[\begin{tikzpicture}[scale=0.6, shorten >=1pt,->,draw=black!50, node distance=\layersep]
+    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+    \tikzstyle{neuron}=[circle,fill=black!25,minimum size=12pt,inner sep=0pt]
+    \tikzstyle{annot} = [text width=4em, text centered]
+
+    % Draw the input layer nodes
+    \foreach \name / \y in {1,...,7}
+    % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
+        \node[neuron, pin=left:Input \y] (I-\name) at (0,4-\y) {};
+
+    % Draw the hidden layer 1 nodes
+    \foreach \name / \y in {1,...,5}
+        \node[neuron] (H1-\name) at (\layersep,3-\y) {};
+
+    % Draw the hidden layer 2 nodes
+    \foreach \name / \y in {1,...,2}
+        \node[neuron] (H2-\name) at (2*\layersep,1.5-\y) {};
+    
+    % Draw the hidden layer 3 nodes
+    \foreach \name / \y in {1,...,5}
+        \node[neuron] (H3-\name) at (3*\layersep,3-\y) {};
+
+    % Draw the output layer nodes
+    \foreach \name / \y in {1,...,7}
+        \node[neuron,pin={[pin edge={->}]right:Output \y}] (O-\name) at (4*\layersep,4-\y) {};
+
+    % Connect every node in the input layer with every node in the
+    % hidden layer 1.
+    \foreach \source in {1,...,7}
+        \foreach \dest in {1,...,5}
+            \path (I-\source) edge (H1-\dest);
+    
+    % Connect every node in the hidden layer 1 with every node in the
+    % hidden layer 2.
+    \foreach \source in {1,...,5}
+        \foreach \dest in {1,...,2}
+            \path (H1-\source) edge (H2-\dest);
+
+    % Connect every node in the hidden layer 2 with every node in the
+    % hidden layer 3.
+    \foreach \source in {1,...,2}
+        \foreach \dest in {1,...,5}
+            \path (H2-\source) edge (H3-\dest);
+        
+    % Connect every node in the hidden layer 3 with the output layer
+    \foreach \source in {1,...,5}
+        \foreach \dest in {1,...,7}
+        \path (H3-\source) edge (O-\dest);
+
+    % Annotate the layers
+    \node[annot,above of=H2-1, node distance=1cm] {Compressed layer};
+    %\node[annot,above of=I-1, node distance=1cm] {Input layer};
+    %\node[annot,above of=O-1, node distance=1cm] {Output layer};
+\end{tikzpicture}\]
+
+
+
+
 \endinput

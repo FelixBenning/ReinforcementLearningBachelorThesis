@@ -510,8 +510,8 @@ If the value function correctly assigns value \(0\) to the terminal state \(X_T\
 	\end{align*}
 \end{proof}
 
-\subsection{TD(\(\lambda\)) Forward View}
-In that sense any kind of convex combination of \(n\)-step returns are estimates for \(V^\pi\) with a minimal error reduction of \(\gamma\). This is true in particular for the geometric average
+\subsection{TD(\(\lambda\)) Forward View - \(\lambda\)-return}
+In that sense any kind of convex combination of \(n\)-step returns are estimates for \(V^\pi\) with a minimal error reduction of \(\gamma\). This is true in particular for the geometric average, the \(\lambda\)-return:
 \[
 	\hat{V}^\lambda(X_t)\coloneqq (1-\lambda)\sum_{n=1}^\infty \lambda^{n-1} \hat{V}^{(n)}(X_t).
 \]
@@ -775,10 +775,79 @@ Inspired by human curiosity, intrinsic rewards for actions which do not immediat
 In the second approach the agent builds a world model which tries to predict the next state \(x_{t+1}\) given state \(x_t\) and action \(a_t\). This world model would be a function approximation algorithm (e.g. an artificial neuronal net) which would be trained on the samples generated. Surprising this world model results in an additional reward for the reinforcement algorithm. This encourages the agent to take actions which it does not understand (i.e. which the world model does not predict). But in this basic form, the agent would get addicted to white noise, i.e. situations where the next state is completely unpredictable but also not necessarily meaningful.\fxnote{Citation of earlier work}
 
 \textcite{pathakCuriosityDrivenExplorationSelfSupervised2017}
-recently came up with a modification to fix this problem. They argue that the unpredictability is due to the fact, that these unpredictable state changes are not influenced by the agents actions. So they suggest a filter \(\Phi\) for the state space, which maps the state to a smaller feature space, which only represents the influenceable state of the world. This feature map \(\Phi\) is attained by training a neuronal net. 
+recently came up with a modification to fix this problem. They argue that the unpredictability is due to the fact, that these unpredictable state changes are not influenced by the agents actions. 
+So they suggest a filter \(\Phi\) for the state space, which maps the state to a smaller feature space, which only represents the influenceable state of the world. This feature map \(\Phi\) is attained by training a neuronal net.
 
-\fxwarning{diagram here}
-This neuronal net consists of two copies of a neuronal net with input neurons \(x_t\) and \(x_{t+1}\) respectively, which have fewer output neurons. These two outputs \(\Phi(x_t)\) and \(\Phi(x_{t+1})\) are then fed into a common net which has \(\hat{a}_t\) as the outputs. Similar to autoencoders compressing information with a bottleneck, this neuronal net has to compress \(x_t\) and \(x_{t+1}\) to the middle layer \(\Phi(x_t)\) and \(\Phi(x_{t+1})\). But since it does not need to recover the original from this compression but rather \(a_t\), it is meant to throw away the information about \(x_t\) which does not help to predict \(a_t\), i.e. throw away parts of the state space which can not be influenced by an action.
+This neuronal net consists of two copies of a neuronal net with input neurons \(x_t\) and \(x_{t+1}\) respectively, which have fewer output neurons. These two outputs \(\Phi(x_t)\) and \(\Phi(x_{t+1})\) are then fed into a common net which has \(\hat{a}_t\) as the outputs. Similar to autoencoders (c.f. \ref{appx:autoencoder}) compressing information with a bottleneck, this neuronal net has to compress \(x_t\) and \(x_{t+1}\) to the middle layer \(\Phi(x_t)\) and \(\Phi(x_{t+1})\).
+\def\layersep{2.5cm}
+\begin{wrapfigure}{l}{7cm}
+\begin{tikzpicture}[scale=0.6, shorten >=1pt,->,draw=black!50, node distance=\layersep]
+    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+    \tikzstyle{neuron}=[circle,fill=black!25,minimum size=12pt,inner sep=0pt]
+    \tikzstyle{annot} = [text width=4em, text centered]
+
+    % Draw the input layer nodes
+    \foreach \name / \y in {1,...,3}
+    % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
+        \node[neuron] (I-\name) at (0,4-\y) {};
+
+    \node[annot, left of=I-2, node distance=0.7cm] {\(x_{t+1}\)};
+    
+    \foreach \name / \y in {4,...,6}
+        \node[neuron] (I-\name) at (0,3-\y) {};
+
+    \node[annot, left of=I-5, node distance=0.5cm] {\(x_{t}\)};
+
+    % Draw the hidden layer 1 nodes
+    \foreach \name / \y in {1,...,2}
+        \node[neuron] (H1-\name) at (\layersep,3.5-\y) {};
+    
+    % Draw the hidden layer 1 nodes
+    \foreach \name / \y in {3,...,4}
+        \node[neuron] (H1-\name) at (\layersep,1.5-\y) {};
+
+       
+    % Draw the hidden layer 2 nodes
+    \foreach \name / \y in {1,...,3}
+        \node[neuron] (H2-\name) at (2*\layersep,2-\y) {};
+
+    % Draw the output layer nodes
+    \foreach \name / \y in {1,...,2}
+        \node[neuron] (O-\name) at (3*\layersep,1.5-\y) {};
+
+    % Connect every node in the input layer with every node in the
+    % hidden layer 1.
+    \foreach \source in {1,...,3}
+        \foreach \dest in {1,...,2}
+            \path (I-\source) edge (H1-\dest);
+
+    % Connect every node in the input layer with every node in the
+    % hidden layer 1.
+    \foreach \source in {4,...,6}
+        \foreach \dest in {3,...,4}
+            \path (I-\source) edge (H1-\dest);
+    
+    % Connect every node in the hidden layer 1 with every node in the
+    % hidden layer 2.
+    \foreach \source in {1,...,4}
+        \foreach \dest in {1,...,3}
+            \path (H1-\source) edge (H2-\dest);
+        
+    % Connect every node in the hidden layer 3 with the output layer
+    \foreach \source in {1,...,3}
+        \foreach \dest in {1,...,2}
+        \path (H2-\source) edge (O-\dest);
+
+    % Annotate the layers
+    \node[annot,right of=H1-1, node distance=0.9cm] {\(\Phi(x_{t+1})\)};
+    \node[annot,right of=H1-4, node distance=0.8cm] {\(\Phi(x_t)\)};
+    \node[annot] at (4*\layersep-40,0) {\(\hat{a}_{t}\)};
+
+    \draw (-0.5,3.7) -- (\layersep+12, 3.2)--(\layersep+12, 0.8) --(-0.5,0.3)--cycle;
+    \draw (-0.5,-3.7) -- (\layersep+12, -3.2)--(\layersep+12, -0.8) --(-0.5,-0.3)--cycle;
+\end{tikzpicture}
+\end{wrapfigure}
+But since it does not need to recover the original from this compression but rather \(a_t\), it is meant to throw away the information about \(x_t\) which does not help to predict \(a_t\), i.e. throw away parts of the state space which can not be influenced by an action.
 
 The world model then has to predict \(\Phi(x_{t+1})\) instead of \(x_{t+1}\), which means that its error will not increase when it does not predict non-influenceable changes like white noise, as these are filtered out by \(\Phi\).
 
@@ -786,16 +855,133 @@ This set up proved extremely effective in empirical tests. It even learned to pl
 
 It might be argued, that this feature map \(\Phi\) filters out too many things, like actions by other actors which are not influenced by the agent itself, but influence the agent. If they influence the agent though, and the agent could, or should react to these actions, then these events will be relevant for predicting the agents actions. Therefore they would not be filtered out. Only if the agent can not, or has no incentive to respond to these events is it irrelevant for predicting the agents actions and will be filtered. And since the agent could not or does not need to react to these events anyway, no harm is done. 
 
-%far away rewards 
-
-
-%intrinsic rewards
-% 1. supervised learning Module: try to predict the actions taken given a change in the environment with mapping g
-% This mapping g can then be interpreted as a feature map for the ("influenceable states of the world") - i.e. modulo leaves in the wind, etc.
-% 2. supervised learning Module: Try to predict the next influenceable state of the world given the current state and action. (This is basically the algorithms world model)
-% 3. The rewards for the RL algorithm are then defined as the difference between the prediction of the next world state and the actual next world state. So it tries to find actions which its world model can not explain (i.e. it is curious)
-
 \section{Function Approximation}
+
+Up until now, we only discussed tabular methods, i.e. methods which store the value \(V(x)\) of a state \(x\) for every state in a table. There are two reasons for discarding this strategy. First, the state space might be simply too large to store \(V\) in that way. Second, algorithms do not generalize at all with this method. If an algorithm ends up in a state where it never was before, the state can be almost identical to another state, and the algorithm will still treat it as completely unknown. If the input is a picture, it would be enough to change one pixel, one speck of dust and suddenly the algorithm treats the situation as completely new.
+
+The solution is to use function approximation methods (i.e. supervised learning) to approximate the value functions. Function approximation tries to find the function from a reduced set of functions, which approximates the real function best. This reduced set of functions, might be the set of linear functions (linear regressions), the set of polynomials (polynomial regression), the trigonometric functions (Fourier analysis), the set of linear combinations of some universal kernel (support vector machines), the set of functions achievable with some weights in a neuronal net, or anything else one might come up with. There is usually some motivation for a particular set. Often the set, or a related superset, is dense in the set of continuous functions -- e.g. polynomials, trigonometric functions, the limits of linear combinations of universal kernels and linear combinations of sigmoid functions, which make up neuronal nets, are all dense in the set of continuous functions on some compact set.
+
+Since the value function we are looking for will not be included in this reduced set of functions in general, we need to define some form of distance measure on the set of functions in order to pick the closest function in the reduced set. After that we can search for algorithms which converge to this closest function.
+
+This more general setting of a reduced set of possible functions has two additional benefits:
+\begin{enumerate}
+	\item The reduced set of functions can exclude functions which can differentiate between hidden attributes of two states. Therefore this more general setting can model hidden information. 
+	\item We can transform the limitation of memorylessness from a limitation of the MDP model to a limitation of the reduced (value) function set. I.e. We include the entire history in the state space, and force the reduced set of functions to only include value functions which depend on the last state only. Where the assumption, that the next state and reward depends only on the last state, was previously an assumption of the MDP, it now becomes an assumption of the function approximation. Function approximation with some form of memory, like recurrent neuronal nets with Long Short-Term Memory (LSTM), are then just a different reduced function set on the same MDP model.
+\end{enumerate}
+With these two observations, the underlying MDP becomes similar in kind, to the underlying sample space \(\Omega\) in probability theory. Whatever situation one might want to model, the MDP is large enough to perfectly model the situation by definition, and the restrictions are introduced later. In the case of probability theory by random variables, in the case of MDPs by the information available about the current state. This view tends to render all model based learning methods discussed in \ref{growing batch learning} useless, since it leaves the precise state the agent is in undefined, and the state space is too large to sample enough transitions in order to estimate transition probabilities.
+
+With this framework, video captured by a camera can be the observable part of the state, while everything that can not be observed by the camera is a hidden attribute of the state. But function approximation methods with memory can still achieve feats like object permanence, i.e. correctly assume objects still exists, after they have been covered up. 
+
+There are also approaches which use unsupervised dimension reduction techniques on the inputs (principal component analysis, autoencoders, etc.), and use the resulting feature map as the state space. This allows for generalization, since multiple similar states are collapsed into one state. But it is also a special case of function approximation of the value function, since this is too just a restriction on the set of possible (value) functions. There are multiple reasons, why it might make sense to put such a dimension reduction module before the value function approximation:
+\begin{enumerate}
+	\item Consider the example of a robot using a camera to achieve a task. While letting the robot use its vision to try different behaviours takes real time of the robot moving around, training a dimension reduction algorithm on a bunch of pictures can be done without any real world interaction. Afterwards this pretrained function can be used in the value function approximation of the robot, speeding up the learning process. More generally:
+	\begin{enumerate}
+		\item data might already be available for some sub-task,
+		\item some sub task might be cheaper to train on its own than the entire system.
+	\end{enumerate}
+	\item The ability to use model based learning techniques might be reintroduced by creating a state space using a feature map from a dimension reduction module (e.g. a deep autoencoder (c.f. \ref{appx:autoencoder}) in Deep Fitted Q Iteration \cite{langeBatchReinforcementLearning2012}). And even model free learning methods like experience replay can benefit from such a feature map, as it reduces the amount of memory need to store these experiences, and uncompressed video takes up an incredible amount of storage.
+	\item Readers familiar with neuronal nets might be familiar with the vanishing/exploding gradient problem in deep neuronal nets with gradient decent. Pre-training lower layers promises to avoid this problem to some degree at least. 
+\end{enumerate}
+
+\subsection{Mean Squared Value Error}
+As already noted, we require a distance measure on functions in order to determine the closest function in the reduced set. One such metric is 
+\[
+	d(f,g)\coloneqq\sum_{x\in\cX} \mu(x)[f(x)-g(x)]^2.
+\]
+where \(\mu\) is a probability measure on \(\cX\) weighting the states on how important they are. Let 
+\(
+	\{x\mapsto v(x,\mathbf{w})\}
+\)
+be the reduced set of functions with parameters \(\mathbf{w}\) (for example weights in a neuronal net). And \(v^*\) the objective function, then the \emph{mean squared value error} is defined as 
+\[
+	\widebar{\text{VE}}(\mathbf{w})\coloneqq d(v(\cdot,\mathbf{w}), v^*)
+	= \sum_{x\in\cX} \mu(x)[v(x,\mathbf{w})-v^*(x)]^2.
+\]
+Now let \(X_0,X_1,\dots\) be a sequence in the state space, then we can often argue
+\[
+	\mu_n(x)=\mfrac{1}{n}\sum_{i=0}^{n-1} \mathbbm{1}_{x=X_i}\to \mu(x) \qquad (n\to \infty)
+\]
+for some probability measure \(\mu\). If the sequence \(X_0,X_1,\dots\) is generated with some behaviour \(\pi\) in an MDP for example, we can usually determine a limiting distribution. In order to avoid a degenerate limiting distribution in episodic MDPs, this generally requires a restart of the MDP whenever we reach a terminal state. This is useful, since it allows us to write
+\[
+	\mfrac{1}{n}\sum_{i=0}^{n-1}[v(X_i,\mathbf{w})-v^*(X_i)]^2 
+	=\sum_{x\in\cX} \mu_n(x)[v(x,\mathbf{w})-v^*(x)]^2 \to \widebar{\text{VE}}(\mathbf{w}).
+\]
+And while the usefulness of this equation in gradient decent is most likely the main reason for using this particular \(\mu\), there is also a theoretical justification for it, since we care more about the accuracy of the value function on the states we actually visit than on states we do not visit anyway. 
+
+\subsection{Very Short Introduction to Gradient Decent}
+
+One heuristic to find the minimum of \(\widebar{\text{VE}}\), is to move in the direction of the steepest decent. This is in the opposite direction of the gradient:
+\begin{align*}
+	-\nabla \widebar{\text{VE}}(\mathbf{w})
+	&= -\sum_{x\in\cX} \mu(x) \nabla[v(x,\mathbf{w})-v^*(x)]^2\\
+	&=\lim_{n\to\infty} -\sum_{x\in\cX} \mu_n(x) \nabla[v(x,\mathbf{w})-v^*(x)]^2\\
+	&=\lim_{n\to\infty} \nabla \mfrac{1}{n}\sum_{i=0}^{n-1}-[v(X_i,\mathbf{w})-v^*(X_i)]^2\\
+	&= \lim_{n\to\infty} \mfrac{1}{n}\sum_{i=0}^{n-1} 2[v^*(X_i)-v(X_i,\mathbf{w})]\nabla v(X_i,\mathbf{w})
+\end{align*}
+But instead of making one step of size \(\tilde{\alpha}\) in this direction
+\[
+	\mathbf{w}_{t+1}
+	=\mathbf{w}_t + \underbracket[1pt]{\tilde{\alpha}\mfrac{2}{n}}_{\eqqcolon \alpha} 
+	\sum_{i=0}^{n-1} [v^*(X_i)-v(X_i,\mathbf{w}_t)]\nabla v(X_i,\mathbf{w}_t),
+\]
+we could also make \(n\) individual steps
+\[
+	\mathbf{w}_{t+1}
+	=\mathbf{w}_t +  \alpha [v^*(X_t)-v(X_t,\mathbf{w}_t)]\nabla v(X_t,\mathbf{w}_t).
+\]
+Since we update \(\mathbf{w}_t\) with every step, these two variants are not equivalent! But due to the higher frequency of updates in the second variant the hope is, that it converges more quickly. If we now just replace \(v^*(X_t)\) with \(U_t\) where \(\E[U_t\mid X_t]=v(X_t)\), and allow the learning rate to vary, then we obtain a regression 
+\[
+	\mathbf{w}_{t+1}
+	=\mathbf{w}_t +  \alpha_t [U_t-v(X_t,\mathbf{w}_t)]\nabla v(X_t,\mathbf{w}_t), 
+\]
+which is known as \emph{stochastic gradient decent} SGD. But note that the specifier ``stochastic'' refers to the selection of \(X_i\sim \mu\) and not \(U_t\). According to \textcite[202]{suttonReinforcementLearningIntroduction2018a} convergence proofs to a local minimum for SGD are available if the learning rate fulfils (\ref{learning rate conditions}). In particular this covers Monte Carlo with
+\[
+	U_t=\sum_{n=t}^\infty R_{n+1}.
+\]
+But since bootstrapping methods like TD and Q-learning or more general n-step returns are not unbiased, these proofs are not applicable to them. Additionally the n-step return depends on the weights \(\mathbf{w}\):
+\[
+	\hat{V}^{(n)}(X_t,\mathbf{w})=R_{t+1}+\gamma R_{t+1}+ \dots +\gamma^{n-1}R_{t+n}+\gamma^n V(X_{t+n}, \mathbf{w})
+\]
+So this would have to be taken into account when differentiating with regard to \(\mathbf{w}\). But the regression
+\[
+	\mathbf{w}_{t+1}
+	=\mathbf{w}_t +  \alpha_t [\hat{V}^{(n)}(X_t,w_t)-v(X_t,\mathbf{w}_t)]\nabla v(X_t,\mathbf{w}_t),
+\]
+explicitly ignores this dependency and is thus included in the group called \emph{semi-gradient methods}. The respective algorithms for other bootstrapping algorithms are also in this group. 
+
+\subsection{A counterexample}
+
+There are certain interaction effects between bootstrapping methods and function approximation methods, which make the combination unstable. Consider the state space \(\cX=\{1,2\}\), let the action space \(\cA=\{1,2\}\) simply determine the next state (i.e. \(p(y\mid x,a)=\delta_{ya} \)), and imagine there are no rewards ever. Then consider the set of linear functions
+\[
+	\{v:x\mapsto w x :w\in\R\}.
+\] 
+In particular the true value function \(v^*=0\) is included in the set. Now consider the transition from state \(X_0=1\) to state \(X_1=2\), when starting with some positive \(w_0\). Since there are no rewards, the update in TD(0) would be:
+\begin{align*}
+	w_1 
+	&= w_0 + \alpha [0+\gamma v(X_1,w_0) - v(X_0,w_0)]
+	=w_0 + \alpha[\gamma 2w_0 - w_0]\\
+	&=w_0 + \alpha \underbracket[1pt]{(2\gamma -1)}_{\ge 0 \mathrlap{\iff \gamma \le 1/2}} w_0
+\end{align*}
+So the value of \(w\) can actually increase! Even though it needs to move towards 0, since \(v(x,0)=v^*(x)\). It should be noted, that the valuation of the first state would increase in the tabular TD(0) version too, since the value of the state gets boosted by the fact, that it serves as an entryway to the higher valued state. But because of the interdependency of the evaluation of both states, the promise of this higher valued state causes the increase of the first state, which in turn increases the expectation for the value of the second state. So if we would just repeat the experience of a transition from state \(1\) to state \(2\), we would get into an ever increasing loop of expectations about the fantastic rewards that await us in state \(2\). But since TD(0) is actually on-policy, we will end up disappointed by the lack of rewards, when we actually reach state 2 and lower our expectations. 
+
+But off-policy algorithms are not constrained by this requirement. Q-learning for example, evaluates the next state based on the optimal action possible in that state
+\[
+	max_{b\in\cA_{X_{t+1}}}Q(X_{t+1}, b),
+\]
+with no consideration whether or not action \(b\) is actually enacted. Since the only off-policy algorithm I introduced was Q-learning, we need to adapt our example for action value functions. By modifying the available set of functions to
+\[
+	\{q: (x,a)\mapsto w a:w\in\R \},
+\]
+and assuming that the exploration policy always picks action \(1\), we always stay in the first state and thus end up with the iteration:
+\begin{align*}
+	w_{t+1} &=w_t+\alpha[0+\gamma 
+	\overbracket[1pt]{\max_{b\in\cA_{X_{t+1}}}q(X_{t+1}, b,w_t)}^{
+		=q(1,2,w_t)
+	} - \overbracket[1pt]{q(X_t,A_t,w_t)}^{=q(1,1,w_t)}]\\
+	&=w_t + \alpha[ (2\gamma-1)w_t]> w_t \quad \iff \gamma>1/2 
+\end{align*}
+
+Since it is the combination of function approximation, bootstrapping and off-policy learning, that causes such instability, \textcite[264]{suttonReinforcementLearningIntroduction2018a} even refer to this combination as the deadly triad. They claim that if any two elements are present, instability can be avoided. 
 
 
 
