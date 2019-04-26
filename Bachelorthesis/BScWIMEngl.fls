@@ -538,6 +538,8 @@ INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm6.tfm
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm12.tfm
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm9.tfm
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm5.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecbx0800.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecbx0600.tfm
 OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_03.aux
 INPUT chapter\chapter_03.tex
 INPUT chapter\chapter_03.tex
@@ -581,6 +583,8 @@ INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1095.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1095.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1095.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx0800.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx0800.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\bbm\dpi657\bbm10.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\bbm\dpi657\bbm10.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\wasy\dpi1037\wasy10.pk
@@ -591,14 +595,14 @@ INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0600.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0800.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0800.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsl1095.pk
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsl1095.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecss0900.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecss0900.pk
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsl1095.pk
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsl1095.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1095.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1095.pk
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk
@@ -619,6 +623,8 @@ INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx6.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx6.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cmextra\cmex8.pfb
@@ -639,6 +645,8 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi9.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi9.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr6.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr6.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr8.pfb

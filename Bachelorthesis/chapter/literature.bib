@@ -124,10 +124,11 @@ In machine learning, the environment is typically formulated as a Markov Decisio
   file = {C:\\Users\\felix\\Zotero\\storage\\W543EWTN\\Ghavamzadeh et al. - 2011 - Speedy Q-Learning.pdf;C:\\Users\\felix\\Zotero\\storage\\H5DWZPNW\\4251-speedy-q-learning.html}
 }
 
-@article{deardenBayesianQLearning1998,
+@inproceedings{deardenBayesianQLearning1998,
   langid = {english},
   title = {Bayesian {{Q}}-{{Learning}}},
   abstract = {A central problem in learning in complex environments is balancing exploration of untested actions against exploitation of actions that are known to be good. The beneﬁt of exploration can be estimated using the classical notion of Value of Information—the expected improvement in future decision quality that might arise from the information acquired by exploration. Estimating this quantity requires an assessment of the agent’s uncertainty about its current value estimates for states. In this paper, we adopt a Bayesian approach to maintaining this uncertain information. We extend Watkins’ Q-learning by maintaining and propagating probability distributions over the Q-values. These distributions are used to compute a myopic approximation to the value of information for each action and hence to select the action that best balances exploration and exploitation. We establish the convergence properties of our algorithm and show experimentally that it can exhibit substantial improvements over other well-known model-free exploration strategies.},
+  booktitle = {Proceedings of the Fifteenth National Conference on Artificial Intelligence ({{AAAI}}-98)},
   date = {1998},
   pages = {8},
   author = {Dearden, Richard and Friedman, Nir and Russell, Stuart},
@@ -377,7 +378,7 @@ Confidence Intervall around Q value -{$>$} Exploration bonus}
   title = {True {{Online TD}}(\$\textbackslash{}lambda\$)},
   url = {http://dl.acm.org/citation.cfm?id=3044805.3044884},
   abstract = {TD(λ) is a core algorithm of modern reinforcement learning. Its appeal comes from its equivalence to a clear and conceptually simple forward view, and the fact that it can be implemented online in an inexpensive manner. However, the equivalence between TD(λ) and the forward view is exact only for the off-line version of the algorithm (in which updates are made only at the end of each episode). In the online version of TD(λ) (in which updates are made at each step, which generally performs better and is always used in applications) the match to the forward view is only approximate. In a sense this is unavoidable for the conventional forward view, as it itself presumes that the estimates are unchanging during an episode. In this paper we introduce a new forward view that takes into account the possibility of changing estimates and a new variant of TD(λ) that exactlyachieves it. Our algorithm uses a new form of eligibility trace similar to but different from conventional accumulating and replacing traces. The overall computational complexity is the same as TD(λ), even when using function approximation. In our empirical comparisons, our algorithm outperformed TD(λ) in all of its variations. It seems, by adhering more truly to the original goal of TD(λ)--matching an intuitively clear forward view even in the online case--that we have found a new algorithm that simply improves on classical TD(λ).},
-  booktitle = {Proceedings of the 31st {{International Conference}} on {{International Conference}} on {{Machine Learning}} - {{Volume}} 32},
+  booktitle = {Proceedings of the 31st {{International Conference}} on {{Machine Learning}} - {{Volume}} 32},
   series = {{{ICML}}'14},
   publisher = {{JMLR.org}},
   urldate = {2019-03-08},
@@ -472,7 +473,7 @@ Confidence Intervall around Q value -{$>$} Exploration bonus}
   institution = {{King's College, Cambridge}},
   type = {PhD Thesis},
   date = {1989},
-  author = {Watkins, Christopher John Cornish Hellaby},
+  author = {Watkins, Christopher J. C. H.},
   file = {D:\\Google Drive\\ZotFiles\\1989Watkins\\Watkins_1989_Learning from delayed rewards.pdf}
 }
 
@@ -514,23 +515,14 @@ Confidence Intervall around Q value -{$>$} Exploration bonus}
   file = {D:\\Google Drive\\ZotFiles\\1998Wiering_Schmidhuber\\Wiering_Schmidhuber_1998_Efficient model-based exploration.pdf;C:\\Users\\felix\\Zotero\\storage\\VKDPQRCB\\books.html}
 }
 
-@thesis{watkinsLearningDelayedRewards1989a,
-  title = {Learning from Delayed Rewards},
-  institution = {{King's College, Cambridge}},
-  type = {PhD Thesis},
-  date = {1989},
-  author = {Watkins, Christopher J. C. H.},
-  file = {D:\\Google Drive\\ZotFiles\\1989Watkins\\Watkins_1989_Learning from delayed rewards2.pdf}
-}
-
 @book{kushnerStochasticApproximationAlgorithms1997,
   langid = {english},
-  location = {{Berlin Heidelberg [u.a.}},
+  location = {{Berlin Heidelberg [u.a.]}},
   title = {Stochastic Approximation Algorithms and Applications},
   isbn = {978-0-387-94916-1},
   pagetotal = {xxi+417},
   series = {Applications of Mathematics; 35},
-  publisher = {{Berlin Heidelberg uaSpringer}},
+  publisher = {{u.a. Springer}},
   date = {1997},
   keywords = {Stochastic approximation,Stochastic approximation; Stochastic approximation,Stochastische Approximation},
   author = {Kushner, Harold J.},
@@ -563,7 +555,24 @@ Confidence Intervall around Q value -{$>$} Exploration bonus}
   pages = {674-690},
   keywords = {Algorithm design and analysis,Approximation algorithms,Approximation error,convergence,Convergence,Cost function,cost-to-go function,Dynamic programming,Error analysis,finite state space,function approximation,Function approximation,infinite state space,infinite-horizon discounted Markov chain,irreducible aperiodic Markov chain,learning (artificial intelligence),Linear approximation,linear function approximation,Markov processes,nonlinear function approximators,State-space methods,temporal-difference learning},
   author = {Tsitsiklis, J. N. and Roy, B. Van},
-  file = {C:\\Users\\felix\\Zotero\\storage\\8G6RUW22\\Tsitsiklis and Roy - 1997 - An analysis of temporal-difference learning with f.pdf;D:\\Google Drive\\ZotFiles\\1997Tsitsiklis_Roy\\Tsitsiklis_Roy_1997_An analysis of temporal-difference learning with function approximation.pdf;C:\\Users\\felix\\Zotero\\storage\\URLNN84W\\580874.html}
+  file = {D:\\Google Drive\\ZotFiles\\1997Tsitsiklis_Roy\\Tsitsiklis_Roy_1997_An analysis of temporal-difference learning with function approximation.pdf;C:\\Users\\felix\\Zotero\\storage\\URLNN84W\\580874.html}
+}
+
+@article{singhReinforcementLearningReplacing1996,
+  langid = {english},
+  title = {Reinforcement {{Learning}} with {{Replacing Eligibility Traces}}},
+  volume = {22},
+  issn = {1573-0565},
+  doi = {10.1023/A:1018012322525},
+  abstract = {The eligibility trace is one of the basic mechanisms used in reinforcement learning to handle delayed reward. In this paper we introduce a new kind of eligibility trace, the replacing trace, analyze it theoretically, and show that it results in faster, more reliable learning than the conventional trace. Both kinds of trace assign credit to prior events according to how recently they occurred, but only the conventional trace gives greater credit to repeated events. Our analysis is for conventional and replace-trace versions of the offline TD(1) algorithm applied to undiscounted absorbing Markov chains. First, we show that these methods converge under repeated presentations of the training set to the same predictions as two well known Monte Carlo methods. We then analyze the relative efficiency of the two Monte Carlo methods. We show that the method corresponding to conventional TD is biased, whereas the method corresponding to replace-trace TD is unbiased. In addition, we show that the method corresponding to replacing traces is closely related to the maximum likelihood solution for these tasks, and that its mean squared error is always lower in the long run. Computational results confirm these analyses and show that they are applicable more generally. In particular, we show that replacing traces significantly improve performance and reduce parameter sensitivity on the "Mountain-Car" task, a full reinforcement-learning problem with a continuous state space, when using a feature-based function approximator.},
+  number = {1},
+  journaltitle = {Machine Learning},
+  shortjournal = {Machine Learning},
+  date = {1996-01-01},
+  pages = {123-158},
+  keywords = {CMAC,eligibility trace,Markov chain,Monte Carlo method,reinforcement learning,temporal difference learning},
+  author = {Singh, Satinder P. and Sutton, Richard S.},
+  file = {D:\\Google Drive\\ZotFiles\\1996Singh_Sutton\\Singh_Sutton_1996_Reinforcement Learning with Replacing Eligibility Traces.pdf}
 }
 
 

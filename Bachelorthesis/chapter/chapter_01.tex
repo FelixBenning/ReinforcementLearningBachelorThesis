@@ -1440,7 +1440,7 @@ Policy iteration converges faster than value iteration with every step
 \end{proof}
 \fxnote{Write down Algorithm?}
 
-\subsection{Bootstrapping and Discounting}
+\subsection{Bootstrapping and Discounting}\label{bootstrapping and discounting}
 
 We used discounted MDPs for most of this chapter. \(\gamma<1\) was essential for the contraction property of the fixed point  equation, which allowed us to apply the Banach fixed point theorem to it. But this requirement is not just sufficient but also necessary to ensure a unique fixed point in general. Imagine an MDP with just one state and no rewards. Then the recursion would be
 \[

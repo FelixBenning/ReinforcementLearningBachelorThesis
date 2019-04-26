@@ -311,7 +311,7 @@ If we remove the assumption of exploring starts, we still need to ensure that ev
 \subsection{Shortcomings of Monte Carlo}
 \citeauthor{suttonReinforcementLearningIntroduction1998} provide a very instructive example for the weakness of Monte Carlo. Recall that Monte Carlo tries to estimate \(V^\pi\). So the example assumes a given behaviour and tries to evaluate the value of a situation.
 
-\begin{example}[Driving Home]
+\begin{example}[Driving Home]\label{driving home}
 	Let us assume that John Doe works in city A, and drives to his home in city B after work, every day. Since he wants to get home as quickly as possible, the value of the state is inversely proportional to the time it will take him from a certain position home. This means that estimating the value of a certain state is equivalent to estimating the time left to drive. The longer John drives this route, the better he will get, at estimating the time it will take him to drive certain sections of the road. If there is a delay in an earlier section he has a good estimate for the remaining time, once he clears the obstruction. Now imagine he is driving home from a doctors appointment from city A. As soon as he enters the highway to city B, he is able to use his experience driving this route to estimate the remaining time quite precisely.
 
 	The Monte Carlo algorithm on the other hand \emph{never} uses existing value estimations to estimate the value of a different state. If John Doe uses Monte Carlo estimates to guess the remaining time from the doctor, the accuracy of his estimates will only ever increase with the times he actually starts driving from the doctor's office. 
@@ -559,32 +559,36 @@ To be more precise \textcite{suttonReinforcementLearningIntroduction1998} call t
 
 \subsection{TD(\(\lambda\)) Backward View}
 To motivate the \emph{backward view} of TD(\(\lambda\)), we transform \(\Delta V_t^\lambda (X_t)\) using (\ref{tangent backward view}):
-\begin{align*}
+\begin{align}
 	\Delta V_t^\lambda (X_t)&= \sum_{n=0}^\infty (\gamma\lambda)^n R_{t+1+n}
-	+ (1-\lambda)\sum_{n=1}^\infty \lambda^{n-1}\gamma^n V_t(X_{t+n}) - V_t(X_t)\\
+	+ (1-\lambda)\sum_{n=1}^\infty \lambda^{n-1}\gamma^n V_t(X_{t+n}) - V_t(X_t)
+	\nonumber\\
 	&=\sum_{n=0}^\infty (\gamma\lambda)^n R_{t+1+n} 
 	+ \sum_{n=1}^\infty (\lambda\gamma)^{n-1} \gamma V_t(X_{t+n}) 
-	- \sum_{n=0}^\infty (\lambda\gamma)^n V_t(X_{t+n})\\
+	- \sum_{n=0}^\infty (\lambda\gamma)^n V_t(X_{t+n})
+	\nonumber\\
 	&=\sum_{n=0}^\infty(\gamma\lambda)^n \left[
 		R_{t+1+n} + \gamma V_t(X_{t+1+n}) - V_t(X_{t+n})
-	\right]\\
+	\right]
+	\nonumber\\
 	&=\sum_{n=t}^\infty(\gamma\lambda)^{n-t} \left[
 		R_{n+1} + \gamma V_t(X_{n+1}) - V_t(X_{n})
-	\right]\\
+	\right]
+	\nonumber \\
 	&\approx \sum_{n=t}^\infty(\gamma\lambda)^{n-t} 
 	\underbracket{\left[
 		R_{n+1} + \gamma V_n(X_{n+1}) - V_n(X_{n})
 	\right]}_{
 		=\Delta V^0_n(X_n)
-	}
-\end{align*}
+	}\label{approx}
+\end{align}
 Where \(\Delta V^0_n(X_n)\) is simply the update direction of TD(0). Now why does this approximation make sense? 
 
 First of all, \(V_{n+1}\) stays the same to \(V_n\) in every place but \(X_n\). Assuming that the sequence of states wanders about a little bit, the first few \(V_n\) will all be equal to \(V_t\). And once the sequence of states comes back around, the hope is that \(n-t\) would be large enough, for \((\gamma\lambda)^{n-t}\approx 0\). Additionally, the difference between \(V_n\) and \(V_t\) is small, even for repeated states, if the learning rate \(\alpha_n\) is sufficiently small. 
 
 Now to the question, why is this approximation useful for us? Well TD(0) is already on-line, as the updates happen with every step. So we could just ``broadcast'' the update deltas \(\Delta_n^0(X_n)\) back to previous states, which can then get updated in the same direction. How much they get updated depends on the number of visits and the time between visits. Imagine the state \(X_t\) is never visited again afterwards. Then over time it receives the \(\Delta_n^0(X_n)\) following \(X_t\) which get added to \(V_n(X_t)\) with the factor \((\gamma\lambda)^{n-t}\). Then they eventually sum to something akin to \(\Delta V^\lambda_t(X_t)\). The backwards view essentially tries to assign discounted credit/blame to previous states. Reducing \(\lambda\) translates to a faster fading of the \emph{eligibility} for credit/blame. In the same manner the factor
 \[
-	e_n(x)=\sum_{k=0}^n \alpha_k(X_k)(\gamma\lambda)^{n-k} \mathbbm{1}_{X_k=x},
+	e_n(x)=\sum_{k=0}^n \alpha_k(\gamma\lambda)^{n-k} \mathbbm{1}_{X_k=x},
 \]
 is called \emph{eligibility trace} of state \(x\) for \(\Delta V^0_n(X_n)\). 
 
@@ -627,14 +631,53 @@ Just like with Monte Carlo and TD the action value (\(Q\)) version Sarsa(\(\lamb
 
 Note that I took the liberty, and moved the \(\alpha_n\) into the eligibility trace to allow for changing learning rates over time. \textcite{suttonReinforcementLearningIntroduction1998} place the learning rate outside the eligibility trace which forces it to be constant in order to translate to the forward view. 
 
-\subsection{True Online TD(\(\lambda\))}
+\subsection{Variations - True Online TD(\(\lambda)\)}
+
+The eligibility traces above are also called \emph{accumulating traces}, because every visit adds to the existing trace
+\[
+	e_{n+1}(x) = \gamma\lambda e_n(x) + \alpha_{n+1} \mathbbm{1}_{X_{n+1}=x}.
+\]
+They was the original trace proposed by \textcite{suttonLearningPredictMethods1988} when he presented TD(0) and TD(\(\lambda)\). 
+
+\emph{Replacing traces} introduced by \textcite{singhReinforcementLearningReplacing1996} instead reset the trace, whenever a state is visited a second time. Notice how that is essentially equivalent to cancelling the sum in (\ref{approx}) at that time. The reason for this change was, that the accumulating traces made learning unstable because they could become too large. Notice that this problem occurs, when states are visited repeatedly. Since we argued that repeated visits would be far apart in order to justify the approximation, this gives us some insight as to why this might be the case. 
+
+\emph{True Online TD(\(\lambda\))}, proposed by \textcite{vanseijenTrueOnlineTD2014}, circumvents the approximation altogether. Instead of utilizing the full \(\lambda\)-return
+\[
+	\hat{V}^\lambda(X_t)=(1-\lambda)\sum_{n=1}^\infty \lambda^{n-1} \hat{V}^{(n)}(X_t)
+\]
+for the forward view, it utilizes the \emph{truncated \(\lambda\)-return}
+\[
+	\hat{V}^{\lambda\mid t^*}(X_t)=(1-\lambda)\sum_{n=1}^{t^*-t-1} \lambda^{n-1} \hat{V}^{(n)}(X_t) + \lambda^{t^*-t-1}\hat{V}^{(t^*-t)}(X_t),
+\]
+which is also a convex combination of \(n\)-step returns, but only requires knowledge of \(X_t,\dots,X_{t^*}\), instead of knowledge of the \emph{entire} future. So in order to calculate
+\[
+	V_{t+1\mid t^*}(X_t)
+	=V_{t\mid t^*}(X_t)
+	+\alpha_t\left[\hat{V}_{t\mid t^*}^{\lambda\mid t^*}(X_t)-V_{t\mid t^*}\right]
+\]
+(c.f. (\ref{forward TD algorithm})), we only require knowledge of the history up to time \(t^*\). So \(V_{t^*\mid t^*}\) is our best guess for the value function \(V^\pi\) at time \(t^*\). 
+Though in order to calculate \(V_{t^*+1\mid t^*+1}\) it seems like we need to start the entire recursion again for \(V_{t\mid (t^*+1)}\) up to \(t=t^*+1\).
+\[
+\begin{tabular}{l l l l l}
+	\(V_{0\mid 0}\) & & & &\\
+	\(V_{0\mid 1}\) & \(V_{1\mid 1}\) & & &\\
+	\(V_{0\mid 2}\) & \(V_{1\mid 2}\) &\(V_{2\mid 2}\) & &\\
+	\(\vdots\) & & & \(\ddots\) & \\
+	\(V_{0\mid t^*}\) & &\dots & & \(V_{t^*\mid t^*}\)
+\end{tabular}
+\]
+But \textcite{vanseijenTrueOnlineTD2014} found a way to calculate \(V_{t^*+1\mid t^*+1}\) directly from \(V_{t^*\mid t^*}\). The resulting eligibility traces are referred to as \emph{Dutch traces}.
+
+
 %reset eligibility trace to 1 instead of adding 1
 %True online TD
+
+
 
 %TODO
 
 \section{Q-learning}
-Q-learning \parencite{watkinsLearningDelayedRewards1989} is virtually the same as Sarsa, just that Q-learning tries to skip policy iteration, by trying to approximate \(Q^*\) directly, instead of \(Q^\pi\). As it does not approximate the value function of the policy it uses currently, it is an \emph{off-policy} algorithm, while Monte Carlo and TD are \emph{on-policy} algorithms. Instead of
+Q-learning \parencite{watkinsLearningDelayedRewards1989} is virtually the same as Sarsa, just that Q-learning tries to skip policy iteration by trying to approximate \(Q^*\) directly, instead of \(Q^\pi\). As it does not approximate the value function of the policy it uses currently, it is an \emph{off-policy} algorithm, while Monte Carlo and TD are \emph{on-policy} algorithms. Instead of
 \[
 	Q(X_t,A_t) \gets Q(X_t,A_t) + \alpha_t[R_{t+1}+\gamma Q(X_{t+1},A_{t+1}) -Q(X_t,A_t)],
 \]
@@ -966,7 +1009,7 @@ So the value of \(w\) can actually increase! Even though it needs to move toward
 
 But off-policy algorithms are not constrained by this requirement. Q-learning for example, evaluates the next state based on the optimal action possible in that state
 \[
-	max_{b\in\cA_{X_{t+1}}}Q(X_{t+1}, b),
+	\max_{b\in\cA_{X_{t+1}}}Q(X_{t+1}, b),
 \]
 with no consideration whether or not action \(b\) is actually enacted. Since the only off-policy algorithm I introduced was Q-learning, we need to adapt our example for action value functions. By modifying the available set of functions to
 \[
@@ -980,8 +1023,23 @@ and assuming that the exploration policy always picks action \(1\), we always st
 	} - \overbracket[1pt]{q(X_t,A_t,w_t)}^{=q(1,1,w_t)}]\\
 	&=w_t + \alpha[ (2\gamma-1)w_t]> w_t \quad \iff \gamma>1/2 
 \end{align*}
+The exploration policy in this counter example is of course specially designed to cause divergence. This leads \textcite[263]{suttonReinforcementLearningIntroduction2018a} to hypothesise, that Q-learning might still be relatively stable for exploration policies which are greedy enough, like \(\vep\)-greedy policies with small enough epsilon. They claim ``to the best of our knowledge, Q-learning has never been found to diverge in this case, but there has been no theoretical analysis''. 
 
-Since it is the combination of function approximation, bootstrapping and off-policy learning, that causes such instability, \textcite[264]{suttonReinforcementLearningIntroduction2018a} even refer to this combination as the deadly triad. They claim that if any two elements are present, instability can be avoided. 
+
+Since it is the combination of function approximation, bootstrapping and off-policy learning, that causes such instability, \textcite[264]{suttonReinforcementLearningIntroduction2018a} dub this combination the ``deadly triad''. They claim that if any two elements are present, instability can be avoided. This claim is a bit of an oversimplification. \textcite{tsitsiklisAnalysisTemporaldifferenceLearning1997} present a proof, that TD(\(\lambda\)) with linear function approximation converges to some \(\mathbf{w}^\lambda\), which is not equal to the minimum\footnote{slight simplification since the minimum is not necessarily unique if the regressors are not linearly independent} \(\mathbf{w}^*\) in general, but can be bounded by:
+\[
+	d\left(v(\cdot,\mathbf{w}^\lambda), V^\pi\right)
+	\le \frac{1-\lambda \gamma}{1-\gamma} \underbracket[1pt]{
+		d(v(\cdot, \mathbf{w}^*), V^\pi)
+	}_{
+		=\min_{\mathbf{w}} \widebar{\text{VE}}(\textbf{w})
+	}
+\] 
+So TD(\(\lambda\)) is stable enough to avoid divergence if \(\gamma<1\) (c.f. \ref{bootstrapping and discounting}) in the linear function approximation case, and its distance to the minimum in limit improves with \(\lambda\). And while this is far from perfect it appears to be a workable solution in practical applications. 
+
+But for non linear function approximation \textcite{tsitsiklisAnalysisTemporaldifferenceLearning1997} also present an example, where TD(\(0\)) diverges. So it might simply be bootstrapping and function approximation which do not work well with each other. 
+
+The reason for this incompatibility might be, that both concepts try to accomplish some sort of generalization. Temporal difference learning is supposed to generalize the existing estimates from older paths through the state space, to evaluations of new paths which cross states from older paths (c.f. \ref{driving home}). So these two methods have some overlap when it comes to their goals, which could explain why they get in each others way. But TD has no access to spatial similarity, which function approximation based on continuous functions automatically has, while function approximation does not have the theory of dynamic programming baked in. So neither method is a special case of the other.
 
 
 
