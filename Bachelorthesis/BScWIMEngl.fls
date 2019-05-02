@@ -496,9 +496,11 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy5.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecbx1200.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm1728.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx8.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx6.tfm
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\bbm\ubbm.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\bbm\ubbm.fd
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm10.tfm
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm8.tfm
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm6.tfm
 OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_02.aux
 INPUT chapter\chapter_02.tex
 INPUT chapter\chapter_02.tex
@@ -506,21 +508,18 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmex10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx5.tfm
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm12.tfm
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm5.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm0500.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx9.tfm
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm9.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmex10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx7.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam7.tfm
@@ -530,14 +529,14 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy7.tfm
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\bbm\ubbm.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\bbm\ubbm.fd
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm10.tfm
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm8.tfm
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm6.tfm
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm12.tfm
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm9.tfm
-INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm5.tfm
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm10.tfm
+INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm7.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx8.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx6.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx9.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx5.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecbx0800.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecbx0600.tfm
 OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_03.aux

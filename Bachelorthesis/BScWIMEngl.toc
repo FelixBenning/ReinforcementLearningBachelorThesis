@@ -11,88 +11,92 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.2.1}Outlook}{10}{subsection.1.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.3}Fix-Point Equations for Value Functions}{10}{section.1.3}% 
+\contentsline {section}{\numberline {1.3}Fixed Point Equations for Value Functions}{11}{section.1.3}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.4}Optimal Value Functions}{15}{section.1.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.4.1}Finite Outmatching}{15}{subsection.1.4.1}% 
+\contentsline {subsection}{\numberline {1.4.1}Finite Outmatching}{16}{subsection.1.4.1}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.4.2}Fix-Point Equations for Optimal Value functions}{17}{subsection.1.4.2}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.5}Optimal policies}{23}{section.1.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.6}Dynamic Programming}{30}{section.1.6}% 
+\contentsline {section}{\numberline {1.6}Dynamic Programming}{31}{section.1.6}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.6.1}Bootstrapping and Discounting}{33}{subsection.1.6.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Reinforcement Learning Algorithms}{34}{chapter.2}% 
+\contentsline {chapter}{\numberline {2}Reinforcement Learning Algorithms}{35}{chapter.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Introduction}{34}{section.2.1}% 
+\contentsline {section}{\numberline {2.1}Introduction}{35}{section.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Monte Carlo}{36}{section.2.2}% 
+\contentsline {subsection}{\numberline {2.1.1}Naive Batch Learning}{36}{subsection.2.1.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.1}From \(\pi \) to \(\pi ^*\)}{37}{subsection.2.2.1}% 
+\contentsline {section}{\numberline {2.2}Monte Carlo}{37}{section.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.2}Shortcomings of Monte Carlo}{41}{subsection.2.2.2}% 
+\contentsline {subsection}{\numberline {2.2.1}From \(\pi \) to \(\pi ^*\)}{38}{subsection.2.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Temporal Difference Learning TD}{42}{section.2.3}% 
+\contentsline {subsection}{\numberline {2.2.2}Shortcomings of Monte Carlo}{42}{subsection.2.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.1}Shortcomings of TD}{44}{subsection.2.3.1}% 
+\contentsline {section}{\numberline {2.3}Temporal Difference Learning TD}{43}{section.2.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Growing Batch Learning}{45}{section.2.4}% 
+\contentsline {subsection}{\numberline {2.3.1}Shortcomings of TD}{45}{subsection.2.3.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.5}TD(\(\lambda \)) -- Mixing Monte Carlo and TD}{47}{section.2.5}% 
+\contentsline {section}{\numberline {2.4}Growing Batch Learning}{46}{section.2.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.5.1}\(n\)-Step Return}{47}{subsection.2.5.1}% 
+\contentsline {section}{\numberline {2.5}TD(\(\lambda \)) -- Mixing Monte Carlo and TD}{48}{section.2.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.5.2}TD(\(\lambda \)) Forward View - \(\lambda \)-return}{48}{subsection.2.5.2}% 
+\contentsline {subsection}{\numberline {2.5.1}\(n\)-Step Return}{48}{subsection.2.5.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.5.3}TD(\(\lambda \)) Backward View}{50}{subsection.2.5.3}% 
+\contentsline {subsection}{\numberline {2.5.2}TD(\(\lambda \)) Forward View - \(\lambda \)-return}{49}{subsection.2.5.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.5.4}Variations - True Online TD(\(\lambda )\)}{52}{subsection.2.5.4}% 
+\contentsline {subsection}{\numberline {2.5.3}TD(\(\lambda \)) Backward View}{51}{subsection.2.5.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.6}Q-learning}{53}{section.2.6}% 
+\contentsline {subsection}{\numberline {2.5.4}Variations - True Online TD(\(\lambda )\)}{54}{subsection.2.5.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.6.1}Shortcomings of Q-learning}{53}{subsection.2.6.1}% 
+\contentsline {section}{\numberline {2.6}Q-learning}{55}{section.2.6}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.7}Exploration}{54}{section.2.7}% 
+\contentsline {subsection}{\numberline {2.6.1}Shortcomings of Q-learning}{56}{subsection.2.6.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.7.1}Optimism}{54}{subsection.2.7.1}% 
+\contentsline {section}{\numberline {2.7}Exploration}{56}{section.2.7}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.7.2}Boltzmann Exploration}{54}{subsection.2.7.2}% 
+\contentsline {subsection}{\numberline {2.7.1}Optimism}{57}{subsection.2.7.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.7.3}Directed Exploration}{55}{subsection.2.7.3}% 
+\contentsline {subsection}{\numberline {2.7.2}Boltzmann Exploration}{57}{subsection.2.7.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Interval Estimation}{55}{section*.12}% 
+\contentsline {subsection}{\numberline {2.7.3}Directed Exploration}{57}{subsection.2.7.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Bayesian Exploration}{57}{section*.13}% 
+\contentsline {subsubsection}{Interval Estimation}{58}{section*.12}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.7.4}Intrinsic Rewards}{57}{subsection.2.7.4}% 
+\contentsline {subsubsection}{Bayesian Exploration}{59}{section*.13}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Curiosity-Driven Exploration}{58}{section*.14}% 
+\contentsline {subsection}{\numberline {2.7.4}Intrinsic Rewards}{59}{subsection.2.7.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.8}Function Approximation}{59}{section.2.8}% 
+\contentsline {subsubsection}{Curiosity-Driven Exploration}{60}{section*.14}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.8.1}Mean Squared Value Error}{61}{subsection.2.8.1}% 
+\contentsline {section}{\numberline {2.8}Function Approximation}{62}{section.2.8}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.8.2}Very Short Introduction to Gradient Decent}{62}{subsection.2.8.2}% 
+\contentsline {subsection}{\numberline {2.8.1}Mean Squared Value Error}{64}{subsection.2.8.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.8.3}A counterexample}{63}{subsection.2.8.3}% 
+\contentsline {subsection}{\numberline {2.8.2}Very Short Introduction to Gradient Decent}{65}{subsection.2.8.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Stochastic Approximation -- Convergence}{66}{chapter.3}% 
+\contentsline {subsection}{\numberline {2.8.3}A counterexample}{66}{subsection.2.8.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Introduction}{66}{section.3.1}% 
+\contentsline {chapter}{\numberline {3}Stochastic Approximation -- Convergence}{69}{chapter.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Learning Rates}{67}{section.3.2}% 
+\contentsline {section}{\numberline {3.1}Introduction}{69}{section.3.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Application to Reinforcement Learning}{70}{section.3.3}% 
+\contentsline {section}{\numberline {3.2}Learning Rates}{70}{section.3.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Proof of Theorem \ref {JAAKKOLA:THM}}{73}{section.3.4}% 
+\contentsline {section}{\numberline {3.3}Application to Reinforcement Learning}{73}{section.3.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Appendix}{87}{appendix.A}% 
+\contentsline {section}{\numberline {3.4}Proof of Theorem \ref {JAAKKOLA:THM}}{79}{section.3.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Probability Theory}{87}{section.A.1}% 
+\contentsline {chapter}{\numberline {A}Appendix}{93}{appendix.A}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Analysis}{89}{section.A.2}% 
+\contentsline {section}{\numberline {A.1}Probability Theory}{93}{section.A.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.3}Autoencoder}{90}{section.A.3}% 
+\contentsline {section}{\numberline {A.2}Analysis}{95}{section.A.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.3}Autoencoder}{96}{section.A.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Acknowledgement}{99}{section*.21}% 

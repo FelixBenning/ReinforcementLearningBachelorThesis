@@ -25,11 +25,12 @@
     \begin{align*}
         \E[X\mid C]
         &=\frac{1}{\Pr(C)} \int_C X d\Pr 
-        =\sum_{n\in\N}\frac{1}{\Pr(C)} \int_{C\cap B_n} X d\Pr\\
+        \xeq{(*)}\sum_{n\in\N}\frac{1}{\Pr(C)} \int_{C\cap B_n} X d\Pr\\
         &=\sum_{n\in\N} \frac{\Pr(C\cap B_n)}{\Pr(C)} \frac{1}{\Pr(C\cap B_n)} 
         \int_{C\cap B_n} X d\Pr \\
         &=\sum_{n\in\N}\E[X\mid C\cap B_n]\Pr(B_n\mid C) \qedhere
     \end{align*}
+
 \end{proof}
 \begin{lemma}\label{appx2}
     Let \((\Omega,\cA,\mu)\) be a measure space and a function \(f\) exists with
@@ -69,7 +70,7 @@
     \[F^\leftarrow (y) \coloneqq \inf\{x\in\R : F(x)\ge y \}\]
     is called the \emph{Pseudo-inverse} of \(F\).
 \end{definition}
-\begin{lemma}
+\begin{lemma}\label{appx pseudo inv distribution}
     Let \(F\) be a cdf, then
     \begin{enumerate}[label=(\roman*), font=\normalfont]
         \item\label{appx3:i} \(

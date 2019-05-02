@@ -10,22 +10,20 @@ Dynamic Programming usually breaks down in the real world for two reasons:
     \item The state and action space is too large to even compute one iteration of Dynamic Programming for every state-action tuple (e.g. possible positions and possible moves in every position in chess).
 \end{enumerate}
 
-This is where \emph{Reinforcement Learning} algorithms come in, which try to find solutions without having to sweep the entire state space. In this chapter based on \textcite{suttonReinforcementLearningIntroduction1998} we will examine advantages and disadvantages of various algorithms and discuss possible variations and extensions. In the next chapter we will show almost sure convergence of the basic algorithms introduced in this chapter and illustrate their connection to stochastic approximation. \fxwarning{check outline of the plan} 
+This is where \emph{Reinforcement Learning} algorithms come in, which try to find solutions without having to sweep the entire state space. In this chapter based on \textcite{suttonReinforcementLearningIntroduction1998} (their second edition (\citeyear{suttonReinforcementLearningIntroduction2018a}) was used for statements which need to be up-to-date) we will examine advantages and disadvantages of various algorithms and discuss possible variations and extensions. In the next chapter we will attempt a proof of almost sure convergence of the basic algorithms introduced in this chapter, and illustrate their connection to stochastic approximation.
 
 We separate their introduction and the convergence proofs, because -- while the guarantee of almost sure convergence is reassuring -- it is of little use for comparing various algorithms. Since one of the reasons for moving away from Dynamic Programming in the first place was, that we could not calculate the value function for the entire state space within a reasonable time frame. As the size of the state space is often too large for that.  Therefore almost sure convergence should not be viewed as more than an entry requirement. For this reason most papers compare algorithms empirically on various example problems. And for some of the more complex algorithms convergence proofs simply do not exist yet. 
 
 So since the theoretical convergence properties are usually only ever an afterthought, it is more natural to introduce the various algorithms heuristically, explaining what specific problems they try to address with examples.
 
-
-But let us ignore the second problem for a moment and consider the case where we only have the first problem (\(p\) and \(r\) unknown). Then we can learn from a sample \(((X_t, A_t, Y_t, R_t), t\in\{0,\dots, T\})\) with
+\subsection{Naive Batch Learning}
+Let us ignore the second problem of large state spaces for a moment and consider the case where we only have the first problem (\(p\) and \(r\) unknown). Then we can learn from a sample \(((X_t, A_t, Y_t, R_t), t\in\{0,\dots, T\})\) with
 \[
 	(Y_t,R_t)\sim \cP(\cdot \mid X_t, A_t)
 \]
-and with \(Y_t=X_{t+1}\) if the sample is generated sequentially by a behaviour. But there is no reason not to allow this more general sample which might be useful in cases where you can jump around in the state space and try different transitions at will. 
+with the restriction \(Y_t=X_{t+1}\) if the sample is generated sequentially by a behaviour. But there is no reason not to allow this more general sample which might be useful in cases where you can jump around in the state space and try different transitions at will. 
 
 We can then use this batch of transitions to calculate estimators \(\hat{p},\hat{r}\) for the state transitions and immediate rewards \(\hat{r}\). And use Dynamic Programming on these estimators.
-
-%Since the transition probabilities and immediate rewards are not known, these algorithms first need to create samples from which to estimate them. These samples are created using a behaviour resulting in a state-action-reward sequence \((X_t,A_t,R_t,t\in\N_0)\). This behaviour has to explore the state-action space, trying to generate data of interesting transitions. From this the algorithm then has to estimate the value functions. 
 
 \begin{algorithm}
 	\caption{Naive Batch Learning Algorithm} \label{naive batch learning algorithm}
@@ -76,11 +74,11 @@ To visualize this idea it is useful to imagine the state space to be a room the 
 		}
 	}
 	\node at (1.5,0.5){S};
-	\node at (2.5,4.5) {\textcolor{gray}{\(\gamma\)}};
+	\node at (2.5,4.5) {\textcolor{gray}{\(\gamma^0\)}};
 	\foreach \value in {2,3,4,5}{
 		\tikzmath{
 			int \power;
-			\power=7-\value;
+			\power=6-\value;
 		}
 		\node at (1.5, \value-0.5) {\textcolor{gray}{\(\gamma^\power\)}};
 	}
@@ -125,9 +123,9 @@ is a bias free estimator for \(V^\pi(X_k)\). \emph{First-visit Monte Carlo} uses
 	\end{algorithmic}
 \end{algorithm}
 
-Because of the strong law of large numbers, first-visit Monte Carlo algorithm causes the value function estimation \(\hat{V}^\pi(x)\) to converge with probability 1 to \(V^\pi(x)\) for every state \(x\in\cX\) which is visited with positive probability given behaviour \(\pi\) and starting distribution \(X_0\). 
+Because of the strong law of large numbers, first-visit Monte Carlo algorithm causes the value function estimation \(\hat{V}^\pi(x)\) to converge with probability 1 to \(V^\pi(x)\), for every state \(x\in\cX\) which is visited with positive probability given behaviour \(\pi\) and starting distribution \(X_0\).\fxwarning{Fine to cite Strong Law?} 
 
-\emph{Every-visit} Monte Carlo uses the Return after every visit of a state \(x\) to estimate \(V^\pi(x)\). Since this means that the tail of the rewards can be included in multiple returns, the returns are not independent from each other anymore which make proving convergence a little bit more difficult than simply applying the strong law of large numbers. But every visit Monte Carlo will turn out to be a special case of \(TD(\lambda)\).\fxnote{will TD proof work?} 
+\emph{Every-visit} Monte Carlo uses the Return after every visit of a state \(x\) to estimate \(V^\pi(x)\). Since this means that the tail of the rewards can be included in multiple returns, the returns are not independent from each other anymore which make proving convergence a little bit more difficult than simply applying the strong law of large numbers. But every visit Monte Carlo will turn out to be a special case of TD(\(\lambda\)).\fxwarning{special case of batch TD?} 
 
 The same method can be applied to learn the action value function \(Q^\pi\). In this case we take the returns following a state \emph{and} action as estimators for \(Q^\pi\). But if the model is known and our problem is just a large state space calculating \(V^\pi\) is preferable, since \(|\cX|\le |\cX\times\cA|\) means that the first algorithm needs fewer observations to converge and \(Q^\pi\) can be calculated with \(V^\pi\) given \(r\) and \(p\).
 
@@ -142,7 +140,7 @@ for a moment. Then Monte Carlo converges whatever policy we select. Similar to p
 \] 
 in general, using these old estimates is not bias free. It is easy to see that this procedure can only converge to \(\pi^*\) if it converges at all. Since there are only a finite number of deterministic stationary policies it would have to stay constant at some point, but for a constant policy Monte Carlo will converge, and then the policy can only stay constant if it is greedy with regards to its own value function, which forces it to be optimal (\ref{real improvement or optimal}). But it is still an open problem whether or not this alternating procedure converges at all \parencite[99]{suttonReinforcementLearningIntroduction2018a}.
 
-If we remove the assumption of exploring starts, we still need to ensure that every state is visited with positive probability for MC to converge. This requires the policy to do the exploring. There are multiple approaches to exploration \fxnote*{check claim}{which we will discuss later}. We will discuss the most straightforward example here, under the assumption that we can calculate \(Q^{\pi_n}\) somehow.  
+If we remove the assumption of exploring starts, we still need to ensure that every state is visited with positive probability for MC to converge. This requires the policy to do the exploring. There are multiple approaches to exploration which we will discuss later (section \ref{exploration}). We will discuss the most straightforward example here, under the assumption that we can calculate \(Q^{\pi_n}\) somehow.  
 
 \begin{definition}
 	A stationary policy \(\pi\) is called 
@@ -171,7 +169,7 @@ If we remove the assumption of exploring starts, we still need to ensure that ev
 \end{definition}
 
 \begin{prop}
-	Generalized policy iteration with \(\vep\)-greedy policies converges to a \(\vep\)-soft optimal policy
+	Generalized policy iteration with \(\vep\)-greedy policies converges to an \(\vep\)-soft optimal policy
 \end{prop}
 \begin{proof}
 	% Let \(\pi_{n+1}\) be \(\vep\)-greedy with regard to \(Q^{\pi_n}\). Since \(\pi_n\) is an \(\vep\)-soft policy we know that
@@ -229,7 +227,7 @@ If we remove the assumption of exploring starts, we still need to ensure that ev
 		&=\tilde{\cP}(\{y\}\times \R\mid x,a)\\
 		&=(1-\vep)p(y\mid x,a)+\frac{\vep}{|\cA_x|}\sum_{b\in\cA_x}p(y\mid x,b)
 	\end{align*}
-	And together with \(q(B\mid x,a)\coloneqq \cP(\cX\times B \mid x,a)\) the complementary marginal distribution we can show:
+	And together with \(q(B\mid x,a)\coloneqq \cP(\cX\times B \mid x,a)\), the complementary marginal distribution which hast the same property, we can show:
 	\begin{align*}
 		\tilde{r}(x,a)&=\int t\ d\tilde{q}(t \mid x,a)=\int t\ 
 		d\left((1-\vep)q(\cdot\mid x,a) + \frac{\vep}{|\cA_x|}\sum_{b\in\cA_x}q(\cdot\mid x,b)\right)(t) \\
@@ -317,7 +315,7 @@ If we remove the assumption of exploring starts, we still need to ensure that ev
 	The Monte Carlo algorithm on the other hand \emph{never} uses existing value estimations to estimate the value of a different state. If John Doe uses Monte Carlo estimates to guess the remaining time from the doctor, the accuracy of his estimates will only ever increase with the times he actually starts driving from the doctor's office. 
 \end{example}
 
-Since Monte Carlo has more possible "starting points" or generally earlier points in the chain in case of estimating \(Q^\pi\), it is worse in this case. An extreme example would be two actions in the same state which have the same effect. Even though Monte Carlo might have a good estimate of the value of the first action it will start completely anew for the second action. 
+Since Monte Carlo has more possible "starting points", or generally earlier points in the chain, in case of estimating \(Q^\pi\), it is worse in this case. An extreme example would be two actions in the same state, which have the same effect. Even though Monte Carlo might have a good estimate of the value of the first action it will start completely anew for the second action. 
 \fxnote{illustrations?}
 
 \section{Temporal Difference Learning TD}
@@ -362,7 +360,7 @@ Note that we could easily extend this to all stationary policies (c.f. \ref{expa
 	T^\pi Q(x,a)\coloneqq r(x,a) +\gamma \smashoperator{\sum_{(y,b)\in\cX\times\cA}}\Pr^\pi[X_{t+1}=y,A_{t+1}=b\mid X_t=x,A_t=a]Q(y,b).
 \]
 
-To distinguish the TD algorithm, which calculates \(Q\) from the one which calculates \(V\), \citeauthor{suttonReinforcementLearningIntroduction1998} call the first one \emph{Sarsa}. The name stems from the tuple \((S_t, A_t,R_{t+1},S_{t+1},A_{t+1})\) where \(S_t\) is their notation for the state. 
+To distinguish the TD algorithm, which calculates \(Q\) from the one which calculates \(V\), \citeauthor{suttonReinforcementLearningIntroduction1998} call the first one \emph{Sarsa}. The name stems from the tuple \((S_t, A_t,R_{t+1},S_{t+1},A_{t+1})\), as \(S_t\) is their notation for the state. 
 
 \begin{algorithm}
 	\caption{On-line Sarsa \parencite{suttonReinforcementLearningIntroduction1998}}
@@ -376,16 +374,16 @@ To distinguish the TD algorithm, which calculates \(Q\) from the one which calcu
 				\State do \(a\), observe reward \(R\) and next state \(y\)
 				\State choose \(b\) according to \(\Psi(Q)(\cdot \mid y)\)
 				\State \(Q(x,a)\gets Q(x,a) + \alpha_n [R+\gamma Q(y,b) -Q(x,a) ]\)
-				\State \(x\gets y\); \(a\gets b \);
+				\State \(x\gets y\); \(a\gets b \)
 			\Until{x is terminal}
 		\EndWhile
 	\end{algorithmic}
 	Where \(\alpha_n\) is the learning rate.
 \end{algorithm}
 
-Similar to the Monte Carlo algorithm we use generalized policy iteration to approach \(\pi^*\). But since we do not need to wait for an episode to finish to create new estimates, we can alternate even more quickly between calculating \(Q^{\pi_n}\) and selecting \(\pi_{n+1}\). The most extreme form is now updating the policy before every transition in every time step. This is what is called \emph{on-line} learning in contrast to the \emph{off-line} mentioned in the introduction. 
+Similar to the Monte Carlo algorithm, we use generalized policy iteration to approach \(\pi^*\). But since we do not need to wait for an episode to finish to create new estimates, we can alternate even more quickly between calculating \(Q^{\pi_n}\) and selecting \(\pi_{n+1}\). The most extreme form is now updating the policy before every transition in every time step. This is what is called \emph{on-line} learning in contrast to the \emph{off-line} mentioned in the introduction. 
 
-Batch Reinforcement Learning is often used synonymously with off-line learning. But as batch learning algorithms were designed to utilize the information of the existing batch as efficiently as possible, there were some attempts to modify them in order to provide intermediate results to advise action selection, transforming them into on-line algorithms. \textcite{langeBatchReinforcementLearning2012} suggest to refer to these algorithms as \emph{growing batch reinforcement learning}. We will discuss an example in \ref{growing batch learning} after explaining the the need for it. 
+Batch Reinforcement Learning is often used synonymously with off-line learning. But as batch learning algorithms were designed to utilize the information of the existing batch as efficiently as possible, there were some attempts to modify them in order to provide intermediate results to advise action selection, transforming them into on-line algorithms. \textcite{langeBatchReinforcementLearning2012} suggest to refer to these algorithms as \emph{growing batch reinforcement learning}. We will discuss an example in \ref{growing batch learning}, after explaining the the need for it. 
 
 \subsection{Shortcomings of TD} \label{shortcomings TD}
 In a way TD is the opposite of Monte Carlo. While Monte Carlo did not use existing estimates of the value function, TD \emph{only} uses existing estimates. This can cause problems as well.
@@ -406,13 +404,13 @@ In a way TD is the opposite of Monte Carlo. While Monte Carlo did not use existi
 	\end{center}
 \end{wrapfigure}
 
- Recall our room navigation example and assume that we initialize the TD algorithm with the value function \({Q\equiv 0}\). Then the algorithm picks an action, walks into that direction, gets reward zero and updates \(Q\) in this place to zero. This continues until it reaches the goal where it updates the state and action that led it to the goal with a positive number. Which makes this action the greedy action (indicated by the arrow). 
+ Recall our room navigation example and assume that we initialize the TD algorithm with the value function \({Q\equiv 0}\). Then the algorithm picks an action, walks into that direction, gets reward zero, and updates \(Q\) in this place to zero. This continues until it reaches the goal where it updates the state and action that led it to the goal with a positive number. Which makes this action the greedy action (indicated by the arrow). 
  
- But in all the previous states TD still does not behave better than before. It will take a couple more episodes to backpropagate the reward of the goal to the \(Q\) values at the start. This is quite bad in comparison to Monte Carlo which only takes one episode to leave a trail of breadcrumbs to the goal. One way to tackle this problem is to try to find a compromise between Monte Carlo and TD which \(TD(\lambda)\) tries to do. The other approach is growing batch learning. 
+ But in all previous states TD still does not behave better than before. It will take a couple more episodes, to backpropagate the reward of the goal to the \(Q\) values at the start. This is quite bad in comparison to Monte Carlo, which only takes one episode to leave a trail of breadcrumbs to the goal. One way to tackle this problem, is to try and find a compromise between Monte Carlo and TD like TD(\(\lambda\)). The other approach is growing batch learning. 
 
 
-\section{Growing Batch Learning}\label{growing batch learning} \fxnote{section instead of subsection? chance place? - after TD(lambda), after Q-learning?}
-One reason for TD's problems is, that it uses sampled transitions only once and then throws them away. This is not so much a problem when the MDP is cheap to sample. But in a lot of real world applications experiences cost more time than most computations, can be expensive (causing damage to hardware) and/or outright dangerous (e.g. self-driving cars). For this reason it is preferable if the algorithm learns as much as possible from a given batch of experiences (transitions). To serve as a comparison, recall our initial naive batch learning algorithm (Algorithm \ref{naive batch learning algorithm}). First it estimates the model parameters; after that it uses these estimates multiple times in every Dynamic Programming step. TD's estimates, on the other hand, are baked into the current estimate of \(V\) (or \(Q\)), which means that older samples are baked into older instances of \(V\) which can not really be reused as they also represent previous instances of the ``dynamic programming part'' of TD (and maybe also previous policies in the GPI case with \(Q\)).
+\section{Growing Batch Learning}\label{growing batch learning}
+One reason for TD's problems is, that it uses sampled transitions only once and then throws them away. This is not so much a problem when the MDP is cheap to sample. But in a lot of real world applications, experiences cost more time than most computations, can be expensive (causing damage to hardware) and/or outright dangerous (e.g. self-driving cars). For this reason it is preferable if the algorithm learns as much as possible from a given batch of experiences (transitions). To serve as a comparison, recall our initial naive batch learning algorithm (Algorithm \ref{naive batch learning algorithm}). First it estimates the model parameters; after that it uses these estimates multiple times in every Dynamic Programming step. TD's estimates, on the other hand, are baked into the current estimate of \(V\) (or \(Q\)), which means that older samples are baked into older instances of \(V\), which can not really be reused as they also represent previous instances of the ``dynamic programming part'' of TD (and also previous policies in the GPI case with \(Q\)).
 
 So how could we modify this batch learning algorithm (using the entire batch of transitions) to be on-line, i.e. provide provisional estimates and incorporate additional information -- growing batches?
 
@@ -426,9 +424,9 @@ to
 \]
 basically tripling the number of operations. 
 
-The calculation of \(\hat{p}\) is already partly on-line, as the increment  in line \ref{algo1: incr 1} and \ref{algo1: incr 2} can be done in every transition. Recalculation of  \(\hat{p}\) in every step would entail an iteration through all the \(y\in\cX\) whichever followed a particular \((x,a)\) and might thus be better left for the time that \(\hat{p}\) is actually required.
+The calculation of \(\hat{p}\) is already partly on-line, as the increment in line \ref{algo1: incr 1} and \ref{algo1: incr 2} of the algorithm can be done in every transition. Recalculation of  \(\hat{p}\) in every step, would entail an iteration through all the \(y\in\cX\) whichever followed a particular \((x,a)\), and might thus be better left for the time, when \(\hat{p}\) is actually required.
 
-To accelerate Dynamic Programming we could use the previous estimation of \(V\) (\(Q\)) as a starting point the next time we use DP. But DP still requires us to go over the entire state space (state-action space) for just one update, and most model parameter stay the same anyway so more local updates are warranted.
+To accelerate Dynamic Programming, we could use the previous estimation of \(V\) (\(Q\)) as a starting point, the next time we use DP. But DP still requires us to go over the entire state space (state-action space) for just one update, and most model parameter stay the same anyway, so more local updates are warranted.
 
 The approach of algorithms like ``Dyna'' are basically hybrids of a ``pure'' on-line learning algorithm like TD (or -- as we will later see -- Q learning i.e. Dyna-Q) and a model based learning algorithm which runs in the background -- ideally (for performance) as a separate process -- and updates the value function with ``localized'' dynamic programming, i.e.
 \begin{align}
@@ -439,17 +437,17 @@ or
 \begin{align}\label{async DP Q}
 	Q^\pi(x,a) \gets \hat{r}(x,a) + \sum_{y\in\cX}\sum_{b\in\cA_y} \hat{p}(y\mid x,a) \pi(b\mid y) Q^\pi(y,b).
 \end{align}
-This leaves us with the question, which states to prioritize for updates. The simplest form of Dyna just picks these states randomly. From our example in \ref{shortcomings TD} it should be quite obvious, that this is not the most efficient way to backpropagate rewards. But it should not be completely disregarded as it has one of, if not \emph{the} smallest overhead of possible selection algorithms. 
+This leaves us with the question, which states to prioritize for updates. The simplest form of Dyna just picks these states randomly. From our example in \ref{shortcomings TD} it should be quite obvious, that this is not the most efficient way to backpropagate rewards. But it should not be completely disregarded as it has one of, if not the smallest overhead of possible selection algorithms. 
 
-A second approach is \emph{prioritized sweeping} where the absolute difference between the sample of \(T^\pi V(X_t)\) (i.e. \(R_{t+1}+\gamma V(X_{t+1})\)) and \(V(X_t)\) (c.f. (\ref{TD learning})) needs to be larger than a certain threshold for this state to be put into the update queue. The model learning part then updates all the states which lead to this state, and inserts theses states into the queue themselves if their change is large too. \fxnote{write down algorithm?}
+A second approach is \emph{prioritized sweeping}, where the absolute difference between the sample of \(T^\pi V(X_t)\) (i.e. \(R_{t+1}+\gamma V(X_{t+1})\)) and \(V(X_t)\) (c.f. (\ref{TD learning})) needs to be larger than a certain threshold for this state to be put into the update queue. The model learning part then updates all the states, which lead to this state, and inserts theses states into the queue themselves if their change is large too. 
 
-Another approach is \emph{trajectory sampling} where a trajectory of state is generated by applying the current policy to the model (\(\hat{p}\)) of the real MDP. Then the algorithm could update the value functions along this chain of states, ideally backwards (to avoid the problem that TD has). This focuses the update on parts of the MDP which are actually relevant as they are possible to reach with the current policy. Just like it makes more sense to analyse different chess games as a joint string of moves instead of analysing random positions which might never come up in a real game. Trajectory sampling can also be combined with the other approach to improve TD. By using the learning algorithm of the mixture \(TD(\lambda)\) of TD and Monte Carlo on these simulated trajectories. 
+Another approach is \emph{trajectory sampling} where a trajectory of state is generated by applying the current policy to the model (\(\hat{p}\)) of the real MDP. Then the algorithm could update the value functions along this chain of states, ideally backwards (to avoid the problem that TD has). This focuses the update on parts of the MDP, which are actually relevant, as they are possible to reach with the current policy. Just like it makes more sense to analyse different chess games as a joint string of moves, instead of analysing random positions which might never come up in a real game. Trajectory sampling can also be combined with the other approach to improve TD, using the learning algorithm of TD(\(\lambda\)) on these simulated trajectories. 
 
-The approaches we discussed here so far are all \emph{model based learning}, which could leave the impression that (growing) batch learning is synonymous with model based learning in contrast to \emph{model free learning} methods like Monte Carlo and TD, which do not actually estimate the transition probabilities and skip right to the value functions. But there are also model free growing batch learning methods. 
+The approaches we discussed here so far, are all \emph{model based learning}, which could leave the impression that (growing) batch learning is synonymous with model based learning in contrast to \emph{model free learning} methods like Monte Carlo and TD, which do not actually estimate the transition probabilities, and skip right to the value functions. But there are also model free growing batch learning methods. 
 
-One such example is \emph{experience replay} coined by \textcite{linSelfimprovingReactiveAgents1992} which simply creates backups of past transitions and plays them back to the learning algorithms in a possibly different (e.g. backwards) order. The fact, that playing back a random transition is equivalent to sampling the model (\(\hat{p}, \hat{r}\)), motivates why this has the desired effect if the selection of past transition is not unbalanced.  Experience replay can be warranted if the sums in (\ref{async DP V}) or (\ref{async DP Q}) are too large, i.e. when too many different states \(y\) can follow a state \(x\). This is sometimes described as a high \emph{branching factor}, where this factor could be defined as the average number of branches. Experience replay essentially trades memory (backing up all transitions) for computation speed, as it does not need to sum over all branches following a state.
+One such example is \emph{experience replay} coined by \textcite{linSelfimprovingReactiveAgents1992} which simply creates backups of past transitions and plays them back to the learning algorithms in a possibly different (e.g. backwards) order. The fact, that playing back a random transition is equivalent to sampling the model (\(\hat{p}, \hat{r}\)), motivates why this has the desired effect if the selection of past transition is not unbalanced.  Experience replay can be warranted if the sums in (\ref{async DP V}) or (\ref{async DP Q}) are too large, i.e. when too many different states \(y\) can follow a state \(x\). This is sometimes described as a high \emph{branching factor}, where this factor could be defined as the average number of branches. Experience replay essentially trades memory (backing up all transitions) for computation speed, as it does not need to sum over all branches following a state. Variants might only back up certain transitions, which are selected according some measure of importance. Humans can for example remember very good or bad experiences better than ``boring'' situations. So maybe it is sufficient, to keep only transitions with very high or low rewards. 
 
-\textcite{suttonReinforcementLearningIntroduction1998} call the model based learning methods ``planning'', and use the term ``decision time planning'' for algorithms which try to improve the knowledge of \(Q(X_t,a)\) for all actions \(a\), just before selecting the action \(A_t\), by exploring the branches of the state based on its current model (essentially applying some localized Dynamic Programming to its model to aid the decision).
+\textcite{suttonReinforcementLearningIntroduction1998} call model based learning methods ``planning'', and use the term ``decision time planning'' for algorithms which try to improve the knowledge of \(Q(X_t,a)\) for all actions \(a\), just before selecting the action \(A_t\), by exploring the branches of the state based on its current model (essentially applying some localized Dynamic Programming to its model to aid the decision).
 
 
 
@@ -482,17 +480,13 @@ Since rewards in the terminal state are by convention zero, we know for \(n\ge T
 \]
 If the value function correctly assigns value \(0\) to the terminal state \(X_T\), then they are already equal for all \(n\ge T-t\), otherwise it converges. This allows us to interpret Monte-Carlo as \(\infty\)-step return.
 
-\begin{lemma} The \(n\)-step return has the \emph{error reduction property}:
-	\[
-		\left\| \E^\pi[ \hat{V}^{(n)}(X_t)\mid X_t=\cdot] - V^\pi\right\|_\infty \le \gamma^n \| V-V^\pi\|_\infty
-	\]
-\end{lemma}
-\begin{proof}
-	We inductively prove that 
+\begin{lemma} The \(n\) step return has the property
 	\[
 		\E^\pi[ \hat{V}^{(n)}(X_t)\mid X_t=\cdot]=(T^\pi)^n V,
 	\]
-	at which point the claim follows from the contraction property of \(T^\pi\). The induction basis is just the TD case, c.f. (\ref{estimates T^pi V}). The induction step follows:
+\end{lemma}
+\begin{proof}
+	(By induction) The induction basis is just the TD case, c.f. (\ref{estimates T^pi V}). The induction step follows:
 	\begin{align*}
 		&\E^\pi[ \hat{V}^{(n)}(X_t)\mid X_t=x]\\
 		&=\E^\pi[R_{t+1}+\gamma\hat{V}^{(n-1)}(X_{t+1})\mid X_t=x]\\
@@ -505,17 +499,24 @@ If the value function correctly assigns value \(0\) to the terminal state \(X_T\
 			}
 		\end{aligned}\\
 		&=\E^\pi[r(x,A_0)\mid X_0=x] 
-		+\gamma\sum_{y\in\cX} \Pr^\pi(X_{t+1}=y\mid X_t=x)(T^\pi)^{n-1} V(y)\\
+		+\gamma\sum_{y\in\cX} \Pr^\pi(X_{1}=y\mid X_0=x)(T^\pi)^{n-1} V(y)\\
 		&=(T^\pi)^n V(x) \qedhere
 	\end{align*}
 \end{proof}
-
+\begin{corollary}\label{error reduction} The \(n\)-step return has the \emph{error reduction property}:
+	\[
+		\left\| \E^\pi[ \hat{V}^{(n)}(X_t)\mid X_t=\cdot] - V^\pi\right\|_\infty \le \gamma^n \| V-V^\pi\|_\infty
+	\]
+\end{corollary}
+\begin{proof}
+	The claim follows from the contraction property of \(T^\pi\).
+\end{proof}
 \subsection{TD(\(\lambda\)) Forward View - \(\lambda\)-return}
-In that sense any kind of convex combination of \(n\)-step returns are estimates for \(V^\pi\) with a minimal error reduction of \(\gamma\). This is true in particular for the geometric average, the \(\lambda\)-return:
+In that sense any kind of convex combination of \(n\)-step returns are estimates for \(V^\pi\) with a minimal error reduction of \(\gamma\). This is true in particular for the geometric average, the \(\lambda\)-return \parencite{watkinsLearningDelayedRewards1989}:
 \[
 	\hat{V}^\lambda(X_t)\coloneqq (1-\lambda)\sum_{n=1}^\infty \lambda^{n-1} \hat{V}^{(n)}(X_t).
 \]
-Why is the geometric average interesting? Well imagine incrementing over the time steps after \(t\) and at every step deciding, whether to call it a day (using the current value function as a replacement for the rest of the returns) or to continue. Since any time looks equally good or bad to stop, there is not really a reason to pick any particular step. So why not continue at every step with equal probability \(\lambda\)? Let \(N\) be the associated random variable, which represents the stop time. Then assuming a realized MDP, denoting the realized chain of states by \(x_t\), we observe
+Why is the geometric average interesting? Well imagine incrementing over the time steps after \(t\) and at every step deciding, whether to call it a day (using the current value function as a replacement for the rest of the returns) or to continue. Since any time looks equally good or bad to stop, there is not really a reason to pick any particular step.\footnote{This is actually not quite true, it is most likely better to stop at states, which were visited often, since their estimates are probably better. But ex ante, before sampling the MDP, we can not make that distinction.} So why not continue at every step with equal probability \(\lambda\)? Let \(N\) be the geometrically distributed random variable, which represents the stop time. Then assuming a realized MDP, denoting the realized chain of states by \(x_t\), we observe
 \[
 	\E[\hat{V}^{(N)}(x_t)]=\sum_{n=1}^\infty \Pr(N=n) \hat{V}^{(n)}(x_t) 
 	=\sum_{n=1}^\infty (1-\lambda)\lambda^{n-1} \hat{V}^{(n)}(x_t)=\hat{V}^\lambda (x_t).
@@ -545,70 +546,112 @@ At this point it might be helpful to note, that for \(\lambda=0\) we get our \(1
 	&\xrightarrow{\lambda \to 1} \sum_{j=0}^\infty \gamma^j R_{t+1+j}
 	\nonumber
 \end{align}
-This is simply the return after \(t\). The expected Return is guaranteed to be well defined by Assumption \ref{assumption boundedness}, \fxnote*{check claim, should I change assumption 1 in the first place?}{but by now it is probabily sensible to tighten this assumption to certain boundedness}.
+This is simply the return after \(t\), which is well defined with Assumption \ref{assumption boundedness 2}.
 
-The resulting algorithm (\ref{forward TD algorithm}), is called TD(\(\lambda\)). The notation (\ref{forward TD expanded}) will be useful later:
+There are two different versions of TD(\(\lambda\)) constructed with the \(\lambda\)-return. 
+The first one updates the value function with every step:
 \begin{align}
-	V_{t+1}(X_t)&= V_t(X_t) + \alpha_t \underbracket[1pt]{[\hat{V}_t^\lambda(X_t)-V_t(X_t)]}_{
-		\eqqcolon \Delta V^\lambda_t
-	}\label{forward TD algorithm} \\
-	&=V_0(X_t) + \sum_{k=0}^t \alpha_k\Delta V^\lambda_k(X_k) \mathbbm{1}_{X_k=X_t}\label{forward TD expanded}
+	V_{t+1}(x)&= V_t(x) + \alpha_t \underbracket[1pt]{[\hat{V}_t^\lambda(X_t)-V_t(x)]}_{
+		\eqqcolon \Delta V^\lambda_t(X_t)
+	}\mathbbm{1}_{X_t=x}
+	\label{forward TD algorithm} \\
+	&=V_0(x) + \sum_{k=0}^t \alpha_k\Delta V^\lambda_k(X_k) \mathbbm{1}_{X_k=x}\label{forward TD expanded}
 \end{align}
-The index \(t\) indicates that \(\hat{V}^\lambda\) uses \(V_t\) for its estimation of the remaining return. TD(\(0\)) is then just TD and TD(\(1\)) is every-visit Monte Carlo for appropriate \(\alpha_t\).
-To be more precise \textcite{suttonReinforcementLearningIntroduction1998} call this the \emph{forward view} of TD(\(\lambda\)). This stems from the fact, that we update the value of \(V\), in place \(x_t\) with \emph{future} returns, which forces us to wait for the end of the episode just like with Monte Carlo. For this reason this forward view of TD(\(\lambda\)) is not actually the version of TD(\(\lambda\)), which would actually be implemented. The forward view is simply easier to handle in convergence proofs, which is why it is also called the theoretical view of TD(\(\lambda\)). 
+The index \(t\) indicates that \(\hat{V}^\lambda\) uses \(V_t\) for its estimation of the remaining return. TD(\(0\)) is then just TD, and TD(\(1\)) is every-visit Monte Carlo for appropriate \(\alpha_t\). To be more precise, we want to average the returns after every time we visited a state. So assuming that we are in state \(X_t\), the learning rate needs to be \(1/(\#\text{previous visits}+1)\) (c.f. example \ref{unwinding the mean}), i.e.:
+\[
+	\alpha_t=\left(\sum_{k=0}^{t}\mathbbm{1}_{X_k=X_t}\right)^{-1}
+\]
+The second version of TD(\(\lambda\)) updates the value function after the end \(T_n\) of every episode \(n\), and we will thus refer to it as batch TD(\(\lambda\)):
+\begin{align}\label{forward batch TD}
+	V_{n+1}(x)=V_n(x)+\sum_{k=0}^{T_n-1}\alpha_k \underbracket[1pt]{[\hat{V}_n^\lambda(X_{k})-V_n(x)]}_{=\Delta V_n^\lambda(X_{k})}\mathbbm{1}_{X_{k}=x}
+\end{align}
+We would really have to index \(X_k\) with the episode \(X_k^{(n)}\), since we get a state sequence in every episode. But since we will only need to talk about one episode, and in order to keep notation simple, I will omit this index. To understand this algorithm, it is best to consider only one episode at first. Batch TD(\(1\)) is also equal to Monte Carlo, for
+\begin{align}\label{batch TD(1) learning rate}
+	\alpha_k= \left(n\sum_{i=0}^{T_n-1}\mathbbm{1}_{X_{k}=X_i} \right)^{-1},
+\end{align}
+since then
+\[
+	V_{n+1}(x)=V_n(x)- \mfrac{1}{n}\left[\text{average returns after \(x\) in episode }n - V_n(x)\right].
+\]
+
+These two variants of TD(\(\lambda\)) are more specifically called the \emph{forward view} of TD(\(\lambda\)) \parencite{suttonReinforcementLearningIntroduction1998}. This stems from the fact, that the \(\lambda\)-return in \(X_t\) requires knowledge of \emph{future} returns, which forces us to wait for the end of the episode just like with Monte Carlo. For this reason this forward view of TD(\(\lambda\)) is not actually the version of TD(\(\lambda\)), which would actually be implemented. The forward view is simply easier to handle in convergence proofs, which is why it is also called the theoretical view of TD(\(\lambda\)). 
 
 \subsection{TD(\(\lambda\)) Backward View}
-To motivate the \emph{backward view} of TD(\(\lambda\)), we transform \(\Delta V_t^\lambda (X_t)\) using (\ref{tangent backward view}):
+To motivate the \emph{backward view} of TD(\(\lambda\)), we transform \(\Delta V_m^\lambda (X_t)\) (\(m=t\) or \(m=n\) for batch TD(\(\lambda\))) using (\ref{tangent backward view}):
 \begin{align}
-	\Delta V_t^\lambda (X_t)&= \sum_{n=0}^\infty (\gamma\lambda)^n R_{t+1+n}
-	+ (1-\lambda)\sum_{n=1}^\infty \lambda^{n-1}\gamma^n V_t(X_{t+n}) - V_t(X_t)
+	\Delta V_m^\lambda (X_t)&= \sum_{i=0}^\infty (\gamma\lambda)^i R_{t+1+i}
+	+ (1-\lambda)\sum_{i=1}^\infty \lambda^{i-1}\gamma^n V_m(X_{t+i}) - V_m(X_t)
 	\nonumber\\
-	&=\sum_{n=0}^\infty (\gamma\lambda)^n R_{t+1+n} 
-	+ \sum_{n=1}^\infty (\lambda\gamma)^{n-1} \gamma V_t(X_{t+n}) 
-	- \sum_{n=0}^\infty (\lambda\gamma)^n V_t(X_{t+n})
+	&=\sum_{i=0}^\infty (\gamma\lambda)^i R_{t+1+i} 
+	+ \sum_{i=1}^\infty (\lambda\gamma)^{i-1} \gamma V_m(X_{t+i}) 
+	- \sum_{i=0}^\infty (\lambda\gamma)^i V_m(X_{t+i})
 	\nonumber\\
-	&=\sum_{n=0}^\infty(\gamma\lambda)^n \left[
-		R_{t+1+n} + \gamma V_t(X_{t+1+n}) - V_t(X_{t+n})
+	&=\sum_{i=0}^\infty(\gamma\lambda)^i \left[
+		R_{t+1+i} + \gamma V_m(X_{t+1+i}) - V_m(X_{t+i})
 	\right]
 	\nonumber\\
-	&=\sum_{n=t}^\infty(\gamma\lambda)^{n-t} \left[
-		R_{n+1} + \gamma V_t(X_{n+1}) - V_t(X_{n})
+	&=\sum_{i=t}^\infty(\gamma\lambda)^{i-t} \left[
+		R_{i+1} + \gamma V_m(X_{i+1}) - V_m(X_{i})
+	\right]
+	\nonumber\\
+	&\lxeq{(*)}\sum_{i=t}^{T-1}(\gamma\lambda)^{i-t} \underbracket[1pt]{\left[
+		R_{i+1} + \gamma V_m(X_{i+1}) - V_m(X_{i})
+	\right]}_{
+		=\Delta V^0_m(X_i)
+	}\label{terminal assumptions}
+\end{align}
+\((*)\) T is the end of the episode; note that the rewards in the terminal state are zero by convention and if we assume \(V_m(y)=0\) for \(y\) a terminal state, we get
+\[
+	R_{T+1}+\gamma V_m(X_{T+1}) -V(X_T)=0
+\]
+just like for all the following time steps. \(V_m(y)=0\) for every terminal state \(y\) is not a problematic assumption, since we can only end the episode if we can detect a terminal state, which easily allows us to set the value function to zero, if we did not initialize the value function iteration with a value function which assigns the terminal state zero anyway. 
+
+Note that \(\Delta V^0_m(X_i)\) is simply the update direction of TD(0). And since TD(0) is already on-line -- as the updates happen with every step -- we could just ``broadcast'' the update deltas \(\Delta_i^0(X_i)\) back to previous states. They can then get updated with these deltas.
+
+In other words, we want to flip the summing over the deltas in (\ref{forward TD expanded}) or (\ref{forward batch TD}), with the summation of all the TD(\(0\)) deltas. Here the version for \(m=n\):
+\begin{align*}
+	V_{n+1}(x)-V_n(x)&\xeq{\text{(\ref{forward batch TD})}} \sum_{t=0}^{T-1} \alpha_t \mathbbm{1}_{X_t=x}
+	\Delta V^\lambda_n(X_t)\\
+	&=\sum_{t=0}^{T-1} \alpha_t \mathbbm{1}_{X_t=x}
+	\sum_{i=t}^{T-1}(\gamma\lambda)^{i-t} \Delta V^0_n(X_i)\\
+	&\lxeq{\text{Fub.}}\sum_{i=0}^{T-1} \Delta V^0_n(X_i) 
+	\underbracket[1pt]{\sum_{t=0}^{i} \alpha_t (\gamma\lambda)^{i-t} \mathbbm{1}_{X_t=x}}_{
+		\eqqcolon e_i(x)
+	}
+\end{align*}
+This backwards view essentially tries to assign discounted credit/blame to previous states. The \(\Delta V^0_i(X_i)\), are the unexpected reward or cost, in state \(X_i\) at time \(i\), and \(e_i(x)\) measures the amount of credit/blame the state \(x\) is eligible for. \(e_i\), is therefore called the \emph{eligibility trace}. The partial sums are then interim estimates for \(V_{n+1}\). 
+
+In order to adapt this idea for the first version of TD(\(\lambda\)) (\ref{forward TD expanded}), we need to make an approximation, otherwise we can not move the \(\Delta V^0_t(X_i)\) out of the sum over \(t\):
+\begin{align}
+	\Delta V_t^\lambda (X_t)&=\sum_{i=t}^{T-1}(\gamma\lambda)^{i-t} \left[
+		R_{i+1} + \gamma V_t(X_{i+1}) - V_t(X_{i})
 	\right]
 	\nonumber \\
-	&\approx \sum_{n=t}^\infty(\gamma\lambda)^{n-t} 
-	\underbracket{\left[
-		R_{n+1} + \gamma V_n(X_{n+1}) - V_n(X_{n})
+	&\approx \sum_{i=t}^{T-1}(\gamma\lambda)^{i-t} 
+	\underbracket[1pt]{\left[
+		R_{i+1} + \gamma V_i(X_{i+1}) - V_i(X_{i})
 	\right]}_{
-		=\Delta V^0_n(X_n)
+		=\Delta V^0_i(X_i)
 	}\label{approx}
 \end{align}
-Where \(\Delta V^0_n(X_n)\) is simply the update direction of TD(0). Now why does this approximation make sense? 
-
-First of all, \(V_{n+1}\) stays the same to \(V_n\) in every place but \(X_n\). Assuming that the sequence of states wanders about a little bit, the first few \(V_n\) will all be equal to \(V_t\). And once the sequence of states comes back around, the hope is that \(n-t\) would be large enough, for \((\gamma\lambda)^{n-t}\approx 0\). Additionally, the difference between \(V_n\) and \(V_t\) is small, even for repeated states, if the learning rate \(\alpha_n\) is sufficiently small. 
-
-Now to the question, why is this approximation useful for us? Well TD(0) is already on-line, as the updates happen with every step. So we could just ``broadcast'' the update deltas \(\Delta_n^0(X_n)\) back to previous states, which can then get updated in the same direction. How much they get updated depends on the number of visits and the time between visits. Imagine the state \(X_t\) is never visited again afterwards. Then over time it receives the \(\Delta_n^0(X_n)\) following \(X_t\) which get added to \(V_n(X_t)\) with the factor \((\gamma\lambda)^{n-t}\). Then they eventually sum to something akin to \(\Delta V^\lambda_t(X_t)\). The backwards view essentially tries to assign discounted credit/blame to previous states. Reducing \(\lambda\) translates to a faster fading of the \emph{eligibility} for credit/blame. In the same manner the factor
-\[
-	e_n(x)=\sum_{k=0}^n \alpha_k(\gamma\lambda)^{n-k} \mathbbm{1}_{X_k=x},
-\]
-is called \emph{eligibility trace} of state \(x\) for \(\Delta V^0_n(X_n)\). 
-
-Using (\ref{forward TD expanded}) we will now show that, assuming the same \(V_0\), the estimate \(V_T\) of the the forward view will be the same as the estimate generated by summing over the TD(0) deltas \(\Delta V^0_n(X_n)\) multiplied with the eligibility trace:
+Now why does this approximation make sense? First of all, \(V_{i+1}\) stays the same to \(V_i\) in every place but \(X_i\) (c.f. (\ref{forward TD algorithm})). Assuming that the sequence of states wanders about a little bit, the first few \(V_i\) will all be equal to \(V_t\). And once the sequence of states comes back around, the hope is that \(i-t\) would be large enough, for \((\gamma\lambda)^{i-t}\approx 0\). Additionally, the difference between \(V_i\) and \(V_t\) is small, even for repeated states, if the learning rate \(\alpha_i\) is sufficiently small. 
+This lets us write the version for (\ref{forward TD expanded}):
 \begin{align*}
-	V_T(x)-V_0(x)&= \sum_{k=0}^{T-1} \alpha_k \mathbbm{1}_{X_k=x}
-	\Delta V^\lambda_k(X_k)\\
-	&\approx \sum_{k=0}^{T-1} \alpha_k \mathbbm{1}_{X_k=x}
-	\sum_{n=k}^\infty(\gamma\lambda)^{n-k} \Delta V^0_n(X_n)\\
-	&=\sum_{k=0}^{T-1} \alpha_k \mathbbm{1}_{X_k=x}
-	\sum_{n=k}^{T-1}(\gamma\lambda)^{n-k} \Delta V^0_n(X_n)\\
-	&\lxeq{\text{Fub.}}\sum_{n=0}^{T-1} \Delta V^0_n(X_n) 
-	\sum_{k=0}^{n} \alpha_k (\gamma\lambda)^{n-k} \mathbbm{1}_{X_k=x}\\
-	&=\sum_{n=0}^{T-1} \Delta V^0_n(X_n) e_n(x)
+	V_T(x)-V_0(x)%&= \sum_{t=0}^{T-1} \alpha_t \mathbbm{1}_{X_t=x}
+	%\Delta V^\lambda_t(X_t)\\
+	&\approx \sum_{t=0}^{T-1} \alpha_t \mathbbm{1}_{X_t=x}
+	\sum_{i=t}^{T-1}(\gamma\lambda)^{i-t} \Delta V^0_i(X_i)\\
+	&\lxeq{\text{Fub.}}\sum_{i=0}^{T-1} \Delta V^0_i(X_i) 
+	\underbracket[1pt]{\sum_{t=0}^{i} \alpha_t (\gamma\lambda)^{i-t} \mathbbm{1}_{X_t=x}}_{
+		\eqqcolon e_i(x)
+	}
 \end{align*}
-Note that this could easily be adapted for non episodic MDPs by replacing T with \(\infty\), where \(V_\infty\) is the estimate of the value function in the limit.  
+
+This version can easily be adapted for non episodic MDPs by replacing T with \(\infty\), where \(V_\infty\) is the estimate of the value function in the limit. 
 
 \begin{algorithm}
-	\caption{On-line TD(\(\lambda\)) (Backward View)}
-	\begin{algorithmic}
+	\caption{On-line TD(\(\lambda\)) (Backward View - non batch version)}\label{TD(lambda) algo}
+	\begin{algorithmic}[1]
 		\State Initialize V
 		\State \(e(x)\gets 0 \quad \forall x\in\cX\)
 		\While{True}
@@ -618,7 +661,7 @@ Note that this could easily be adapted for non episodic MDPs by replacing T with
 				\State Take action a, observe reward \(R\), next state \(x'\)
 				\State \(\Delta\gets R + \gamma V(x') -V(x)\) 
 				\State \(e(x)\gets e(x) + \alpha_n \)
-				\For{\(y\in\cX\)}
+				\For{\(y\in\cX\)}\label{eligibility assignment}
 					\State \(V(y)\gets V(y) + e(y) \Delta  \)
 					\State \(e(y) \gets \gamma\lambda e(y)\)
 				\EndFor
@@ -627,9 +670,12 @@ Note that this could easily be adapted for non episodic MDPs by replacing T with
 		\EndWhile
 	\end{algorithmic}
 \end{algorithm}
+
 Just like with Monte Carlo and TD the action value (\(Q\)) version Sarsa(\(\lambda\)) is basically the same, and generalized policy iteration would again be used to find an optimal policy.
 
 Note that I took the liberty, and moved the \(\alpha_n\) into the eligibility trace to allow for changing learning rates over time. \textcite{suttonReinforcementLearningIntroduction1998} place the learning rate outside the eligibility trace which forces it to be constant in order to translate to the forward view. 
+
+While the theory for the batch version of TD(\(\lambda\)) is a lot cleaner, it should be noted that this version is rarely used in practice. True Online TD(\(\lambda\)) attempts to fix the hole that this approximation causes but is slightly more complex, and while the first version of TD(\(\lambda\)) generally performs considerably better than either TD(0) or Monte-Carlo, these two extremes are still often used due to simplicity, so TD(\(\lambda\)) will probably also stay relevant for some time, due to its relative simplicity compared to True Online TD(\(\lambda\)).
 
 \subsection{Variations - True Online TD(\(\lambda)\)}
 
@@ -637,9 +683,9 @@ The eligibility traces above are also called \emph{accumulating traces}, because
 \[
 	e_{n+1}(x) = \gamma\lambda e_n(x) + \alpha_{n+1} \mathbbm{1}_{X_{n+1}=x}.
 \]
-They was the original trace proposed by \textcite{suttonLearningPredictMethods1988} when he presented TD(0) and TD(\(\lambda)\). 
+This was the original trace proposed by \textcite{suttonLearningPredictMethods1988} when he presented TD(0) and TD(\(\lambda)\). 
 
-\emph{Replacing traces} introduced by \textcite{singhReinforcementLearningReplacing1996} instead reset the trace, whenever a state is visited a second time. Notice how that is essentially equivalent to cancelling the sum in (\ref{approx}) at that time. The reason for this change was, that the accumulating traces made learning unstable because they could become too large. Notice that this problem occurs, when states are visited repeatedly. Since we argued that repeated visits would be far apart in order to justify the approximation, this gives us some insight as to why this might be the case. 
+\emph{Replacing traces} introduced by \textcite{singhReinforcementLearningReplacing1996} instead reset the trace, whenever a state is visited a second time. Notice how that is essentially equivalent to cancelling the sum in (\ref{approx}) at that time. The reason for this change was, that the accumulating traces made learning unstable because they could become too large. Recall that this problem occurs, when states are visited repeatedly. Since we argued that repeated visits would be far apart in order to justify the approximation, this gives us some insight as to why this might be the case. 
 
 \emph{True Online TD(\(\lambda\))}, proposed by \textcite{vanseijenTrueOnlineTD2014}, circumvents the approximation altogether. Instead of utilizing the full \(\lambda\)-return
 \[
@@ -668,13 +714,7 @@ Though in order to calculate \(V_{t^*+1\mid t^*+1}\) it seems like we need to st
 \]
 But \textcite{vanseijenTrueOnlineTD2014} found a way to calculate \(V_{t^*+1\mid t^*+1}\) directly from \(V_{t^*\mid t^*}\). The resulting eligibility traces are referred to as \emph{Dutch traces}.
 
-
-%reset eligibility trace to 1 instead of adding 1
-%True online TD
-
-
-
-%TODO
+Lastly it is worth noting, that in order to keep the number of updates in line \ref{eligibility assignment} of algorithm \ref{TD(lambda) algo} small, most algorithms set eligibility traces below a certain threshold to zero. 
 
 \section{Q-learning}
 Q-learning \parencite{watkinsLearningDelayedRewards1989} is virtually the same as Sarsa, just that Q-learning tries to skip policy iteration by trying to approximate \(Q^*\) directly, instead of \(Q^\pi\). As it does not approximate the value function of the policy it uses currently, it is an \emph{off-policy} algorithm, while Monte Carlo and TD are \emph{on-policy} algorithms. Instead of
@@ -696,11 +736,11 @@ instead of \(T^\pi Q\) like in the case of Sarsa.
 \subsection{Shortcomings of Q-learning}\label{shortcomings Q-learning}
 Due to its heritage, it displays the same weakness as TD (\ref{shortcomings TD}), which we can fix with model learning algorithms like Dyna-Q, as hinted at in \ref{growing batch learning}. But the approach of TD(\(\lambda\)) generalizes only to some degree to Q-learning. 
 
-To create \(n\)-step estimates, the algorithm would need to actually pick the greedy action in every step. But since we also need to do some exploration this can not be guaranteed. And if it would pick the greedy action every time, then the update would be equal to the TD(0) update anyway. Watkin's Q(\(\lambda\))\fxnote{Quote papers, write down pseudo algos?} therefore limits itself to \(n\)-steps, with \(n\) smaller than the number of steps until the next exploratory action. Peng's Q(\(\lambda\)) essentially pretends this problem does not exist and uses histories with non-greedy actions too. This means it ``converges to something between \(Q^*\) and \(Q^\pi\)'', the hope is that it would converge to \(Q^*\) if the policy becomes more and more greedy over time. While there is no proof that Peng's Q(\(\lambda\)) converges, most studies have shown it to perform ``significantly better'' than Watkin's empirically \parencite[184]{suttonReinforcementLearningIntroduction1998}. So we are now again at a point, where we simply do not know whether it converges or not. 
+To create \(n\)-step estimates, the algorithm would need to actually pick the greedy action in every step (otherwise the expected Value is not \((T^*)^n Q\)). But since we also need to do some exploration this can not be guaranteed. And if it would pick the greedy action every time, then the update would be equal to the TD(0) update anyway. Watkin's Q(\(\lambda\)) \parencite{watkinsLearningDelayedRewards1989} therefore limits itself to \(n\)-steps, with \(n\) smaller than the number of steps until the next exploratory action. Peng's Q(\(\lambda\)) \parencite{pengIncrementalMultiStepQLearning1994} essentially pretends, this problem does not exist, and uses histories with non-greedy actions too. This means it ``converges to something between \(Q^*\) and \(Q^\pi\)'', the hope is that it would converge to \(Q^*\) if the policy becomes more and more greedy over time. While there is no proof that Peng's Q(\(\lambda\)) converges, ``most studies have shown it to perform significantly better than Watkin's'' empirically \parencite[184]{suttonReinforcementLearningIntroduction1998}. So we are now again at a point, where we simply do not know whether it converges or not. 
 
-But at first glance Q-learnings larger flaw seems to be its tendency to overestimate itself. As it directly estimates \(Q^*\) it's greedy actions assume that the optimal policy will be played afterwards. But given an \(\vep\)-greedy policy that is not always the case. \citeauthor{suttonReinforcementLearningIntroduction1998}'s example is a Cliff Edge, where the shortest Path is right beside the cliff, but a ``safer path'' is only a little bit longer. Q-learning tries to walk the short path but plunges down the cliff relatively often because of the \(\vep\) part of its \(\vep\)-greedy policy. While Sarsa with GPI converges to walking the safer path since it estimates \(Q^\pi\) account for the exploratory part of the policy. But this flaw could also be addressed with more sophisticated exploration policies. 
+At first glance, Q-learnings larger flaw might seem to be its tendency to overestimate itself. As it directly estimates \(Q^*\), it's greedy actions assume that the optimal policy will be played afterwards. But given an \(\vep\)-greedy policy that is not always the case. \citeauthor{suttonReinforcementLearningIntroduction1998}'s example is a Cliff Edge, where the shortest Path is right beside the cliff, but a ``safer path'' is only a little bit longer. Q-learning tries to walk the short path but plunges down the cliff relatively often because of the \(\vep\) part of its \(\vep\)-greedy policy. While Sarsa with GPI converges to walking the safer path since it estimates \(Q^\pi\) account for the exploratory part of the policy. But this flaw could also be addressed with more sophisticated exploration policies. 
 
-\section{Exploration}
+\section{Exploration}\label{exploration}
 Until now, the only policy we discussed, which tries to tackle the exploration vs. exploitation trade-off, is the \(\vep\)-greedy policy. This section is meant to give an overview over different approaches to exploration. For on-policy algorithms, convergence is tricky to discuss, as was already the case for the \(\vep\)-greedy policy. For off-policy Algorithms, in particular Q-learning, the exploration policy only needs to guarantee that every state action pair is visited often enough (i.e. infinitely many times in the limit).
 But to allow for the use of a Q(\(\lambda\)) algorithm, the greedy actions need to be picked on most occasions. 
 
@@ -762,9 +802,9 @@ Their idea is, that if we take the ``upper limit'' out of both ``intervals'' we 
 	\tilde{Q}(x,a)=\max_{R\in CI(r_{x,a})} R 
 	+\max_{p\in CI(p_{x,a})}\gamma\sum_{y\in\cX}p(y) \max_{b\in\cA_y}\tilde{Q}(y,b)
 \]
-They show that this recursion is still a contraction, which means we could calculate \(\tilde{Q}\) with the same (local) dynamic programming ideas which we use in model based learning. While the question whether or not this construct is in fact a confidence interval around Q is not very pressing (since we are not interested in confidence intervals per se but rather exploration heuristics), the computational burden of a second recursion on top of the main recursion is more of a problem. Especially since this recursion includes two more maximizations, and while the first one is trivial once \(\vep^r\) is calculated, the second one is not. Whether or not this is acceptable depends on the computational resources available and on the expensiveness of samples from the MDP. 
+They show that this recursion is still a contraction, which means we could calculate \(\tilde{Q}\) with the same (local) dynamic programming ideas which we use in model based learning. While the question whether or not this construct is in fact a confidence interval around Q, is not very pressing (since we are not interested in confidence intervals per se but rather exploration heuristics), the computational burden of a second recursion on top of the main recursion is more of a problem. Especially since this recursion includes two more maximizations, and while the first one is trivial once \(\vep^r\) is calculated, the second one is not. Whether or not this is acceptable, depends on the computational resources available and on the expensiveness of samples from the MDP. 
 
-Alternatively one could try to simplify the estimation. \textcite{wieringEfficientModelbasedExploration1998} simply forego the recursion and only use bounds around \(\hat{r}\) and \(\hat{p}\), ignoring the estimation error in the \(Q\) values of the following states. Other approaches simply award exploration bonuses based on the frequency of tries, or how recent the last try was. \fxnote{Dyna-Q+ ?}
+Alternatively one could try to simplify the estimation. \textcite{wieringEfficientModelbasedExploration1998} simply forego the recursion and only use bounds around \(\hat{r}\) and \(\hat{p}\), ignoring the estimation error in the \(Q\) values of the following states. Other approaches simply award exploration bonuses based on the frequency of tries, or how recent the last try was.
 
 
 Another problem is, that interval estimation allows the upper limit of the confidence interval around the optimal action to be lower than the average value of another action with positive probability. This unlikely case results in the algorithm never trying these optimal actions again. This is called sticking \parencite[61]{kaelblingLearningEmbeddedSystems1993}. Last but not least, there is the question on how to initialize the size of the intervals when no samples (or too few) are available. \textcite{wieringEfficientModelbasedExploration1998} suggest to begin with Boltzmann exploration, and switch to interval estimation later. 
@@ -805,7 +845,7 @@ In case of the \(\vep\)-greedy policy, the occasional exploratory actions will o
 
 Boltzmann exploration does not perform much better, as the actions leading to the secondary goal will be assigned higher probability, so finding the larger goal still requires a chain of unlikely actions. 
 
-Since estimating confidence intervals around \(Q\) values without samples is not really possible, the performance of interval estimation depends on how it handles unknown states. If it uses Boltzmann exploration in the beginning, it will obviously struggle too. And setting high ranges for the initial interval estimations results in very similar behaviour to optimistic initialization of the \(Q\) values. As the algorithm would then explore until the entire state space is explored. 
+And since estimating confidence intervals around \(Q\) values without samples, is not really possible, the performance of interval estimation depends on how it handles unknown states. If it uses Boltzmann exploration in the beginning, it will obviously struggle too. And setting high ranges for the initial interval estimations results in very similar behaviour to optimistic initialization of the \(Q\) values. As the algorithm would then explore until the entire state space is explored. 
 
 Another example for this sparse reward setting are small negative rewards littered around the state space. Most games have this problem, where there is only one big reward for beating the level, but there are many possibilities to lose during the level. This can result in the agent deciding, that the optimal way to play is not to play, i.e. achieve the small goal of avoiding to lose.  
 
@@ -815,13 +855,13 @@ A naive fix to this problem would be to favour chains of exploratory actions (i.
 
 Inspired by human curiosity, intrinsic rewards for actions which do not immediately result in extrinsic reinforcement were suggested. There are mostly two types of intrinsic motivation algorithms \parencite{pathakCuriosityDrivenExplorationSelfSupervised2017}. One rewards reaching ``novel'' states, encouraging the agent to stay in unexplored territory before walking back to known extrinsic rewards. Where ``novelty'' could be a constant minus the number of visits, or anything else one might come up with. 
 
-In the second approach the agent builds a world model which tries to predict the next state \(x_{t+1}\) given state \(x_t\) and action \(a_t\). This world model would be a function approximation algorithm (e.g. an artificial neuronal net) which would be trained on the samples generated. Surprising this world model results in an additional reward for the reinforcement algorithm. This encourages the agent to take actions which it does not understand (i.e. which the world model does not predict). But in this basic form, the agent would get addicted to white noise, i.e. situations where the next state is completely unpredictable but also not necessarily meaningful.\fxnote{Citation of earlier work}
+In the second approach the agent builds a world model which tries to predict the next state \(x_{t+1}\) given state \(x_t\) and action \(a_t\). This world model would be a function approximation algorithm (e.g. an artificial neuronal net) which would be trained on the samples generated. Surprising this world model results in an additional reward for the reinforcement algorithm. This encourages the agent to take actions which it does not understand (i.e. which the world model does not predict). But in this basic form, the agent would get addicted to white noise, i.e. situations where the next state is completely unpredictable but also not necessarily meaningful.
 
 \textcite{pathakCuriosityDrivenExplorationSelfSupervised2017}
 recently came up with a modification to fix this problem. They argue that the unpredictability is due to the fact, that these unpredictable state changes are not influenced by the agents actions. 
 So they suggest a filter \(\Phi\) for the state space, which maps the state to a smaller feature space, which only represents the influenceable state of the world. This feature map \(\Phi\) is attained by training a neuronal net.
 
-This neuronal net consists of two copies of a neuronal net with input neurons \(x_t\) and \(x_{t+1}\) respectively, which have fewer output neurons. These two outputs \(\Phi(x_t)\) and \(\Phi(x_{t+1})\) are then fed into a common net which has \(\hat{a}_t\) as the outputs. Similar to autoencoders (c.f. \ref{appx:autoencoder}) compressing information with a bottleneck, this neuronal net has to compress \(x_t\) and \(x_{t+1}\) to the middle layer \(\Phi(x_t)\) and \(\Phi(x_{t+1})\).
+This neuronal net consists of two copies of a neuronal net with input neurons \(x_t\) and \(x_{t+1}\) respectively, which have fewer output neurons. These two outputs \(\Phi(x_t)\) and \(\Phi(x_{t+1})\) are then fed into a common net which has \(\hat{a}_t\) as output. Similar to autoencoders (c.f. \ref{appx:autoencoder}) compressing information with a bottleneck, this neuronal net has to compress \(x_t\) and \(x_{t+1}\) to the middle layer \(\Phi(x_t)\) and \(\Phi(x_{t+1})\).
 \def\layersep{2.5cm}
 \begin{wrapfigure}{l}{7cm}
 \begin{tikzpicture}[scale=0.6, shorten >=1pt,->,draw=black!50, node distance=\layersep]
@@ -894,13 +934,13 @@ But since it does not need to recover the original from this compression but rat
 
 The world model then has to predict \(\Phi(x_{t+1})\) instead of \(x_{t+1}\), which means that its error will not increase when it does not predict non-influenceable changes like white noise, as these are filtered out by \(\Phi\).
 
-This set up proved extremely effective in empirical tests. It even learned to play some games, it was tested on, without any extrinsic reward at all. 
+This set-up proved extremely effective in empirical tests. It even learned to play some games, it was tested on, without any extrinsic reward at all. 
 
 It might be argued, that this feature map \(\Phi\) filters out too many things, like actions by other actors which are not influenced by the agent itself, but influence the agent. If they influence the agent though, and the agent could, or should react to these actions, then these events will be relevant for predicting the agents actions. Therefore they would not be filtered out. Only if the agent can not, or has no incentive to respond to these events is it irrelevant for predicting the agents actions and will be filtered. And since the agent could not or does not need to react to these events anyway, no harm is done. 
 
 \section{Function Approximation}
 
-Up until now, we only discussed tabular methods, i.e. methods which store the value \(V(x)\) of a state \(x\) for every state in a table. There are two reasons for discarding this strategy. First, the state space might be simply too large to store \(V\) in that way. Second, algorithms do not generalize at all with this method. If an algorithm ends up in a state where it never was before, the state can be almost identical to another state, and the algorithm will still treat it as completely unknown. If the input is a picture, it would be enough to change one pixel, one speck of dust and suddenly the algorithm treats the situation as completely new.
+Up until now, we only discussed tabular methods, i.e. methods which store the value \(V(x)\) of a state \(x\) for every state in a table. There are two reasons for discarding this strategy. First, the state space might be simply too large to store \(V\) in that way (e.g. chess). Second, algorithms do not generalize at all with this method. If an algorithm ends up in a state where it never was before, the state can be almost identical to another state, and the algorithm will still treat it as completely unknown. If the input is a picture, it would be enough to change one pixel, one speck of dust and suddenly the algorithm treats the situation as completely new.
 
 The solution is to use function approximation methods (i.e. supervised learning) to approximate the value functions. Function approximation tries to find the function from a reduced set of functions, which approximates the real function best. This reduced set of functions, might be the set of linear functions (linear regressions), the set of polynomials (polynomial regression), the trigonometric functions (Fourier analysis), the set of linear combinations of some universal kernel (support vector machines), the set of functions achievable with some weights in a neuronal net, or anything else one might come up with. There is usually some motivation for a particular set. Often the set, or a related superset, is dense in the set of continuous functions -- e.g. polynomials, trigonometric functions, the limits of linear combinations of universal kernels and linear combinations of sigmoid functions, which make up neuronal nets, are all dense in the set of continuous functions on some compact set.
 
@@ -911,7 +951,7 @@ This more general setting of a reduced set of possible functions has two additio
 	\item The reduced set of functions can exclude functions which can differentiate between hidden attributes of two states. Therefore this more general setting can model hidden information. 
 	\item We can transform the limitation of memorylessness from a limitation of the MDP model to a limitation of the reduced (value) function set. I.e. We include the entire history in the state space, and force the reduced set of functions to only include value functions which depend on the last state only. Where the assumption, that the next state and reward depends only on the last state, was previously an assumption of the MDP, it now becomes an assumption of the function approximation. Function approximation with some form of memory, like recurrent neuronal nets with Long Short-Term Memory (LSTM), are then just a different reduced function set on the same MDP model.
 \end{enumerate}
-With these two observations, the underlying MDP becomes similar in kind, to the underlying sample space \(\Omega\) in probability theory. Whatever situation one might want to model, the MDP is large enough to perfectly model the situation by definition, and the restrictions are introduced later. In the case of probability theory by random variables, in the case of MDPs by the information available about the current state. This view tends to render all model based learning methods discussed in \ref{growing batch learning} useless, since it leaves the precise state the agent is in undefined, and the state space is too large to sample enough transitions in order to estimate transition probabilities.
+With these two observations, the underlying MDP becomes similar in kind, to the underlying sample space \(\Omega\) in probability theory. Whatever situation one might want to model, the MDP is large enough to perfectly model the situation by definition, and the restrictions are introduced later. In the case of probability theory by random variables, in the case of MDPs by the information available about the current state. This view tends to render all model based learning methods discussed in \ref{growing batch learning} useless, since it leaves the precise state, the agent is in, undefined, and the state space is too large to sample enough transitions in order to estimate transition probabilities anyway.
 
 With this framework, video captured by a camera can be the observable part of the state, while everything that can not be observed by the camera is a hidden attribute of the state. But function approximation methods with memory can still achieve feats like object permanence, i.e. correctly assume objects still exists, after they have been covered up. 
 
@@ -920,10 +960,11 @@ There are also approaches which use unsupervised dimension reduction techniques 
 	\item Consider the example of a robot using a camera to achieve a task. While letting the robot use its vision to try different behaviours takes real time of the robot moving around, training a dimension reduction algorithm on a bunch of pictures can be done without any real world interaction. Afterwards this pretrained function can be used in the value function approximation of the robot, speeding up the learning process. More generally:
 	\begin{enumerate}
 		\item data might already be available for some sub-task,
-		\item some sub task might be cheaper to train on its own than the entire system.
+		\item some sub task might be cheaper to train on its own than the entire system,
+		\item it might be easier to test reliability of subsystems, than getting enough data to verify the safety of the entire system (e.g. self-driving: a lot of data needed to verify the required safety improvement, since accidents are very rare)
 	\end{enumerate}
 	\item The ability to use model based learning techniques might be reintroduced by creating a state space using a feature map from a dimension reduction module (e.g. a deep autoencoder (c.f. \ref{appx:autoencoder}) in Deep Fitted Q Iteration \cite{langeBatchReinforcementLearning2012}). And even model free learning methods like experience replay can benefit from such a feature map, as it reduces the amount of memory need to store these experiences, and uncompressed video takes up an incredible amount of storage.
-	\item Readers familiar with neuronal nets might be familiar with the vanishing/exploding gradient problem in deep neuronal nets with gradient decent. Pre-training lower layers promises to avoid this problem to some degree at least. 
+	\item Readers familiar with neuronal nets, might also be familiar with the vanishing/exploding gradient problem in deep neuronal nets with gradient decent. Pre-training lower layers promises to avoid this problem to some degree at least. 
 \end{enumerate}
 
 \subsection{Mean Squared Value Error}
@@ -972,16 +1013,16 @@ we could also make \(n\) individual steps
 	\mathbf{w}_{t+1}
 	=\mathbf{w}_t +  \alpha [v^*(X_t)-v(X_t,\mathbf{w}_t)]\nabla v(X_t,\mathbf{w}_t).
 \]
-Since we update \(\mathbf{w}_t\) with every step, these two variants are not equivalent! But due to the higher frequency of updates in the second variant the hope is, that it converges more quickly. If we now just replace \(v^*(X_t)\) with \(U_t\) where \(\E[U_t\mid X_t]=v(X_t)\), and allow the learning rate to vary, then we obtain a regression 
+Since we update \(\mathbf{w}_t\) with every step, these two variants are not equivalent! But due to the higher frequency of updates in the second variant the hope is, that it converges more quickly. If we now just replace \(v^*(X_t)\) with \(U_t\) where \(\E[U_t\mid X_t]=v^*(X_t)\), and allow the learning rate to vary, then we obtain a regression 
 \[
 	\mathbf{w}_{t+1}
 	=\mathbf{w}_t +  \alpha_t [U_t-v(X_t,\mathbf{w}_t)]\nabla v(X_t,\mathbf{w}_t), 
 \]
 which is known as \emph{stochastic gradient decent} SGD. But note that the specifier ``stochastic'' refers to the selection of \(X_i\sim \mu\) and not \(U_t\). According to \textcite[202]{suttonReinforcementLearningIntroduction2018a} convergence proofs to a local minimum for SGD are available if the learning rate fulfils (\ref{learning rate conditions}). In particular this covers Monte Carlo with
 \[
-	U_t=\sum_{n=t}^\infty R_{n+1}.
+	U_t=\sum_{n=t}^\infty \gamma^{n-t} R_{n+1}.
 \]
-But since bootstrapping methods like TD and Q-learning or more general n-step returns are not unbiased, these proofs are not applicable to them. Additionally the n-step return depends on the weights \(\mathbf{w}\):
+But since bootstrapping methods like TD and Q-learning, or more general n-step returns are not unbiased, these proofs are not applicable to them. Additionally the n-step return depends on the weights \(\mathbf{w}\):
 \[
 	\hat{V}^{(n)}(X_t,\mathbf{w})=R_{t+1}+\gamma R_{t+1}+ \dots +\gamma^{n-1}R_{t+n}+\gamma^n V(X_{t+n}, \mathbf{w})
 \]
@@ -990,7 +1031,7 @@ So this would have to be taken into account when differentiating with regard to 
 	\mathbf{w}_{t+1}
 	=\mathbf{w}_t +  \alpha_t [\hat{V}^{(n)}(X_t,w_t)-v(X_t,\mathbf{w}_t)]\nabla v(X_t,\mathbf{w}_t),
 \]
-explicitly ignores this dependency and is thus included in the group called \emph{semi-gradient methods}. The respective algorithms for other bootstrapping algorithms are also in this group. 
+explicitly ignores this dependency and is thus grouped in \emph{semi-gradient methods} with other bootstrapping algorithms, that ignore this dependency.  
 
 \subsection{A counterexample}
 
@@ -998,14 +1039,14 @@ There are certain interaction effects between bootstrapping methods and function
 \[
 	\{v:x\mapsto w x :w\in\R\}.
 \] 
-In particular the true value function \(v^*=0\) is included in the set. Now consider the transition from state \(X_0=1\) to state \(X_1=2\), when starting with some positive \(w_0\). Since there are no rewards, the update in TD(0) would be:
+In particular the true value function \(V^\pi=0\) (for all \(\pi\)) is included in the set. Now consider the transition from state \(X_0=1\) to state \(X_1=2\), when starting with some positive \(w_0\). Since there are no rewards, the update in TD(0) would be:
 \begin{align*}
 	w_1 
-	&= w_0 + \alpha [0+\gamma v(X_1,w_0) - v(X_0,w_0)]
-	=w_0 + \alpha[\gamma 2w_0 - w_0]\\
+	&= w_0 + \alpha [0+\gamma v(X_1,w_0) - v(X_0,w_0)] \nabla v(X_0,w_0)\\
+	&=w_0 + \alpha[\gamma 2w_0 - w_0] \cdot 1\\
 	&=w_0 + \alpha \underbracket[1pt]{(2\gamma -1)}_{\ge 0 \mathrlap{\iff \gamma \le 1/2}} w_0
 \end{align*}
-So the value of \(w\) can actually increase! Even though it needs to move towards 0, since \(v(x,0)=v^*(x)\). It should be noted, that the valuation of the first state would increase in the tabular TD(0) version too, since the value of the state gets boosted by the fact, that it serves as an entryway to the higher valued state. But because of the interdependency of the evaluation of both states, the promise of this higher valued state causes the increase of the first state, which in turn increases the expectation for the value of the second state. So if we would just repeat the experience of a transition from state \(1\) to state \(2\), we would get into an ever increasing loop of expectations about the fantastic rewards that await us in state \(2\). But since TD(0) is actually on-policy, we will end up disappointed by the lack of rewards, when we actually reach state 2 and lower our expectations. 
+So the value of \(w\) can actually increase! Even though it needs to move towards 0, since \(v(x,0)=V^\pi(x)\). It should be noted, that the valuation of the first state would increase in the tabular TD(0) version too, since the value of the state gets boosted by the fact, that it serves as an entryway to the higher valued state. But because of the interdependency of the evaluation of both states, the promise of this higher valued state causes the increase of the first state, which in turn increases the expectation for the value of the second state. So if we would just repeat the experience of a transition from state \(1\) to state \(2\), we would get into an ever increasing loop of expectations about the fantastic rewards that await us in state \(2\). But since TD(0) is actually on-policy, we will end up disappointed by the lack of rewards, when we actually reach state 2 and lower our expectations. 
 
 But off-policy algorithms are not constrained by this requirement. Q-learning for example, evaluates the next state based on the optimal action possible in that state
 \[
@@ -1020,13 +1061,13 @@ and assuming that the exploration policy always picks action \(1\), we always st
 	w_{t+1} &=w_t+\alpha[0+\gamma 
 	\overbracket[1pt]{\max_{b\in\cA_{X_{t+1}}}q(X_{t+1}, b,w_t)}^{
 		=q(1,2,w_t)
-	} - \overbracket[1pt]{q(X_t,A_t,w_t)}^{=q(1,1,w_t)}]\\
+	} - \overbracket[1pt]{q(X_t,A_t,w_t)}^{=q(1,1,w_t)}]
+	\overbracket[1pt]{\nabla q(X_t,A_t,w_t)}^{=A_t=1}\\
 	&=w_t + \alpha[ (2\gamma-1)w_t]> w_t \quad \iff \gamma>1/2 
 \end{align*}
-The exploration policy in this counter example is of course specially designed to cause divergence. This leads \textcite[263]{suttonReinforcementLearningIntroduction2018a} to hypothesise, that Q-learning might still be relatively stable for exploration policies which are greedy enough, like \(\vep\)-greedy policies with small enough epsilon. They claim ``to the best of our knowledge, Q-learning has never been found to diverge in this case, but there has been no theoretical analysis''. 
+The exploration policy in this counter example is of course specially designed to cause divergence. This leads \textcite[263]{suttonReinforcementLearningIntroduction2018a} to hypothesize, that Q-learning might still be relatively stable for exploration policies, which are greedy enough, like \(\vep\)-greedy policies with small enough epsilon. They claim ``to the best of [their] knowledge, Q-learning has never been found to diverge in this case, but there has been no theoretical analysis''. 
 
-
-Since it is the combination of function approximation, bootstrapping and off-policy learning, that causes such instability, \textcite[264]{suttonReinforcementLearningIntroduction2018a} dub this combination the ``deadly triad''. They claim that if any two elements are present, instability can be avoided. This claim is a bit of an oversimplification. \textcite{tsitsiklisAnalysisTemporaldifferenceLearning1997} present a proof, that TD(\(\lambda\)) with linear function approximation converges to some \(\mathbf{w}^\lambda\), which is not equal to the minimum\footnote{slight simplification since the minimum is not necessarily unique if the regressors are not linearly independent} \(\mathbf{w}^*\) in general, but can be bounded by:
+Since it is the combination of function approximation, bootstrapping and off-policy learning, that causes such instability, \textcite[264]{suttonReinforcementLearningIntroduction2018a} dub this combination the ``deadly triad''. They claim that if any two elements are present, instability can be avoided. This claim is a bit of an oversimplification. \textcite{tsitsiklisAnalysisTemporaldifferenceLearning1997} present a proof, that TD(\(\lambda\)) with linear function approximation converges to some \(\mathbf{w}^\lambda\), which is not equal to the minimum\footnote{slight oversimplification since the minimum is not necessarily unique if the regressors are not linearly independent} \(\mathbf{w}^*\) in general, but can be bounded by:
 \[
 	d\left(v(\cdot,\mathbf{w}^\lambda), V^\pi\right)
 	\le \frac{1-\lambda \gamma}{1-\gamma} \underbracket[1pt]{
