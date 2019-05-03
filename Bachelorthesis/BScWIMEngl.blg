@@ -1,15 +1,15 @@
 [0] Config.pm:304> INFO - This is Biber 2.12
 [0] Config.pm:307> INFO - Logfile is 'BScWIMEngl.blg'
-[29] biber-MSWIN64:315> INFO - === 
-[57] Biber.pm:371> INFO - Reading 'BScWIMEngl.bcf'
-[148] Biber.pm:889> INFO - Found 25 citekeys in bib section 0
-[166] Biber.pm:4093> INFO - Processing section 0
-[182] Biber.pm:4254> INFO - Looking for bibtex format file './chapter/literature.bib' for section 0
-[195] bibtex.pm:1523> INFO - LaTeX decoding ...
-[296] bibtex.pm:1340> INFO - Found BibTeX data source './chapter/literature.bib'
-[464] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[464] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[464] Biber.pm:3921> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[464] Biber.pm:3927> INFO - No sort tailoring available for locale 'en-US'
-[491] bbl.pm:636> INFO - Writing 'BScWIMEngl.bbl' with encoding 'UTF-8'
-[513] bbl.pm:739> INFO - Output to BScWIMEngl.bbl
+[41] biber-MSWIN64:315> INFO - === 
+[133] Biber.pm:371> INFO - Reading 'BScWIMEngl.bcf'
+[232] Biber.pm:889> INFO - Found 25 citekeys in bib section 0
+[254] Biber.pm:4093> INFO - Processing section 0
+[267] Biber.pm:4254> INFO - Looking for bibtex format file './chapter/literature.bib' for section 0
+[368] bibtex.pm:1523> INFO - LaTeX decoding ...
+[474] bibtex.pm:1340> INFO - Found BibTeX data source './chapter/literature.bib'
+[656] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[656] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[657] Biber.pm:3921> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[657] Biber.pm:3927> INFO - No sort tailoring available for locale 'en-US'
+[722] bbl.pm:636> INFO - Writing 'BScWIMEngl.bbl' with encoding 'UTF-8'
+[758] bbl.pm:739> INFO - Output to BScWIMEngl.bbl

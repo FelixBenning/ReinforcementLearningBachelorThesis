@@ -183,7 +183,7 @@ But to properly define the transition probabilities given an action in a certain
 \begin{remark}\label{split state/reward transition kernel }
 	Most authors split the transition kernel into a state transition kernel and a reward kernel \parencite[e.g.][]{putermanMarkovDecisionProcesses2005}. But since it is easier to define a marginal distribution from a joint distribution than vice versa, and since this notation is more compact I will stick to the definition from \textcite{szepesvariAlgorithmsReinforcementLearning2010}. 
 	
-	We will spare ourselves the complications of changing transition kernels over time. Just like the memorylessness this could be circumvented by including time in the state. But if an algorithm is to learn which actions are optimal in which state, then both changing transition kernels over time and state spaces where you never visit any state twice (since the time is included) make it impossible to learn ``the rules of the game'' without assumptions on how the rules change over time. If such assumptions can be made it is usually easier to bake them into the state space. For example if you would like to introduce changing demand distributions over time in our inventory management example (\ref{example: inventory mgmt}), you could add the current expected demand to the state and the current market penetration. Then changes in the demand distribution can be modelled with a stationary transition kernel. 
+	We will spare ourselves the complications of changing transition kernels over time. Just like the memorylessness this could be circumvented by including time in the state. But if an algorithm is to learn which actions are optimal in which state, then both changing transition kernels over time and state spaces where you never visit any state twice (since the time is included) make it impossible to learn ``the rules of the game'' without assumptions on how the rules change over time. If such assumptions can be made it is usually easier to bake them into the state space. For example if you would like to introduce changing demand distributions over time in our inventory management example (Example \ref{example: inventory mgmt}), you could add the current expected demand to the state and the current market penetration. Then changes in the demand distribution can be modelled with a stationary transition kernel. 
 \end{remark}
 
 Some authors prefer to use ``cost'' over ``rewards''. This simply flips the notation and maximization problems become minimization problems. I prefer rewards, as negative rewards have an easier interpretation.
@@ -218,7 +218,7 @@ Second, we need an action selection rule
 			\end{cases} 
 			\text{ with } A_t\sim \pi_t(\cdot\mid X_t).
 		\]
-		\(A_t\) is selected such that it has the Markov property (well defined c.f. \ref{well defined Markov property}), i.e.
+		\(A_t\) is selected such that it has the Markov property (well defined c.f. Remark \ref{well defined Markov property}), i.e.
 		\[\Pr[A_t=a\mid X_t]=\Pr[A_t=a\mid X_t, (X_{t-1},A_{t-1},R_t), \dots (X_0,A_0,R_1)] \]
 		\item \emph{Stationary policies} are policies which do not change over time i.e. \(\pi_{t+1}=\pi_t\). Since \(\pi_0\) can only depend on the first state, they are naturally Markov and can be defined as
 		\[
@@ -261,7 +261,7 @@ Second, we need an action selection rule
 	\]
 \end{definition}
 
-Now we define inductively: \((X_{t+1}, R_{t+1})\sim\cP(\cdot\mid X_t, A_t)\) with the Markov property (well defined c.f. \ref{well defined Markov property}), i.e.
+Now we define inductively: \((X_{t+1}, R_{t+1})\sim\cP(\cdot\mid X_t, A_t)\) with the Markov property (well defined c.f. Remark \ref{well defined Markov property}), i.e.
 \begin{align}
 \label{X,R Markov}
 	&\Pr[(X_{t+1}, R_{t+1})=(x,r)\mid (X_t,A_t)]\\
@@ -363,7 +363,7 @@ resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\).
 \end{proof} 
 \begin{remark} 
 If there is just one possible action in every state, the MDP is equivalent to a normal Markov Process. 
-Since then there is a mapping \(f\colon\cX\to\cA_x\) mapping the state to  the only admissible action. Which implies that \(A_t=f(X_t)\) which forces every behaviour to be equal to f. Therefore f is a deterministic stationary behaviour and \ref{statPolicy induces time homogeneous MC} applies.  
+Since then there is a mapping \(f\colon\cX\to\cA_x\) mapping the state to  the only admissible action. Which implies that \(A_t=f(X_t)\) which forces every behaviour to be equal to f. Therefore f is a deterministic stationary behaviour and Prop. \ref{statPolicy induces time homogeneous MC} applies.  
 \end{remark}
 
 We can mostly ignore Markov policies because our transition kernel is stationary, which makes stationary policies the appropriate set of behaviours. Allowing changing transition probabilities over time, breaks virtually all of the following proofs. In such an environment of changing transition probabilities, Markov policies are the appropriate set to consider \parencite[c.f.][]{putermanMarkovDecisionProcesses2005}.
@@ -399,7 +399,7 @@ In order for the return to be always well defined in the discounted case, we wou
 	\(\forall (x,a)\in\cX\times\cA:\quad |R_{(x,a)}| \le R\in\R\)
 \end{assumption}
 
-The undiscounted case will be of less interest (c.f. \ref{bootstrapping and discounting}), but one possible way to handle that case, is to assume epsisodic MDPs (c.f. \ref{def: episodic}). In order to define value functions, we will only need the expected return to be well defined for now.
+The undiscounted case will be of less interest (c.f. Section \ref{bootstrapping and discounting}), but one possible way to handle that case, is to assume epsisodic MDPs (c.f. Def. \ref{def: episodic}). In order to define value functions, we will only need the expected return to be well defined for now.
 
 \begin{definition} Let \(\cM=(\cX,\cA,\cP)\) be an MDP. Then every behaviour \(\pi\) results in a stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\).
 We indicate with the superscript (e.g. \(\E^\pi\)) which behaviour generated the process in the following definitions.
@@ -571,7 +571,7 @@ and this fixed point equation hold:
 	\[
 		V^\pi(x)=\E^\pi[\cR\mid X_0=x]=\E^\pi[\cR\mid X_0=x, A_0=\pi(x)]=Q^\pi(x,\pi(x)).
 	\]
-	The rest follows from proposition \ref{expand Q^pi}. 
+	The rest follows from proposition Prop. \ref{expand Q^pi}. 
 	
 	Alternatively: the \(V^\pi\) fixed point equation is a special case of the equation above. One just needs to realize that \(r(x,\pi(x)) = \E^\pi[r(x,A_0)\mid X_0=x]\) and:
 	\begin{align*}
@@ -583,7 +583,7 @@ and this fixed point equation hold:
 	\end{align*}
 \end{proof}
 
-With this relation we can use the Banach fixed point theorem (BFT) for the first time. But first note, that assumption \ref{assumption boundedness} implies
+With this relation we can use the Banach fixed point theorem (BFT) for the first time. But first note, that Assumption \ref{assumption boundedness} implies
 \[
 	\E^\pi[|\cR| \mid X_0 = x]\le\E^\pi\left[\sum_{t=0}^\infty \gamma^t |R_{t+1}| \;\middle|\; X_0=x \right]
 	\le \frac{R}{1-\gamma},
@@ -620,11 +620,11 @@ which happens to be a complete metric space which we will need for the Banach fi
 \end{definition}
 As mentioned previously, we can mostly ignore stochastic stationary policies as their optimal value functions will get sandwiched between deterministic and general policies. But we will need the slightly more general version of the operator for the value functions \(V^\pi\) for a proof about optimal policies later on. In contrast we only need the the special case for the operator on action value functions \(Q^\pi\).
 
-\begin{remark}\label{T^pi unique}
-	For all stationary policies \(T^\pi V^\pi=V^\pi \) holds and for deterministic stationary policies \(T^\pi Q^\pi=Q^\pi\) holds (c.f. corollary \ref{V^pi,Q^pi relation}).
+\begin{thm}\label{T^pi unique}
+	For all stationary policies \(T^\pi V^\pi=V^\pi \) holds and for deterministic stationary policies \(T^\pi Q^\pi=Q^\pi\) holds (c.f. Cor. \ref{V^pi,Q^pi relation}).
 
 	\(T^\pi\) meets the requirements of the Banach fixed point theorem \fxnote{proof BFT? - appendix?} for \({\gamma<1}\). This implies that the fixed points above are \emph{unique} fixed points and can be approximated with the canonical iteration. 
-\end{remark}
+\end{thm}
 
 \begin{proof}
 \((B(\cX), \|\cdot\|_\infty)\) is a non-empty, complete metric space \fxnote{show: is complete metric space - appendix?} and the mapping maps onto itself. It is left to show, that \(T^\pi\) is a contraction. Be \(V,W\in B(\cX)\):
@@ -726,7 +726,7 @@ So we can not match an infinite set of behaviors. Which means we will have to se
 		+\gamma \sum_{y\in\cX} p(y\mid x,\pi_{m(x)}(x))V^{\pi_{m(x)}}(y)\\
 		&\lxeq{\ref{V^pi,Q^pi relation}} V^{\pi_{m(x)}}(x)=V(x)
 	\end{align*}
-	By using the monotonicity of \(T^{\hat{\pi}} \) (\ref{properties T^pi}) inductively with \((T^{\hat{\pi}})^1 V \ge (T^{\hat{\pi}})^0 V \), we get
+	By using the monotonicity of \(T^{\hat{\pi}} \) (Lemma \ref{properties T^pi}) inductively with \((T^{\hat{\pi}})^1 V \ge (T^{\hat{\pi}})^0 V \), we get
 	\[ 
 		(T^{\hat{\pi}})^n V \ge (T^{\hat{\pi}})^{n-1} V,
 	\]
@@ -762,7 +762,7 @@ With this statement we can now prove the building blocks for the fixed point equ
 		\sup_{\pi \in \detPolicy}\sum_{y\in\cX}p(y\mid x,a) V^\pi(y)
 		\ge\sum_{y\in\cX}p(y\mid x,a)\tilde{V}(y)
 	\]
-	This problem should look familiar. It is the question whether there is a single sequence of policies that can match multiple sequences of policies indexed by the state space \(y\in\cX\).	As we can find a policy which can outmatch a finite set of policies (\ref{finite outmatching}), we will consider only the \(y\in\cX\) with the largest probability to occur and match these sequences with a single sequence. Since we then have just a single policy in the sum, we can estimate up by taking the outer supremum over deterministic policies. That is the idea, which can be executed as follows:
+	This problem should look familiar. It is the question whether there is a single sequence of policies that can match multiple sequences of policies indexed by the state space \(y\in\cX\).	As we can find a policy which can outmatch a finite set of policies (Prop. \ref{finite outmatching}), we will consider only the \(y\in\cX\) with the largest probability to occur and match these sequences with a single sequence. Since we then have just a single policy in the sum, we can estimate up by taking the outer supremum over deterministic policies. That is the idea, which can be executed as follows:
 	
 	The set \(M_\delta\coloneqq \{y\in\cX : p(y\mid x,a)>\delta \} \) is finite for all \(\delta>0\). Together with the continuity of measures this yields:
 	\begin{align*}
@@ -781,7 +781,7 @@ With this statement we can now prove the building blocks for the fixed point equ
 		\qquad \forall n\ge N, \forall y\in M_\delta^\complement.
 		\label{convergenceToTilde}
 	\end{align}
-	And also because \(M_\delta \) is finite, and \ref{finite outmatching} we know that
+	And also because \(M_\delta \) is finite, and Prop. \ref{finite outmatching} we know that
 	\begin{align}
 	\exists\hat{\pi}^{(n)}\in\detPolicy : 
 	\quad {V^{\hat{\pi}^{(n)}}\ge V^{\pi_y^{(n)}}}
@@ -818,7 +818,7 @@ With this statement we can now prove the building blocks for the fixed point equ
 	Since this equation holds for all \(\varepsilon>0\) we are finished.
 	\\
 	\ref{i:2}
-	By \ref{V^pi,Q^pi relation} we know \(V^\pi(x)=Q^\pi(x,\pi(x))\) and thus:
+	By Cor. \ref{V^pi,Q^pi relation} we know \(V^\pi(x)=Q^\pi(x,\pi(x))\) and thus:
 	\begin{align}
 		\tilde{V}(x)& =\sup_{\pi \in \detPolicy} V^\pi(x)
 		=\sup_{\pi \in \detPolicy}Q^\pi(x,\pi(x)) 
@@ -863,7 +863,7 @@ With this statement we can now prove the building blocks for the fixed point equ
 	\begin{align}\label{monotonicity induction basis}
 		W_1(y)\ge V^\pi(y)=W_0(y).
 	\end{align}
-	By induction with induction basis (\ref{monotonicity induction basis}) using the monotonicity of \(T^{\hat{\pi}}\) (lemma \ref{properties T^pi}), we get 
+	By induction with induction basis (\ref{monotonicity induction basis}) using the monotonicity of \(T^{\hat{\pi}}\) (Lemma \ref{properties T^pi}), we get 
 	\[
 		W_{n+1}=T^{\hat{\pi}}W_n \ge T^{\hat{\pi}}W_{n-1}=W_n,
 	\] 
@@ -972,7 +972,7 @@ is called the \emph{Bellman Optimality Operator}. With some more abuse of notati
 \end{corollary}
 
 \begin{proof}
-	We simply assemble the building blocks from the previous lemma \ref{V*,Q* relation}:
+	We simply assemble the building blocks from the previous Lemma \ref{V*,Q* relation}:
 \begin{align*}
 	V^*(x)\xeq{\text{\ref{i:3}}}\sup_{a\in\cA_x}Q^*(x,a)
 	\xeq{\text{\ref{i:4}}}\sup_{a\in\cA_x}\left\{r(x,a)+\sum_{y\in\cX}p(y\mid x,a) V^*(y)\right\} =T^*V^*(x)
@@ -1020,7 +1020,7 @@ is the unique fixed point of \(T^*\). The suprema over all the other policy sets
 \end{proof}
 
 \section{Optimal policies}
-Now that we proved the uniqueness of the optimal value functions, we need to ask the question whether this supremum can be attained with a single policy. And if not, if it can be approximated over all states by the same sequence of policies (c.f. \ref{finite outmatching}). 
+Now that we proved the uniqueness of the optimal value functions, we need to ask the question whether this supremum can be attained with a single policy. And if not, if it can be approximated over all states by the same sequence of policies (c.f. Prop. \ref{finite outmatching}). 
 
 Let us first consider the case where the supremum can be attained, since this includes the important special case of finite MDPs.  
 
@@ -1085,7 +1085,7 @@ Let us first consider the case where the supremum can be attained, since this in
 		= \sum_{a\in M_x} \pi^*(a\mid x)Q^*(x,a)\\
 		&=\sum_{a\in \cA_x} \pi^*(a\mid x)Q^*(x,a).
 	\end{align*}
-	\xToy{\ref{ii:2}}{\ref{ii:1}} Using \ref{i:4} from \ref{V*,Q* relation} for an \(x\in\cX\):
+	\xToy{\ref{ii:2}}{\ref{ii:1}} Using \ref{i:4} from Lemma \ref{V*,Q* relation} for an \(x\in\cX\):
 	\begin{align*}
 		V^*(x)&=\sum_{a\in \cA_x} \pi^*(a\mid x)Q^*(x,a)\\
 		&=\sum_{a\in \cA_x} \pi^*(a\mid x) 
@@ -1096,11 +1096,15 @@ Let us first consider the case where the supremum can be attained, since this in
 		+ \gamma \sum_{y\in\cX}\Pr(X_1=y\mid X_0 =x) V^*(y)\\
 		&=T^{\pi^*} V^*(x)
 	\end{align*}
-	Therefore \(V^{\pi^*} = V^*\) since the fixed point of \(T^{\pi^*}\) is unique (\ref{T^pi unique}).
+	Therefore \(V^{\pi^*} = V^*\) since the fixed point of \(T^{\pi^*}\) is unique (Thm. \ref{T^pi unique}).
 \end{proof}
-\begin{remark}\label{opt stat => opt det stat}
-	From \ref{ii:4} follows: if an optimal stochastic stationary policy exists, then there exists an optimal deterministic stationary policy as well. Since such a policy can be constructed by choosing one of the actions \(a\) for every \(x\in\cX\) which result in \(Q^*(x,a)=V^*(x)\). These actions have to exist if there is a stochastic stationary policy which is optimal.
-\end{remark}
+\begin{corollary}\label{opt stat => opt det stat}
+	If optimal stationary policy exists, an optimal deterministic stationary policy exists as well. 
+\end{corollary}
+\begin{proof}
+	Due to \ref{ii:4} in Prop. \ref{sup is attained} such a policy can be constructed by choosing one of the actions \(a\) for every \(x\in\cX\) which result in \(Q^*(x,a)=V^*(x)\). These actions have to exist if there is a stochastic stationary policy which is optimal.
+\end{proof}
+
 	Before we show, that if an arbitrary (history dependent) optimal policy exists, there also exists a stationary policy which is optimal, I want to note, that from \ref{ii:3} follows a first heuristic for finding an optimal policy. This heuristic only works of course, if the maximum exists. But this is never a problem in finite MDPs. 
 \begin{definition}
 	\(Q\colon\cX\times\cA\to\R\) an action value function, \(\tilde{\pi}\colon\cX\to\cA_x\) with
@@ -1179,14 +1183,11 @@ Now we show how we can construct an optimal stationary policy from an arbitrary 
 			&\qquad\cdot\Pr^\pi(X_t=y,A_t=a\mid X_0=x)
 		\end{aligned}\\
 		&=\sum_{t=0}^\infty \gamma^t \sum_{(y,a)\in\cX\times\cA}\E[R_{(x,a)}]
-		\Pr^{\pi^x}(X_t=y,A_t=a\mid X_0=x)\\
-		&=\sum_{t=0}^\infty \gamma^t \sum_{(y,a)\in\cX\times\cA}
-		\begin{aligned}[t]
-			&\E^{\pi^x}[R_{t+1}\mid X_t=y, A_t=a, X_0=x]\\
-			&\qquad\cdot\Pr^{\pi^x}(X_t=y,A_t=a\mid X_0=x)
-		\end{aligned}\\
-		&=\dots \xeq{\text{analogous}} V^{\pi^x}(x)\qedhere
+		\Pr^{\pi}(X_t=y,A_t=a\mid X_0=x)\\
+		&=\sum_{t=0}^\infty \gamma^t \sum_{(y,a)\in\cX\times\cA}\E[R_{(x,a)}]
+		\Pr^{\pi^x}(X_t=y,A_t=a\mid X_0=x)
 	\end{align*}
+	The same transformations with \(\pi^x\) instead of \(\pi\) backwards yield \(V^\pi(x)=V^{\pi^x}(x)\).
 \end{proof}
 
 Using the results from \citeauthor{putermanMarkovDecisionProcesses2005} we can now show:
@@ -1194,14 +1195,14 @@ Using the results from \citeauthor{putermanMarkovDecisionProcesses2005} we can n
 	Let \(\pi\in\Pi\) be an optimal policy (i.e. \(V^*=V^\pi\)), then there exists an optimal stationary policy \(\hat{\pi}\).
 \end{thm}
 \begin{proof}
-	Because of \ref{prop puterman}, for the optimal policy \(\pi\) exist Markovian policies \(\pi^x\) for \(x\in\cX\) with
+	Because of Prop. \ref{prop puterman}, for the optimal policy \(\pi\) exist Markovian policies \(\pi^x\) for \(x\in\cX\) with
 	\[
 		V^*(x)=V^\pi(x)=V^{\pi^x}(x).
 	\]
 	From these Markovian policies we can define the stationary policy \(\hat{\pi}\) with
-	\begin{align}
+	\begin{align*}
 		\hat{\pi}(\cdot\mid x)\coloneqq \pi_0^x(\cdot\mid x) \qquad x\in\cX.
-	\end{align}
+	\end{align*}
 	For which we need to show that it is optimal. First, we have:
 	\begin{align}
 		V^*(x)&=V^{\pi^x}(x)=\E^{\pi^x}[R_1\mid X_0=x] 
@@ -1256,7 +1257,7 @@ Using the results from \citeauthor{putermanMarkovDecisionProcesses2005} we can n
 			&\hat{\pi}^x_t(a\mid y)&&\coloneqq \pi^x_t(a\mid y) 
 			&& \text{for } y\neq x
 	\end{align*}
-	And if the same steps are applied to \(\hat{\pi}^x\) as to \(\pi^x\) in (\ref{V^pi^x expanded}), everything but the summand \(z\) in the large sum will stay the same. And since we assumed \ref{V^tildePi (z) =V*(z)} were false, this summand increases because
+	And if the same steps are applied to \(\hat{\pi}^x\) as to \(\pi^x\) in (\ref{V^pi^x expanded}), everything but the summand \(z\) in the large sum will stay the same. And since we assumed (\ref{V^tildePi (z) =V*(z)}) was false, this summand increases because
 	\[
 		V^*(z)\Pr^{\pi^x}(X_1=z\mid X_0=x)> V^{\tilde{\pi}^x}(z) \Pr^{\pi^x}(X_1=z\mid X_0=x).
 	\]
@@ -1270,10 +1271,15 @@ Using the results from \citeauthor{putermanMarkovDecisionProcesses2005} we can n
 	\end{align*}
 	Since \(V^*\) is a fixed point of \(T^{\hat{\pi}}\) and the fixed point is unique we have completed our proof, since then \(V^{\hat{\pi}}=V^*\) which means \(\hat{\pi}\) is optimal. 
 \end{proof}
+\begin{corollary}
+	If an arbitrary optimal policy exists, an optimal deterministic stationary policy exists.
+\end{corollary}
+\begin{proof}
+	Thm. \ref{optimal policy => opt stat policy} + Cor. \ref{opt stat => opt det stat}
+\end{proof}
 
-In Summary: With an arbitrary optimal policy we can construct an optimal stationary policy with \ref{optimal policy => opt stat policy}, and if there is an optimal stationary policy, there is also an optimal deterministic stationary policy (\ref{opt stat => opt det stat}). Therefore the set of deterministic stationary policies is large enough to choose from if you are looking for an optimal policy. 
-
-But what happens if there are no optimal policies? If there are no optimal policies, can one sequence of deterministic policies get arbitrarily close to the optimal value function for \emph{every} starting state? We are now able to answer the question we were not quite ready to answer in Finite Outmatching (c.f \ref{finite outmatching}).
+Therefore the set of deterministic stationary policies is large enough to choose from if you are looking for an optimal policy. 
+But what happens if there are no optimal policies? If there are no optimal policies, can one sequence of deterministic policies get arbitrarily close to the optimal value function for \emph{every} starting state? We are now able to answer the question we were not quite ready to answer in Finite Outmatching (c.f Prop. \ref{finite outmatching}).
 
 \begin{prop}[\(\vep\)-Optimal Policies]\label{epsilon optimal}
 	For every \(\varepsilon>0\) exists a deterministic stationary policy \(\pi^\varepsilon\) such that \(V^* \le V^{\pi_\varepsilon}+\vep \).
@@ -1289,22 +1295,22 @@ But what happens if there are no optimal policies? If there are no optimal polic
 		r(x,\pi^\vep(x))+\gamma\sum_{y\in\cX}p(y\mid x,\pi^\vep(x))V^*(y) + \delta \ge V^*(x).
 	\end{align}
 	This defines a mapping \(\pi^\vep\colon \cX\to\cA_x\) with this property
-	\begin{align*}
+	\begin{align}\label{only delta worse than V*}
 		T^{\pi^\vep} V^*(x)
 		&=r(x,\pi^\vep(x))+\gamma \sum_{y\in\cX}p(y\mid x,\pi_\vep(x)) V^*(x)\\
-		&\ge V^*(x) -\delta = (V^* -\delta \mathbbm{1}) (x).
-	\end{align*}
+		&\ge V^*(x) -\delta = (V^* -\delta \mathbbm{1}) (x).\nonumber
+	\end{align}
 	By induction we get 
 	\[
 		(T^{\pi^\vep})^n V^*(x)\ge \left(V^*-\left(\delta\sum_{k=0}^n\gamma\right) \mathbbm{1}\right) (x).
 	\] 
-	Using the monotonicity of \(T^{\pi^\vep}\) (\ref{properties T^pi}) we can make the induction step:
+	Using the monotonicity of \(T^{\pi^\vep}\) (Lemma \ref{properties T^pi}) we can make the induction step:
 	\begin{align*}
 		(T^{\pi^\vep})^{n+1} V^*(x)
 		&=T^{\pi^\vep} (T^{\pi^\vep})^{n-1} V^*(x)\\
 		&\lxgq{\text{ind.}} T^{\pi^\vep} \left(V^*-\left(\delta\sum_{k=0}^n\gamma^k\right) \mathbbm{1}\right)(x)\\
 		&\lxeq{\text{affine}} T^{\pi^\vep} V^*(x) - \gamma \sum_{y\in\cX} p(y\mid x, a) \left(\delta\sum_{k=0}^n\gamma^k\right) \mathbbm{1}(y)\\
-		&\ge V^*(x)-\delta - \delta\sum_{k=0}^n\gamma^{k+1} \sum_{y\in\cX} p(y\mid x,a)\\
+		&\lxgq{\text{(\ref{only delta worse than V*})}} [V^*(x)-\delta] - \delta\sum_{k=0}^n\gamma^{k+1} \sum_{y\in\cX} p(y\mid x,a)\\
 		&=V^*(x)-\delta \sum_{k=0}^{n+1}\gamma^k
 	\end{align*}
 	This concludes our proof with:
@@ -1325,13 +1331,13 @@ If we have full knowledge of all transition probabilities and immediate rewards,
 		V_{k+1}\coloneqq T^* V_k \qquad \text{ or }\qquad Q_{k+1}\coloneqq T^* Q_k
 	\end{align*}
 \end{definition}
-This converges geometrically with regard to the \(\|\cdot\|_\infty\)-norm, due to \(T^*\) fulfilling the requirements of the BFT (\ref{T^* satisfies BFT}). 
+This converges geometrically with regard to the \(\|\cdot\|_\infty\)-norm, due to \(T^*\) fulfilling the requirements of the BFT (Thm. \ref{T^* satisfies BFT}). 
 
-To find an \(\vep\)-optimal policy, define \(\delta\coloneqq \vep (1-\gamma)\) as in \ref{epsilon optimal}. This iteration can then be stopped when \(\|V_k-V^*\|_\infty\le \delta/2\), which also implies
+To find an \(\vep\)-optimal policy, define \(\delta\coloneqq \vep (1-\gamma)\) as in Prop. \ref{epsilon optimal}. This iteration can then be stopped when \(\|V_k-V^*\|_\infty\le \delta/2\), which also implies
 \begin{align*}
 	\|T^* V_k - V^*\|_\infty=\|T^*V_{k} -T^*V^*\|_\infty\le \gamma \delta/2 \le \delta/2.
 \end{align*}
-So picking \(\pi^\vep\) with regard to \(V_k\) instead of \(V^*\) like in \ref{epsilon optimal}, results in
+So picking \(\pi^\vep\) with regard to \(V_k\) instead of \(V^*\) like in Prop. \ref{epsilon optimal}, results in
 \begin{align*}
 	r(x,\pi^\vep(x))+\gamma \sum_{y\in\cX}p(y\mid x, \pi^\vep(x))V_k(y) +\delta/2 
 	&\ge T^* V_k(x) + \delta/2 \\
@@ -1370,7 +1376,7 @@ The other iteration, policy iteration, works if a greedy policy can always be se
 		&=T^{\pi_{k+1}}V^{\pi_k}(x)
 		\nonumber
 	\end{align}
-	Because of the monotonicity of \(T^{\pi_{k+1}}\) (\ref{properties T^pi}) this implies
+	Because of the monotonicity of \(T^{\pi_{k+1}}\) (Lemma \ref{properties T^pi}) this implies
 	\begin{align}\label{policy iteration converges faster}
 		V^{\pi_{k+1}}=\lim_{n\to\infty}(T^{\pi_{k+1}})^n V^{\pi_k}
 		\ge T^{\pi_{k+1}} V^{\pi_k} 
@@ -1392,7 +1398,7 @@ The other iteration, policy iteration, works if a greedy policy can always be se
 \end{proof}  
 
 Policy iteration converges faster than value iteration with every step 
-(c.f. (\ref{policy iteration converges faster})), in the case of finite MDPs it actually converges in finitely many steps. And while it requires the calculation of \(Q^{\pi_k}\) in every step, this turns out to be less of a problem than one might think:
+(c.f. (\ref{policy iteration converges faster})), and in the case of finite MDPs it actually converges in finitely many steps. And while it requires the calculation of \(Q^{\pi_k}\) in every step, this turns out to be less of a problem than one might think:
 
 \begin{corollary}\leavevmode
 	\begin{enumerate}[label=(\roman*), font=\normalfont]

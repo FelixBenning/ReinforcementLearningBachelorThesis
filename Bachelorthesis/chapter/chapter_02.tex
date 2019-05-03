@@ -12,7 +12,7 @@ Dynamic Programming usually breaks down in the real world for two reasons:
 
 This is where \emph{Reinforcement Learning} algorithms come in, which try to find solutions without having to sweep the entire state space. In this chapter based on \textcite{suttonReinforcementLearningIntroduction1998} (their second edition (\citeyear{suttonReinforcementLearningIntroduction2018a}) was used for statements which need to be up-to-date) we will examine advantages and disadvantages of various algorithms and discuss possible variations and extensions. In the next chapter we will attempt a proof of almost sure convergence of the basic algorithms introduced in this chapter, and illustrate their connection to stochastic approximation.
 
-We separate their introduction and the convergence proofs, because -- while the guarantee of almost sure convergence is reassuring -- it is of little use for comparing various algorithms. Since one of the reasons for moving away from Dynamic Programming in the first place was, that we could not calculate the value function for the entire state space within a reasonable time frame. As the size of the state space is often too large for that.  Therefore almost sure convergence should not be viewed as more than an entry requirement. For this reason most papers compare algorithms empirically on various example problems. And for some of the more complex algorithms convergence proofs simply do not exist yet. 
+We separate their introduction and the convergence proofs, because -- while the guarantee of almost sure convergence is reassuring -- it is of little use for comparing various algorithms. Since one of the reasons for moving away from Dynamic Programming in the first place was, that we could not calculate the value function for the entire state space within a reasonable time frame. As the size of the state space is often too large for that. Therefore almost sure convergence should not be viewed as more than an entry requirement. For this reason most papers compare algorithms empirically on various example problems. And for some of the more complex algorithms convergence proofs simply do not exist yet. 
 
 So since the theoretical convergence properties are usually only ever an afterthought, it is more natural to introduce the various algorithms heuristically, explaining what specific problems they try to address with examples.
 
@@ -140,26 +140,26 @@ for a moment. Then Monte Carlo converges whatever policy we select. Similar to p
 \] 
 in general, using these old estimates is not bias free. It is easy to see that this procedure can only converge to \(\pi^*\) if it converges at all. Since there are only a finite number of deterministic stationary policies it would have to stay constant at some point, but for a constant policy Monte Carlo will converge, and then the policy can only stay constant if it is greedy with regards to its own value function, which forces it to be optimal (\ref{real improvement or optimal}). But it is still an open problem whether or not this alternating procedure converges at all \parencite[99]{suttonReinforcementLearningIntroduction2018a}.
 
-If we remove the assumption of exploring starts, we still need to ensure that every state is visited with positive probability for MC to converge. This requires the policy to do the exploring. There are multiple approaches to exploration which we will discuss later (section \ref{exploration}). We will discuss the most straightforward example here, under the assumption that we can calculate \(Q^{\pi_n}\) somehow.  
+If we remove the assumption of exploring starts, we still need to ensure that every state is visited with positive probability for MC to converge. This requires the policy to do the exploring. There are multiple approaches to exploration which we will discuss later (section \ref{exploration}). We will discuss the most straightforward example here, under the assumption that we can calculate \(Q^{\pi_n}\) somehow.
 
 \begin{definition}
 	A stationary policy \(\pi\) is called 
-	\begin{description}[font=\normalfont]
-		\item[\emph{soft}] if it fulfils 
+	\begin{itemize}[font=\normalfont]
+		\item \emph{soft}, if it fulfils 
 		\[
 			\pi(a\mid x)>0 \qquad\;\; \forall (x,a)\in\cX\times\cA,
 		\]
-		\item[\emph{\(\vep\)-soft}] if it fulfils 
+		\item \emph{\(\vep\)-soft} for some \(1\ge \vep>0\), if it fulfils 
 		\[
 			\pi(a\mid x)>\frac{\vep}{|\cA_x|} \quad \forall (x,a)\in\cX\times\cA,
 		\]
-		\item[\emph{\(\vep\)-greedy}] with regard to Q, if it selects the greedy action w.r.t. Q with probability \((1-\vep)\) and a (uniform) random action with probability \(\vep\), i.e. \[\pi(a\mid x)=
+		\item \emph{\(\vep\)-greedy} with regard to Q, if it selects the greedy action w.r.t. Q with probability \((1-\vep)\) and a (uniform) random action with probability \(\vep\), i.e. \[\pi(a\mid x)=
 			\begin{cases}
 				(1-\vep)+ \frac{\vep}{|\cA_x|} & a \text{ is greedy\footnotemark[1]}\\
 				\frac{\vep}{|\cA_x|} & a \text{ is not greedy}.
 			\end{cases}
 		\]
-	\end{description}\footnotetext[1]{w.l.o.g. only one greedy action}
+	\end{itemize}\footnotetext[1]{w.l.o.g. only one greedy action, otherwise pick one or mix}
 	Note that an \(\vep\)-greedy policy is \(\vep\)-soft.
 
 	An \(\vep\)-soft policy \(\pi^*\) is called \emph{\(\vep\)-soft optimal} if 
@@ -383,7 +383,7 @@ To distinguish the TD algorithm, which calculates \(Q\) from the one which calcu
 
 Similar to the Monte Carlo algorithm, we use generalized policy iteration to approach \(\pi^*\). But since we do not need to wait for an episode to finish to create new estimates, we can alternate even more quickly between calculating \(Q^{\pi_n}\) and selecting \(\pi_{n+1}\). The most extreme form is now updating the policy before every transition in every time step. This is what is called \emph{on-line} learning in contrast to the \emph{off-line} mentioned in the introduction. 
 
-Batch Reinforcement Learning is often used synonymously with off-line learning. But as batch learning algorithms were designed to utilize the information of the existing batch as efficiently as possible, there were some attempts to modify them in order to provide intermediate results to advise action selection, transforming them into on-line algorithms. \textcite{langeBatchReinforcementLearning2012} suggest to refer to these algorithms as \emph{growing batch reinforcement learning}. We will discuss an example in \ref{growing batch learning}, after explaining the the need for it. 
+Batch Reinforcement Learning is often used synonymously with off-line learning. But as batch learning algorithms were designed to utilize the information of the existing batch as efficiently as possible, there were some attempts to modify them in order to provide intermediate results to advise action selection, transforming them into on-line algorithms. \textcite{langeBatchReinforcementLearning2012} suggest to refer to these algorithms as \emph{growing batch reinforcement learning}. We will discuss an example in \ref{growing batch learning}, after explaining the need for it. 
 
 \subsection{Shortcomings of TD} \label{shortcomings TD}
 In a way TD is the opposite of Monte Carlo. While Monte Carlo did not use existing estimates of the value function, TD \emph{only} uses existing estimates. This can cause problems as well.
@@ -410,7 +410,13 @@ In a way TD is the opposite of Monte Carlo. While Monte Carlo did not use existi
 
 
 \section{Growing Batch Learning}\label{growing batch learning}
-One reason for TD's problems is, that it uses sampled transitions only once and then throws them away. This is not so much a problem when the MDP is cheap to sample. But in a lot of real world applications, experiences cost more time than most computations, can be expensive (causing damage to hardware) and/or outright dangerous (e.g. self-driving cars). For this reason it is preferable if the algorithm learns as much as possible from a given batch of experiences (transitions). To serve as a comparison, recall our initial naive batch learning algorithm (Algorithm \ref{naive batch learning algorithm}). First it estimates the model parameters; after that it uses these estimates multiple times in every Dynamic Programming step. TD's estimates, on the other hand, are baked into the current estimate of \(V\) (or \(Q\)), which means that older samples are baked into older instances of \(V\), which can not really be reused as they also represent previous instances of the ``dynamic programming part'' of TD (and also previous policies in the GPI case with \(Q\)).
+One reason for TD's problems is, that it uses sampled transitions only once and then throws them away. This is not so much a problem when the MDP is cheap to sample. But in a lot of real world applications, experiences 
+\begin{itemize}[nosep]
+	\item cost more time than most computations,
+	\item are expensive (causing damage to hardware),
+	\item and/or are outright dangerous (e.g. self-driving cars).
+\end{itemize}
+For this reason it is preferable, if the algorithm learns as much as possible from a given batch of experiences (transitions). To serve as a comparison, recall our initial naive batch learning algorithm (Algorithm \ref{naive batch learning algorithm}). First it estimates the model parameters; after that it uses these estimates multiple times in every Dynamic Programming step. TD's estimates, on the other hand, are baked into the current estimate of \(V\) (or \(Q\)), which means that older samples are baked into older instances of \(V\), which can not really be reused as they also represent previous instances of the ``dynamic programming part'' of TD (and also previous policies in the GPI case with \(Q\)).
 
 So how could we modify this batch learning algorithm (using the entire batch of transitions) to be on-line, i.e. provide provisional estimates and incorporate additional information -- growing batches?
 
@@ -424,7 +430,7 @@ to
 \]
 basically tripling the number of operations. 
 
-The calculation of \(\hat{p}\) is already partly on-line, as the increment in line \ref{algo1: incr 1} and \ref{algo1: incr 2} of the algorithm can be done in every transition. Recalculation of  \(\hat{p}\) in every step, would entail an iteration through all the \(y\in\cX\) whichever followed a particular \((x,a)\), and might thus be better left for the time, when \(\hat{p}\) is actually required.
+The calculation of \(\hat{p}\) is already partly on-line, as the increment in line \ref{algo1: incr 1} and \ref{algo1: incr 2} of the algorithm can be done in every transition. Recalculation of \(\hat{p}\) in every step, would entail an iteration through all the \(y\in\cX\) whichever followed a particular \((x,a)\), and might thus be better left for the time, when \(\hat{p}\) is actually required.
 
 To accelerate Dynamic Programming, we could use the previous estimation of \(V\) (\(Q\)) as a starting point, the next time we use DP. But DP still requires us to go over the entire state space (state-action space) for just one update, and most model parameter stay the same anyway, so more local updates are warranted.
 
@@ -445,13 +451,13 @@ Another approach is \emph{trajectory sampling} where a trajectory of state is ge
 
 The approaches we discussed here so far, are all \emph{model based learning}, which could leave the impression that (growing) batch learning is synonymous with model based learning in contrast to \emph{model free learning} methods like Monte Carlo and TD, which do not actually estimate the transition probabilities, and skip right to the value functions. But there are also model free growing batch learning methods. 
 
-One such example is \emph{experience replay} coined by \textcite{linSelfimprovingReactiveAgents1992} which simply creates backups of past transitions and plays them back to the learning algorithms in a possibly different (e.g. backwards) order. The fact, that playing back a random transition is equivalent to sampling the model (\(\hat{p}, \hat{r}\)), motivates why this has the desired effect if the selection of past transition is not unbalanced.  Experience replay can be warranted if the sums in (\ref{async DP V}) or (\ref{async DP Q}) are too large, i.e. when too many different states \(y\) can follow a state \(x\). This is sometimes described as a high \emph{branching factor}, where this factor could be defined as the average number of branches. Experience replay essentially trades memory (backing up all transitions) for computation speed, as it does not need to sum over all branches following a state. Variants might only back up certain transitions, which are selected according some measure of importance. Humans can for example remember very good or bad experiences better than ``boring'' situations. So maybe it is sufficient, to keep only transitions with very high or low rewards. 
+One such example is \emph{experience replay} coined by \textcite{linSelfimprovingReactiveAgents1992} which simply creates backups of past transitions and plays them back to the learning algorithms in a possibly different (e.g. backwards) order. The fact, that playing back a random transition is equivalent to sampling the model (\(\hat{p}, \hat{r}\)), motivates why this has the desired effect if the selection of past transition is not unbalanced. Experience replay can be warranted if the sums in (\ref{async DP V}) or (\ref{async DP Q}) are too large, i.e. when too many different states \(y\) can follow a state \(x\). This is sometimes described as a high \emph{branching factor}, where this factor could be defined as the average number of branches. Experience replay essentially trades memory (backing up all transitions) for computation speed, as it does not need to sum over all branches following a state. Variants might only back up certain transitions, which are selected according some measure of importance. Humans can for example remember very good or bad experiences better than ``boring'' situations. So maybe it is sufficient, to keep only transitions with very high or low rewards. 
 
 \textcite{suttonReinforcementLearningIntroduction1998} call model based learning methods ``planning'', and use the term ``decision time planning'' for algorithms which try to improve the knowledge of \(Q(X_t,a)\) for all actions \(a\), just before selecting the action \(A_t\), by exploring the branches of the state based on its current model (essentially applying some localized Dynamic Programming to its model to aid the decision).
 
 
 
-\section{TD(\(\lambda\)) --  Mixing Monte Carlo and TD} 
+\section{TD(\(\lambda\)) -- Mixing Monte Carlo and TD} 
 The trade-off between Monte Carlo and TD, is essentially the trade-off, between a small bias and a small variance. 
 The estimator which Monte Carlo uses 
 \[
@@ -662,7 +668,7 @@ This version can easily be adapted for non episodic MDPs by replacing T with \(\
 				\State \(\Delta\gets R + \gamma V(x') -V(x)\) 
 				\State \(e(x)\gets e(x) + \alpha_n \)
 				\For{\(y\in\cX\)}\label{eligibility assignment}
-					\State \(V(y)\gets V(y) + e(y) \Delta  \)
+					\State \(V(y)\gets V(y) + e(y) \Delta \)
 					\State \(e(y) \gets \gamma\lambda e(y)\)
 				\EndFor
 				\State \(x\gets x'\)
@@ -746,7 +752,7 @@ But to allow for the use of a Q(\(\lambda\)) algorithm, the greedy actions need 
 
 
 \subsection{Optimism}
-An extremely simple approach is, to initialize the estimate of the action value function Q higher than \(R/(1-\gamma)\) (c.f. Assumption \ref{assumption boundedness}). Then unexplored state action pairs have this over-optimistic value, and exploring states lowers their value down towards their actual value. The algorithm will therefore always select the least explored actions until expectations are lowered.  While it is very easy to show convergence of a simple greedy policy iteration, it is virtually useless in our setting of large state and action spaces, since it will only exploit its knowledge once it thoroughly convinced itself that there are no better options. 
+An extremely simple approach is, to initialize the estimate of the action value function Q higher than \(R/(1-\gamma)\) (c.f. Assumption \ref{assumption boundedness}). Then unexplored state action pairs have this over-optimistic value, and exploring states lowers their value down towards their actual value. The algorithm will therefore always select the least explored actions until expectations are lowered. While it is very easy to show convergence of a simple greedy policy iteration, it is virtually useless in our setting of large state and action spaces, since it will only exploit its knowledge once it thoroughly convinced itself that there are no better options. 
 
 \subsection{Boltzmann Exploration}
 The \(\vep\)-greedy policy is also known as \emph{semi-uniform random exploration}, because it selects a random action uniformly, when exploration is rolled with probability \(\vep\). Boltzmann exploration does not just differentiate between exploratory actions and greedy actions, but weights actions depending on the estimation of their value
@@ -1011,12 +1017,12 @@ But instead of making one step of size \(\tilde{\alpha}\) in this direction
 we could also make \(n\) individual steps
 \[
 	\mathbf{w}_{t+1}
-	=\mathbf{w}_t +  \alpha [v^*(X_t)-v(X_t,\mathbf{w}_t)]\nabla v(X_t,\mathbf{w}_t).
+	=\mathbf{w}_t + \alpha [v^*(X_t)-v(X_t,\mathbf{w}_t)]\nabla v(X_t,\mathbf{w}_t).
 \]
 Since we update \(\mathbf{w}_t\) with every step, these two variants are not equivalent! But due to the higher frequency of updates in the second variant the hope is, that it converges more quickly. If we now just replace \(v^*(X_t)\) with \(U_t\) where \(\E[U_t\mid X_t]=v^*(X_t)\), and allow the learning rate to vary, then we obtain a regression 
 \[
 	\mathbf{w}_{t+1}
-	=\mathbf{w}_t +  \alpha_t [U_t-v(X_t,\mathbf{w}_t)]\nabla v(X_t,\mathbf{w}_t), 
+	=\mathbf{w}_t + \alpha_t [U_t-v(X_t,\mathbf{w}_t)]\nabla v(X_t,\mathbf{w}_t), 
 \]
 which is known as \emph{stochastic gradient decent} SGD. But note that the specifier ``stochastic'' refers to the selection of \(X_i\sim \mu\) and not \(U_t\). According to \textcite[202]{suttonReinforcementLearningIntroduction2018a} convergence proofs to a local minimum for SGD are available if the learning rate fulfils (\ref{learning rate conditions}). In particular this covers Monte Carlo with
 \[
@@ -1029,9 +1035,9 @@ But since bootstrapping methods like TD and Q-learning, or more general n-step r
 So this would have to be taken into account when differentiating with regard to \(\mathbf{w}\). But the regression
 \[
 	\mathbf{w}_{t+1}
-	=\mathbf{w}_t +  \alpha_t [\hat{V}^{(n)}(X_t,w_t)-v(X_t,\mathbf{w}_t)]\nabla v(X_t,\mathbf{w}_t),
+	=\mathbf{w}_t + \alpha_t [\hat{V}^{(n)}(X_t,w_t)-v(X_t,\mathbf{w}_t)]\nabla v(X_t,\mathbf{w}_t),
 \]
-explicitly ignores this dependency and is thus grouped in \emph{semi-gradient methods} with other bootstrapping algorithms, that ignore this dependency.  
+explicitly ignores this dependency and is thus grouped in \emph{semi-gradient methods} with other bootstrapping algorithms, that ignore this dependency.
 
 \subsection{A counterexample}
 

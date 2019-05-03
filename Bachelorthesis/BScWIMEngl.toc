@@ -65,13 +65,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.7.3}Directed Exploration}{57}{subsection.2.7.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Interval Estimation}{58}{section*.12}% 
+\contentsline {subsubsection}{Interval Estimation}{58}{section*.11}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Bayesian Exploration}{59}{section*.13}% 
+\contentsline {subsubsection}{Bayesian Exploration}{59}{section*.12}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.7.4}Intrinsic Rewards}{59}{subsection.2.7.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Curiosity-Driven Exploration}{60}{section*.14}% 
+\contentsline {subsubsection}{Curiosity-Driven Exploration}{60}{section*.13}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.8}Function Approximation}{62}{section.2.8}% 
 \defcounter {refsection}{0}\relax 
@@ -99,4 +99,4 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {A.3}Autoencoder}{96}{section.A.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Acknowledgement}{99}{section*.21}% 
+\contentsline {subsubsection}{Acknowledgement}{99}{section*.20}% 
