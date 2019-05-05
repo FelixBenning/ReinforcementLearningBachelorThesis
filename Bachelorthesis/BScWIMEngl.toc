@@ -98,5 +98,3 @@
 \contentsline {section}{\numberline {A.2}Analysis}{95}{section.A.2}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {A.3}Autoencoder}{96}{section.A.3}% 
-\defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Acknowledgement}{99}{section*.20}% 

@@ -91,7 +91,7 @@ But this apparent similarity can be misleading. While Markov Processes are defin
 
 The questions we ask the model are also different.  MDPs are more interested into evaluating different behaviours and finding optimal ones, while Markov Processes try to describe an existing phenomenon. Though we will find, that -- given a behaviour which is memoryless as well (without the dotted lines in the diagram) -- the resulting stochastic process \((X_t,A_t,R_{t+1},t\in\N_0)\) is a Markov Process, so the theory of Markov Processes could in principle be applied. But this will not be our focus. 
 
-Just like with Markov chains, the memorylessness could be circumvented by including the history in the current state, massively increasing the state space in the process. Which means it is questionable whether this would yield any interesting results, as then no state is visited twice. So it is of no use to an actor to learn the value of an action in a certain state without further assumptions.
+Just like with Markov chains, the memorylessness could be circumvented by including the history in the current state, massively increasing the state space in the process. However it is questionable whether this would yield any interesting results, as then no state is visited twice. So it is of no use to an actor to learn the value of an action in a certain state without further assumptions.
 
 While the theory of MDPs found an extremely broad application as the backbone for reinforcement algorithms, and by proxy robotics, more classical applications include \parencite{whiteRealApplicationsMarkov1985}:
 \begin{enumerate}
@@ -187,7 +187,7 @@ But to properly define the transition probabilities given an action in a certain
 \end{remark}
 
 Some authors prefer to use ``cost'' over ``rewards''. This simply flips the notation and maximization problems become minimization problems. I prefer rewards, as negative rewards have an easier interpretation.
-According to \textcite{putermanMarkovDecisionProcesses2005} some authors call this tuple a Markov Decision Problem instead of Markov Decision Process, presumably to reserve the term Markov Decision Process for the resulting sequence of states, actions and rewards \((X_t,A_t,R_{t+1},t\in\N_0)\), aligning the Definition with the definition of a Markov process. Although this does not appear to be common practice.
+According to \textcite{putermanMarkovDecisionProcesses2005} some authors call this tuple a Markov Decision Problem instead of Markov Decision Process, presumably to reserve the term Markov Decision Process for the resulting sequence of states, actions and rewards \((X_t,A_t,R_{t+1},t\in\N_0)\), aligning the Definition with the definition of a Markov process. However this does not appear to be common practice.
 
 Nevertheless we still need to construct that stochastic process from the MDP when we have an action selection rule. 
 
@@ -269,7 +269,7 @@ Now we define inductively: \((X_{t+1}, R_{t+1})\sim\cP(\cdot\mid X_t, A_t)\) wit
 	\dots (X_0,A_0,R_1)] \nonumber
 \end{align}
 resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\).
-\begin{remark}\label{well defined Markov property}\fxnote{remark? lemma? prop?}
+\begin{remark}\label{well defined Markov property}
 	\((X_{t+1}, R_{t+1})\sim\cP(\cdot\mid X_t, A_t)\) with the Markov property, is well defined i.e.:
 	There exists a \(\cX\times\R\)-valued random variable \((X_{t+1}, R_{t+1})\)
 	such that
@@ -720,7 +720,7 @@ So we can not match an infinite set of behaviors. Which means we will have to se
 	\]
 	then the modified policy \(\hat{\pi}\) improves \(V\) in all states:
 	\begin{align*}
-		&T^{\hat{\pi}}V(x)=r(x,\pi_{m(x)}(x))
+		T^{\hat{\pi}}V(x)&=r(x,\pi_{m(x)}(x))
 		+\gamma \sum_{y\in\cX} p(y\mid x,\pi_{m(x)}(x))V(y)\\
 		&\lxgq{V\ge V^{\pi_{m(x)}}} r(x,\pi_{m(x)}(x))
 		+\gamma \sum_{y\in\cX} p(y\mid x,\pi_{m(x)}(x))V^{\pi_{m(x)}}(y)\\
@@ -891,8 +891,8 @@ With this statement we can now prove the building blocks for the fixed point equ
 
 	\noindent ``\(\geq\)'' follows from this inequality which holds for all \(\pi\) (especially for all \(\pi_0\)):
 	\begin{align*}
-		\E^\pi[\cR\mid X_0=x]
-		&\xeq{\ref{appx1}}\sum_{a\in\cA_x}\E^\pi[\cR \mid X_0=x,A_0=a]\pi_0(a\mid x)\\
+		\E^\pi[\cR\mid X_0=x]\;\;
+		&\lxeq{\ref{appx1}}\sum_{a\in\cA_x}\E^\pi[\cR \mid X_0=x,A_0=a]\pi_0(a\mid x)\\
 		&\leq \sup_{a\in\cA_x}\E^\pi[\cR \mid X_0=x, A_0=a]\sum_{a\in\cA_x}\pi_0(a\mid x)\\
 		&=\sup_{a\in\cA_x}\E^\pi[\cR \mid X_0=x, A_0=a]
 	\end{align*}
@@ -1109,7 +1109,7 @@ Let us first consider the case where the supremum can be attained, since this in
 \begin{definition}
 	\(Q\colon\cX\times\cA\to\R\) an action value function, \(\tilde{\pi}\colon\cX\to\cA_x\) with
 	\[
-	\tilde{\pi}(x)\coloneqq\arg\max_{a\in\cA_x} Q(x,a)\qquad x\in\cX
+	\tilde{\pi}(x)\coloneqq\arg\max_{a\in\cA_x} Q(x,a),\qquad x\in\cX.
 	\]
 	\(\tilde{\pi}(x)\) is called \emph{greedy} with respect to Q in \(x\in\cX\).
 	\(\tilde{\pi}\) is called \emph{greedy} w.r.t. Q.
@@ -1448,7 +1448,6 @@ Policy iteration converges faster than value iteration with every step
 		V^\pi = \sum_{k=0}^\infty (\gamma P^\pi)^k r^\pi = (1-\gamma P^\pi)^{-1} r^\pi. \qedhere
 	\]
 \end{proof}
-\fxnote{Write down Algorithm?}
 
 \subsection{Bootstrapping and Discounting}\label{bootstrapping and discounting}
 
