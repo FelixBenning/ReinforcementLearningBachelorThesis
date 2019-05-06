@@ -1,7 +1,14 @@
 %% "\ifthenelse"
 \RequirePackage{ifthen}
-%% font encoding vector
-\RequirePackage[T1]{fontenc}
+
+
+%%%%%% font encoding vector %%%%%
+%\RequirePackage[T1]{fontenc} %makes umlauts actual letters (searchable) instead of accented versions of ascii letters, issue: converts vector font to bitmap, fix:
+%\RequirePackage{cm-super} %see: https://tex.stackexchange.com/a/1293/148164
+%better solution: (https://tex.stackexchange.com/q/1390/148164)
+\RequirePackage{lmodern}
+%but not maintained anymore so might be outdated soon as well: https://tex.stackexchange.com/q/147194/148164
+
 %% set up language support
 \RequirePackage[ngerman, english]{babel}
 %\shorthandoff{"} %babel breaks tikz-cd otherwise (activate if used)
@@ -38,7 +45,13 @@
 %% Package to allow for indicator functions (blackbord numbers)
 \RequirePackage{bbm} %usage: \mathbbm{1}
 
+
+%% allows for plots and sketches
+\RequirePackage{tikz,tikz-cd,pgfplots}
+\pgfplotsset{compat=1.16}
+
 %% optionally set up times text font
+
 \newcommand{\TimesFont}{\RequirePackage{times}\RequirePackage[scaled=0.92]{helvet}}
 
 %% options for one or two side set up
@@ -121,19 +134,10 @@
 \newcommand{\Y}{\mathbb{Y}}
 \newcommand{\Z}{\mathbb{Z}}
 
- 
-%new symbol for set of probability measures on... () 
-\newcommand{\pmeas}{\mu\mkern-7mu P}
-
-%%Set of stochastic stationary policies
-\newcommand{\statPolicy}{\Pi_S}
-
-%%Set of deterministic stationary policies
-\newcommand{\detPolicy}{\Pi_S^D}
 
 %% "X => Y" proofs
 \newcommand*{\xToy}[2]{\noindent\text{``#1 \(\Rightarrow\) #2''}}
-%%set up lightning symbol
+%%set up lightning symbol for contradictions
 \newcommand*{\contradiction}[1][]{\quad\text{{\LARGE\lightning} #1}\ }
 
 %% AMS Theorem Environments
@@ -153,22 +157,8 @@
 
 
 %% misc
-\allowdisplaybreaks[1]
-
-% settings for the listings package - see documentation of the package
-\lstset{%
-numberstyle=\footnotesize,%                 style of the code line numbers
-numbersep=5pt,%                             separation to the code lines
-basicstyle=\small,%                         basic style of displays
-stringstyle=\ttfamily,%                     style of the strings in the code
-captionpos=b,%                              position of the caption: 'b' or 't'
-numberblanklines=false,%                    number blank lines?
-literate=%                                  translations: items are separated with 'n',
-    {:=}{{$\gets$}}1%                           where 'n' is the number of tokens after translation
-    {<=}{{$\leq$}}1%
-    {>=}{{$\geq$}}1%
-    {<>}{{$\neq$}}1%
-}
+\allowdisplaybreaks[1] %page break of equations is allowed but avoided
+%c.f. https://tex.stackexchange.com/a/24905/148164
 
 
 %%%%%%%%%%%%%%%%%%%%% ARROWS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%

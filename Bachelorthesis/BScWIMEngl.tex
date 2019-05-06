@@ -5,19 +5,32 @@
 %% of Mannheim University
 %%
 %% copyleft (2012-2014) by J. Berger, T. Christen, and J. Potthoff	
+%% Modified (2019) by Felix Benning 
 %%
 
-%%fleqn leftalignes equations
+%%option fleqn leftalignes equations
 \documentclass[11pt, a4paper]{book}
 \usepackage{./macros/dinaA4}
 \usepackage{./macros/BScMacros}
 \usepackage{./macros/BScTitle}
 
+%% Biblatex (bibliography tool - improvement over bibtex)
+\usepackage[style=authoryear, backend=biber, maxcitenames=2]{biblatex}
+\addbibresource{./chapter/literature.bib}
+
+%%% No indentation for new paragraphs
 \setlength{\parindent}{0em}
 
-\usepackage{tikz,tikz-cd,pgfplots}
+%% Annotations/Todo list/Comments
+\RequirePackage[final]{fixme} %final removes annotations %draft includes annotations
+\fxsetup{theme=color}
+%%\fxnote{some note} ,\fxwarning{}, \fxerror{}, \fxfatal{} <- does not allow [final] to compile
+
+
+
+
+%%% Special to this Thesis:
 \usepgfplotslibrary{groupplots}
-\pgfplotsset{compat=1.16} 
 \usetikzlibrary{
     math,
     shapes,% for the rectangle
@@ -30,15 +43,13 @@
     decorations.pathmorphing,% /pgf/decoration/random steps | erste Graphik
     shadows%
 }% allows to replace \begin{scope} \end{scope} with {}
-
 \newcommand{\vsubseteq}{\rotatebox[origin=c]{-90}{\(\subseteq\)}}
 
-\usepackage[style=authoryear, backend=biber, maxcitenames=2]{biblatex}
-\addbibresource{./chapter/literature.bib}
+%%Set of stochastic stationary policies
+\newcommand{\statPolicy}{\Pi_S}
 
-\usepackage[draft]{fixme} %final removes annotations %draft includes annotations
-\fxsetup{theme=color}
-%%\fxnote{some note} ,\fxwarning{}, \fxerror{}, \fxfatal{} <- does not allow [final] to compile
+%%Set of deterministic stationary policies
+\newcommand{\detPolicy}{\Pi_S^D}
 
 %%
 %% je nach Betriebssystem und Editor muss die
@@ -60,15 +71,15 @@
 \usepackage{csquotes}
 
 %%
-%% Font auswaehlen: '\TimesFont' auskommentiert -> computer modern
-%% '\TimesFont' aktiv -> Textfont: times, Mathfont: computer modern
+%% Font auswaehlen: '\TimesFont' auskommentiert -> latin modern
+%% '\TimesFont' aktiv -> Textfont: times, Mathfont: latin modern
 %%
 %\TimesFont
 %%
 %% ein- oder doppelseitiger Satz
 %%
-\onesided
-%\twosided
+%\onesided
+\twosided
 %%
 %% persoenliche Angaben
 %%
@@ -125,19 +136,15 @@
 %\listoffigures
 %\listoftables
 %%
-%% Anhang (falls nicht vorhanden, auskommentieren)
+%% Appendix 
 %%
 \appendix
 \include{./chapter/appendix_01}
 \backmatter
 %%
-%% Literaturverzeichnis (bitte einkommentieren!)
+%% Bibliography
 %%
 \printbibliography
 
-
-%\begin{thebibliography}{99}
-%\input{./chapter/literatur.tex}
-%\end{thebibliography}
 \end{document}
 

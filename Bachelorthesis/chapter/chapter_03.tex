@@ -431,7 +431,7 @@ Because of \(\E[X]=\E[\E[X\mid Y]]\) for any random variables \(X,Y\), we can wr
 \end{align*}
 \((*^2)\) Due to 
 \[
-    \E[X\mid \mathbbm{1}_A]=\E[X\mid A]\mathbbm{1}_A +\E[X\mid A^\complement]\mathbbm{1}_{A^\complement},
+    \E[X\mid \mathbbm{1}_A]\xeq{\text{\ref{appx:6}}}\E[X\mid A]\mathbbm{1}_A +\E[X\mid A^\complement]\mathbbm{1}_{A^\complement},
 \]
 we get for any random variable \(X\) and measurable set \(A\):
 \[
@@ -741,7 +741,7 @@ We can therefore ``bootstrap convergence'' for scale invariant processes, which 
             \ge 0
         } - \alpha_n(x)\right)\gamma C_1}_{\eqqcolon Y_n(x)}\\
         &\lxlq{\text{ind.}} (1-\alpha_n(x))\tilde{\Delta}_n^{C_1}(x)+Y_n(x) \eqqcolon \tilde{\Delta}_{n+1}^{C_1} \qquad \text{with } \tilde{\Delta}^{C_1}_1\coloneqq \Delta_1^{C_1}
-    \end{align*} 
+    \end{align*}
     And due to 
     \[
         \E[Y_n(x)\mid H_n]=0,
@@ -935,7 +935,7 @@ We can therefore ``bootstrap convergence'' for scale invariant processes, which 
     \]
     is bounded by a constant, if \(\Delta_n\) is bounded. So we have another ``boundedness bootstrapping'' problem. 
 \begin{enumerate}[label= Step \arabic*:, ref= Step \arabic*, leftmargin=0pt]
-    \item\label{thm:step1} If we bound \(\Delta_n\) by scaling as in Lemma \ref{scaling lemma}, then \(w_n\) converges almost surely to zero due to lemma \ref{lemma following dvoretzky}, since scaling does neither affect the inequality (\ref{dvoretzky application}) nor the expected value of \(Y_n\) and it only reduces the variance of \(Y_n\)\fxnote{history argument}. Therefore
+    \item\label{thm:step1} If we bound \(\Delta_n\) by scaling as in Lemma \ref{scaling lemma}, then \(w_n\) converges almost surely to zero due to lemma \ref{lemma following dvoretzky}, since scaling does neither affect the inequality (\ref{dvoretzky application}) nor the expected value of \(Y_n\) and it only reduces the variance of \(Y_n\). Therefore
     \[
         \Pr\left(\sup_{k\ge n} \|w_k\|_\infty > \vep\right) \to 0 \qquad (n\to \infty).
     \]

@@ -122,6 +122,86 @@
     Since the second derivative is \(2>0\), \(\E[X\mid Y](\omega) = f(Y(\omega))\) is the unique minimum. Which implies that \(\text{Var}[X\mid Y]\) is the minimum regardless of \(\omega\).
 \end{proof}
 
+\begin{lemma}\label{appx:6}
+    \begin{align*}
+        \E[X\mid \mathbbm{1}_A]=\E[X\mid A]\mathbbm{1}_A +\E[X\mid A^\complement]\mathbbm{1}_{A^\complement}
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    Let \(f(\mathbbm{1}_A)=\E[X\mid \mathbbm{1}_A]\), then for \(B\in\sigma(\mathbbm{1}_A)=\{\emptyset,A,A^\complement,\Omega\}\) we know
+    \[
+        \int_B X d\Pr =\int_B f(\mathbbm{1}_A)d\Pr.
+    \]
+    In particular this requires
+    \begin{align}\label{constant expectation}
+        \int_A X d\Pr = \int_A f(\mathbbm{1}_A)d\Pr = f(1) \Pr(A).
+    \end{align}
+    Thus we know
+    \[
+        f(1)=\mfrac{1}{\Pr(A)}\int_A X d\Pr=\E[X\mid A].
+    \]
+    With similar reasoning for \(A^\complement\), we can prove the original claim:
+    \begin{align*}
+        \E[X\mid \mathbbm{1}_A]=f(\mathbbm{1}_A)=f(1)\mathbbm{1}_A + f(0)\mathbbm{1}_{A^\complement}=\E[X\mid A]\mathbbm{1}_A +\E[X\mid A^\complement]\mathbbm{1}_{A^\complement}.
+    \end{align*}
+\end{proof}
+\begin{lemma}\label{appx7}
+    Some History is irrelevant, if the entire history is irrelevant or more generally
+    \[
+        \E[X\mid Z, Y_1,Y_2]=\E[X\mid Z] \implies \E[X\mid Z, Y_1]=\E[X\mid Z]
+    \]
+    for arbitrary random variables \(X, Z, Y_1, Y_2\) with \(Y_2\) being \(\cY\) valued, where \(\cY\) is countable. This is true in particular for
+    \[
+        \Pr(A\mid Z, Y_1,Y_2)=\E[\mathbbm{1}_A \mid Z, Y_1,Y_2].
+    \]
+\end{lemma}
+\begin{proof} Due to the same argument as in (\ref{constant expectation})
+    \[
+        \int_{\{Y=y\}} X d\Pr = \int_{\{Y=y\}} \E[X\mid Y]d\Pr = \E[X\mid Y=y] \Pr(Y=y),
+    \]
+    we can write
+    \[
+        \E[X\mid Y=y]=\frac{1}{\Pr(Y=y)}\int_{\{Y=y\}} X d\Pr=\E[X \mid \{Y=y\}]
+    \]
+    which allows us to apply \ref{appx1} \ref{appx1:iii}:
+    \begin{align*}
+        &\E[X\mid Z=z, Y_1=y_1]\\
+        &\lxeq{\text{\ref{appx1}}}\sum_{y_2\in\cY} \underbracket[1pt]{\E[X\mid Z=z, Y_1=y_1, Y_2=y_2]}_{=\E[X\mid Z=z]} \Pr(Y_2=y_2\mid Z=z,Y_1=y_1)\\
+        &=\E[X\mid Z=z] \underbracket[1pt]{\sum_{y_2\in\cY} \Pr(Y_2=y_2\mid Z=z,Y_1=y_1)}_{=1}\qedhere
+    \end{align*}
+\end{proof}
+
+\begin{lemma}\label{appx8}
+    Let \(((X_t,A_t,R_{t+1}),t\in\N_0)\) be a sequence generated with a stationary behavior \(\pi\) from an episodic MDP. Then for some \(x\in\cX\)
+    \[
+        K\coloneqq\min\{k\in\N_0:X_k=x\}
+    \]
+    marks the first visit to \(x\), and
+    \[
+        \sum_{t=K}^\infty R_{t+1}\;\Big|\; K \sim \sum_{t=0}^\infty R_{t+1} \;\Big|\; X_0=x.
+    \]
+    I.e. the distribution of the reward after the first visit to \(x\) has the same distribution as the distribution of the reward conditional on the starting state \(x\). 
+\end{lemma}
+\begin{proof}
+    Because of
+    \[
+        \{K=k\}=\{ X_0\neq x, \dots, X_{k-1}\neq x, X_k=x\},
+    \]
+    we can show for every measurable function \(f\) and for all \(k\in\N_0\):
+    \begin{align*}
+        &\E\left[f\left(\sum_{t=K}^\infty R_{t+1}\right)\;\middle|\; K=k\right]\\
+        &=\E\left[f\left(\sum_{t=k}^\infty R_{t+1}\right)\;\middle|\; X_0\neq x, \dots, X_{k-1}\neq x, X_k=x\right]\\
+        &\lxeq{\text{Markov}} \E\left[f\left(\sum_{t=k}^\infty R_{t+1}\right)\;\middle|\; X_k=x\right]\\
+        &\lxeq{\text{stationary}} \E\left[f\left(\sum_{t=0}^\infty R_{t+1}\right)\;\middle|\; X_0=x\right]
+    \end{align*}
+    Since this is independent of \(k\), we get
+    \begin{align*}
+        \E\left[f\left(\sum_{t=K}^\infty R_{t+1}\right)\;\middle|\; K\right]
+        =\E\left[f\left(\sum_{t=0}^\infty R_{t+1}\right)\;\middle|\; X_0=x\right]
+    \end{align*}
+    for every measurable \(f\), which implies the distributions are the same.
+\end{proof}
+
 \section{Analysis}
 \begin{lemma}\label{appx:analysis 0}
     Let \(0<a_n(\vep)\le a_n(\vep_0)\) for \(n\in\N\) and  \(0<\vep\le \vep_0\), then
@@ -224,9 +304,8 @@ Here is an example with \(n=7,k=2\):
 
     % Annotate the layers
     \node[annot,above of=H2-1, node distance=1cm] {Compressed layer};
-    %\node[annot,above of=I-1, node distance=1cm] {Input layer};
-    %\node[annot,above of=O-1, node distance=1cm] {Output layer};
 \end{tikzpicture}\]
+
 
 
 

@@ -121,7 +121,7 @@ is a bias free estimator for \(V^\pi(X_k)\). \emph{First-visit Monte Carlo} uses
 	\end{algorithmic}
 \end{algorithm}
 
-\fxwarning{Fine to cite Strong Law?}{Because of the strong law of large numbers, first-visit Monte Carlo algorithm causes the value function estimation \(\hat{V}^\pi(x)\) to converge} with probability 1 to \(V^\pi(x)\), for every state \(x\in\cX\) which is visited with positive probability given behaviour \(\pi\) and starting distribution \(X_0\).
+Because of the strong law of large numbers, first-visit Monte Carlo algorithm causes the value function estimation \(\hat{V}^\pi(x)\) to converge with probability 1 to \(V^\pi(x)\), for every state \(x\in\cX\) which is visited with positive probability given a stationary behaviour \(\pi\) and starting distribution \(X_0\). This is due to the fact, that only one estimate for \(V^\pi(x)\) for an \(x\in\cX\) is used per episode, so all estimates are independent. And since the return after the first visit to \(x\) has the same distribution as the return conditional on the starting state being \(x\) (\ref{appx8}), these estimates are iid with expected value \(V^\pi(x)\).
 
 \emph{Every-visit} Monte Carlo uses the Return after every visit of a state \(x\) to estimate \(V^\pi(x)\). Since this means that the tail of the rewards can be included in multiple returns, the returns are not independent from each other anymore which make proving convergence a little bit more difficult than simply applying the strong law of large numbers. Though every visit Monte Carlo will turn out to be a special case of TD(\(\lambda\)) (c.f. (\ref{batch TD(1) learning rate}), which lets us sketch some convergence proof ideas in Chapter \ref{stoch apprx}.
 
@@ -876,12 +876,12 @@ This neuronal net consists of two copies of a neuronal net with input neurons \(
     % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
         \node[neuron] (I-\name) at (0,4-\y) {};
 
-    \node[annot, left of=I-2, node distance=0.7cm] {\(x_{t+1}\)};
+    \node[annot, left of=I-2, node distance=0.8cm] {\(x_{t+1}\)};
     
     \foreach \name / \y in {4,...,6}
         \node[neuron] (I-\name) at (0,3-\y) {};
 
-    \node[annot, left of=I-5, node distance=0.5cm] {\(x_{t}\)};
+    \node[annot, left of=I-5, node distance=0.6cm] {\(x_{t}\)};
 
     % Draw the hidden layer 1 nodes
     \foreach \name / \y in {1,...,2}
@@ -924,9 +924,9 @@ This neuronal net consists of two copies of a neuronal net with input neurons \(
         \path (H2-\source) edge (O-\dest);
 
     % Annotate the layers
-    \node[annot,right of=H1-1, node distance=0.9cm] {\(\Phi(x_{t+1})\)};
+    \node[annot,right of=H1-1, node distance=1cm] {\(\Phi(x_{t+1})\)};
     \node[annot,right of=H1-4, node distance=0.8cm] {\(\Phi(x_t)\)};
-    \node[annot] at (4*\layersep-40,0) {\(\hat{a}_{t}\)};
+    \node[annot] at (4*\layersep-47,0) {\(\hat{a}_{t}\)};
 
     \draw (-0.5,3.7) -- (\layersep+12, 3.2)--(\layersep+12, 0.8) --(-0.5,0.3)--cycle;
     \draw (-0.5,-3.7) -- (\layersep+12, -3.2)--(\layersep+12, -0.8) --(-0.5,-0.3)--cycle;
