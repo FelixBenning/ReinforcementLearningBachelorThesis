@@ -89,12 +89,12 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.3}Application to Reinforcement Learning}{73}{section.3.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Proof of Theorem \ref {JAAKKOLA:THM}}{79}{section.3.4}% 
+\contentsline {section}{\numberline {3.4}Proof of Theorem \ref {JAAKKOLA:THM}}{80}{section.3.4}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Appendix}{93}{appendix.A}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {A.1}Probability Theory}{93}{section.A.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Analysis}{97}{section.A.2}% 
+\contentsline {section}{\numberline {A.2}Analysis}{98}{section.A.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.3}Autoencoder}{98}{section.A.3}% 
+\contentsline {section}{\numberline {A.3}Autoencoder}{99}{section.A.3}% 

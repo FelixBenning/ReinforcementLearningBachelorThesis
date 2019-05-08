@@ -121,7 +121,7 @@ is a bias free estimator for \(V^\pi(X_k)\). \emph{First-visit Monte Carlo} uses
 	\end{algorithmic}
 \end{algorithm}
 
-Because of the strong law of large numbers, first-visit Monte Carlo algorithm causes the value function estimation \(\hat{V}^\pi(x)\) to converge with probability 1 to \(V^\pi(x)\), for every state \(x\in\cX\) which is visited with positive probability given a stationary behaviour \(\pi\) and starting distribution \(X_0\). This is due to the fact, that only one estimate for \(V^\pi(x)\) for an \(x\in\cX\) is used per episode, so all estimates are independent. And since the return after the first visit to \(x\) has the same distribution as the return conditional on the starting state being \(x\) (\ref{appx8}), these estimates are iid with expected value \(V^\pi(x)\).
+Because of the strong law of large numbers, first-visit Monte Carlo algorithm causes the value function estimation \(\hat{V}^\pi(x)\) to converge with probability 1 to \(V^\pi(x)\), for every state \(x\in\cX\) which is visited with positive probability given a stationary behaviour \(\pi\) and starting distribution \(X_0\). This is due to the fact, that only one estimate for \(V^\pi(x)\) for an \(x\in\cX\) is used per episode, so all estimates are independent. And since the return after the first visit to \(x\) has the same distribution as the return conditional on the starting state being \(x\) conditional on the first visit to \(x\) existing (\ref{appx8}), these estimates are iid with expected value \(V^\pi(x)\).
 
 \emph{Every-visit} Monte Carlo uses the Return after every visit of a state \(x\) to estimate \(V^\pi(x)\). Since this means that the tail of the rewards can be included in multiple returns, the returns are not independent from each other anymore which make proving convergence a little bit more difficult than simply applying the strong law of large numbers. Though every visit Monte Carlo will turn out to be a special case of TD(\(\lambda\)) (c.f. (\ref{batch TD(1) learning rate}), which lets us sketch some convergence proof ideas in Chapter \ref{stoch apprx}.
 
@@ -240,7 +240,7 @@ If we remove the assumption of exploring starts, we still need to ensure that ev
 		\left((1-\vep)r(x,a) + \frac{\vep}{|\cA_x|}\sum_{b\in\cA_x}r(x,b)\right)\\
 		&=\sum_{a\in\cA_x}\left(\pi(a\mid x)-\frac{\vep}{|\cA_x|}\right)r(x,a) 
 		+ \frac{\vep}{|\cA_x|}\sum_{b\in\cA_x}r(x,b) 
-		\underbracket[1pt]{\sum_{a\in\cA_x}\frac{\pi(a\mid x)-\frac{\vep}{|\cA_x|}}{1-\vep}}_{
+		\underbracket[0.7pt]{\sum_{a\in\cA_x}\frac{\pi(a\mid x)-\frac{\vep}{|\cA_x|}}{1-\vep}}_{
 			=1
 		}\\
 		&=\sum_{a\in\cA_x}\pi(a\mid x)r(x,a)
@@ -331,7 +331,7 @@ The random variable \(R_{t+1}+\gamma V(X_{t+1})\) is therefore a bias free estim
 		\widebar{X}_n&=\mfrac{1}{n}\sum_{i=1}^n X_i 
 		= \mfrac{n-1}{n}\mfrac{1}{n-1}\sum_{i=1}^{n-1}X_i +\mfrac{1}{n}X_n\\
 		&=\left(1-\mfrac{1}{n}\right)\widebar{X}_{n-1}+\mfrac{1}{n}X_n \\
-		&= \widebar{X}_{n-1} + \underbracket[1pt][1.3ex]{\frac{1}{n}}_{\text{\clap{``learning rate''}}}\underbracket[1pt][0.4ex]{(X_n - \widebar{X}_{n-1})}_{\text{``direction''}}
+		&= \widebar{X}_{n-1} + \underbracket[0.7pt][1.3ex]{\frac{1}{n}}_{\text{\clap{``learning rate''}}}\underbracket[0.7pt][0.4ex]{(X_n - \widebar{X}_{n-1})}_{\text{``direction''}}
 	\end{align*}
 \end{example}
 
@@ -496,7 +496,7 @@ If the value function correctly assigns value \(0\) to the terminal state \(X_T\
 		\begin{aligned}[t]
 			&\E^\pi[R_{t+1}\mid X_t=x] \\
 			&+ \gamma\sum_{y\in\cX} \Pr^\pi(X_{t+1}=y\mid X_t=x) 
-			\underbracket[1pt]{\E^\pi[\hat{V}^{(n-1)}(X_{t+1})\mid X_t=x,X_{t+1}=y]}_{
+			\underbracket[0.7pt]{\E^\pi[\hat{V}^{(n-1)}(X_{t+1})\mid X_t=x,X_{t+1}=y]}_{
 				\xeq{\text{Markov+ind.}} (T^\pi)^{n-1} V(y)
 			}
 		\end{aligned}\\
@@ -533,7 +533,7 @@ At this point it might be helpful to note, that for \(\lambda=0\) we get our \(1
 	\right)
 	\nonumber\\
 	&\lxeq{\text{Fub.}}\sum_{j=0}^\infty \gamma^j R_{t+1+j} 
-	(1-\lambda)\underbracket[1pt]{\sum_{n=j+1}^\infty \lambda^{n-1}}_{
+	(1-\lambda)\underbracket[0.7pt]{\sum_{n=j+1}^\infty \lambda^{n-1}}_{
 		\mathclap{=\sum_{n=j}^\infty \lambda^n = \left(\frac{1}{1-\lambda} - \sum_{n=0}^{j-1}\lambda^n\right)}
 	}
 	+ (1-\lambda) \sum_{n=1}^\infty \lambda^{n-1}\gamma^n V(X_{t+n})
@@ -553,7 +553,7 @@ This is simply the return after \(t\), which is well defined with Assumption \re
 There are two different versions of TD(\(\lambda\)) constructed with the \(\lambda\)-return. 
 The first one updates the value function with every step:
 \begin{align}
-	V_{t+1}(x)&= V_t(x) + \alpha_t \underbracket[1pt]{[\hat{V}_t^\lambda(X_t)-V_t(x)]}_{
+	V_{t+1}(x)&= V_t(x) + \alpha_t \underbracket[0.7pt]{[\hat{V}_t^\lambda(X_t)-V_t(x)]}_{
 		\eqqcolon \Delta V^\lambda_t(X_t)
 	}\mathbbm{1}_{X_t=x}
 	\label{forward TD algorithm} \\
@@ -565,7 +565,7 @@ The index \(t\) indicates that \(\hat{V}^\lambda\) uses \(V_t\) for its estimati
 \]
 The second version of TD(\(\lambda\)) updates the value function after the end \(T_n\) of every episode \(n\), and we will thus refer to it as batch TD(\(\lambda\)):
 \begin{align}\label{forward batch TD}
-	V_{n+1}(x)=V_n(x)+\sum_{k=0}^{T_n-1}\alpha_k \underbracket[1pt]{[\hat{V}_n^\lambda(X_{k})-V_n(x)]}_{=\Delta V_n^\lambda(X_{k})}\mathbbm{1}_{X_{k}=x}
+	V_{n+1}(x)=V_n(x)+\sum_{k=0}^{T_n-1}\alpha_k \underbracket[0.7pt]{[\hat{V}_n^\lambda(X_{k})-V_n(x)]}_{=\Delta V_n^\lambda(X_{k})}\mathbbm{1}_{X_{k}=x}
 \end{align}
 We would really have to index \(X_k\) with the episode \(X_k^{(n)}\), since we get a state sequence in every episode. But since we will only need to talk about one episode, and in order to keep notation simple, I will omit this index. To understand this algorithm, it is best to consider only one episode at first. Batch TD(\(1\)) is also equal to Monte Carlo, for
 \begin{align}\label{batch TD(1) learning rate}
@@ -596,7 +596,7 @@ To motivate the \emph{backward view} of TD(\(\lambda\)), we transform \(\Delta V
 		R_{i+1} + \gamma V_m(X_{i+1}) - V_m(X_{i})
 	\right]
 	\nonumber\\
-	&\lxeq{(*)}\sum_{i=t}^{T-1}(\gamma\lambda)^{i-t} \underbracket[1pt]{\left[
+	&\lxeq{(*)}\sum_{i=t}^{T-1}(\gamma\lambda)^{i-t} \underbracket[0.7pt]{\left[
 		R_{i+1} + \gamma V_m(X_{i+1}) - V_m(X_{i})
 	\right]}_{
 		=\Delta V^0_m(X_i)
@@ -617,7 +617,7 @@ In other words, we want to flip the summing over the deltas in (\ref{forward TD 
 	&=\sum_{t=0}^{T-1} \alpha_t \mathbbm{1}_{X_t=x}
 	\sum_{i=t}^{T-1}(\gamma\lambda)^{i-t} \Delta V^0_n(X_i)\\
 	&\lxeq{\text{Fub.}}\sum_{i=0}^{T-1} \Delta V^0_n(X_i) 
-	\underbracket[1pt]{\sum_{t=0}^{i} \alpha_t (\gamma\lambda)^{i-t} \mathbbm{1}_{X_t=x}}_{
+	\underbracket[0.7pt]{\sum_{t=0}^{i} \alpha_t (\gamma\lambda)^{i-t} \mathbbm{1}_{X_t=x}}_{
 		\eqqcolon e_i(x)
 	}
 \end{align*}
@@ -630,7 +630,7 @@ In order to adapt this idea for the first version of TD(\(\lambda\)) (\ref{forwa
 	\right]
 	\nonumber \\
 	&\approx \sum_{i=t}^{T-1}(\gamma\lambda)^{i-t} 
-	\underbracket[1pt]{\left[
+	\underbracket[0.7pt]{\left[
 		R_{i+1} + \gamma V_i(X_{i+1}) - V_i(X_{i})
 	\right]}_{
 		=\Delta V^0_i(X_i)
@@ -644,7 +644,7 @@ This lets us write the version for (\ref{forward TD expanded}):
 	&\approx \sum_{t=0}^{T-1} \alpha_t \mathbbm{1}_{X_t=x}
 	\sum_{i=t}^{T-1}(\gamma\lambda)^{i-t} \Delta V^0_i(X_i)\\
 	&\lxeq{\text{Fub.}}\sum_{i=0}^{T-1} \Delta V^0_i(X_i) 
-	\underbracket[1pt]{\sum_{t=0}^{i} \alpha_t (\gamma\lambda)^{i-t} \mathbbm{1}_{X_t=x}}_{
+	\underbracket[0.7pt]{\sum_{t=0}^{i} \alpha_t (\gamma\lambda)^{i-t} \mathbbm{1}_{X_t=x}}_{
 		\eqqcolon e_i(x)
 	}
 \end{align*}
@@ -1007,7 +1007,7 @@ One heuristic to find the minimum of \(\widebar{\text{VE}}\), is to move in the 
 But instead of making one step of size \(\tilde{\alpha}\) in this direction
 \[
 	\mathbf{w}_{t+1}
-	=\mathbf{w}_t + \underbracket[1pt]{\tilde{\alpha}\mfrac{2}{n}}_{\eqqcolon \alpha} 
+	=\mathbf{w}_t + \underbracket[0.7pt]{\tilde{\alpha}\mfrac{2}{n}}_{\eqqcolon \alpha} 
 	\sum_{i=0}^{n-1} [v^*(X_i)-v(X_i,\mathbf{w}_t)]\nabla v(X_i,\mathbf{w}_t),
 \]
 we could also make \(n\) individual steps
@@ -1046,7 +1046,7 @@ In particular the true value function \(V^\pi=0\) (for all \(\pi\)) is included 
 	w_1 
 	&= w_0 + \alpha [0+\gamma v(X_1,w_0) - v(X_0,w_0)] \nabla v(X_0,w_0)\\
 	&=w_0 + \alpha[\gamma 2w_0 - w_0] \cdot 1\\
-	&=w_0 + \alpha \underbracket[1pt]{(2\gamma -1)}_{\ge 0 \mathrlap{\iff \gamma \le 1/2}} w_0
+	&=w_0 + \alpha \underbracket[0.7pt]{(2\gamma -1)}_{\ge 0 \mathrlap{\iff \gamma \le 1/2}} w_0
 \end{align*}
 So the value of \(w\) can actually increase! Even though it needs to move towards 0, since \(v(x,0)=V^\pi(x)\). It should be noted, that the valuation of the first state would increase in the tabular TD(0) version too, since the value of the state gets boosted by the fact, that it serves as an entryway to the higher valued state. But because of the interdependency of the evaluation of both states, the promise of this higher valued state causes the increase of the first state, which in turn increases the expectation for the value of the second state. So if we would just repeat the experience of a transition from state \(1\) to state \(2\), we would get into an ever increasing loop of expectations about the fantastic rewards that await us in state \(2\). But since TD(0) is actually on-policy, we will end up disappointed by the lack of rewards, when we actually reach state 2 and lower our expectations. 
 
@@ -1061,10 +1061,10 @@ with no consideration whether or not action \(b\) is actually enacted. Since the
 and assuming that the exploration policy always picks action \(1\), we always stay in the first state and thus end up with the iteration:
 \begin{align*}
 	w_{t+1} &=w_t+\alpha[0+\gamma 
-	\overbracket[1pt]{\max_{b\in\cA_{X_{t+1}}}q(X_{t+1}, b,w_t)}^{
+	\overbracket[0.7pt]{\max_{b\in\cA_{X_{t+1}}}q(X_{t+1}, b,w_t)}^{
 		=q(1,2,w_t)
-	} - \overbracket[1pt]{q(X_t,A_t,w_t)}^{=q(1,1,w_t)}]
-	\overbracket[1pt]{\nabla q(X_t,A_t,w_t)}^{=A_t=1}\\
+	} - \overbracket[0.7pt]{q(X_t,A_t,w_t)}^{=q(1,1,w_t)}]
+	\overbracket[0.7pt]{\nabla q(X_t,A_t,w_t)}^{=A_t=1}\\
 	&=w_t + \alpha[ (2\gamma-1)w_t]> w_t \quad \iff \gamma>1/2 
 \end{align*}
 The exploration policy in this counter example is of course specially designed to cause divergence. This leads \textcite[263]{suttonReinforcementLearningIntroduction2018a} to hypothesize, that Q-learning might still be relatively stable for exploration policies, which are greedy enough, like \(\vep\)-greedy policies with small enough epsilon. They claim ``to the best of [their] knowledge, Q-learning has never been found to diverge in this case, but there has been no theoretical analysis''. 
@@ -1072,7 +1072,7 @@ The exploration policy in this counter example is of course specially designed t
 Since it is the combination of function approximation, bootstrapping and off-policy learning, that causes such instability, \textcite[264]{suttonReinforcementLearningIntroduction2018a} dub this combination the ``deadly triad''. They claim that if any two elements are present, instability can be avoided. This claim is a bit of an oversimplification. \textcite{tsitsiklisAnalysisTemporaldifferenceLearning1997} present a proof, that TD(\(\lambda\)) with linear function approximation converges to some \(\mathbf{w}^\lambda\), which is not equal to the minimum\footnote{slight oversimplification since the minimum is not necessarily unique if the regressors are not linearly independent} \(\mathbf{w}^*\) in general, but can be bounded by:
 \[
 	d\left(v(\cdot,\mathbf{w}^\lambda), V^\pi\right)
-	\le \frac{1-\lambda \gamma}{1-\gamma} \underbracket[1pt]{
+	\le \frac{1-\lambda \gamma}{1-\gamma} \underbracket[0.7pt]{
 		d(v(\cdot, \mathbf{w}^*), V^\pi)
 	}_{
 		=\min_{\mathbf{w}} \widebar{\text{VE}}(\textbf{w})

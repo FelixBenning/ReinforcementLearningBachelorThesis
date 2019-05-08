@@ -343,7 +343,7 @@ resulting in the stochastic process \(((X_t,A_t,R_{t+1}), t\in \N_0)\).
 		\Pr\left[(X_t, A_t)=(x,a)\mid\cH_0^{t-1}\right]
 		\nonumber\\
 		&\lxeq{(\ref{X,R Markov})}\Pr\left[R_{t+1}\in U \mid (X_t, A_t)=(x,a)\right]
-		\underbracket[1pt]{\Pr\left[A_t=a \mid X_t=x\right]}_{=\pi_t(a\mid x)}
+		\underbracket[0.7pt]{\Pr\left[A_t=a \mid X_t=x\right]}_{=\pi_t(a\mid x)}
 		\Pr\left[X_t=x\mid \cH_{t-1}^{t-1}\right]
 		\label{time-hom Markov chain tangent}\\
 		&\lxeq{(*)}\Pr\left[R_{t+1}\in U \mid (X_t, A_t)=(x,a), \cH_{t-1}^{t-1}\right]
@@ -505,7 +505,7 @@ Now we can start to explore the relation of \(V^\pi\) and \(Q^\pi\).
 &= \E^\pi[\cR\mid X_0=x, A_0=a]\\
 &=\E^\pi[R_1\mid X_0=x,A_0=a]
 +\gamma\E^\pi\left[\sum_{t=0}^\infty\gamma^t R_{t+2}\;\middle|\; X_0=x,A_0=a\right]\\
-&\lxeq{\text{\ref{appx1}}} \underbracket[1pt]{\E[R_{(x,a)}]}_{r(x,a)} 
+&\lxeq{\text{\ref{appx1}}} \underbracket[0.7pt]{\E[R_{(x,a)}]}_{r(x,a)} 
  + \gamma \sum_{y\in\cX}\E^\pi\left[\sum_{t=0}^\infty\gamma^t R_{t+2} \;\middle|\; X_0=x,A_0=a, X_1=y\right]p(y\mid x, a)\\
 \end{align*}
 This has almost the desired form. Just looking at the conditional expectation we get
@@ -553,7 +553,7 @@ and this fixed point equation hold:
 	\begin{align}
 		V^\pi(x)&=\E^\pi[\cR\mid X_0=x] \nonumber\\
 		&=\sum_{a\in\cA_x} 
-		\underbracket[1pt]{\E^\pi[\cR\mid X_0=x, A_0=a]}_{=Q^\pi(x,a)}\label{stoch pi: V^pi in terms of Q^pi}
+		\underbracket[0.7pt]{\E^\pi[\cR\mid X_0=x, A_0=a]}_{=Q^\pi(x,a)}\label{stoch pi: V^pi in terms of Q^pi}
 		\pi(a\mid x)\\
 		&=\sum_{a\in\cA_x} \left(r(x,a)
 		+\gamma\sum_{y\in\cX}p(y\mid x,a)V^\pi(y)\right)\pi(a\mid x)\nonumber\\
@@ -577,7 +577,7 @@ and this fixed point equation hold:
 	\begin{align*}
 		&\Pr^\pi(X_1=y\mid X_0=x)\\
 		&=\sum_{a\in\cA_x} \Pr^\pi(X_1=y\mid X_0=x, A_0=a) 
-		\underbracket[1pt][1pt]{\Pr^\pi(A_0=a\mid X_0=x)}_{=\delta_{a\pi(x)}}\\
+		\underbracket[0.7pt][1pt]{\Pr^\pi(A_0=a\mid X_0=x)}_{=\delta_{a\pi(x)}}\\
 		&=\Pr^\pi(X_1=y\mid X_0=x, A_0=\pi(x))\\
 		&=p(y\mid x,\pi(x))\qedhere
 	\end{align*}
@@ -633,7 +633,7 @@ As mentioned previously, we can mostly ignore stochastic stationary policies as 
 	&=\|\gamma\sum_{y\in\cX} \Pr^\pi(X_1=y\mid X_0=\cdot\;) (V(y)-W(y))\|_\infty\\
 	&\le\gamma \sup_{x\in\cX}\left\{ \sum_{y\in\cX} 
 	\Pr^\pi(X_1=y\mid X_0=x) \|V-W\|_\infty \right\}\\
-	&=\gamma \|V-W\|_\infty  \sup_{x\in\cX}\underbracket[1pt]{
+	&=\gamma \|V-W\|_\infty  \sup_{x\in\cX}\underbracket[0.7pt]{
 		\left\{ \sum_{y\in\cX} \Pr^\pi(X_1=y\mid X_0=x) \right\}
 	}_{=1}\\
 	&=\gamma \|V-W\|_\infty
@@ -653,7 +653,7 @@ The proof for \(T^\pi\colon B(\cX\times\cA)\to B(\cX\times\cA)\) is analogous.
  Be \(W_1,W_2\in B(\cX)\), \(W_1\le W_2\) and \(x\in\cX\), then
 \[
 	T^\pi W_2 (x) - T^\pi W_1(x) 
-	= \gamma \sum_{y\in\cX} \Pr^\pi(X_1=y\mid X_0=x) \underbracket[1pt]{
+	= \gamma \sum_{y\in\cX} \Pr^\pi(X_1=y\mid X_0=x) \underbracket[0.7pt]{
 		(W_2(y)-W_1(y))
 	}_{\ge 0} \ge 0 \qedhere
 \]
@@ -755,7 +755,7 @@ With this statement we can now prove the building blocks for the fixed point equ
 	\begin{align*}
 		\tilde{Q}(x,a)&= \sup_{\pi \in \detPolicy} \left\{r(x,a)
 		+\gamma\sum_{y\in\cX}p(y\mid x,a) V^\pi(y)\right\}\\
-		&\le r(x,a) +\gamma\sum_{y\in\cX}p(y\mid x,a) \underbracket[1pt]{\sup_{\pi \in \detPolicy}V^\pi(y)}_{=\tilde{V}(y)}
+		&\le r(x,a) +\gamma\sum_{y\in\cX}p(y\mid x,a) \underbracket[0.7pt]{\sup_{\pi \in \detPolicy}V^\pi(y)}_{=\tilde{V}(y)}
 	\end{align*}
 	For the other direction we need to do a bit more work. Since the \(r(x,a)\) and \(\gamma\), are unaffected by the supremum what is left to show is:
 	\[
@@ -794,17 +794,17 @@ With this statement we can now prove the building blocks for the fixed point equ
 		- \sum_{y\in\cX}p(y\mid x,a) V^{\hat{\pi}^{(n)}}(y) \\
 		&\le \sum_{y\in M_\delta}p(y\mid x,a) (\tilde{V}(y) - V^{\hat{\pi}^{(n)}}(y))
 		+ \sum_{y\in M_\delta^\complement}p(y\mid x,a) 
-		\underbracket[1pt]{|\tilde{V}(y) - V^{\hat{\pi}^{(n)}}(y)|}_{
+		\underbracket[0.7pt]{|\tilde{V}(y) - V^{\hat{\pi}^{(n)}}(y)|}_{
 			\begin{aligned}
 				&\le \|\tilde{V}\|_\infty + \| V^{\hat{\pi}^{(n)}}\|_\infty\\
 				&\le 2R/(1-\gamma)
 			\end{aligned}
 		} \\
 		&\lxlq{(\ref{piHat over finite set})} \sum_{y\in M_\delta}p(y\mid x,a) 
-		\underbracket[1pt]{(\tilde{V}(y) - V^{\pi_y^{(n)}}(y))}_{
+		\underbracket[0.7pt]{(\tilde{V}(y) - V^{\pi_y^{(n)}}(y))}_{
 			<\varepsilon/2\quad(\ref{convergenceToTilde})
 		}
-		+ 2R/(1-\gamma) \underbracket[1pt]{\sum_{y\in M_\delta^\complement}p(y\mid x,a)}_{
+		+ 2R/(1-\gamma) \underbracket[0.7pt]{\sum_{y\in M_\delta^\complement}p(y\mid x,a)}_{
 			< \frac{\varepsilon /4}{R/(1-\gamma)}\quad(\ref{Mcomplement})
 		}\\
 		&\le \varepsilon \qquad \forall n\ge N.
@@ -916,7 +916,7 @@ With this statement we can now prove the building blocks for the fixed point equ
 		\E^\pi\left[\sum_{t=0}^\infty \gamma^t R_{t+2}\;\middle|\; X_0=x,A_0=a, X_1=y \right]
 		\\
 		&=r(x,a)
-		+\gamma \sum_{y\in\cX} p(y\mid x, a) \underbracket[1pt]{
+		+\gamma \sum_{y\in\cX} p(y\mid x, a) \underbracket[0.7pt]{
 			\sup_{(\pi_t,t\in\N)}
 			\E^\pi\left[\sum_{t=0}^\infty \gamma^t R_{t+2}\;\middle|\; X_0=x,A_0=a, X_1=y \right].
 		}_{(*)}
@@ -1004,7 +1004,7 @@ is the unique fixed point of \(T^*\). The suprema over all the other policy sets
 		&\lxlq{\text{(\ref{sup and absolute value})}}\sup_{x\in\cX}\sup_{a\in\cA_x}
 		\left|\gamma\sum_{y\in\cX}p(y\mid x,a) (V(y) -W(y))\right|\\
 		&\le \sup_{x\in\cX}\sup_{a\in\cA_x} 
-		\gamma\underbracket[1pt]{\sum_{y\in\cX}p(y\mid x,a)}_{=1} \|V-W\|_\infty\\
+		\gamma\underbracket[0.7pt]{\sum_{y\in\cX}p(y\mid x,a)}_{=1} \|V-W\|_\infty\\
 		&=\gamma \|V-W\|_\infty
 	\end{align*}
 	Similarly for \(Q, P\in B(\cX\times\cA)\):
@@ -1041,14 +1041,14 @@ Let us first consider the case where the supremum can be attained, since this in
 		V^*(x)&=V^{\pi^*}(x)\xeq{(\ref{stoch pi: V^pi in terms of Q^pi})}
 		\sum_{a\in\cA_x}\pi^*(a\mid x) Q^{\pi^*}(x,a) \nonumber\\
 		&\le \sum_{a\in\cA_x}\pi^*(a\mid x) Q^*(x,a)\label{ii sandwiched} \\
-		&\le \underbracket[1pt]{\sum_{a\in\cA_x}\pi^*(a\mid x)}_{=1} 
+		&\le \underbracket[0.7pt]{\sum_{a\in\cA_x}\pi^*(a\mid x)}_{=1} 
 		\sup_{b\in\cA_x}Q^*(x,b) \nonumber\\
 		&\lxeq{\ref{V*,Q* relation}}V^*(x) \nonumber
 	\end{align}
 	\xToy{\ref{ii:2}}{\ref{ii:3}} Let \(\pi\in\statPolicy,\; (x,a)\in\cX\times\cA\) be arbitrary. Then with (\ref{stoch pi: V^pi in terms of Q^pi}) we have
 	\[
 		\sum_{a\in\cA_x}\pi(a\mid x) Q^*(x,a)
-		\le \underbracket[1pt]{\sum_{a\in\cA_x}\pi(a\mid x)}_{=1}
+		\le \underbracket[0.7pt]{\sum_{a\in\cA_x}\pi(a\mid x)}_{=1}
 		\sup_{b\in\cA_x}Q^*(x,b)=V^*(x).
 	\]
 	Therefore \(V^* (x)\) is an upper bound for every \(\pi\in\statPolicy\), and since \(\pi^*\) attains this upper bound it is a maximum.
@@ -1071,7 +1071,7 @@ Let us first consider the case where the supremum can be attained, since this in
 	\begin{align*}
 		&\sum_{c\in\cA_x} \hat{\pi}(c\mid x) Q^*(x,c)\\
 		&=[\pi^*(b\mid x) %Q^*(x,b) 
-		+ \underbracket[1pt]{\pi^*(a\mid x)}_{>0}] \underbracket[1pt]{Q^*(x,b)}_{>Q^*(x,a)}
+		+ \underbracket[0.7pt]{\pi^*(a\mid x)}_{>0}] \underbracket[0.7pt]{Q^*(x,b)}_{>Q^*(x,a)}
 		+\sum_{c\in\cA_x\setminus \{a,b\}} \pi^*(c\mid x)Q^*(x,c)\\
 		&> \sum_{c\in\cA_x} \pi^*(c\mid x) Q^*(x,c) \contradiction{\pi^* \text{ attains maximum}}
 	\end{align*}
@@ -1160,7 +1160,7 @@ Now we show how we can construct an optimal stationary policy from an arbitrary 
 	Using \ref{appx1} again we get:
 	\begin{align*}
 		&\Pr^{\pi}[X_t=y, A_t=a \mid X_0=x]\\
-		&=\underbracket[1pt]{\Pr^\pi[A_t=a \mid X_t=y, X_0=x]}_{=\pi^x_t(a\mid y)}
+		&=\underbracket[0.7pt]{\Pr^\pi[A_t=a \mid X_t=y, X_0=x]}_{=\pi^x_t(a\mid y)}
 		\Pr^\pi[X_t=y\mid X_0=x]\\
 		&=\Pr^{\pi^x}[A_t=a \mid X_t=y, X_0=x]\Pr^{\pi^x}[X_t=y\mid X_0=x]\\
 		&=\Pr^{\pi^x}[X_t=y, A_t=a \mid X_0=x]\qedhere

@@ -47,7 +47,7 @@
 \begin{proof}
     ``\(\Leftarrow\)'' Let \(A\in\cB(\R)\), then w.l.o.g. \(A\subseteq f(\Omega)\) otherwise
     \[
-        \Pr_{f\circ X}(A)=\Pr(A\cap f(\Omega))+\underbracket[1pt]{
+        \Pr_{f\circ X}(A)=\Pr(A\cap f(\Omega))+\underbracket[0.7pt]{
             \Pr_{f\circ X}(A\cap f(\Omega)^\complement)
             }_{=0}=\dotsc=\Pr_Y(A) 
     \]
@@ -105,46 +105,6 @@
     \]
 \end{proof}
 
-\begin{lemma}\label{appx4} For a real valued random variable \(X\), an arbitrary random vector \(Y\) and \(f\) a measurable real valued function 
-    \[
-        \textnormal{Var}[X\mid Y]=\min_{f} \E[ (X-f(Y))^2\mid Y]
-    \]
-\end{lemma}
-\begin{proof}
-    \begin{align*}
-        \E[(X-f(Y))^2\mid Y] &= \E[X^2\mid Y] - \E[2Xf(Y)\mid Y] + \E[f(Y)^2\mid Y]\\
-        &=\E[X^2\mid Y] - 2f(Y)\E[X\mid Y] + f(Y)^2
-    \end{align*}  
-    Fr a fixed \(\omega\), \(f(Y(\omega))\eqqcolon a\) is simply a constant. Therefore we can set the first derivative equal to zero:
-    \begin{align*}
-        \frac{d}{da} \E[(X-f(Y))^2\mid Y](\omega)= -2\E[X\mid Y](\omega) +2a \xeq{!} 0
-    \end{align*}
-    Since the second derivative is \(2>0\), \(\E[X\mid Y](\omega) = f(Y(\omega))\) is the unique minimum. Which implies that \(\text{Var}[X\mid Y]\) is the minimum regardless of \(\omega\).
-\end{proof}
-
-\begin{lemma}\label{appx:6}
-    \begin{align*}
-        \E[X\mid \mathbbm{1}_A]=\E[X\mid A]\mathbbm{1}_A +\E[X\mid A^\complement]\mathbbm{1}_{A^\complement}
-    \end{align*}
-\end{lemma}
-\begin{proof}
-    Let \(f(\mathbbm{1}_A)=\E[X\mid \mathbbm{1}_A]\), then for \(B\in\sigma(\mathbbm{1}_A)=\{\emptyset,A,A^\complement,\Omega\}\) we know
-    \[
-        \int_B X d\Pr =\int_B f(\mathbbm{1}_A)d\Pr.
-    \]
-    In particular this requires
-    \begin{align}\label{constant expectation}
-        \int_A X d\Pr = \int_A f(\mathbbm{1}_A)d\Pr = f(1) \Pr(A).
-    \end{align}
-    Thus we know
-    \[
-        f(1)=\mfrac{1}{\Pr(A)}\int_A X d\Pr=\E[X\mid A].
-    \]
-    With similar reasoning for \(A^\complement\), we can prove the original claim:
-    \begin{align*}
-        \E[X\mid \mathbbm{1}_A]=f(\mathbbm{1}_A)=f(1)\mathbbm{1}_A + f(0)\mathbbm{1}_{A^\complement}=\E[X\mid A]\mathbbm{1}_A +\E[X\mid A^\complement]\mathbbm{1}_{A^\complement}.
-    \end{align*}
-\end{proof}
 \begin{lemma}\label{appx7}
     Some History is irrelevant, if the entire history is irrelevant or more generally
     \[
@@ -166,8 +126,8 @@
     which allows us to apply \ref{appx1} \ref{appx1:iii}:
     \begin{align*}
         &\E[X\mid Z=z, Y_1=y_1]\\
-        &\lxeq{\text{\ref{appx1}}}\sum_{y_2\in\cY} \underbracket[1pt]{\E[X\mid Z=z, Y_1=y_1, Y_2=y_2]}_{=\E[X\mid Z=z]} \Pr(Y_2=y_2\mid Z=z,Y_1=y_1)\\
-        &=\E[X\mid Z=z] \underbracket[1pt]{\sum_{y_2\in\cY} \Pr(Y_2=y_2\mid Z=z,Y_1=y_1)}_{=1}\qedhere
+        &\lxeq{\text{\ref{appx1}}}\sum_{y_2\in\cY} \underbracket[0.7pt]{\E[X\mid Z=z, Y_1=y_1, Y_2=y_2]}_{=\E[X\mid Z=z]} \Pr(Y_2=y_2\mid Z=z,Y_1=y_1)\\
+        &=\E[X\mid Z=z] \underbracket[0.7pt]{\sum_{y_2\in\cY} \Pr(Y_2=y_2\mid Z=z,Y_1=y_1)}_{=1}\qedhere
     \end{align*}
 \end{proof}
 
@@ -176,7 +136,7 @@
     \[
         K\coloneqq\min\{k\in\N_0:X_k=x\}
     \]
-    marks the first visit to \(x\), and
+    marks the first visit to \(x\), and conditional on \(K\) being finite (i.e. conditional on \(\{k\in\N_0:X_k=x\}\neq \emptyset\))
     \[
         \sum_{t=K}^\infty R_{t+1}\;\Big|\; K \sim \sum_{t=0}^\infty R_{t+1} \;\Big|\; X_0=x.
     \]
@@ -194,12 +154,84 @@
         &\lxeq{\text{Markov}} \E\left[f\left(\sum_{t=k}^\infty R_{t+1}\right)\;\middle|\; X_k=x\right]\\
         &\lxeq{\text{stationary}} \E\left[f\left(\sum_{t=0}^\infty R_{t+1}\right)\;\middle|\; X_0=x\right]
     \end{align*}
-    Since this is independent of \(k\), we get
+    Since this is independent of \(k\in \N_0\), we get
     \begin{align*}
         \E\left[f\left(\sum_{t=K}^\infty R_{t+1}\right)\;\middle|\; K\right]
         =\E\left[f\left(\sum_{t=0}^\infty R_{t+1}\right)\;\middle|\; X_0=x\right]
     \end{align*}
-    for every measurable \(f\), which implies the distributions are the same.
+    for every measurable \(f\) conditional on \(K\) being finite, which implies the distributions are the same.
+\end{proof}
+
+\begin{lemma}\label{appx4} For a real valued random variable \(X\), an arbitrary random vector \(Y\) and \(f\) a measurable real valued function 
+    \[
+        \textnormal{Var}[X\mid Y]=\min_{f} \E[ (X-f(Y))^2\mid Y]
+    \]
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        \E[(X-f(Y))^2\mid Y] &= \E[X^2\mid Y] - \E[2Xf(Y)\mid Y] + \E[f(Y)^2\mid Y]\\
+        &=\E[X^2\mid Y] - 2f(Y)\E[X\mid Y] + f(Y)^2
+    \end{align*}  
+    Fr a fixed \(\omega\), \(f(Y(\omega))\eqqcolon a\) is simply a constant. Therefore we can set the first derivative equal to zero:
+    \begin{align*}
+        \frac{d}{da} \E[(X-f(Y))^2\mid Y](\omega)= -2\E[X\mid Y](\omega) +2a \xeq{!} 0
+    \end{align*}
+    Since the second derivative is \(2>0\), \(\E[X\mid Y](\omega) = f(Y(\omega))\) is the unique minimum. Which implies that \(\text{Var}[X\mid Y]\) is the minimum regardless of \(\omega\).
+\end{proof}
+\begin{lemma}\label{appx1:summing over probabilities}
+    For a non-negative discrete random variable \(X\)
+    \[
+        \sum_{t=1}^\infty \Pr(X\ge t)=\E[X]
+    \]
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        \sum_{t=1}^\infty \Pr(X\ge t)
+        &=\sum_{t=1}^\infty \sum_{k=t}^\infty \Pr(X=k)\\
+        &=\sum_{t=1}^\infty \sum_{k=0}^\infty \mathbbm{1}_{k\ge t} \Pr(X=k)\\
+        &\lxeq{\text{Fub.}}\sum_{k=0}^\infty \underbracket[0.7pt]{\sum_{t=1}^k 1}_{=k} \cdot \Pr(X=k)\\
+        &=\E[X]\qedhere
+    \end{align*}
+\end{proof}
+\begin{lemma}\label{appx1:repeated conditional expectation}
+    For random a random variable \(X\) and random vectors \(Y,Z\),
+    \[
+        \E[ \E[X\mid Y,Z]\mid Y] = \E[X\mid Y]
+    \]
+\end{lemma}
+\begin{proof} For all \(B\) in the sigma algebra of the target space of \(Y\)
+    \begin{align*}
+        \int_{\{Y\in B\}} \E[\E[X\mid Y,Z]\mid Y ] d\Pr 
+        &= \int_{\{Y\in B\}} \E[X\mid Y,Z]d\Pr\\
+        &=\int_{\{Y\in B\}} X d\Pr\\
+        &=\int_{\{Y\in B\}} \E[X\mid Y] d\Pr
+    \end{align*}
+    Since both are functions, this yields our initial claim, since these two properties uniquely define the conditional expectation. 
+\end{proof}
+\begin{lemma}\label{appx:6}
+    \begin{align*}
+        \E[X\mid \mathbbm{1}_A]=\E[X\mid A]\mathbbm{1}_A +\E[X\mid A^\complement]\mathbbm{1}_{A^\complement}
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    Let \(f(\mathbbm{1}_A)=\E[X\mid \mathbbm{1}_A]\), then for \(B\in\sigma(\mathbbm{1}_A)=\{\emptyset,A,A^\complement,\Omega\}\) we know
+    \[
+        \int_B X d\Pr =\int_B f(\mathbbm{1}_A)d\Pr.
+    \]
+    In particular this requires
+    \begin{align}\label{constant expectation}
+        \int_A X d\Pr = \int_A f(\mathbbm{1}_A)d\Pr = f(1) \Pr(A).
+    \end{align}
+    Thus we know
+    \[
+        f(1)=\mfrac{1}{\Pr(A)}\int_A X d\Pr=\E[X\mid A].
+    \]
+    With similar reasoning for \(A^\complement\), we can prove the original claim:
+    \begin{align*}
+        \E[X\mid \mathbbm{1}_A]
+        &=f(\mathbbm{1}_A)=f(1)\mathbbm{1}_A + f(0)\mathbbm{1}_{A^\complement}\\
+        &=\E[X\mid A]\mathbbm{1}_A +\E[X\mid A^\complement]\mathbbm{1}_{A^\complement}. \qedhere
+    \end{align*}
 \end{proof}
 
 \section{Analysis}
