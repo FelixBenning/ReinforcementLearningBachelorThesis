@@ -427,7 +427,7 @@ Now to \(F_n(x)\), we have
     }
     }
 \end{align*}
-Due to a similar argument as in \ref{appx8}\footnote{Instead of the first visit conditional on the first visit existing, we consider the k-th visit conditional on the k-th visit existing; and we use the Markov property on the \(\lambda\)-return instead of the return.}, on the set \(\{m_n(x)\ge k\}\) the \(\lambda\) return after the \(k\)-th visit to \(x\), \(V_n(x;k)\), has the same distribution as \(\hat{V}_n^\lambda(x)\), which is the \(\lambda\)-return conditional on the starting state \(x\). Therefore we can start to prove \((*)\) with:
+Due to a similar argument as in \ref{appx8}\footnote{Instead of the first visit, conditional on the first visit existing, we consider the k-th visit, conditional on the k-th visit existing; and we use the Markov property on the \(\lambda\)-return instead of the return.}, on the set \(\{m_n(x)\ge k\}\) the \(\lambda\) return after the \(k\)-th visit to \(x\), \(V_n(x;k)\), has the same distribution as \(\hat{V}_n^\lambda(x)\), which is the \(\lambda\)-return conditional on the starting state \(x\). Therefore we can start to prove \((*)\) with:
 \begin{align*}
     &\int_{\{H_n\in B\}} \E\left[ (V_n^\lambda(x;k)-V^\pi(x))\mathbbm{1}_{m_n(x)\ge k} \;\middle|\; H_n \right]d\Pr\\
     &= \int_{\{H_n\in B, m_n(x)\ge k\}} V_n^\lambda(x;k)-V^\pi(x)d\Pr\\
