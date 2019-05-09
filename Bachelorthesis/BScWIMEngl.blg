@@ -1,15 +1,15 @@
-[1] Config.pm:304> INFO - This is Biber 2.12
-[2] Config.pm:307> INFO - Logfile is 'BScWIMEngl.blg'
-[51] biber-MSWIN64:315> INFO - === 
-[101] Biber.pm:371> INFO - Reading 'BScWIMEngl.bcf'
-[209] Biber.pm:889> INFO - Found 25 citekeys in bib section 0
-[232] Biber.pm:4093> INFO - Processing section 0
-[250] Biber.pm:4254> INFO - Looking for bibtex format file './chapter/literature.bib' for section 0
-[270] bibtex.pm:1523> INFO - LaTeX decoding ...
-[404] bibtex.pm:1340> INFO - Found BibTeX data source './chapter/literature.bib'
-[711] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[711] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[712] Biber.pm:3921> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[712] Biber.pm:3927> INFO - No sort tailoring available for locale 'en-US'
-[759] bbl.pm:636> INFO - Writing 'BScWIMEngl.bbl' with encoding 'UTF-8'
-[794] bbl.pm:739> INFO - Output to BScWIMEngl.bbl
+[0] Config.pm:304> INFO - This is Biber 2.12
+[0] Config.pm:307> INFO - Logfile is 'BScWIMEngl.blg'
+[33] biber-MSWIN64:315> INFO - === 
+[80] Biber.pm:371> INFO - Reading 'BScWIMEngl.bcf'
+[174] Biber.pm:889> INFO - Found 25 citekeys in bib section 0
+[189] Biber.pm:4093> INFO - Processing section 0
+[203] Biber.pm:4254> INFO - Looking for bibtex format file './chapter/literature.bib' for section 0
+[215] bibtex.pm:1523> INFO - LaTeX decoding ...
+[321] bibtex.pm:1340> INFO - Found BibTeX data source './chapter/literature.bib'
+[507] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[507] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[508] Biber.pm:3921> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[508] Biber.pm:3927> INFO - No sort tailoring available for locale 'en-US'
+[537] bbl.pm:636> INFO - Writing 'BScWIMEngl.bbl' with encoding 'UTF-8'
+[558] bbl.pm:739> INFO - Output to BScWIMEngl.bbl
