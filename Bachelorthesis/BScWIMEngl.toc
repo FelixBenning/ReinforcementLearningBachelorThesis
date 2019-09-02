@@ -15,13 +15,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.4}Optimal Value Functions}{15}{section.1.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.4.1}Finite Outmatching}{15}{subsection.1.4.1}% 
+\contentsline {subsection}{\numberline {1.4.1}Finite Outmatching}{16}{subsection.1.4.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.4.2}Fix-Point Equations for Optimal Value functions}{17}{subsection.1.4.2}% 
+\contentsline {subsection}{\numberline {1.4.2}Fix-Point Equations for Optimal Value functions}{18}{subsection.1.4.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.5}Optimal policies}{23}{section.1.5}% 
+\contentsline {section}{\numberline {1.5}Optimal policies}{24}{section.1.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.6}Dynamic Programming}{30}{section.1.6}% 
+\contentsline {section}{\numberline {1.6}Dynamic Programming}{31}{section.1.6}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.6.1}Bootstrapping and Discounting}{33}{subsection.1.6.1}% 
 \defcounter {refsection}{0}\relax 
@@ -45,7 +45,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.5}TD(\(\lambda \)) -- Mixing Monte Carlo and TD}{48}{section.2.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.5.1}\(n\)-Step Return}{48}{subsection.2.5.1}% 
+\contentsline {subsection}{\numberline {2.5.1}\(n\)-Step Return}{49}{subsection.2.5.1}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.5.2}TD(\(\lambda \)) Forward View - \(\lambda \)-return}{49}{subsection.2.5.2}% 
 \defcounter {refsection}{0}\relax 
@@ -55,11 +55,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.6}Q-learning}{55}{section.2.6}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.6.1}Shortcomings of Q-learning}{55}{subsection.2.6.1}% 
+\contentsline {subsection}{\numberline {2.6.1}Shortcomings of Q-learning}{56}{subsection.2.6.1}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.7}Exploration}{56}{section.2.7}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.7.1}Optimism}{56}{subsection.2.7.1}% 
+\contentsline {subsection}{\numberline {2.7.1}Optimism}{57}{subsection.2.7.1}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.7.2}Boltzmann Exploration}{57}{subsection.2.7.2}% 
 \defcounter {refsection}{0}\relax 
@@ -69,9 +69,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Bayesian Exploration}{59}{section*.11}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.7.4}Intrinsic Rewards}{59}{subsection.2.7.4}% 
+\contentsline {subsection}{\numberline {2.7.4}Intrinsic Rewards}{60}{subsection.2.7.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Curiosity-Driven Exploration}{60}{section*.12}% 
+\contentsline {subsubsection}{Curiosity-Driven Exploration}{61}{section*.12}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.8}Function Approximation}{62}{section.2.8}% 
 \defcounter {refsection}{0}\relax 

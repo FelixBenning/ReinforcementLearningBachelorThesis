@@ -1,14 +1,12 @@
-PWD d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis
+PWD d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\miktex\data\le\pdftex\pdflatex.fmt
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.tex
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.log
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.tex
+OUTPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.log
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\book.cls
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\book.cls
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\bk11.clo
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\bk11.clo
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
-INPUT macros\dinaA4.sty
-INPUT macros\dinaA4.sty
 INPUT macros\BScMacros.sty
 INPUT macros\BScMacros.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty
@@ -294,6 +292,8 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\blx-dm.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\blx-dm.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\blx-compat.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\blx-compat.def
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\blx-bibtex.def
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\blx-bibtex.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\biblatex.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\biblatex.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\bbx\authoryear.bbx
@@ -364,7 +364,7 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\t
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryfadings.code.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryfadings.code.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryfadings.code.tex
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.pdf
+OUTPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.pdf
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\csquotes\csquotes.sty
@@ -381,8 +381,8 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\german.lbx
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\german.lbx
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\german.lbx
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\german.lbx
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.aux
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.aux
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.aux
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.aux
 INPUT chapter\declaration.aux
 INPUT chapter\declaration.aux
 INPUT chapter\introduction.aux
@@ -395,7 +395,7 @@ INPUT chapter\chapter_03.aux
 INPUT chapter\chapter_03.aux
 INPUT chapter\appendix_01.aux
 INPUT chapter\appendix_01.aux
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.aux
+OUTPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.aux
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr10.tfm
@@ -409,24 +409,24 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.bcf
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.bbl
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.bbl
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.bbl
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
+OUTPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
+OUTPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl-blx.bib
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.bbl
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.bbl
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.bbl
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmcsc10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr17.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmbx12.tfm
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\declaration.aux
+OUTPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\declaration.aux
 INPUT chapter\declaration.tex
 INPUT chapter\declaration.tex
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmr17.tfm
@@ -461,16 +461,16 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\wasysym\uwasy.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\wasy\wasy6.tfm
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.toc
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.toc
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.toc
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.toc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmbx10.tfm
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.toc
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\introduction.aux
+OUTPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.toc
+OUTPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\introduction.aux
 INPUT chapter\introduction.tex
 INPUT chapter\introduction.tex
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmri10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmro10.tfm
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_01.aux
+OUTPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_01.aux
 INPUT chapter\chapter_01.tex
 INPUT chapter\chapter_01.tex
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmbx12.tfm
@@ -498,7 +498,7 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\bbm\ubbm.fd
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm10.tfm
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm8.tfm
 INPUT C:\Users\felix\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbm\bbm6.tfm
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_02.aux
+OUTPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_02.aux
 INPUT chapter\chapter_02.tex
 INPUT chapter\chapter_02.tex
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\lmmi12.tfm
@@ -533,7 +533,7 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmbx8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmbx6.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmbx9.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmbx5.tfm
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_03.aux
+OUTPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\chapter_03.aux
 INPUT chapter\chapter_03.tex
 INPUT chapter\chapter_03.tex
 INPUT Other\expon30.csv
@@ -548,14 +548,14 @@ INPUT Other\n100.csv
 INPUT Other\expon500.csv
 INPUT Other\sqrtn500.csv
 INPUT Other\n500.csv
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\appendix_01.aux
+OUTPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\.\chapter\appendix_01.aux
 INPUT chapter\appendix_01.tex
 INPUT chapter\appendix_01.tex
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmcsc10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\lm\rm-lmtt10.tfm
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.aux
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.aux
 INPUT chapter\declaration.aux
 INPUT chapter\declaration.aux
 INPUT chapter\introduction.aux
@@ -568,10 +568,10 @@ INPUT chapter\chapter_03.aux
 INPUT chapter\chapter_03.aux
 INPUT chapter\appendix_01.aux
 INPUT chapter\appendix_01.aux
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
-INPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.run.xml
-OUTPUT d:\Google Drive\Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.run.xml
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.out
+INPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.run.xml
+OUTPUT d:\Google Drive\- Mannheim Uni\Mathematik\Stochastik,Maß-Theorie\Bachelorarbeit\Bachelorthesis\BScWIMEngl.run.xml
 INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-rmtt.enc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-rm.enc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\enc\dvips\lm\lm-mathit.enc

@@ -444,7 +444,7 @@ This means \(V^\pi, Q^\pi\) are well defined.
 
 \begin{remark}
 	While the following proofs do not require discrete state and action spaces per se (as all the sums could just be replaced by integrals), the optimal value functions need not be measurable \parencite[157]{putermanMarkovDecisionProcesses2005}. To remedy this \citeauthor{putermanMarkovDecisionProcesses2005} suggests to either
-	\begin{itemize}[noitemsep]
+	\begin{itemize}[nosep]
 		\item impose regularity conditions which would ensure measurability,
 		\item use outer integrals to avoid measurability issues altogether,
 		\item or extend notions of measurability.
@@ -558,15 +558,15 @@ and this fixed point equation hold:
 		&=\sum_{a\in\cA_x} \left(r(x,a)
 		+\gamma\sum_{y\in\cX}p(y\mid x,a)V^\pi(y)\right)\pi(a\mid x)\nonumber\\
 		&=\sum_{a\in\cA_x}r(x,a)\pi(a\mid x) 
-		+ \gamma\smashoperator[l]{\sum_{(y,a)\in\cX\times\cA_x}} 
+		+ \gamma\smashoperator[lr]{\sum_{(y,a)\in\cX\times\cA_x}} 
 		V^\pi(y) p(y\mid x,a)\pi(a\mid x)
 		\label{stoch pi: fixed point proof}\\
 		&=\E^\pi[r(x,A_0)\mid X_0=x] 
-		+ \gamma\smashoperator[l]{\sum_{(y,a)\in\cX\times\cA_x}} V^\pi(y)
+		+ \gamma\smashoperator[lr]{\sum_{(y,a)\in\cX\times\cA_x}} V^\pi(y)
 		\Pr^\pi(X_1=y, A_0=a \mid X_0=x)\nonumber\\
 		&=\E^\pi[r(x,A_0)\mid X_0=x] + \gamma\smashoperator[l]{\sum_{y\in\cX}} V^\pi(y)
 		\Pr^\pi(X_1=y\mid X_0=x)\nonumber
-	\end{align}
+	\end{align} 
 	And for the case, where \(\pi\) is a deterministic stationary policy:
 	\[
 		V^\pi(x)=\E^\pi[\cR\mid X_0=x]=\E^\pi[\cR\mid X_0=x, A_0=\pi(x)]=Q^\pi(x,\pi(x)).
@@ -683,7 +683,7 @@ Before we get to tackle this problem, we first need to adress another one. Notic
 Since the stationary policy still allows us to condition on the state, it is intuitive to assume that we do not need different sequences of policies to approximate \(V^*\) for each state \(x\in\cX\). This will eventually turn out to be true using statements about the optimal value functions. We would not be successful to show this directly from the definition. As sequences approximating the different suprema are indexed by the (possibly countable) state space, what we would need to find is a single sequence of policies, which matches all the policies in this countable set of sequences in every step of the sequence. This turns out to be an impossible task. Here is an example for that. 
 
 \begin{example}[The Genie Cubicles] \label{genie cubicles}
-Imagine an infinite (countable) amount of cubicles \(\N \subset \cX\), with a genie in every cubicle. You can wish for an arbitrary amount of money \(\cA=\N\), after that you have to leave (end up in the terminal state \(0\), i.e.: \(\cX=\N_0\)). Then of course \(\tilde{V}(x)=\infty\) for \(x\in\N\), is achived by the sequences of deterministic stationary behaviors 
+Imagine an infinite (but countable) amount of cubicles \(\N \subset \cX\), with a genie in every cubicle. You can wish for an arbitrary amount of money \(\cA=\N\), after that you have to leave (end up in the terminal state \(0\), i.e.: \(\cX=\N_0\)). Then of course \(\tilde{V}(x)=\infty\) for \(x\in\N\), is achived by the sequences of deterministic stationary behaviors
 \[
 	(\pi_x^{(n)}, n\in\N)\quad  \text{with } \pi_x^{(n)}(y)=x+n\quad \forall y\in\cX
 \]
@@ -1151,12 +1151,12 @@ Now we show how we can construct an optimal stationary policy from an arbitrary 
 	together with \ref{appx1}, we get:
 	\begin{align*}
 		\Pr^\pi(X_t=y\mid X_0=x)
-		&=\sum_{(z,a)\in\cX\times\cA}p(y\mid z,a)
+		&=\smashoperator[r]{\sum_{(z,a)\in\cX\times\cA}}\; p(y\mid z,a)
 		\Pr^\pi[(X_{t-1},A_{t-1})=(z,a)\mid X_0=x]\\
-		&\lxeq{\text{ind.}} \sum_{(z,a)\in\cX\times\cA}p(y\mid z,a)
+		&\lxeq{\text{ind.}} \smashoperator[r]{\sum_{(z,a)\in\cX\times\cA}}\;p(y\mid z,a)
 		\Pr^{\pi^x}[(X_{t-1},A_{t-1})=(z,a)\mid X_0=x]\\
 		&=\Pr^{\pi^x}(X_t=y\mid X_0=x)
-	\end{align*}
+	\end{align*} 
 	Using \ref{appx1} again we get:
 	\begin{align*}
 		&\Pr^{\pi}[X_t=y, A_t=a \mid X_0=x]\\
